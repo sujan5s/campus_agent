@@ -15,13 +15,13 @@ This project introduces an **Agentic AI-driven campus management framework** tha
 graph TD
     User([User Query]) --> Router[Router Node]
     
-    subgraph Orchestration Layer (LangGraph)
+    subgraph "Orchestration Layer (LangGraph)"
         Router -->|Intent: Scheduling/Tasks| Scheduler[Scheduler Agent Node]
         Router -->|Intent: Room Bookings| Facility[Facility Agent Node]
         Router -->|Intent: General Info| General[General Fallback Node]
     end
     
-    subgraph State Storage
+    subgraph "State Storage"
         State[(AgentState)]
     end
     
