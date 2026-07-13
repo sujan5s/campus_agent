@@ -16,9 +16,10 @@ from app.core.llm import get_llm, is_llm_configured
 class RouteDecision(BaseModel):
     """Structured routing decision returned by the supervisor LLM."""
 
-    route: Literal["scheduler", "facility", "general"] = Field(
+    route: Literal["timetable", "scheduler", "facility", "general"] = Field(
         description=(
-            "scheduler: timetables, class schedules, conflicts, substitutions, teacher leave. "
+            "timetable: generate/regenerate/rebuild the weekly class timetable. "
+            "scheduler: schedule conflicts, checks, substitutions, teacher leave. "
             "facility: booking/reserving/availability of rooms, halls, labs, auditoriums, grounds, events. "
             "general: anything else (campus info, FAQs, greetings)."
         )
@@ -39,6 +40,8 @@ _SUPERVISOR_SYSTEM = (
 def _keyword_fallback(query: str) -> tuple[str, str]:
     """Deterministic routing used when no LLM provider is configured."""
     q = query.lower()
+    if "timetable" in q and any(kw in q for kw in ["generate", "create", "build", "make", "regenerate"]):
+        return "timetable", "keyword match: timetable generation"
     if any(kw in q for kw in ["book", "reserve", "facility", "room", "hall", "lab", "auditorium", "ground", "event"]):
         return "facility", "keyword match: facility/booking terms"
     if any(kw in q for kw in ["schedule", "task", "timetable", "conflict", "overlap", "leave", "substitut"]):
@@ -92,6 +95,8 @@ def supervisor_node(state: AgentState) -> dict:
 
 def route_to(state: AgentState) -> str:
     action = state.get("current_action", "general")
+    if action == "timetable":
+        return "timetable"
     if action == "facility":
         return "facility"
     if action == "scheduler":

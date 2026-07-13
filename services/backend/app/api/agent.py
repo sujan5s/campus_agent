@@ -10,6 +10,7 @@ from app.agents.graph import compiled_graph, checkpointer
 router = APIRouter()
 
 AGENT_NAMES = {
+    "timetable": "Timetable Agent",
     "facility": "Facility Agent",
     "scheduler": "Scheduler Agent",
     "general": "Campus Orchestrator",

@@ -24,12 +24,12 @@ Phase 0 turns it into the real platform every feature plugs into.
 
 ## Phase 1 — F1 Timetable Generation (≈2 weeks)
 
-- [ ] `solver/timetable_model.py` — OR-Tools CP-SAT model (hard constraints: teacher/room/section clash-free, subject period counts, lab consecutiveness; soft: teacher max hours/day, workload balance)
-- [ ] Tools: `solve_timetable`, `get_timetable`, `apply_timetable_diff`
-- [ ] Timetable Agent specialist (parse request → solver spec → run → explain result/infeasibility)
+- [x] 2026-07-13 `solver/timetable_model.py` — CP-SAT model: H1-H8 hard constraints (clash-free teachers/sections/rooms, exact period counts, lab consecutive blocks in lab rooms, dedicated home classrooms, teacher daily limits, subject spread ≤2/day) + fairness objective (minimize teacher load gap). Infeasibility explained via prechecks (precise messages) + CP-SAT assumption literals (constraint-group conflicts). Verified: 48 lessons, zero clashes by independent SQL check, load gap 2, solves in ~8s
+- [x] 2026-07-13 Tools: `app/tools/timetable.py` — `generate_timetable` (versioned storage), `get_section_grid`, `get_teacher_grid` (feeds Phase 2 substitution). `apply_timetable_diff` deferred to Phase 2 (needed for substitution plans)
+- [x] 2026-07-13 Timetable Agent specialist + supervisor route "timetable" + REST: POST /api/timetable/generate (admin, 422+reasons on infeasible), GET /timetable/section/{name}, /teacher/{id}, /status. Chat "Generate a fresh timetable" → Timetable Agent → v3 stored (verified). Infeasibility explanations verified on 3 synthetic cases (no-teacher, demand>capacity, tight daily limits)
 - [x] 2026-07-13 Admin data-entry UI (subjects, teachers, teacher-subject map, sections, rooms) + CSV import — `/setup` page (tabbed CRUD, subject-chip picker for teachers, CSV upsert with per-row error reporting + downloadable templates) backed by `app/api/setup.py` (14 endpoints; reads = any authenticated user, writes = admin-only; verified 200/403/401 via curl)
-- [ ] Timetable grid view in dashboard (per section, per teacher)
-- [ ] Demo script: generate full timetable live, then make it infeasible and show the explanation
+- [x] 2026-07-13 Timetable grid view — `/timetable` page: section selector, MON-FRI × P1-P7 grid with per-subject colors, lab-block markers, teacher+room per cell, admin-only Generate button, infeasibility explanation banner. (Teacher-view UI deferred; API already exists)
+- [~] Demo script: generation + infeasibility both proven via tests; write the rehearsed demo flow before review 1
 
 ## Phase 2 — F2 Leave & Substitution — the flagship (≈2 weeks)
 

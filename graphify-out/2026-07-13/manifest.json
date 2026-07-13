@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1780833386.7008045,
-    "ast_hash": "8ce35fce9b470bcaaf2fc8629a3a156d",
+    "mtime": 1783957902.9627228,
+    "ast_hash": "c3b54d383d83cd089b8fe4eb1422176f",
     "semantic_hash": ""
   },
   "apps/web/tailwind.config.ts": {
@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "services/backend/app/api/router.py": {
-    "mtime": 1783928504.8379645,
-    "ast_hash": "ee3494162cf294af52ac0329369f949a",
+    "mtime": 1783957613.764108,
+    "ast_hash": "9137607873a6b64fee6a6f2ed053d001",
     "semantic_hash": ""
   },
   "services/backend/app/core/__init__.py": {
@@ -115,8 +115,8 @@
     "semantic_hash": ""
   },
   "services/backend/app/core/config.py": {
-    "mtime": 1783928330.0248485,
-    "ast_hash": "098a8ef19f45ccbaffd44162ef6dd31d",
+    "mtime": 1783933392.523499,
+    "ast_hash": "85c18337a5a96b6a7752847ff3c606bc",
     "semantic_hash": ""
   },
   "services/backend/app/core/llm.py": {
@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1783926074.9542353,
-    "ast_hash": "e5aea6b81be3d0882250a4dd4fd55dd2",
+    "mtime": 1783930077.1804628,
+    "ast_hash": "7badfb8d6d7c92d075125adee0286ed1",
     "semantic_hash": ""
   },
   "README.md": {
@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "docs/04-ROADMAP.md": {
-    "mtime": 1783928991.2637029,
-    "ast_hash": "379619c92aec8a92ac84079bb1128eec",
+    "mtime": 1783958687.304251,
+    "ast_hash": "ad9cb2c42448b228cba432432fa91d70",
     "semantic_hash": ""
   },
   "docs/README.md": {
@@ -190,8 +190,98 @@
     "semantic_hash": ""
   },
   "services/backend/requirements.txt": {
-    "mtime": 1783928323.51625,
-    "ast_hash": "605942024f53dae6c91db5f5a3de5211",
+    "mtime": 1783957615.2184937,
+    "ast_hash": "509d4d5962c3735fb42dcd3a2288aaf0",
+    "semantic_hash": ""
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1783938526.2544763,
+    "ast_hash": "33480337f6ca403a01bddd79a1c65e9c",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/login/page.tsx": {
+    "mtime": 1783957787.8440475,
+    "ast_hash": "ff72054af5a988746a675f4544aa5547",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/setup/page.tsx": {
+    "mtime": 1783957884.4534848,
+    "ast_hash": "90491c2211bfe38659e9bbb09668c090",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/api.ts": {
+    "mtime": 1783957764.288489,
+    "ast_hash": "d243a4c220826f52295ccb580cc3aac6",
+    "semantic_hash": ""
+  },
+  "services/backend/app/api/setup.py": {
+    "mtime": 1783957592.753749,
+    "ast_hash": "0a6a50c0270983bc7be689da967b48f4",
+    "semantic_hash": ""
+  },
+  "research/00-CONCEPT-MAPPING.md": {
+    "mtime": 1783938010.2818286,
+    "ast_hash": "23fb7915a3112946ca86942c565495ff",
+    "semantic_hash": ""
+  },
+  "research/02-llm-orchestration-tool-calling.md": {
+    "mtime": 1783938058.791769,
+    "ast_hash": "33dbecc33ad76e3515df6b668eba1a1f",
+    "semantic_hash": ""
+  },
+  "research/03-timetable-scheduling.md": {
+    "mtime": 1783938080.763571,
+    "ast_hash": "2995a4b89ffe7513cf2493620db5966e",
+    "semantic_hash": ""
+  },
+  "research/04-dynamic-rescheduling-substitution.md": {
+    "mtime": 1783938103.6856852,
+    "ast_hash": "4a90a22b6d938eff4f993be791b0a31f",
+    "semantic_hash": ""
+  },
+  "research/05-smart-campus-systems.md": {
+    "mtime": 1783938125.5979745,
+    "ast_hash": "f044fe9cdb038d9e942204161b370d01",
+    "semantic_hash": ""
+  },
+  "research/06-rag-knowledge-assistant.md": {
+    "mtime": 1783938146.2262459,
+    "ast_hash": "371380467cfd03f561b450abf9a9de1a",
+    "semantic_hash": ""
+  },
+  "research/08-facility-booking.md": {
+    "mtime": 1783938184.8513167,
+    "ast_hash": "ffce366dce289dd3537fd283eb7ca771",
+    "semantic_hash": ""
+  },
+  "research/09-DIFFERENTIATION.md": {
+    "mtime": 1783938221.6946514,
+    "ast_hash": "6f7370a0aa88beb92ce68560d1894f78",
+    "semantic_hash": ""
+  },
+  "research/README.md": {
+    "mtime": 1783937971.0518575,
+    "ast_hash": "1e34a7ea42e1d34992439d1548e4a7c3",
+    "semantic_hash": ""
+  },
+  "research/Research-Report.html": {
+    "mtime": 1783938742.4464693,
+    "ast_hash": "1d379edb24bef63cf1e3108b60751d49",
+    "semantic_hash": ""
+  },
+  "research/01-agentic-multi-agent-systems.md": {
+    "mtime": 1783938031.7694843,
+    "ast_hash": "c0192c13888000f7ba6558582f1f7d81",
+    "semantic_hash": ""
+  },
+  "research/07-human-in-the-loop.md": {
+    "mtime": 1783938166.9798305,
+    "ast_hash": "ed715d523ff70d285de9fc16f5b829c3",
+    "semantic_hash": ""
+  },
+  "research/Research-Report.pdf": {
+    "mtime": 1783939197.4696593,
+    "ast_hash": "f831c852a105da6b7033671c35da0fc1",
     "semantic_hash": ""
   }
 }

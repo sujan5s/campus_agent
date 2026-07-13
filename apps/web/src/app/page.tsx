@@ -303,6 +303,13 @@ export default function Dashboard() {
 
             <div className="pt-3 mt-3 border-t border-slate-800/60">
               <a
+                href="/timetable"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <CalendarDays className="h-5 w-5" />
+                <span className="text-sm font-medium">Timetable</span>
+              </a>
+              <a
                 href="/setup"
                 className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
               >
