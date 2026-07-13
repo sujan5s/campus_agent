@@ -17,6 +17,8 @@ import {
   RefreshCw,
   Sparkles,
   Zap,
+  Database,
+  LogIn,
 } from "lucide-react";
 
 // Types
@@ -298,6 +300,23 @@ export default function Dashboard() {
               <Building2 className="h-5 w-5" />
               <span className="text-sm font-medium">Facilities</span>
             </button>
+
+            <div className="pt-3 mt-3 border-t border-slate-800/60">
+              <a
+                href="/setup"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <Database className="h-5 w-5" />
+                <span className="text-sm font-medium">Data Setup</span>
+              </a>
+              <a
+                href="/login"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <LogIn className="h-5 w-5" />
+                <span className="text-sm font-medium">Sign In</span>
+              </a>
+            </div>
           </nav>
         </div>
 

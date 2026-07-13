@@ -18,7 +18,7 @@ Phase 0 turns it into the real platform every feature plugs into.
 - [x] 2026-07-13 `app/db/` — full SQLAlchemy model set from 02-ARCHITECTURE §3 + idempotent `seed.py` (CSE dept, 2 sections, 6 teachers, 8 subjects, 8 rooms, 35 timeslots, demo logins in seed.py docstring)
 - [x] 2026-07-13 Keyword router → `supervisor.py` (LLM structured-output routing with graceful keyword fallback when no/invalid API key — verified live)
 - [x] 2026-07-13 LangGraph SqliteSaver checkpointer + per-conversation `thread_id` (returned in ChatResponse)
-- [~] JWT auth + user roles — **backend done** (login/me endpoints, pbkdf2 hashing, `require_role` dependency, tested 200/401); **frontend login page pending**
+- [x] 2026-07-13 JWT auth + user roles — backend (login/me endpoints, pbkdf2 hashing, `require_role`) **and** frontend `/login` page (glass UI, token in localStorage, role-aware redirect)
 - [x] 2026-07-13 Restructure per 02-ARCHITECTURE §5 — `api/` split (agent, auth, aggregator), `specialists/` (scheduling, booking, general), `db/`, `core/`; fixed main.py self-mount bug
 - [x] 2026-07-13 Verified end-to-end via curl: /api/health, all 3 agent routes (facility/scheduler/general with DB-backed responses), auth login + rejection. Frontend visual check still recommended.
 
@@ -27,7 +27,7 @@ Phase 0 turns it into the real platform every feature plugs into.
 - [ ] `solver/timetable_model.py` — OR-Tools CP-SAT model (hard constraints: teacher/room/section clash-free, subject period counts, lab consecutiveness; soft: teacher max hours/day, workload balance)
 - [ ] Tools: `solve_timetable`, `get_timetable`, `apply_timetable_diff`
 - [ ] Timetable Agent specialist (parse request → solver spec → run → explain result/infeasibility)
-- [ ] Admin data-entry UI (subjects, teachers, teacher-subject map, sections, rooms) + CSV import
+- [x] 2026-07-13 Admin data-entry UI (subjects, teachers, teacher-subject map, sections, rooms) + CSV import — `/setup` page (tabbed CRUD, subject-chip picker for teachers, CSV upsert with per-row error reporting + downloadable templates) backed by `app/api/setup.py` (14 endpoints; reads = any authenticated user, writes = admin-only; verified 200/403/401 via curl)
 - [ ] Timetable grid view in dashboard (per section, per teacher)
 - [ ] Demo script: generate full timetable live, then make it infeasible and show the explanation
 
