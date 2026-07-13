@@ -1,0 +1,197 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1783924988.9159572,
+    "ast_hash": "7698dca0ca1afec8bfdbc17d78ffbe89",
+    "semantic_hash": ""
+  },
+  "apps/web/next-env.d.ts": {
+    "mtime": 1780833554.1506336,
+    "ast_hash": "187b4b5b507c358a018aeeadd81abe57",
+    "semantic_hash": ""
+  },
+  "apps/web/next.config.mjs": {
+    "mtime": 1780833358.17074,
+    "ast_hash": "9430769833db8646880c5198dc80c450",
+    "semantic_hash": ""
+  },
+  "apps/web/package.json": {
+    "mtime": 1780833518.6380355,
+    "ast_hash": "6d7e27247ccbef6dea03cf765c4d3e54",
+    "semantic_hash": ""
+  },
+  "apps/web/postcss.config.mjs": {
+    "mtime": 1780833351.93564,
+    "ast_hash": "c56b5f3c12f777a86e2513f45daab56a",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/layout.tsx": {
+    "mtime": 1780833370.01642,
+    "ast_hash": "64b875fec27ffc1ce9f1f51c3c9dbfa3",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/page.tsx": {
+    "mtime": 1780833386.7008045,
+    "ast_hash": "8ce35fce9b470bcaaf2fc8629a3a156d",
+    "semantic_hash": ""
+  },
+  "apps/web/tailwind.config.ts": {
+    "mtime": 1780833347.5001717,
+    "ast_hash": "bb302e590f796cfded4ef3ef4812a0b8",
+    "semantic_hash": ""
+  },
+  "apps/web/tsconfig.json": {
+    "mtime": 1780833341.9986632,
+    "ast_hash": "b9e8c2efad89ac6b75b58501eb5f48ad",
+    "semantic_hash": ""
+  },
+  "services/backend/app/__init__.py": {
+    "mtime": 1780833420.9580953,
+    "ast_hash": "e297f988fd71d2d65947be1252916821",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/__init__.py": {
+    "mtime": 1780833439.1567094,
+    "ast_hash": "d962f5ed3ce54b0e4c0888b1792898bd",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/graph.py": {
+    "mtime": 1783928483.4868855,
+    "ast_hash": "8ba8e025f79a3c75e75e8783949f1b48",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/specialists/__init__.py": {
+    "mtime": 1783928433.4012616,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/specialists/booking.py": {
+    "mtime": 1783928888.7059765,
+    "ast_hash": "3eda665e2c1424091008b705e476ab97",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/specialists/general.py": {
+    "mtime": 1783928472.7282767,
+    "ast_hash": "e72fbe12ee4fd48f9432175699144cef",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/specialists/scheduling.py": {
+    "mtime": 1783928453.0314658,
+    "ast_hash": "de1683357e3f1a25bce2138a3ad20a26",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/state.py": {
+    "mtime": 1783928418.3314128,
+    "ast_hash": "f5cbdb6e9febc000c9a62b79ce464e12",
+    "semantic_hash": ""
+  },
+  "services/backend/app/agents/supervisor.py": {
+    "mtime": 1783928432.9153814,
+    "ast_hash": "439f217f06b29d67792bf5ab5b1a06da",
+    "semantic_hash": ""
+  },
+  "services/backend/app/api/__init__.py": {
+    "mtime": 1780833425.748257,
+    "ast_hash": "56ac4b9dcc787a59d0796e9a1f1034dc",
+    "semantic_hash": ""
+  },
+  "services/backend/app/api/agent.py": {
+    "mtime": 1783928497.25646,
+    "ast_hash": "44fb449b9686d7061082762b01e9371a",
+    "semantic_hash": ""
+  },
+  "services/backend/app/api/auth.py": {
+    "mtime": 1783928502.436984,
+    "ast_hash": "274069c0766cfa147217030f397e5990",
+    "semantic_hash": ""
+  },
+  "services/backend/app/api/router.py": {
+    "mtime": 1783928504.8379645,
+    "ast_hash": "ee3494162cf294af52ac0329369f949a",
+    "semantic_hash": ""
+  },
+  "services/backend/app/core/__init__.py": {
+    "mtime": 1780833430.0463548,
+    "ast_hash": "9dbf3658870a4d7e5fed9c177dcf01ae",
+    "semantic_hash": ""
+  },
+  "services/backend/app/core/config.py": {
+    "mtime": 1783928330.0248485,
+    "ast_hash": "098a8ef19f45ccbaffd44162ef6dd31d",
+    "semantic_hash": ""
+  },
+  "services/backend/app/core/llm.py": {
+    "mtime": 1783928340.8384395,
+    "ast_hash": "597181296343a58ed26859915a12469b",
+    "semantic_hash": ""
+  },
+  "services/backend/app/core/security.py": {
+    "mtime": 1783928349.4755104,
+    "ast_hash": "22d72ded892e70c150b8a5c156a55016",
+    "semantic_hash": ""
+  },
+  "services/backend/app/db/__init__.py": {
+    "mtime": 1783928354.830612,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "services/backend/app/db/models.py": {
+    "mtime": 1783928386.6128955,
+    "ast_hash": "f85db78418243d8b2463c321fb49c838",
+    "semantic_hash": ""
+  },
+  "services/backend/app/db/seed.py": {
+    "mtime": 1783928408.7378092,
+    "ast_hash": "19829fc488378d9ec13ae6b39326bf86",
+    "semantic_hash": ""
+  },
+  "services/backend/app/db/session.py": {
+    "mtime": 1783928358.7742445,
+    "ast_hash": "e7289887690f36ae872423ef852d07d9",
+    "semantic_hash": ""
+  },
+  "services/backend/main.py": {
+    "mtime": 1783928509.7340808,
+    "ast_hash": "d79b9b1a56cde0f68dc466d2a0fdcefd",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1783926074.9542353,
+    "ast_hash": "e5aea6b81be3d0882250a4dd4fd55dd2",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1780835140.4634132,
+    "ast_hash": "081af9005c7e80db3a61ecded3768e42",
+    "semantic_hash": ""
+  },
+  "docs/01-FEATURES.md": {
+    "mtime": 1783925889.0203738,
+    "ast_hash": "01dbecbd7dad604adc88e018307678a2",
+    "semantic_hash": ""
+  },
+  "docs/02-ARCHITECTURE.md": {
+    "mtime": 1783925945.618654,
+    "ast_hash": "dd09ba866a570a6af35727d76e8593dc",
+    "semantic_hash": ""
+  },
+  "docs/03-TECH-STACK.md": {
+    "mtime": 1783926018.5197115,
+    "ast_hash": "251f4ed57ef86ff309836adb0f4d2191",
+    "semantic_hash": ""
+  },
+  "docs/04-ROADMAP.md": {
+    "mtime": 1783928991.2637029,
+    "ast_hash": "379619c92aec8a92ac84079bb1128eec",
+    "semantic_hash": ""
+  },
+  "docs/README.md": {
+    "mtime": 1783925833.8744571,
+    "ast_hash": "30fb85748ecba26d316c3c0146c4896c",
+    "semantic_hash": ""
+  },
+  "services/backend/requirements.txt": {
+    "mtime": 1783928323.51625,
+    "ast_hash": "605942024f53dae6c91db5f5a3de5211",
+    "semantic_hash": ""
+  }
+}

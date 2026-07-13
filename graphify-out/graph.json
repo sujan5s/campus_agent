@@ -17,20 +17,6 @@
         "confidence": "EXTRACTED",
         "confidence_score": 0.9,
         "source_file": "README.md"
-      },
-      {
-        "id": "campus_specialist_agent_nodes",
-        "label": "Campus Specialist Agent Nodes",
-        "nodes": [
-          "services_backend_app_agents_graph_router_node",
-          "services_backend_app_agents_nodes_scheduler_scheduler_node",
-          "services_backend_app_agents_nodes_facility_facility_node",
-          "services_backend_app_agents_graph_general_fallback_node"
-        ],
-        "relation": "participate_in",
-        "confidence": "INFERRED",
-        "confidence_score": 0.85,
-        "source_file": "README.md"
       }
     ]
   },
@@ -82,7 +68,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_package",
-      "community": 4,
+      "community": 3,
       "norm_label": "package.json"
     },
     {
@@ -92,7 +78,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "apps_web_package_name",
-      "community": 4,
+      "community": 3,
       "norm_label": "name"
     },
     {
@@ -102,7 +88,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "apps_web_package_version",
-      "community": 4,
+      "community": 3,
       "norm_label": "version"
     },
     {
@@ -112,7 +98,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "apps_web_package_private",
-      "community": 4,
+      "community": 3,
       "norm_label": "private"
     },
     {
@@ -122,7 +108,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_package_scripts",
-      "community": 4,
+      "community": 3,
       "norm_label": "scripts"
     },
     {
@@ -132,7 +118,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "apps_web_package_scripts_dev",
-      "community": 4,
+      "community": 3,
       "norm_label": "dev"
     },
     {
@@ -142,7 +128,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "apps_web_package_scripts_build",
-      "community": 4,
+      "community": 3,
       "norm_label": "build"
     },
     {
@@ -152,7 +138,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_package_scripts_start",
-      "community": 4,
+      "community": 3,
       "norm_label": "start"
     },
     {
@@ -162,7 +148,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "apps_web_package_scripts_lint",
-      "community": 4,
+      "community": 3,
       "norm_label": "lint"
     },
     {
@@ -622,7 +608,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_tsconfig",
-      "community": 5,
+      "community": 0,
       "norm_label": "tsconfig.json"
     },
     {
@@ -842,7 +828,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "apps_web_tsconfig_include",
-      "community": 5,
+      "community": 0,
       "norm_label": "include"
     },
     {
@@ -852,7 +838,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "ref_next_env_d_ts",
-      "community": 5,
+      "community": 0,
       "norm_label": "next-env.d.ts"
     },
     {
@@ -862,7 +848,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "ref_ts",
-      "community": 5,
+      "community": 0,
       "norm_label": "**/*.ts"
     },
     {
@@ -872,7 +858,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "ref_tsx",
-      "community": 5,
+      "community": 0,
       "norm_label": "**/*.tsx"
     },
     {
@@ -882,7 +868,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "ref_next_types_ts",
-      "community": 5,
+      "community": 0,
       "norm_label": ".next/types/**/*.ts"
     },
     {
@@ -892,7 +878,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "apps_web_tsconfig_exclude",
-      "community": 5,
+      "community": 0,
       "norm_label": "exclude"
     },
     {
@@ -902,7 +888,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ref_node_modules",
-      "community": 5,
+      "community": 0,
       "norm_label": "node_modules"
     },
     {
@@ -932,128 +918,138 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_agents_graph",
-      "community": 1,
+      "community": 24,
       "norm_label": "graph.py"
     },
     {
-      "label": "router_node()",
+      "label": "_make_checkpointer()",
       "file_type": "code",
       "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L6",
+      "source_location": "L19",
       "_origin": "ast",
-      "id": "services_backend_app_agents_graph_router_node",
-      "community": 1,
-      "norm_label": "router_node()"
+      "id": "services_backend_app_agents_graph_make_checkpointer",
+      "community": 24,
+      "norm_label": "_make_checkpointer()"
     },
     {
-      "label": "general_fallback_node()",
-      "file_type": "code",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L32",
-      "_origin": "ast",
-      "id": "services_backend_app_agents_graph_general_fallback_node",
-      "community": 1,
-      "norm_label": "general_fallback_node()"
-    },
-    {
-      "label": "route_to()",
-      "file_type": "code",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L61",
-      "_origin": "ast",
-      "id": "services_backend_app_agents_graph_route_to",
-      "community": 1,
-      "norm_label": "route_to()"
-    },
-    {
-      "label": "Analyzes message query to determine which sub-agent node should execute.",
+      "label": "LangGraph workflow assembly + durable checkpointer (docs/02-ARCHITECTURE.md \u00a72).",
       "file_type": "rationale",
       "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L7",
+      "source_location": "L1",
       "_origin": "ast",
-      "id": "services_backend_app_agents_graph_rationale_7",
-      "community": 1,
-      "norm_label": "analyzes message query to determine which sub-agent node should execute."
+      "id": "services_backend_app_agents_graph_rationale_1",
+      "community": 24,
+      "norm_label": "langgraph workflow assembly + durable checkpointer (docs/02-architecture.md \u00a72)."
     },
     {
-      "label": "Default node fallback for general campus FAQs.",
+      "label": "SqliteSaver if available, else in-memory (never blocks startup).",
       "file_type": "rationale",
       "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L33",
+      "source_location": "L20",
       "_origin": "ast",
-      "id": "services_backend_app_agents_graph_rationale_33",
-      "community": 1,
-      "norm_label": "default node fallback for general campus faqs."
+      "id": "services_backend_app_agents_graph_rationale_20",
+      "community": 24,
+      "norm_label": "sqlitesaver if available, else in-memory (never blocks startup)."
     },
     {
       "label": "__init__.py",
       "file_type": "code",
-      "source_file": "services/backend/app/agents/nodes/__init__.py",
+      "source_file": "services/backend/app/agents/specialists/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_init",
-      "community": 16,
+      "id": "services_backend_app_agents_specialists_init",
+      "community": 34,
       "norm_label": "__init__.py"
     },
     {
-      "label": "facility.py",
+      "label": "booking.py",
       "file_type": "code",
-      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_file": "services/backend/app/agents/specialists/booking.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_facility",
+      "id": "services_backend_app_agents_specialists_booking",
       "community": 1,
-      "norm_label": "facility.py"
+      "norm_label": "booking.py"
     },
     {
       "label": "facility_node()",
       "file_type": "code",
-      "source_file": "services/backend/app/agents/nodes/facility.py",
-      "source_location": "L3",
+      "source_file": "services/backend/app/agents/specialists/booking.py",
+      "source_location": "L12",
       "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_facility_facility_node",
+      "id": "services_backend_app_agents_specialists_booking_facility_node",
       "community": 1,
       "norm_label": "facility_node()"
     },
     {
-      "label": "Node solver handling room status checks, capacity records,     and booking confi",
+      "label": "Facility/booking specialist \u2014 evolves into the Event & Venue Booking agent (docs",
       "file_type": "rationale",
-      "source_file": "services/backend/app/agents/nodes/facility.py",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_facility_rationale_4",
-      "community": 1,
-      "norm_label": "node solver handling room status checks, capacity records,     and booking confi"
-    },
-    {
-      "label": "scheduler.py",
-      "file_type": "code",
-      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_file": "services/backend/app/agents/specialists/booking.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_scheduler",
+      "id": "services_backend_app_agents_specialists_booking_rationale_1",
       "community": 1,
-      "norm_label": "scheduler.py"
+      "norm_label": "facility/booking specialist \u2014 evolves into the event & venue booking agent (docs"
+    },
+    {
+      "label": "general.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_specialists_general",
+      "community": 1,
+      "norm_label": "general.py"
+    },
+    {
+      "label": "general_fallback_node()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_specialists_general_general_fallback_node",
+      "community": 1,
+      "norm_label": "general_fallback_node()"
+    },
+    {
+      "label": "General fallback \u2014 replaced by the RAG Knowledge Agent in Phase 3 (docs/01-FEATU",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_specialists_general_rationale_1",
+      "community": 1,
+      "norm_label": "general fallback \u2014 replaced by the rag knowledge agent in phase 3 (docs/01-featu"
+    },
+    {
+      "label": "scheduling.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_specialists_scheduling",
+      "community": 5,
+      "norm_label": "scheduling.py"
     },
     {
       "label": "scheduler_node()",
       "file_type": "code",
-      "source_file": "services/backend/app/agents/nodes/scheduler.py",
-      "source_location": "L3",
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_scheduler_scheduler_node",
-      "community": 1,
+      "id": "services_backend_app_agents_specialists_scheduling_scheduler_node",
+      "community": 5,
       "norm_label": "scheduler_node()"
     },
     {
-      "label": "Node solver handling daily timetable checks, automated scheduling runs,     and",
+      "label": "Scheduling specialist \u2014 evolves into the Timetable + Substitution agents (docs/0",
       "file_type": "rationale",
-      "source_file": "services/backend/app/agents/nodes/scheduler.py",
-      "source_location": "L4",
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L1",
       "_origin": "ast",
-      "id": "services_backend_app_agents_nodes_scheduler_rationale_4",
-      "community": 1,
-      "norm_label": "node solver handling daily timetable checks, automated scheduling runs,     and"
+      "id": "services_backend_app_agents_specialists_scheduling_rationale_1",
+      "community": 5,
+      "norm_label": "scheduling specialist \u2014 evolves into the timetable + substitution agents (docs/0"
     },
     {
       "label": "state.py",
@@ -1069,7 +1065,7 @@
       "label": "AgentState",
       "file_type": "code",
       "source_file": "services/backend/app/agents/state.py",
-      "source_location": "L4",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "services_backend_app_agents_state_agentstate",
       "community": 1,
@@ -1086,14 +1082,114 @@
       "norm_label": "typeddict"
     },
     {
-      "label": "Universal state representation for the Smart Campus Orchestration Graph.",
+      "label": "Universal state representation for the Smart Campus Orchestration Graph.     (do",
       "file_type": "rationale",
       "source_file": "services/backend/app/agents/state.py",
-      "source_location": "L5",
+      "source_location": "L6",
       "_origin": "ast",
-      "id": "services_backend_app_agents_state_rationale_5",
+      "id": "services_backend_app_agents_state_rationale_6",
       "community": 1,
-      "norm_label": "universal state representation for the smart campus orchestration graph."
+      "norm_label": "universal state representation for the smart campus orchestration graph.     (do"
+    },
+    {
+      "label": "supervisor.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor",
+      "community": 1,
+      "norm_label": "supervisor.py"
+    },
+    {
+      "label": "RouteDecision",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_routedecision",
+      "community": 1,
+      "norm_label": "routedecision"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_py_basemodel",
+      "community": 1,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "_keyword_fallback()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_keyword_fallback",
+      "community": 1,
+      "norm_label": "_keyword_fallback()"
+    },
+    {
+      "label": "supervisor_node()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_supervisor_node",
+      "community": 1,
+      "norm_label": "supervisor_node()"
+    },
+    {
+      "label": "route_to()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_route_to",
+      "community": 1,
+      "norm_label": "route_to()"
+    },
+    {
+      "label": "Supervisor node \u2014 LLM structured-output routing (docs/02-ARCHITECTURE.md \u00a72.1).",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_rationale_1",
+      "community": 1,
+      "norm_label": "supervisor node \u2014 llm structured-output routing (docs/02-architecture.md \u00a72.1)."
+    },
+    {
+      "label": "Structured routing decision returned by the supervisor LLM.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_rationale_17",
+      "community": 1,
+      "norm_label": "structured routing decision returned by the supervisor llm."
+    },
+    {
+      "label": "Deterministic routing used when no LLM provider is configured.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_rationale_40",
+      "community": 1,
+      "norm_label": "deterministic routing used when no llm provider is configured."
+    },
+    {
+      "label": "Classify intent + extract entities. LLM-first, heuristic fallback.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_supervisor_rationale_50",
+      "community": 1,
+      "norm_label": "classify intent + extract entities. llm-first, heuristic fallback."
     },
     {
       "label": "__init__.py",
@@ -1106,23 +1202,23 @@
       "norm_label": "__init__.py"
     },
     {
-      "label": "router.py",
+      "label": "agent.py",
       "file_type": "code",
-      "source_file": "services/backend/app/api/router.py",
+      "source_file": "services/backend/app/api/agent.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "services_backend_app_api_router",
-      "community": 6,
-      "norm_label": "router.py"
+      "id": "services_backend_app_api_agent",
+      "community": 8,
+      "norm_label": "agent.py"
     },
     {
       "label": "ChatRequest",
       "file_type": "code",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L8",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L19",
       "_origin": "ast",
-      "id": "services_backend_app_api_router_chatrequest",
-      "community": 6,
+      "id": "services_backend_app_api_agent_chatrequest",
+      "community": 8,
       "norm_label": "chatrequest"
     },
     {
@@ -1131,39 +1227,159 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "basemodel",
-      "community": 6,
+      "id": "services_backend_app_api_agent_py_basemodel",
+      "community": 8,
       "norm_label": "basemodel"
     },
     {
       "label": "ChatResponse",
       "file_type": "code",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L11",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L24",
       "_origin": "ast",
-      "id": "services_backend_app_api_router_chatresponse",
-      "community": 6,
+      "id": "services_backend_app_api_agent_chatresponse",
+      "community": 8,
       "norm_label": "chatresponse"
     },
     {
       "label": "health_check()",
       "file_type": "code",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L18",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L33",
       "_origin": "ast",
-      "id": "services_backend_app_api_router_health_check",
-      "community": 6,
+      "id": "services_backend_app_api_agent_health_check",
+      "community": 8,
       "norm_label": "health_check()"
     },
     {
       "label": "run_agent_workflow()",
       "file_type": "code",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L22",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L38",
       "_origin": "ast",
-      "id": "services_backend_app_api_router_run_agent_workflow",
-      "community": 6,
+      "id": "services_backend_app_api_agent_run_agent_workflow",
+      "community": 8,
       "norm_label": "run_agent_workflow()"
+    },
+    {
+      "label": "Agent chat endpoint \u2014 unified entry into the LangGraph supervisor.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_agent_rationale_1",
+      "community": 8,
+      "norm_label": "agent chat endpoint \u2014 unified entry into the langgraph supervisor."
+    },
+    {
+      "label": "auth.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth",
+      "community": 16,
+      "norm_label": "auth.py"
+    },
+    {
+      "label": "LoginRequest",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_loginrequest",
+      "community": 16,
+      "norm_label": "loginrequest"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_py_basemodel",
+      "community": 16,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "UserOut",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_userout",
+      "community": 16,
+      "norm_label": "userout"
+    },
+    {
+      "label": "LoginResponse",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_loginresponse",
+      "community": 16,
+      "norm_label": "loginresponse"
+    },
+    {
+      "label": "login()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_login",
+      "community": 16,
+      "norm_label": "login()"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_py_session",
+      "community": 16,
+      "norm_label": "session"
+    },
+    {
+      "label": "me()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_me",
+      "community": 16,
+      "norm_label": "me()"
+    },
+    {
+      "label": "Auth endpoints \u2014 JWT login + current-user. Roles: admin | faculty | student.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_auth_rationale_1",
+      "community": 16,
+      "norm_label": "auth endpoints \u2014 jwt login + current-user. roles: admin | faculty | student."
+    },
+    {
+      "label": "router.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router",
+      "community": 8,
+      "norm_label": "router.py"
+    },
+    {
+      "label": "API aggregator \u2014 one sub-router per domain (docs/02-ARCHITECTURE.md \u00a74).  main.p",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router_rationale_1",
+      "community": 8,
+      "norm_label": "api aggregator \u2014 one sub-router per domain (docs/02-architecture.md \u00a74).  main.p"
     },
     {
       "label": "__init__.py",
@@ -1189,7 +1405,7 @@
       "label": "Settings",
       "file_type": "code",
       "source_file": "services/backend/app/core/config.py",
-      "source_location": "L4",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "services_backend_app_core_config_settings",
       "community": 10,
@@ -1206,6 +1422,526 @@
       "norm_label": "basesettings"
     },
     {
+      "label": "llm.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm",
+      "community": 1,
+      "norm_label": "llm.py"
+    },
+    {
+      "label": "_provider_api_key()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_provider_api_key",
+      "community": 1,
+      "norm_label": "_provider_api_key()"
+    },
+    {
+      "label": "is_llm_configured()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_is_llm_configured",
+      "community": 1,
+      "norm_label": "is_llm_configured()"
+    },
+    {
+      "label": "get_llm()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_get_llm",
+      "community": 1,
+      "norm_label": "get_llm()"
+    },
+    {
+      "label": "Provider-agnostic LLM factory (docs/03-TECH-STACK.md).  HARD RULE: every agent g",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_rationale_1",
+      "community": 1,
+      "norm_label": "provider-agnostic llm factory (docs/03-tech-stack.md).  hard rule: every agent g"
+    },
+    {
+      "label": "Resolve the API key for the configured provider from settings/env.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_rationale_27",
+      "community": 1,
+      "norm_label": "resolve the api key for the configured provider from settings/env."
+    },
+    {
+      "label": "True when the configured provider is usable (has a key, or needs none).      Age",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_rationale_38",
+      "community": 1,
+      "norm_label": "true when the configured provider is usable (has a key, or needs none).      age"
+    },
+    {
+      "label": "Return the chat model for the configured provider. Cached per temperature.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "services_backend_app_core_llm_rationale_52",
+      "community": 1,
+      "norm_label": "return the chat model for the configured provider. cached per temperature."
+    },
+    {
+      "label": "security.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security",
+      "community": 16,
+      "norm_label": "security.py"
+    },
+    {
+      "label": "hash_password()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_hash_password",
+      "community": 16,
+      "norm_label": "hash_password()"
+    },
+    {
+      "label": "verify_password()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_verify_password",
+      "community": 16,
+      "norm_label": "verify_password()"
+    },
+    {
+      "label": "create_access_token()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_create_access_token",
+      "community": 16,
+      "norm_label": "create_access_token()"
+    },
+    {
+      "label": "decode_token()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_decode_token",
+      "community": 16,
+      "norm_label": "decode_token()"
+    },
+    {
+      "label": "get_current_user()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_get_current_user",
+      "community": 16,
+      "norm_label": "get_current_user()"
+    },
+    {
+      "label": "HTTPAuthorizationCredentials",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "httpauthorizationcredentials",
+      "community": 16,
+      "norm_label": "httpauthorizationcredentials"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_py_session",
+      "community": 16,
+      "norm_label": "session"
+    },
+    {
+      "label": "require_role()",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_require_role",
+      "community": 16,
+      "norm_label": "require_role()"
+    },
+    {
+      "label": "JWT auth + password hashing (docs/02-ARCHITECTURE.md \u00a76).  Roles: admin | facult",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_rationale_1",
+      "community": 16,
+      "norm_label": "jwt auth + password hashing (docs/02-architecture.md \u00a76).  roles: admin | facult"
+    },
+    {
+      "label": "FastAPI dependency: resolve the authenticated User from a Bearer token.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_rationale_47",
+      "community": 16,
+      "norm_label": "fastapi dependency: resolve the authenticated user from a bearer token."
+    },
+    {
+      "label": "Dependency factory: require_role('admin', 'faculty').",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "services_backend_app_core_security_rationale_60",
+      "community": 16,
+      "norm_label": "dependency factory: require_role('admin', 'faculty')."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_db_init",
+      "community": 35,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models",
+      "community": 5,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "utcnow()",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_utcnow",
+      "community": 5,
+      "norm_label": "utcnow()"
+    },
+    {
+      "label": "datetime",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "datetime",
+      "community": 5,
+      "norm_label": "datetime"
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_user",
+      "community": 16,
+      "norm_label": "user"
+    },
+    {
+      "label": "Teacher",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_teacher",
+      "community": 5,
+      "norm_label": "teacher"
+    },
+    {
+      "label": "Subject",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_subject",
+      "community": 5,
+      "norm_label": "subject"
+    },
+    {
+      "label": "Section",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_section",
+      "community": 5,
+      "norm_label": "section"
+    },
+    {
+      "label": "Room",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_room",
+      "community": 5,
+      "norm_label": "room"
+    },
+    {
+      "label": "TimeSlot",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_timeslot",
+      "community": 5,
+      "norm_label": "timeslot"
+    },
+    {
+      "label": "TimetableEntry",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_timetableentry",
+      "community": 5,
+      "norm_label": "timetableentry"
+    },
+    {
+      "label": "Leave",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_leave",
+      "community": 5,
+      "norm_label": "leave"
+    },
+    {
+      "label": "Substitution",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_substitution",
+      "community": 5,
+      "norm_label": "substitution"
+    },
+    {
+      "label": "Event",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L141",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_event",
+      "community": 5,
+      "norm_label": "event"
+    },
+    {
+      "label": "Booking",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L151",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_booking",
+      "community": 5,
+      "norm_label": "booking"
+    },
+    {
+      "label": "Approval",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L168",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_approval",
+      "community": 5,
+      "norm_label": "approval"
+    },
+    {
+      "label": "Document",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L182",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_document",
+      "community": 5,
+      "norm_label": "document"
+    },
+    {
+      "label": "Notification",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L194",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_notification",
+      "community": 5,
+      "norm_label": "notification"
+    },
+    {
+      "label": "SQLAlchemy models \u2014 mirrors the data model in docs/02-ARCHITECTURE.md \u00a73.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_rationale_1",
+      "community": 5,
+      "norm_label": "sqlalchemy models \u2014 mirrors the data model in docs/02-architecture.md \u00a73."
+    },
+    {
+      "label": "Human-in-the-loop record. langgraph_thread_id resumes the paused graph.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L169",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_rationale_169",
+      "community": 5,
+      "norm_label": "human-in-the-loop record. langgraph_thread_id resumes the paused graph."
+    },
+    {
+      "label": "RAG corpus registry (Phase 3).",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L183",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_rationale_183",
+      "community": 5,
+      "norm_label": "rag corpus registry (phase 3)."
+    },
+    {
+      "label": "seed.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_db_seed",
+      "community": 5,
+      "norm_label": "seed.py"
+    },
+    {
+      "label": "seed()",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "services_backend_app_db_seed_seed",
+      "community": 5,
+      "norm_label": "seed()"
+    },
+    {
+      "label": "Idempotent demo seed data \u2014 1 dept (CSE), 2 sections, 6 teachers, 8 subjects, 8",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_db_seed_rationale_1",
+      "community": 5,
+      "norm_label": "idempotent demo seed data \u2014 1 dept (cse), 2 sections, 6 teachers, 8 subjects, 8"
+    },
+    {
+      "label": "Populate demo data. Returns True if seeding ran, False if already seeded.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "services_backend_app_db_seed_rationale_18",
+      "community": 5,
+      "norm_label": "populate demo data. returns true if seeding ran, false if already seeded."
+    },
+    {
+      "label": "session.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_db_session",
+      "community": 8,
+      "norm_label": "session.py"
+    },
+    {
+      "label": "Base",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "services_backend_app_db_session_base",
+      "community": 5,
+      "norm_label": "base"
+    },
+    {
+      "label": "DeclarativeBase",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "declarativebase",
+      "community": 5,
+      "norm_label": "declarativebase"
+    },
+    {
+      "label": "get_db()",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "services_backend_app_db_session_get_db",
+      "community": 8,
+      "norm_label": "get_db()"
+    },
+    {
+      "label": "init_db()",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "services_backend_app_db_session_init_db",
+      "community": 8,
+      "norm_label": "init_db()"
+    },
+    {
+      "label": "FastAPI dependency yielding a request-scoped session.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "services_backend_app_db_session_rationale_19",
+      "community": 8,
+      "norm_label": "fastapi dependency yielding a request-scoped session."
+    },
+    {
+      "label": "Create all tables (dev convenience; Alembic takes over once schema stabilizes).",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "services_backend_app_db_session_rationale_28",
+      "community": 8,
+      "norm_label": "create all tables (dev convenience; alembic takes over once schema stabilizes)."
+    },
+    {
       "label": "main.py",
       "file_type": "code",
       "source_file": "services/backend/main.py",
@@ -1216,14 +1952,854 @@
       "norm_label": "main.py"
     },
     {
+      "label": "lifespan()",
+      "file_type": "code",
+      "source_file": "services/backend/main.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "services_backend_main_lifespan",
+      "community": 8,
+      "norm_label": "lifespan()"
+    },
+    {
+      "label": "FastAPI",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "fastapi",
+      "community": 8,
+      "norm_label": "fastapi"
+    },
+    {
       "label": "read_root()",
       "file_type": "code",
       "source_file": "services/backend/main.py",
-      "source_location": "L28",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "services_backend_main_read_root",
       "community": 8,
       "norm_label": "read_root()"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 4,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_claude_md",
+      "community": 4,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "Project Overview",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "claude_project_overview",
+      "community": 4,
+      "norm_label": "project overview"
+    },
+    {
+      "label": "Architecture Highlights",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "claude_architecture_highlights",
+      "community": 4,
+      "norm_label": "architecture highlights"
+    },
+    {
+      "label": "Development Setup",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "claude_development_setup",
+      "community": 4,
+      "norm_label": "development setup"
+    },
+    {
+      "label": "Prerequisites",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "claude_prerequisites",
+      "community": 4,
+      "norm_label": "prerequisites"
+    },
+    {
+      "label": "Backend (services/backend)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "claude_backend_services_backend",
+      "community": 4,
+      "norm_label": "backend (services/backend)"
+    },
+    {
+      "label": "Frontend (apps/web)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "claude_frontend_apps_web",
+      "community": 4,
+      "norm_label": "frontend (apps/web)"
+    },
+    {
+      "label": "Common Commands",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "claude_common_commands",
+      "community": 4,
+      "norm_label": "common commands"
+    },
+    {
+      "label": "Backend",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "claude_backend",
+      "community": 4,
+      "norm_label": "backend"
+    },
+    {
+      "label": "Frontend",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "claude_frontend",
+      "community": 4,
+      "norm_label": "frontend"
+    },
+    {
+      "label": "Key File Structure",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "claude_key_file_structure",
+      "community": 4,
+      "norm_label": "key file structure"
+    },
+    {
+      "label": "Backend (`services/backend/app`)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "claude_backend_services_backend_app",
+      "community": 4,
+      "norm_label": "backend (`services/backend/app`)"
+    },
+    {
+      "label": "Frontend (`apps/web`)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L112",
+      "_origin": "ast",
+      "id": "claude_frontend_apps_web_112",
+      "community": 4,
+      "norm_label": "frontend (`apps/web`)"
+    },
+    {
+      "label": "Important Implementation Details",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "claude_important_implementation_details",
+      "community": 4,
+      "norm_label": "important implementation details"
+    },
+    {
+      "label": "API Contract",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "claude_api_contract",
+      "community": 4,
+      "norm_label": "api contract"
+    },
+    {
+      "label": "Environment Configuration",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "claude_environment_configuration",
+      "community": 4,
+      "norm_label": "environment configuration"
+    },
+    {
+      "label": "LangGraph State Machine",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L159",
+      "_origin": "ast",
+      "id": "claude_langgraph_state_machine",
+      "community": 4,
+      "norm_label": "langgraph state machine"
+    },
+    {
+      "label": "Frontend Architecture",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L169",
+      "_origin": "ast",
+      "id": "claude_frontend_architecture",
+      "community": 4,
+      "norm_label": "frontend architecture"
+    },
+    {
+      "label": "Testing & Verification",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L179",
+      "_origin": "ast",
+      "id": "claude_testing_verification",
+      "community": 4,
+      "norm_label": "testing & verification"
+    },
+    {
+      "label": "Manual Testing Workflow",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L181",
+      "_origin": "ast",
+      "id": "claude_manual_testing_workflow",
+      "community": 4,
+      "norm_label": "manual testing workflow"
+    },
+    {
+      "label": "Status Indicators",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L188",
+      "_origin": "ast",
+      "id": "claude_status_indicators",
+      "community": 4,
+      "norm_label": "status indicators"
+    },
+    {
+      "label": "Common Patterns",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L193",
+      "_origin": "ast",
+      "id": "claude_common_patterns",
+      "community": 4,
+      "norm_label": "common patterns"
+    },
+    {
+      "label": "Adding a New Agent Node",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L195",
+      "_origin": "ast",
+      "id": "claude_adding_a_new_agent_node",
+      "community": 4,
+      "norm_label": "adding a new agent node"
+    },
+    {
+      "label": "Adding an API Endpoint",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L201",
+      "_origin": "ast",
+      "id": "claude_adding_an_api_endpoint",
+      "community": 4,
+      "norm_label": "adding an api endpoint"
+    },
+    {
+      "label": "Updating Frontend UI",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L206",
+      "_origin": "ast",
+      "id": "claude_updating_frontend_ui",
+      "community": 4,
+      "norm_label": "updating frontend ui"
+    },
+    {
+      "label": "Deployment Notes",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L211",
+      "_origin": "ast",
+      "id": "claude_deployment_notes",
+      "community": 4,
+      "norm_label": "deployment notes"
+    },
+    {
+      "label": "Useful Links",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L218",
+      "_origin": "ast",
+      "id": "claude_useful_links",
+      "community": 4,
+      "norm_label": "useful links"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L225",
+      "_origin": "ast",
+      "id": "claude_graphify",
+      "community": 4,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 23,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Smart Campus Agent System (smart-campus-ops)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_smart_campus_agent_system_smart_campus_ops",
+      "community": 23,
+      "norm_label": "smart campus agent system (smart-campus-ops)"
+    },
+    {
+      "label": "Project Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "readme_project_overview",
+      "community": 23,
+      "norm_label": "project overview"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "readme_architecture",
+      "community": 23,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Visual Flow Diagram",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "readme_visual_flow_diagram",
+      "community": 23,
+      "norm_label": "visual flow diagram"
+    },
+    {
+      "label": "Components",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "readme_components",
+      "community": 23,
+      "norm_label": "components"
+    },
+    {
+      "label": "Setup & Running",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "readme_setup_running",
+      "community": 23,
+      "norm_label": "setup & running"
+    },
+    {
+      "label": "1. Backend Service",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "readme_1_backend_service",
+      "community": 23,
+      "norm_label": "1. backend service"
+    },
+    {
+      "label": "2. Web Application",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "readme_2_web_application",
+      "community": 23,
+      "norm_label": "2. web application"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "readme_license",
+      "community": 23,
+      "norm_label": "license"
+    },
+    {
+      "label": "01-FEATURES.md",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_01_features",
+      "community": 21,
+      "norm_label": "01-features.md"
+    },
+    {
+      "label": "01 \u2014 Features",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_01_features_01_features",
+      "community": 21,
+      "norm_label": "01 \u2014 features"
+    },
+    {
+      "label": "CORE FEATURES",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "docs_01_features_core_features",
+      "community": 21,
+      "norm_label": "core features"
+    },
+    {
+      "label": "F1. Timetable Generation Agent \ud83d\uddd3\ufe0f",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_01_features_f1_timetable_generation_agent",
+      "community": 21,
+      "norm_label": "f1. timetable generation agent \ud83d\uddd3\ufe0f"
+    },
+    {
+      "label": "F2. Leave & Substitution Agent (the flagship) \ud83d\udd01",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "docs_01_features_f2_leave_substitution_agent_the_flagship",
+      "community": 21,
+      "norm_label": "f2. leave & substitution agent (the flagship) \ud83d\udd01"
+    },
+    {
+      "label": "F3. Event & Venue Booking Agent \ud83c\udfaa",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_01_features_f3_event_venue_booking_agent",
+      "community": 21,
+      "norm_label": "f3. event & venue booking agent \ud83c\udfaa"
+    },
+    {
+      "label": "F4. Campus Knowledge Assistant (RAG) \ud83d\udcda",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "docs_01_features_f4_campus_knowledge_assistant_rag",
+      "community": 21,
+      "norm_label": "f4. campus knowledge assistant (rag) \ud83d\udcda"
+    },
+    {
+      "label": "F5. Notification Agent \ud83d\udce3 (cross-cutting)",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "docs_01_features_f5_notification_agent_cross_cutting",
+      "community": 21,
+      "norm_label": "f5. notification agent \ud83d\udce3 (cross-cutting)"
+    },
+    {
+      "label": "STRETCH FEATURES (independent add-ons, in recommended order)",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L113",
+      "_origin": "ast",
+      "id": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "community": 21,
+      "norm_label": "stretch features (independent add-ons, in recommended order)"
+    },
+    {
+      "label": "F6. Attendance Sentinel Agent \ud83d\udcc9",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "docs_01_features_f6_attendance_sentinel_agent",
+      "community": 21,
+      "norm_label": "f6. attendance sentinel agent \ud83d\udcc9"
+    },
+    {
+      "label": "F7. Complaint & Maintenance Triage Agent \ud83d\udd27",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "docs_01_features_f7_complaint_maintenance_triage_agent",
+      "community": 21,
+      "norm_label": "f7. complaint & maintenance triage agent \ud83d\udd27"
+    },
+    {
+      "label": "F8. Exam Scheduling Agent \ud83d\udcdd",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L126",
+      "_origin": "ast",
+      "id": "docs_01_features_f8_exam_scheduling_agent",
+      "community": 21,
+      "norm_label": "f8. exam scheduling agent \ud83d\udcdd"
+    },
+    {
+      "label": "F9. Analytics Agent (talk to your data) \ud83d\udcca",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L131",
+      "_origin": "ast",
+      "id": "docs_01_features_f9_analytics_agent_talk_to_your_data",
+      "community": 21,
+      "norm_label": "f9. analytics agent (talk to your data) \ud83d\udcca"
+    },
+    {
+      "label": "F10. Energy Watchdog Agent \u26a1 (ties to the synopsis)",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "docs_01_features_f10_energy_watchdog_agent_ties_to_the_synopsis",
+      "community": 21,
+      "norm_label": "f10. energy watchdog agent \u26a1 (ties to the synopsis)"
+    },
+    {
+      "label": "What makes this one of the best projects",
+      "file_type": "document",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "docs_01_features_what_makes_this_one_of_the_best_projects",
+      "community": 21,
+      "norm_label": "what makes this one of the best projects"
+    },
+    {
+      "label": "02-ARCHITECTURE.md",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_02_architecture",
+      "community": 20,
+      "norm_label": "02-architecture.md"
+    },
+    {
+      "label": "02 \u2014 Architecture",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_02_architecture_02_architecture",
+      "community": 22,
+      "norm_label": "02 \u2014 architecture"
+    },
+    {
+      "label": "1. System overview",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_02_architecture_1_system_overview",
+      "community": 22,
+      "norm_label": "1. system overview"
+    },
+    {
+      "label": "2. Agent workflow (LangGraph)",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "docs_02_architecture_2_agent_workflow_langgraph",
+      "community": 22,
+      "norm_label": "2. agent workflow (langgraph)"
+    },
+    {
+      "label": "2.1 Supervisor pattern",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "docs_02_architecture_2_1_supervisor_pattern",
+      "community": 22,
+      "norm_label": "2.1 supervisor pattern"
+    },
+    {
+      "label": "2.2 The tools layer (critical design rule)",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L82",
+      "_origin": "ast",
+      "id": "docs_02_architecture_2_2_the_tools_layer_critical_design_rule",
+      "community": 22,
+      "norm_label": "2.2 the tools layer (critical design rule)"
+    },
+    {
+      "label": "2.3 Proactive trigger engine",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "docs_02_architecture_2_3_proactive_trigger_engine",
+      "community": 22,
+      "norm_label": "2.3 proactive trigger engine"
+    },
+    {
+      "label": "3. Data model (SQLAlchemy)",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "docs_02_architecture_3_data_model_sqlalchemy",
+      "community": 22,
+      "norm_label": "3. data model (sqlalchemy)"
+    },
+    {
+      "label": "4. API surface (FastAPI routers, one per domain)",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L147",
+      "_origin": "ast",
+      "id": "docs_02_architecture_4_api_surface_fastapi_routers_one_per_domain",
+      "community": 22,
+      "norm_label": "4. api surface (fastapi routers, one per domain)"
+    },
+    {
+      "label": "5. Target repo structure",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "docs_02_architecture_5_target_repo_structure",
+      "community": 22,
+      "norm_label": "5. target repo structure"
+    },
+    {
+      "label": "6. Security & safety rails",
+      "file_type": "document",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L203",
+      "_origin": "ast",
+      "id": "docs_02_architecture_6_security_safety_rails",
+      "community": 22,
+      "norm_label": "6. security & safety rails"
+    },
+    {
+      "label": "03-TECH-STACK.md",
+      "file_type": "document",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_03_tech_stack",
+      "community": 20,
+      "norm_label": "03-tech-stack.md"
+    },
+    {
+      "label": "03 \u2014 Tech Stack",
+      "file_type": "document",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_03_tech_stack_03_tech_stack",
+      "community": 20,
+      "norm_label": "03 \u2014 tech stack"
+    },
+    {
+      "label": "Summary table",
+      "file_type": "document",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "docs_03_tech_stack_summary_table",
+      "community": 20,
+      "norm_label": "summary table"
+    },
+    {
+      "label": "\u2605 The model-agnostic LLM layer (`app/core/llm.py`)",
+      "file_type": "document",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "docs_03_tech_stack_the_model_agnostic_llm_layer_app_core_llm_py",
+      "community": 20,
+      "norm_label": "\u2605 the model-agnostic llm layer (`app/core/llm.py`)"
+    },
+    {
+      "label": "requirements.txt target (backend)",
+      "file_type": "document",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "docs_03_tech_stack_requirements_txt_target_backend",
+      "community": 20,
+      "norm_label": "requirements.txt target (backend)"
+    },
+    {
+      "label": "04-ROADMAP.md",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_04_roadmap",
+      "community": 20,
+      "norm_label": "04-roadmap.md"
+    },
+    {
+      "label": "04 \u2014 Roadmap & Status",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_04_roadmap_status",
+      "community": 20,
+      "norm_label": "04 \u2014 roadmap & status"
+    },
+    {
+      "label": "Phase 0 \u2014 Foundation rebuild (\u22481 week)",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_phase_0_foundation_rebuild_1_week",
+      "community": 20,
+      "norm_label": "phase 0 \u2014 foundation rebuild (\u22481 week)"
+    },
+    {
+      "label": "Phase 1 \u2014 F1 Timetable Generation (\u22482 weeks)",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_phase_1_f1_timetable_generation_2_weeks",
+      "community": 20,
+      "norm_label": "phase 1 \u2014 f1 timetable generation (\u22482 weeks)"
+    },
+    {
+      "label": "Phase 2 \u2014 F2 Leave & Substitution \u2014 the flagship (\u22482 weeks)",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_phase_2_f2_leave_substitution_the_flagship_2_weeks",
+      "community": 20,
+      "norm_label": "phase 2 \u2014 f2 leave & substitution \u2014 the flagship (\u22482 weeks)"
+    },
+    {
+      "label": "Phase 3 \u2014 F3 Event Booking + F4 Knowledge RAG (\u22482 weeks)",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_phase_3_f3_event_booking_f4_knowledge_rag_2_weeks",
+      "community": 20,
+      "norm_label": "phase 3 \u2014 f3 event booking + f4 knowledge rag (\u22482 weeks)"
+    },
+    {
+      "label": "Phase 4 \u2014 Polish + stretch picks (remaining time)",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_phase_4_polish_stretch_picks_remaining_time",
+      "community": 20,
+      "norm_label": "phase 4 \u2014 polish + stretch picks (remaining time)"
+    },
+    {
+      "label": "Decision log",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_decision_log",
+      "community": 20,
+      "norm_label": "decision log"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "docs/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_readme",
+      "community": 20,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Smart Campus Ops \u2014 Project Documentation",
+      "file_type": "document",
+      "source_file": "docs/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_readme_smart_campus_ops_project_documentation",
+      "community": 20,
+      "norm_label": "smart campus ops \u2014 project documentation"
+    },
+    {
+      "label": "Reading order",
+      "file_type": "document",
+      "source_file": "docs/README.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_readme_reading_order",
+      "community": 20,
+      "norm_label": "reading order"
+    },
+    {
+      "label": "Rules for continuing this project (human or AI)",
+      "file_type": "document",
+      "source_file": "docs/README.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "docs_readme_rules_for_continuing_this_project_human_or_ai",
+      "community": 20,
+      "norm_label": "rules for continuing this project (human or ai)"
     },
     {
       "label": "Smart Campus Agent System",
@@ -1235,9 +2811,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Agentic AI-driven campus management framework that replaces rigid, reactive, manually-supervised legacy systems with intelligent real-time monitoring and autonomous collaborative agents to reduce timetable conflicts and operational costs.",
-      "id": "readme_smart_campus_agent_system",
-      "community": 8,
-      "norm_label": "smart campus agent system"
+      "community": 33,
+      "norm_label": "smart campus agent system",
+      "id": "readme_smart_campus_agent_system"
     },
     {
       "label": "LangGraph Multi-Agent Orchestration",
@@ -1249,9 +2825,9 @@
       "author": null,
       "contributor": null,
       "rationale": "A compiled LangGraph StateGraph routes natural-language queries to specialist agent nodes and delegates tasks; entry point is always the router node and all nodes converge on END.",
-      "id": "readme_langgraph_orchestration",
-      "community": 8,
-      "norm_label": "langgraph multi-agent orchestration"
+      "community": 30,
+      "norm_label": "langgraph multi-agent orchestration",
+      "id": "readme_langgraph_orchestration"
     },
     {
       "label": "Router Node (Intent Classification)",
@@ -1263,9 +2839,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Classifies user intent (facility / scheduling / general) via keyword detection and sets current_action to drive conditional routing.",
-      "id": "readme_router_node_concept",
-      "community": 1,
-      "norm_label": "router node (intent classification)"
+      "community": 31,
+      "norm_label": "router node (intent classification)",
+      "id": "readme_router_node_concept"
     },
     {
       "label": "Scheduler Agent Node",
@@ -1277,9 +2853,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Handles timetable conflicts and automated task scheduling when the router classifies scheduling/task intent.",
-      "id": "readme_scheduler_agent_concept",
-      "community": 1,
-      "norm_label": "scheduler agent node"
+      "community": 32,
+      "norm_label": "scheduler agent node",
+      "id": "readme_scheduler_agent_concept"
     },
     {
       "label": "Facility Agent Node",
@@ -1291,9 +2867,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Manages room bookings and facility reservations when the router classifies room-booking intent.",
-      "id": "readme_facility_agent_concept",
-      "community": 1,
-      "norm_label": "facility agent node"
+      "community": 26,
+      "norm_label": "facility agent node",
+      "id": "readme_facility_agent_concept"
     },
     {
       "label": "General Fallback Node",
@@ -1305,9 +2881,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Default node for general campus FAQ / info queries that do not match scheduling or facility intent.",
-      "id": "readme_general_fallback_concept",
-      "community": 1,
-      "norm_label": "general fallback node"
+      "community": 29,
+      "norm_label": "general fallback node",
+      "id": "readme_general_fallback_concept"
     },
     {
       "label": "AgentState (Centralized State)",
@@ -1319,9 +2895,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Universal state (messages, steps, params, current_action, final_response) that every node reads and updates as the query flows through the graph.",
-      "id": "readme_agentstate_concept",
-      "community": 1,
-      "norm_label": "agentstate (centralized state)"
+      "community": 25,
+      "norm_label": "agentstate (centralized state)",
+      "id": "readme_agentstate_concept"
     },
     {
       "label": "POST /api/agent/chat Contract",
@@ -1333,9 +2909,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Main REST endpoint accepting {message} and returning ChatResponse (agent, response, steps, params); front-end integration point for the orchestration workflow.",
-      "id": "readme_api_chat_contract",
       "community": 6,
-      "norm_label": "post /api/agent/chat contract"
+      "norm_label": "post /api/agent/chat contract",
+      "id": "readme_api_chat_contract"
     },
     {
       "label": "Next.js Campus Dashboard",
@@ -1347,9 +2923,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Single-page Next.js/Tailwind dashboard with overview/chat/scheduler/facilities tabs; polls /api/health and falls back to demo mock mode when backend is unreachable.",
-      "id": "readme_frontend_dashboard_concept",
-      "community": 7,
-      "norm_label": "next.js campus dashboard"
+      "community": 28,
+      "norm_label": "next.js campus dashboard",
+      "id": "readme_frontend_dashboard_concept"
     },
     {
       "label": "FastAPI Backend Service",
@@ -1361,9 +2937,9 @@
       "author": null,
       "contributor": null,
       "rationale": "Python FastAPI server hosting REST endpoints and WebSockets that compiles and runs the LangGraph orchestration workflow.",
-      "id": "readme_fastapi_backend_concept",
-      "community": 8,
-      "norm_label": "fastapi backend service"
+      "community": 27,
+      "norm_label": "fastapi backend service",
+      "id": "readme_fastapi_backend_concept"
     }
   ],
   "links": [
@@ -1883,16 +3459,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:53",
-      "weight": 1.0,
-      "source": "readme_frontend_dashboard_concept",
-      "target": "apps_web_src_app_page_dashboard"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/tailwind.config.ts",
@@ -2192,225 +3758,209 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
-      "weight": 1.0,
-      "source": "readme_langgraph_orchestration",
-      "target": "services_backend_app_agents_graph"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L32",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "services_backend_app_agents_graph",
-      "target": "services_backend_app_agents_graph_general_fallback_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L61",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_graph",
-      "target": "services_backend_app_agents_graph_route_to",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_graph",
-      "target": "services_backend_app_agents_graph_router_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:16",
-      "weight": 1.0,
-      "source": "readme_router_node_concept",
-      "target": "services_backend_app_agents_graph_router_node"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_graph_rationale_7",
-      "target": "services_backend_app_agents_graph_router_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_graph_router_node",
-      "target": "services_backend_app_agents_state_agentstate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:21",
-      "weight": 1.0,
-      "source": "readme_general_fallback_concept",
-      "target": "services_backend_app_agents_graph_general_fallback_node"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L32",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_graph_general_fallback_node",
-      "target": "services_backend_app_agents_state_agentstate",
+      "target": "services_backend_app_agents_graph_make_checkpointer",
       "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L33",
+      "source_location": "L1",
       "weight": 1.0,
-      "source": "services_backend_app_agents_graph_rationale_33",
-      "target": "services_backend_app_agents_graph_general_fallback_node",
+      "source": "services_backend_app_agents_graph_rationale_1",
+      "target": "services_backend_app_agents_graph",
       "confidence_score": 1.0
     },
     {
-      "relation": "references",
-      "context": "parameter_type",
+      "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/graph.py",
-      "source_location": "L61",
+      "source_location": "L20",
       "weight": 1.0,
-      "source": "services_backend_app_agents_graph_route_to",
-      "target": "services_backend_app_agents_state_agentstate",
+      "source": "services_backend_app_agents_graph_rationale_20",
+      "target": "services_backend_app_agents_graph_make_checkpointer",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/nodes/facility.py",
-      "source_location": "L3",
+      "source_file": "services/backend/app/agents/specialists/booking.py",
+      "source_location": "L12",
       "weight": 1.0,
-      "source": "services_backend_app_agents_nodes_facility",
-      "target": "services_backend_app_agents_nodes_facility_facility_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:20",
-      "weight": 1.0,
-      "source": "readme_facility_agent_concept",
-      "target": "services_backend_app_agents_nodes_facility_facility_node"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/nodes/facility.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_nodes_facility_facility_node",
-      "target": "services_backend_app_agents_state_agentstate",
+      "source": "services_backend_app_agents_specialists_booking",
+      "target": "services_backend_app_agents_specialists_booking_facility_node",
       "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/nodes/facility.py",
-      "source_location": "L4",
+      "source_file": "services/backend/app/agents/specialists/booking.py",
+      "source_location": "L1",
       "weight": 1.0,
-      "source": "services_backend_app_agents_nodes_facility_rationale_4",
-      "target": "services_backend_app_agents_nodes_facility_facility_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/nodes/scheduler.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_nodes_scheduler",
-      "target": "services_backend_app_agents_nodes_scheduler_scheduler_node",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:19",
-      "weight": 1.0,
-      "source": "readme_scheduler_agent_concept",
-      "target": "services_backend_app_agents_nodes_scheduler_scheduler_node"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/nodes/scheduler.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_nodes_scheduler_rationale_4",
-      "target": "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "source": "services_backend_app_agents_specialists_booking_rationale_1",
+      "target": "services_backend_app_agents_specialists_booking",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/agents/nodes/scheduler.py",
-      "source_location": "L3",
+      "source_file": "services/backend/app/agents/specialists/booking.py",
+      "source_location": "L12",
       "weight": 1.0,
-      "source": "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "source": "services_backend_app_agents_specialists_booking_facility_node",
       "target": "services_backend_app_agents_state_agentstate",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/specialists/booking.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_booking_facility_node",
+      "target": "services_backend_app_db_models_room"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_general",
+      "target": "services_backend_app_agents_specialists_general_general_fallback_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_general_rationale_1",
+      "target": "services_backend_app_agents_specialists_general",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_general_general_fallback_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_general_general_fallback_node",
+      "target": "services_backend_app_core_llm_get_llm"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/specialists/general.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_general_general_fallback_node",
+      "target": "services_backend_app_core_llm_is_llm_configured"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_scheduling",
+      "target": "services_backend_app_agents_specialists_scheduling_scheduler_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_scheduling_rationale_1",
+      "target": "services_backend_app_agents_specialists_scheduling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_scheduling_scheduler_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_scheduling_scheduler_node",
+      "target": "services_backend_app_db_models_section"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_scheduling_scheduler_node",
+      "target": "services_backend_app_db_models_subject"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/specialists/scheduling.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_specialists_scheduling_scheduler_node",
+      "target": "services_backend_app_db_models_teacher"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/state.py",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "services_backend_app_agents_state",
       "target": "services_backend_app_agents_state_agentstate",
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:25",
-      "weight": 1.0,
-      "source": "readme_agentstate_concept",
-      "target": "services_backend_app_agents_state_agentstate"
-    },
-    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/state.py",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "services_backend_app_agents_state_agentstate",
       "target": "typeddict",
@@ -2420,129 +3970,537 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/state.py",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
-      "source": "services_backend_app_agents_state_rationale_5",
+      "source": "services_backend_app_agents_state_rationale_6",
       "target": "services_backend_app_agents_state_agentstate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "services_backend_app_api_router",
-      "target": "services_backend_app_api_router_chatrequest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "services_backend_app_api_router",
-      "target": "services_backend_app_api_router_chatresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "services_backend_app_api_router",
-      "target": "services_backend_app_api_router_health_check",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "services_backend_app_api_router",
-      "target": "services_backend_app_api_router_run_agent_workflow",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
-      "weight": 1.0,
-      "source": "readme_api_chat_contract",
-      "target": "services_backend_app_api_router_chatrequest"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "services_backend_app_api_router_chatrequest",
-      "target": "basemodel",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L22",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L93",
       "weight": 1.0,
-      "source": "services_backend_app_api_router_run_agent_workflow",
-      "target": "services_backend_app_api_router_chatrequest",
+      "source": "services_backend_app_agents_supervisor_route_to",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "services_backend_app_agents_supervisor_routedecision",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor_supervisor_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor",
+      "target": "services_backend_app_agents_supervisor_keyword_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor",
+      "target": "services_backend_app_agents_supervisor_route_to",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor",
+      "target": "services_backend_app_agents_supervisor_routedecision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor",
+      "target": "services_backend_app_agents_supervisor_supervisor_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor_rationale_1",
+      "target": "services_backend_app_agents_supervisor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor_rationale_17",
+      "target": "services_backend_app_agents_supervisor_routedecision",
       "confidence_score": 1.0
     },
     {
       "relation": "inherits",
       "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L11",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L16",
       "weight": 1.0,
-      "source": "services_backend_app_api_router_chatresponse",
-      "target": "basemodel",
+      "source": "services_backend_app_agents_supervisor_routedecision",
+      "target": "services_backend_app_agents_supervisor_py_basemodel",
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
+      "relation": "indirect_call",
+      "context": "argument",
       "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L60",
       "weight": 1.0,
-      "source": "readme_api_chat_contract",
-      "target": "services_backend_app_api_router_chatresponse"
+      "source": "services_backend_app_agents_supervisor_supervisor_node",
+      "target": "services_backend_app_agents_supervisor_routedecision",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor_rationale_40",
+      "target": "services_backend_app_agents_supervisor_keyword_fallback",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "services/backend/app/api/router.py",
-      "source_location": "L48",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L80",
       "weight": 1.0,
-      "source": "services_backend_app_api_router_run_agent_workflow",
-      "target": "services_backend_app_api_router_chatresponse",
+      "source": "services_backend_app_agents_supervisor_supervisor_node",
+      "target": "services_backend_app_agents_supervisor_keyword_fallback",
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L50",
       "weight": 1.0,
-      "source": "readme_api_chat_contract",
-      "target": "services_backend_app_api_router_run_agent_workflow"
+      "source": "services_backend_app_agents_supervisor_rationale_50",
+      "target": "services_backend_app_agents_supervisor_supervisor_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor_supervisor_node",
+      "target": "services_backend_app_core_llm_get_llm"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/agents/supervisor.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_supervisor_supervisor_node",
+      "target": "services_backend_app_core_llm_is_llm_configured"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent",
+      "target": "services_backend_app_api_agent_chatrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent",
+      "target": "services_backend_app_api_agent_chatresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent",
+      "target": "services_backend_app_api_agent_health_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent",
+      "target": "services_backend_app_api_agent_run_agent_workflow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent_rationale_1",
+      "target": "services_backend_app_api_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent_chatrequest",
+      "target": "services_backend_app_api_agent_py_basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent_run_agent_workflow",
+      "target": "services_backend_app_api_agent_chatrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent_chatresponse",
+      "target": "services_backend_app_api_agent_py_basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/agent.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "services_backend_app_api_agent_run_agent_workflow",
+      "target": "services_backend_app_api_agent_chatresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth",
+      "target": "services_backend_app_api_auth_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth",
+      "target": "services_backend_app_api_auth_loginrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth",
+      "target": "services_backend_app_api_auth_loginresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth",
+      "target": "services_backend_app_api_auth_me",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth",
+      "target": "services_backend_app_api_auth_userout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_rationale_1",
+      "target": "services_backend_app_api_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_api_auth_loginrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_loginrequest",
+      "target": "services_backend_app_api_auth_py_basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_api_auth_loginrequest",
+      "target": "services_backend_app_db_models_user",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_loginresponse",
+      "target": "services_backend_app_api_auth_py_basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_userout",
+      "target": "services_backend_app_api_auth_py_basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_api_auth_userout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_me",
+      "target": "services_backend_app_api_auth_userout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_api_auth_userout",
+      "target": "services_backend_app_db_models_user",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_api_auth_loginresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_api_auth_loginresponse",
+      "target": "services_backend_app_db_models_user",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_api_auth_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_core_security_create_access_token"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_core_security_verify_password"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_login",
+      "target": "services_backend_app_db_models_user"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/auth.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "services_backend_app_api_auth_me",
+      "target": "services_backend_app_db_models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router_rationale_1",
+      "target": "services_backend_app_api_router",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/core/config.py",
-      "source_location": "L4",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "services_backend_app_core_config",
       "target": "services_backend_app_core_config_settings",
@@ -2552,141 +4510,1633 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/core/config.py",
-      "source_location": "L4",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "services_backend_app_core_config_settings",
       "target": "basesettings",
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L51",
       "weight": 1.0,
-      "source": "readme_fastapi_backend_concept",
-      "target": "services_backend_main"
+      "source": "services_backend_app_core_llm",
+      "target": "services_backend_app_core_llm_get_llm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm",
+      "target": "services_backend_app_core_llm_is_llm_configured",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm",
+      "target": "services_backend_app_core_llm_provider_api_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm_rationale_1",
+      "target": "services_backend_app_core_llm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm_get_llm",
+      "target": "services_backend_app_core_llm_provider_api_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm_is_llm_configured",
+      "target": "services_backend_app_core_llm_provider_api_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm_rationale_27",
+      "target": "services_backend_app_core_llm_provider_api_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm_rationale_38",
+      "target": "services_backend_app_core_llm_is_llm_configured",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/llm.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "services_backend_app_core_llm_rationale_52",
+      "target": "services_backend_app_core_llm_get_llm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "services_backend_app_core_security_create_access_token",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "services_backend_app_core_security_decode_token",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "services_backend_app_core_security_get_current_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "services_backend_app_core_security_hash_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "services_backend_app_core_security_require_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security",
+      "target": "services_backend_app_core_security_verify_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_rationale_1",
+      "target": "services_backend_app_core_security",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_core_security_hash_password"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_get_current_user",
+      "target": "services_backend_app_core_security_decode_token",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_get_current_user",
+      "target": "httpauthorizationcredentials",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_get_current_user",
+      "target": "services_backend_app_core_security_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_get_current_user",
+      "target": "services_backend_app_db_models_user"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_rationale_47",
+      "target": "services_backend_app_core_security_get_current_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/security.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "services_backend_app_core_security_rationale_60",
+      "target": "services_backend_app_core_security_require_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_approval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_booking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L182",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_document",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_event",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_leave",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L194",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_notification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_room",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_section",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_subject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_substitution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_teacher",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_timeslot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_timetableentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_utcnow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models_rationale_1",
+      "target": "services_backend_app_db_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models_utcnow",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_user",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_user"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_teacher",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_teacher"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_subject",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_subject"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_section",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_section"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_room",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_room"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_timeslot",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_timeslot"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_timetableentry",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_leave",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_substitution",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_event",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_booking",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_approval",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models_rationale_169",
+      "target": "services_backend_app_db_models_approval",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_document",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L183",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models_rationale_183",
+      "target": "services_backend_app_db_models_document",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_notification",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed",
+      "target": "services_backend_app_db_seed_seed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_rationale_1",
+      "target": "services_backend_app_db_seed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/seed.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "services_backend_app_db_seed_rationale_18",
+      "target": "services_backend_app_db_seed_seed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/main.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "services_backend_main_lifespan",
+      "target": "services_backend_app_db_seed_seed"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "services_backend_app_db_session",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "services_backend_app_db_session",
+      "target": "services_backend_app_db_session_get_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "services_backend_app_db_session",
+      "target": "services_backend_app_db_session_init_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "services_backend_app_db_session_base",
+      "target": "declarativebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_backend_app_db_session_rationale_19",
+      "target": "services_backend_app_db_session_get_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/session.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "services_backend_app_db_session_rationale_28",
+      "target": "services_backend_app_db_session_init_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/main.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_backend_main_lifespan",
+      "target": "services_backend_app_db_session_init_db"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/main.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_main",
+      "target": "fastapi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/main.py",
-      "source_location": "L28",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "services_backend_main",
+      "target": "services_backend_main_lifespan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/main.py",
+      "source_location": "L43",
       "weight": 1.0,
       "source": "services_backend_main",
       "target": "services_backend_main_read_root",
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
+      "relation": "references",
+      "context": "parameter_type",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:3",
+      "source_file": "services/backend/main.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "readme_smart_campus_agent_system",
-      "target": "readme_langgraph_orchestration"
+      "source": "services_backend_main_lifespan",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "claude_claude_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_common_commands",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_common_patterns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L211",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_deployment_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_development_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L225",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_important_implementation_details",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_key_file_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_project_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_testing_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_useful_links",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "claude_project_overview",
+      "target": "claude_architecture_highlights",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "claude_development_setup",
+      "target": "claude_backend_services_backend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "claude_development_setup",
+      "target": "claude_frontend_apps_web",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "claude_development_setup",
+      "target": "claude_prerequisites",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "claude_common_commands",
+      "target": "claude_backend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "claude_common_commands",
+      "target": "claude_frontend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "claude_key_file_structure",
+      "target": "claude_backend_services_backend_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "claude_key_file_structure",
+      "target": "claude_frontend_apps_web_112",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "claude_important_implementation_details",
+      "target": "claude_api_contract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "claude_important_implementation_details",
+      "target": "claude_environment_configuration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "claude_important_implementation_details",
+      "target": "claude_frontend_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "claude_important_implementation_details",
+      "target": "claude_langgraph_state_machine",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "claude_testing_verification",
+      "target": "claude_manual_testing_workflow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L188",
+      "weight": 1.0,
+      "source": "claude_testing_verification",
+      "target": "claude_status_indicators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L195",
+      "weight": 1.0,
+      "source": "claude_common_patterns",
+      "target": "claude_adding_a_new_agent_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L201",
+      "weight": 1.0,
+      "source": "claude_common_patterns",
+      "target": "claude_adding_an_api_endpoint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L206",
+      "weight": 1.0,
+      "source": "claude_common_patterns",
+      "target": "claude_updating_frontend_ui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_smart_campus_agent_system_smart_campus_ops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "readme_smart_campus_agent_system_smart_campus_ops",
+      "target": "readme_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "readme_smart_campus_agent_system_smart_campus_ops",
+      "target": "readme_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "readme_smart_campus_agent_system_smart_campus_ops",
+      "target": "readme_project_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "readme_smart_campus_agent_system_smart_campus_ops",
+      "target": "readme_setup_running",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "readme_architecture",
+      "target": "readme_components",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "readme_architecture",
+      "target": "readme_visual_flow_diagram",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "readme_setup_running",
+      "target": "readme_1_backend_service",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "readme_setup_running",
+      "target": "readme_2_web_application",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_01_features",
+      "target": "docs_01_features_01_features",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
+      "source_file": "docs/README.md",
+      "source_location": "L15",
       "weight": 1.0,
-      "source": "readme_fastapi_backend_concept",
-      "target": "readme_langgraph_orchestration"
+      "source": "docs_readme",
+      "target": "docs_01_features",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "docs_01_features_01_features",
+      "target": "docs_01_features_core_features",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "docs_01_features_01_features",
+      "target": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "docs_01_features_01_features",
+      "target": "docs_01_features_what_makes_this_one_of_the_best_projects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "docs_01_features_core_features",
+      "target": "docs_01_features_f1_timetable_generation_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "docs_01_features_core_features",
+      "target": "docs_01_features_f2_leave_substitution_agent_the_flagship",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "docs_01_features_core_features",
+      "target": "docs_01_features_f3_event_venue_booking_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "docs_01_features_core_features",
+      "target": "docs_01_features_f4_campus_knowledge_assistant_rag",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "docs_01_features_core_features",
+      "target": "docs_01_features_f5_notification_agent_cross_cutting",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "target": "docs_01_features_f10_energy_watchdog_agent_ties_to_the_synopsis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "target": "docs_01_features_f6_attendance_sentinel_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "target": "docs_01_features_f7_complaint_maintenance_triage_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "target": "docs_01_features_f8_exam_scheduling_agent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/01-FEATURES.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
+      "target": "docs_01_features_f9_analytics_agent_talk_to_your_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_02_architecture",
+      "target": "docs_02_architecture_02_architecture",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:16",
+      "source_file": "docs/README.md",
+      "source_location": "L16",
       "weight": 1.0,
-      "source": "readme_langgraph_orchestration",
-      "target": "readme_router_node_concept"
+      "source": "docs_readme",
+      "target": "docs_02_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "docs_02_architecture_02_architecture",
+      "target": "docs_02_architecture_1_system_overview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "docs_02_architecture_02_architecture",
+      "target": "docs_02_architecture_2_agent_workflow_langgraph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "docs_02_architecture_02_architecture",
+      "target": "docs_02_architecture_3_data_model_sqlalchemy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "docs_02_architecture_02_architecture",
+      "target": "docs_02_architecture_4_api_surface_fastapi_routers_one_per_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "docs_02_architecture_02_architecture",
+      "target": "docs_02_architecture_5_target_repo_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L203",
+      "weight": 1.0,
+      "source": "docs_02_architecture_02_architecture",
+      "target": "docs_02_architecture_6_security_safety_rails",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "docs_02_architecture_2_agent_workflow_langgraph",
+      "target": "docs_02_architecture_2_1_supervisor_pattern",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "docs_02_architecture_2_agent_workflow_langgraph",
+      "target": "docs_02_architecture_2_2_the_tools_layer_critical_design_rule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/02-ARCHITECTURE.md",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "docs_02_architecture_2_agent_workflow_langgraph",
+      "target": "docs_02_architecture_2_3_proactive_trigger_engine",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_03_tech_stack",
+      "target": "docs_03_tech_stack_03_tech_stack",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:20",
+      "source_file": "docs/README.md",
+      "source_location": "L17",
       "weight": 1.0,
-      "source": "readme_router_node_concept",
-      "target": "readme_facility_agent_concept"
+      "source": "docs_readme",
+      "target": "docs_03_tech_stack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "docs_03_tech_stack_03_tech_stack",
+      "target": "docs_03_tech_stack_requirements_txt_target_backend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "docs_03_tech_stack_03_tech_stack",
+      "target": "docs_03_tech_stack_summary_table",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/03-TECH-STACK.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "docs_03_tech_stack_03_tech_stack",
+      "target": "docs_03_tech_stack_the_model_agnostic_llm_layer_app_core_llm_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_04_roadmap",
+      "target": "docs_04_roadmap_04_roadmap_status",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:21",
+      "source_file": "docs/README.md",
+      "source_location": "L18",
       "weight": 1.0,
-      "source": "readme_router_node_concept",
-      "target": "readme_general_fallback_concept"
+      "source": "docs_readme",
+      "target": "docs_04_roadmap",
+      "confidence_score": 1.0
     },
     {
-      "relation": "references",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:19",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L63",
       "weight": 1.0,
-      "source": "readme_router_node_concept",
-      "target": "readme_scheduler_agent_concept"
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_decision_log",
+      "confidence_score": 1.0
     },
     {
-      "relation": "shares_data_with",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:28",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L11",
       "weight": 1.0,
-      "source": "readme_scheduler_agent_concept",
-      "target": "readme_agentstate_concept"
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_phase_0_foundation_rebuild_1_week",
+      "confidence_score": 1.0
     },
     {
-      "relation": "shares_data_with",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:29",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L25",
       "weight": 1.0,
-      "source": "readme_facility_agent_concept",
-      "target": "readme_agentstate_concept"
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_phase_1_f1_timetable_generation_2_weeks",
+      "confidence_score": 1.0
     },
     {
-      "relation": "shares_data_with",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:30",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L34",
       "weight": 1.0,
-      "source": "readme_general_fallback_concept",
-      "target": "readme_agentstate_concept"
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_phase_2_f2_leave_substitution_the_flagship_2_weeks",
+      "confidence_score": 1.0
     },
     {
-      "relation": "references",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "README.md:54",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L43",
       "weight": 1.0,
-      "source": "readme_fastapi_backend_concept",
-      "target": "readme_api_chat_contract"
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_phase_3_f3_event_booking_f4_knowledge_rag_2_weeks",
+      "confidence_score": 1.0
     },
     {
-      "relation": "references",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "README.md",
-      "source_location": "README.md:53",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L51",
       "weight": 1.0,
-      "source": "readme_frontend_dashboard_concept",
-      "target": "readme_api_chat_contract"
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_phase_4_polish_stretch_picks_remaining_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_readme",
+      "target": "docs_readme_smart_campus_ops_project_documentation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "docs_readme_smart_campus_ops_project_documentation",
+      "target": "docs_readme_reading_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/README.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "docs_readme_smart_campus_ops_project_documentation",
+      "target": "docs_readme_rules_for_continuing_this_project_human_or_ai",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [
@@ -2704,21 +6154,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 0.9,
       "source_file": "README.md"
-    },
-    {
-      "id": "campus_specialist_agent_nodes",
-      "label": "Campus Specialist Agent Nodes",
-      "nodes": [
-        "services_backend_app_agents_graph_router_node",
-        "services_backend_app_agents_nodes_scheduler_scheduler_node",
-        "services_backend_app_agents_nodes_facility_facility_node",
-        "services_backend_app_agents_graph_general_fallback_node"
-      ],
-      "relation": "participate_in",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "README.md"
     }
   ],
-  "built_at_commit": "061f85cd732aeccb91ad6005130648a70af6c842"
+  "built_at_commit": "bcf8be7779297a27e167012f12299c28c52e663d"
 }

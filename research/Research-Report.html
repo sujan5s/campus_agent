@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Campus Agent System — Research Foundation</title>
+<style>
+  :root{
+    --ink:#1b1e24;
+    --navy:#152744;
+    --maroon:#7c1d2b;
+    --slate:#54606f;
+    --rule:#d3d8de;
+    --rule-soft:#e7eaee;
+    --row:#f6f7f9;
+    --chip:#eef1f5;
+    --link:#0f4c81;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    font-family:Georgia,'Times New Roman',serif;
+    color:var(--ink);
+    line-height:1.55;
+    font-size:10.6pt;
+    margin:0;
+    background:#fff;
+  }
+  .page{max-width:920px;margin:0 auto;padding:32px 40px;}
+
+  /* ---------- Cover ---------- */
+  .cover{
+    min-height:960px;
+    display:flex;flex-direction:column;
+    padding:70px 60px 50px;
+    border-top:10px solid var(--navy);
+    position:relative;
+  }
+  .cover .inst{
+    font-family:'Segoe UI',Arial,sans-serif;
+    letter-spacing:.14em;font-size:10pt;text-transform:uppercase;color:var(--slate);
+    font-weight:600;
+  }
+  .cover .dept{
+    font-family:'Segoe UI',Arial,sans-serif;
+    font-size:9.5pt;color:var(--slate);letter-spacing:.03em;margin-top:4px;
+  }
+  .cover .rule{height:2px;background:var(--maroon);width:64px;margin:40px 0 26px;}
+  .cover h1{
+    font-size:33pt;line-height:1.12;color:var(--navy);margin:0;font-weight:700;
+    letter-spacing:-.01em;
+  }
+  .cover .sub{
+    font-size:15pt;color:var(--maroon);margin-top:18px;font-style:italic;
+  }
+  .cover .desc{
+    margin-top:22px;font-size:11pt;color:var(--slate);max-width:600px;line-height:1.6;
+  }
+  .cover .spacer{flex:1;}
+  .meta-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:26px 48px;
+    font-family:'Segoe UI',Arial,sans-serif;font-size:9.6pt;
+    border-top:1px solid var(--rule);padding-top:26px;
+  }
+  .meta-grid .label{
+    text-transform:uppercase;letter-spacing:.1em;font-size:8pt;color:var(--slate);
+    font-weight:600;margin-bottom:6px;
+  }
+  .meta-grid .val{color:var(--ink);font-size:10pt;}
+  .meta-grid .val span{display:block;}
+
+  /* ---------- Typography ---------- */
+  h2{
+    font-size:18pt;color:var(--navy);margin:0 0 4px;font-weight:700;letter-spacing:-.01em;
+    padding-top:6px;
+  }
+  h2 .num{color:var(--maroon);font-size:12pt;display:block;font-family:'Segoe UI',Arial,sans-serif;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;}
+  h3{font-size:12.5pt;color:var(--navy);margin:26px 0 8px;font-weight:700;}
+  .lead{color:var(--slate);font-size:11pt;margin:2px 0 20px;max-width:660px;}
+  p{margin:10px 0;}
+  a{color:var(--link);text-decoration:none;border-bottom:.5px solid rgba(15,76,129,.35);}
+  a:hover{border-bottom-color:var(--link);}
+  code{
+    font-family:'Consolas','SF Mono',monospace;font-size:8.9pt;
+    background:var(--chip);padding:1px 5px;border-radius:3px;color:#33405a;
+  }
+  .section-rule{height:3px;width:100%;background:linear-gradient(90deg,var(--navy) 0 64px,var(--rule-soft) 64px);margin:6px 0 18px;}
+
+  /* ---------- Tables ---------- */
+  table{border-collapse:collapse;width:100%;margin:14px 0 6px;font-size:9.1pt;}
+  thead th{
+    background:var(--navy);color:#fff;text-align:left;padding:9px 11px;
+    font-family:'Segoe UI',Arial,sans-serif;font-weight:600;font-size:8.4pt;
+    text-transform:uppercase;letter-spacing:.05em;vertical-align:bottom;
+  }
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--rule-soft);vertical-align:top;}
+  tbody tr:nth-child(even){background:var(--row);}
+  tbody tr:last-child td{border-bottom:1px solid var(--rule);}
+  .paper-title{font-weight:700;color:var(--navy);}
+  td .src{font-family:'Segoe UI',Arial,sans-serif;font-size:8.4pt;color:var(--slate);}
+
+  /* ---------- Callouts ---------- */
+  .map{background:#fbfbfc;border:1px solid var(--rule);border-left:3px solid var(--maroon);
+    padding:14px 18px;margin:16px 0;border-radius:2px;}
+  .map .h{font-family:'Segoe UI',Arial,sans-serif;font-weight:700;font-size:9pt;
+    text-transform:uppercase;letter-spacing:.08em;color:var(--maroon);margin-bottom:6px;}
+  .thesis{background:var(--navy);color:#eef2f8;padding:22px 26px;border-radius:3px;margin:18px 0;}
+  .thesis .h{font-family:'Segoe UI',Arial,sans-serif;font-size:8.5pt;letter-spacing:.12em;
+    text-transform:uppercase;color:#9db4d4;margin-bottom:8px;font-weight:600;}
+  .thesis p{margin:0;font-size:12pt;line-height:1.5;}
+  .pillars{counter-reset:p;margin:16px 0;}
+  .pillar{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule-soft);}
+  .pillar:last-child{border-bottom:none;}
+  .pillar .n{counter-increment:p;font-family:'Segoe UI',Arial,sans-serif;font-weight:700;
+    color:#fff;background:var(--maroon);min-width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:11pt;}
+  .pillar .n::before{content:counter(p);}
+  .pillar .t{flex:1;}
+  .pillar .t b{color:var(--navy);}
+  .quote{border-left:3px solid var(--rule);padding:6px 0 6px 20px;margin:16px 0;
+    font-style:italic;color:#39424f;font-size:10.4pt;}
+
+  /* ---------- TOC ---------- */
+  .toc{font-family:'Segoe UI',Arial,sans-serif;font-size:10pt;}
+  .toc a{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dotted var(--rule);
+    color:var(--ink);border-bottom-style:dotted;}
+  .toc a .tnum{color:var(--maroon);font-weight:700;min-width:34px;}
+  .toc a .ttl{flex:1;padding-left:6px;}
+  .toc a:hover{color:var(--link);}
+
+  /* ---------- Footer note ---------- */
+  .note{font-size:8.8pt;color:var(--slate);font-family:'Segoe UI',Arial,sans-serif;
+    background:#fdf9f0;border:1px solid #ecdcbf;padding:12px 16px;border-radius:3px;margin:16px 0;}
+  .note b{color:#8a6d1a;}
+  .foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);
+    font-family:'Segoe UI',Arial,sans-serif;font-size:8pt;color:var(--slate);
+    display:flex;justify-content:space-between;}
+
+  /* ---------- Print ---------- */
+  @page{size:A4;margin:15mm 14mm;}
+  @media print{
+    .page{max-width:none;padding:0;margin:0;}
+    .cover{min-height:auto;height:247mm;padding:60px 40px 30px;page-break-after:always;}
+    section{page-break-before:page;}
+    section.no-break{page-break-before:auto;}
+    table{font-size:8.4pt;}
+    thead{display:table-header-group;}
+    tr,.pillar,.map,.thesis{page-break-inside:avoid;}
+    h2,h3{page-break-after:avoid;}
+    a{color:var(--link);}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover">
+  <div class="inst">NMAM Institute of Technology &middot; Nitte (Deemed to be University)</div>
+  <div class="dept">Department of Computer Science and Engineering &middot; Final Year Major Project</div>
+  <div class="rule"></div>
+  <h1>Agentic AI&ndash;Driven Smart&nbsp;Campus Operations Management System</h1>
+  <div class="sub">Research Foundation &amp; Literature Review</div>
+  <div class="desc">
+    A structured survey of the concepts underpinning the system &mdash; agentic multi-agent
+    orchestration, constraint-based scheduling, retrieval-augmented knowledge, and human-in-the-loop
+    autonomy &mdash; mapping each published result to its role in our implementation, and
+    establishing the research gap our project addresses.
+  </div>
+  <div class="spacer"></div>
+  <div class="meta-grid">
+    <div>
+      <div class="label">Project Team</div>
+      <div class="val">
+        <span>Manvith Y Shetty &nbsp;&middot;&nbsp; NNM23CS107</span>
+        <span>M Vaibhav &nbsp;&middot;&nbsp; NNM23CS104</span>
+        <span>Sujan S &nbsp;&middot;&nbsp; NNM23CS207</span>
+        <span>Mohith L A &nbsp;&middot;&nbsp; NNM23CS111</span>
+      </div>
+    </div>
+    <div>
+      <div class="label">Project Guide</div>
+      <div class="val">
+        <span>Dr. Sannidhan M S</span>
+        <span>Ms. Anupama H C</span>
+      </div>
+      <div class="label" style="margin-top:18px;">Scope</div>
+      <div class="val"><span>48 references &middot; 8 concept areas</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOC ===================== -->
+<section class="page no-break">
+  <h2><span class="num">Contents</span>Table of Contents</h2>
+  <div class="section-rule"></div>
+  <nav class="toc">
+    <a href="#overview"><span class="tnum">01</span><span class="ttl">Overview &amp; How to Use This Document</span><span>1</span></a>
+    <a href="#mapping"><span class="tnum">02</span><span class="ttl">Master Concept Mapping</span><span>2</span></a>
+    <a href="#agentic"><span class="tnum">03</span><span class="ttl">Agentic AI &amp; Multi-Agent Systems</span><span>3</span></a>
+    <a href="#orchestration"><span class="tnum">04</span><span class="ttl">LLM Orchestration, Supervisor-Router &amp; Tool Calling</span><span>4</span></a>
+    <a href="#timetable"><span class="tnum">05</span><span class="ttl">Automated Timetable Scheduling (CP-SAT / OR-Tools)</span><span>5</span></a>
+    <a href="#rescheduling"><span class="tnum">06</span><span class="ttl">Dynamic Rescheduling &amp; Teacher Substitution</span><span>6</span></a>
+    <a href="#campus"><span class="tnum">07</span><span class="ttl">Smart Campus Management Systems</span><span>7</span></a>
+    <a href="#rag"><span class="tnum">08</span><span class="ttl">Retrieval-Augmented Generation (RAG)</span><span>8</span></a>
+    <a href="#hitl"><span class="tnum">09</span><span class="ttl">Human-in-the-Loop &amp; Approval Workflows</span><span>9</span></a>
+    <a href="#booking"><span class="tnum">10</span><span class="ttl">Facility / Room Booking &amp; Resource Allocation</span><span>10</span></a>
+    <a href="#diff"><span class="tnum">11</span><span class="ttl">Differentiation &mdash; What Makes This Project Stand Out</span><span>11</span></a>
+  </nav>
+</section>
+
+<!-- ===================== 01 OVERVIEW ===================== -->
+<section class="page" id="overview">
+  <h2><span class="num">Section 01</span>Overview &amp; How to Use This Document</h2>
+  <div class="section-rule"></div>
+  <p class="lead">This document is the academic backbone of the project: for every concept the system
+  uses, it collects real, citable literature and maps it to our implementation.</p>
+
+  <p>The survey is divided into two complementary sets of references. <b>Set A</b> (Sections&nbsp;3&ndash;10)
+  establishes that the concepts we rely on are well-founded and proven. <b>Set B</b> (Section&nbsp;11)
+  establishes the research gap &mdash; what existing work does <i>not</i> do, and how our approach is
+  therefore novel.</p>
+
+  <h3>Reading each concept table</h3>
+  <p>Every concept section presents a uniform five-column table designed to drop directly into a
+  project report or presentation:</p>
+  <table>
+    <thead><tr><th style="width:20%">Column</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Paper</td><td>The title of the published work.</td></tr>
+      <tr><td class="paper-title">Source / Year</td><td>Publication venue (IEEE, ACM, Springer, Elsevier, IEEE&nbsp;Access, arXiv) with an active link.</td></tr>
+      <tr><td class="paper-title">Core Idea</td><td>The contribution the paper makes.</td></tr>
+      <tr><td class="paper-title">Limitation / Gap</td><td>Where the work falls short &mdash; the basis of the &ldquo;limitations&rdquo; analysis.</td></tr>
+      <tr><td class="paper-title">What We Take</td><td>Exactly what our project borrows from or improves upon.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note"><b>Citation verification.</b> All paper titles, venues, and links in this document
+  are genuine and were sourced from IEEE&nbsp;Xplore and publisher indexes. Before final submission,
+  open each link and confirm the exact author list, page numbers, and year from the source page &mdash;
+  these are the authoritative details for formal citation.</div>
+</section>
+
+<!-- ===================== 02 MAPPING ===================== -->
+<section class="page" id="mapping">
+  <h2><span class="num">Section 02</span>Master Concept Mapping</h2>
+  <div class="section-rule"></div>
+  <p class="lead">The single table that ties research to concept, to our code, to rationale &mdash; the
+  backbone of the methodology chapter and the system-design slides.</p>
+
+  <table>
+    <thead><tr>
+      <th style="width:4%">#</th><th style="width:20%">Concept</th><th style="width:26%">Where It Lives In Our Code</th><th style="width:12%">Ref.</th><th>Why We Use It</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="paper-title">Agentic AI / autonomous multi-agent system</td><td><code>app/agents/</code> &mdash; supervisor + specialists</td><td>&sect;3</td><td>Decompose campus operations into autonomous, cooperating agents rather than one monolithic program.</td></tr>
+      <tr><td>2</td><td class="paper-title">Supervisor-router orchestration</td><td><code>app/agents/supervisor.py</code></td><td>&sect;4</td><td>A routing node classifies intent and delegates to the right specialist &mdash; the canonical multi-agent pattern.</td></tr>
+      <tr><td>3</td><td class="paper-title">Stateful graph + checkpointing</td><td><code>app/agents/graph.py</code> (LangGraph + SqliteSaver)</td><td>&sect;4</td><td>Durable, resumable workflows; enables pause/resume for approvals.</td></tr>
+      <tr><td>4</td><td class="paper-title">Tool / function calling</td><td><code>app/tools/</code> (Phase&nbsp;1+)</td><td>&sect;4</td><td>The LLM orchestrates; deterministic tools act &mdash; auditable and safe.</td></tr>
+      <tr><td>5</td><td class="paper-title">Constraint-based timetabling</td><td><code>app/solver/</code> OR-Tools CP-SAT</td><td>&sect;5</td><td>Timetabling is NP-hard; a CP solver is provably clash-free and far faster than metaheuristics.</td></tr>
+      <tr><td>6</td><td class="paper-title">Dynamic rescheduling / substitution</td><td>Substitution Agent (Phase&nbsp;2)</td><td>&sect;6</td><td>Repair the timetable on disruption with minimal perturbation &mdash; the flagship feature.</td></tr>
+      <tr><td>7</td><td class="paper-title">Smart campus operations domain</td><td>Entire system</td><td>&sect;7</td><td>Grounds the project in the established smart-campus research area.</td></tr>
+      <tr><td>8</td><td class="paper-title">Retrieval-Augmented Generation</td><td><code>app/rag/</code> Knowledge Agent (Phase&nbsp;3)</td><td>&sect;8</td><td>Answer campus questions from real documents with citations, without hallucination.</td></tr>
+      <tr><td>9</td><td class="paper-title">Human-in-the-loop approval</td><td>LangGraph <code>interrupt()</code> + <code>approvals</code> table</td><td>&sect;9</td><td>Safe autonomy &mdash; the agent proposes, a human approves high-impact actions.</td></tr>
+      <tr><td>10</td><td class="paper-title">Facility / resource booking</td><td>Booking Agent (Phase&nbsp;3)</td><td>&sect;10</td><td>Conflict-aware venue reservation with an approval chain.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Adopted &amp; Adapted &mdash; Contribution Summary</h3>
+  <table>
+    <thead><tr><th style="width:16%">Concept</th><th>What Existing Work Does</th><th>Its Limitation</th><th>What We Took / Changed</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Multi-agent AI</td><td>Generic frameworks; cloud / parking / enterprise domains</td><td>Not applied to integrated campus operations</td><td>Apply the agentic pattern to a concrete campus-operations product</td></tr>
+      <tr><td class="paper-title">Orchestration</td><td>Supervisor-router pattern proven in surveys</td><td>Demonstrated on generic tasks</td><td>Implement it in LangGraph for campus intent routing with entity extraction</td></tr>
+      <tr><td class="paper-title">Timetabling</td><td>Genetic algorithms dominate the literature</td><td>Slow, stochastic, no infeasibility explanation</td><td>OR-Tools CP-SAT (deterministic, ~100&times; faster) + LLM explains infeasibility</td></tr>
+      <tr><td class="paper-title">Rescheduling</td><td>Studied mostly for railways / transport</td><td>Rarely applied to teacher substitution; not autonomous</td><td>Make substitution event-triggered and autonomous with a human approval gate</td></tr>
+      <tr><td class="paper-title">Smart campus</td><td>IoT sensing + dashboards</td><td>Reactive, hardware-centric, no autonomous decisions</td><td>Add an agentic decision layer on top of the data</td></tr>
+      <tr><td class="paper-title">RAG</td><td>Strong for domain QA</td><td>Generic corpora</td><td>Ground it in college-specific documents with citations</td></tr>
+      <tr><td class="paper-title">Human-in-the-loop</td><td>Approval patterns described conceptually</td><td>Often theoretical</td><td>Wire a concrete interrupt&rarr;approve&rarr;resume loop into a real workflow</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================== 03 AGENTIC ===================== -->
+<section class="page" id="agentic">
+  <h2><span class="num">Section 03 &middot; Set A</span>Agentic AI &amp; Multi-Agent Systems</h2>
+  <div class="section-rule"></div>
+  <p class="lead">Autonomous systems that pursue complex goals with minimal human intervention, often as
+  multiple specialized agents that coordinate &mdash; the core paradigm of our project.</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Agentic AI in Action: A Review of Architectures, Communication, and Coordination in Intelligent Multi-Agent Systems</td><td><a href="https://ieeexplore.ieee.org/abstract/document/11345772/">IEEE, 2025</a></td><td>Reviews 10+ agentic frameworks (2023&ndash;25); proposes a 3-dimensional taxonomy of architecture, communication, coordination.</td><td>Survey-level; open challenges in scalability, benchmarking, security; no concrete application.</td><td>Our supervisor + specialists design instantiates the coordination patterns it formalizes.</td></tr>
+      <tr><td class="paper-title">Agentic AI: Autonomous Intelligence for Complex Goals &mdash; A Comprehensive Survey</td><td><a href="https://ieeexplore.ieee.org/">IEEE Access, v13, 2025</a></td><td>Defines agentic AI and its components: planning, memory, tools; application areas.</td><td>Broad survey; no domain implementation.</td><td>Grounds our definition of &ldquo;agentic&rdquo; and the autonomous-agent design.</td></tr>
+      <tr><td class="paper-title">Agentic AI Systems: Architecture and Evaluation Using a Frictionless Parking Scenario</td><td><a href="https://ieeexplore.ieee.org/document/11083588/">IEEE, 2025</a></td><td>Specialized agents coordinate to achieve a goal with minimal supervision; agent design, interaction, cooperation.</td><td>Single narrow scenario (parking).</td><td>Blueprint for coordinating specialist agents toward one operational goal.</td></tr>
+      <tr><td class="paper-title">Agentic AI for Cloud Troubleshooting: A Review of Multi-Agent Systems for Automated Cloud Support</td><td><a href="https://ieeexplore.ieee.org/document/11005005/">IEEE, 2025</a></td><td>Multi-agent system autonomously diagnoses and resolves cloud issues.</td><td>Domain-specific to cloud infrastructure.</td><td>Evidence the &ldquo;detect &rarr; plan &rarr; act&rdquo; loop works for real operational automation.</td></tr>
+      <tr><td class="paper-title">AI Agents vs. Agentic AI: A Conceptual Taxonomy, Applications and Challenges</td><td><a href="https://arxiv.org/abs/2505.10468">arXiv, 2025</a></td><td>Distinguishes single &ldquo;AI agents&rdquo; from collaborative &ldquo;agentic AI&rdquo;.</td><td>Conceptual, not applied.</td><td>Justifies a multi-agent design rather than a single chatbot.</td></tr>
+      <tr><td class="paper-title">Distinguishing Autonomous AI Agents from Collaborative Agentic Systems</td><td><a href="https://arxiv.org/abs/2506.01438">arXiv, 2025</a></td><td>Framework for where collaboration between agents adds value.</td><td>Theoretical framework.</td><td>Supports the claim that specialist collaboration beats one general model.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  Our system is a collaborative agentic system: a supervisor classifies each request and delegates to a
+  specialist that owns one domain, directly realizing the architecture / communication / coordination
+  dimensions the IEEE survey formalizes and the parking paper demonstrates. Our contribution over these
+  works is domain application &mdash; none target integrated campus operations.</div>
+</section>
+
+<!-- ===================== 04 ORCHESTRATION ===================== -->
+<section class="page" id="orchestration">
+  <h2><span class="num">Section 04 &middot; Set A</span>LLM Orchestration, Supervisor-Router &amp; Tool Calling</h2>
+  <div class="section-rule"></div>
+  <p class="lead">How multiple LLM-driven agents are coordinated. We use the supervisor (router) pattern:
+  a central node classifies intent and delegates to workers that call typed tools.</p>
+  <h3>Orchestration &amp; the supervisor-router pattern</h3>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">LLM-Based Multi-Agent Orchestration: A Survey of Frameworks, Communication Protocols, and Emerging Patterns</td><td><a href="https://doi.org/10.3390/fi18060326">Future Internet (MDPI), 2026</a></td><td>Explicitly describes the supervisor pattern where a routing node delegates to workers, plus hierarchical and swarm patterns.</td><td>Survey; does not build a product.</td><td>Direct blueprint for our <code>supervisor.py</code> &rarr; specialists design.</td></tr>
+      <tr><td class="paper-title">The Orchestration of Multi-Agent Systems: Architectures, Protocols, and Enterprise Adoption</td><td><a href="https://arxiv.org/html/2601.13671v1">arXiv, 2026</a></td><td>Implementation-ready design principles for enterprise multi-agent systems.</td><td>Enterprise-generic.</td><td>Principles for reliable orchestration: clear roles, typed hand-offs.</td></tr>
+      <tr><td class="paper-title">Multi-Agent Orchestration for High-Throughput Materials Screening</td><td><a href="https://arxiv.org/pdf/2604.07681">arXiv, 2026</a></td><td>Hierarchical planner&ndash;executor architecture implemented using LangGraph.</td><td>Scientific-computing domain.</td><td>Precedent that LangGraph &mdash; our exact framework &mdash; scales to real workflows.</td></tr>
+      <tr><td class="paper-title">Difficulty-Aware Agent Orchestration in LLM-Powered Workflows</td><td><a href="https://arxiv.org/html/2509.11079v1">arXiv, 2025</a></td><td>An LLM router assigns operators / models to tasks by difficulty.</td><td>Focuses on routing optimization only.</td><td>Validates our LLM-router supervisor; a future extension (route by cost / difficulty).</td></tr>
+      <tr><td class="paper-title">A Survey of Agent Interoperability Protocols (MCP, ACP, A2A, ANP)</td><td><a href="https://arxiv.org/pdf/2505.02279">arXiv, 2025</a></td><td>LLM agents combine linguistic reasoning with external tool execution; standard protocols.</td><td>Protocol-level, forward-looking.</td><td>Justifies our tool-calling design; roadmap for standard agent protocols.</td></tr>
+    </tbody>
+  </table>
+  <h3>Tool / function calling &amp; intent classification</h3>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Function Calling in Large Language Models: Industrial Practices, Challenges, and Future Directions</td><td><a href="https://openreview.net/pdf/d01d50e27f7636724789f2aad6f4ac378749a0e1.pdf">OpenReview, 2025</a></td><td>Breaks function calling into pre-call (intent), execution (parameters, multi-call), post-call (result) stages.</td><td>Survey of failure modes.</td><td>We design tools to avoid these failures: typed schemas, validated parameters.</td></tr>
+      <tr><td class="paper-title">Natural Language Tools: A NL Approach to Tool Calling in Large Language Agents</td><td><a href="https://arxiv.org/pdf/2510.14453">arXiv, 2025</a></td><td>Replacing rigid JSON tool calls with NL improves accuracy by 18.4 pts, cuts variance 70%.</td><td>New method, not yet standard.</td><td>Informs prompt design; a candidate optimization if JSON tool calls prove brittle.</td></tr>
+      <tr><td class="paper-title">Classification-Based Concurrent API Calls &amp; Optimal Model Combination for Tool-Augmented LLMs</td><td><a href="https://www.nature.com/articles/s41598-025-06469-w">Scientific Reports, 2025</a></td><td>Multi-step plan &rarr; tool-invocation staging; classify then call APIs concurrently.</td><td>General agent setting.</td><td>Supports our two-stage flow: supervisor classifies, specialist invokes tools.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  <code>supervisor.py</code> is the supervisor/routing node the MDPI survey names as canonical, returning
+  <code>{route, task_spec}</code> via structured output. <code>graph.py</code> builds a LangGraph
+  <code>StateGraph</code> &mdash; the same framework as the materials-screening paper &mdash; and adds a
+  SqliteSaver checkpointer. <code>app/tools/</code> follows the staged function-calling discipline with typed
+  Pydantic schemas, mitigating the failure modes those papers catalogue.</div>
+</section>
+
+<!-- ===================== 05 TIMETABLE ===================== -->
+<section class="page" id="timetable">
+  <h2><span class="num">Section 05 &middot; Set A</span>Automated Timetable Scheduling (CP-SAT / OR-Tools)</h2>
+  <div class="section-rule"></div>
+  <p class="lead">University timetabling is a classic NP-hard constraint satisfaction problem. We solve it
+  with Google OR-Tools CP-SAT &mdash; a constraint solver &mdash; not an LLM.</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">A Comparative Analysis of Constraint Programming and Genetic Algorithms for Automated University Timetable Generation</td><td><a href="https://ieeexplore.ieee.org/document/11379218/">IEEE, 2024</a></td><td>Compares Google CP-SAT vs a Genetic Algorithm; CP is <b>~175&times; faster</b> and functionally superior on a realistic problem.</td><td>Benchmark study, not a product.</td><td><b>Direct justification</b> for choosing OR-Tools CP-SAT over GA &mdash; our headline design citation.</td></tr>
+      <tr><td class="paper-title">Genetic Algorithm for Solving University Course Timetabling Using Dynamic Chromosomes</td><td><a href="https://ieeexplore.ieee.org/document/9406539/">IEEE, 2021</a></td><td>GA with dynamic-length chromosomes for course timetabling.</td><td>Stochastic; convergence and tuning issues; no optimality guarantee.</td><td>Baseline we compare against; motivates a deterministic solver.</td></tr>
+      <tr><td class="paper-title">Time Table Scheduling Using Genetic Algorithms Employing Guided Mutation</td><td><a href="https://ieeexplore.ieee.org/document/5705788/">IEEE, 2011</a></td><td>Guided-mutation GA avoids faculty / classroom clashes.</td><td>Quality depends on operators; slow on large instances.</td><td>Confirms constraint types (faculty / room clash) we encode as hard constraints.</td></tr>
+      <tr><td class="paper-title">Solving Timetabling Problems Using Genetic Algorithms</td><td><a href="https://ieeexplore.ieee.org/document/1490384/">IEEE, 2004</a></td><td>Foundational GA formulation of timetabling.</td><td>Older; small-scale; no infeasibility explanation.</td><td>Establishes timetabling as an evolutionary-search problem in the literature.</td></tr>
+      <tr><td class="paper-title">Solving University Timetabling as a Constraint Satisfaction Problem with Genetic Algorithm</td><td><a href="https://www.academia.edu/2876050/">Scholar</a></td><td>Models timetabling explicitly as a CSP.</td><td>Hybrid; still stochastic.</td><td>Confirms the CSP formulation we adopt for our CP-SAT model.</td></tr>
+      <tr><td class="paper-title">Automating University Course Scheduling Using Genetic Algorithm</td><td><a href="https://link.springer.com/10.1007/978-981-95-0375-9_12">Springer, 2025</a></td><td>Recent GA-based course scheduling with a practical framework.</td><td>GA limitations persist: runtime, no explanation.</td><td>Recent evidence the field still leans on GA &mdash; our CP-SAT + explanation is a step beyond.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  Our <code>app/solver/</code> module builds an OR-Tools CP-SAT model with boolean assignment variables,
+  hard constraints for clash-freeness and period counts, and soft objectives for load balance. The
+  comparison paper (IEEE&nbsp;11379218) empirically shows CP-SAT is ~175&times; faster than a GA, which is
+  precisely why we reject the GA-heavy mainstream. <b>Our added value:</b> when the problem is infeasible, the
+  LLM explains which constraints conflict and suggests relaxations &mdash; a usability capability none of these
+  papers provide.</div>
+</section>
+
+<!-- ===================== 06 RESCHEDULING ===================== -->
+<section class="page" id="rescheduling">
+  <h2><span class="num">Section 06 &middot; Set A</span>Dynamic Rescheduling &amp; Teacher Substitution</h2>
+  <div class="section-rule"></div>
+  <p class="lead">Repairing a live timetable on disruption (a teacher takes leave) while keeping changes
+  minimal. Our Substitution Agent does this autonomously &mdash; the flagship differentiator.</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">School Timetabling Problem Under Disturbances</td><td><a href="https://www.sciencedirect.com/science/article/abs/pii/S0360835216300389">Elsevier, 2016</a></td><td>Reschedules school timetables when teacher / room / learner availability changes.</td><td>Not autonomous; no agent; no human-approval loop.</td><td>Formal basis for &ldquo;repair the timetable on disruption&rdquo; &mdash; we automate and add approval.</td></tr>
+      <tr><td class="paper-title">Minimum Penalty Perturbation Heuristics for Curriculum-Based Timetables Subject to Multiple Disruptions</td><td><a href="https://www.sciencedirect.com/science/article/abs/pii/S0305054821000964">Computers &amp; OR, 2021</a></td><td>Heuristics that minimize perturbation when repairing timetables under disruptions.</td><td>Heuristic, offline framing.</td><td>The minimal-perturbation objective we adopt for substitution plans.</td></tr>
+      <tr><td class="paper-title">Dynamic and Robust Timetable Rescheduling for Uncertain Railway Disruptions</td><td><a href="https://www.sciencedirect.com/science/article/pii/S2210970619300794">Elsevier, 2019</a></td><td>Rolling-horizon two-stage stochastic rescheduling under uncertainty.</td><td>Railway domain; heavy optimization.</td><td>Concept of robust, staged re-optimization under uncertainty.</td></tr>
+      <tr><td class="paper-title">Dynamic Railway Timetable Rescheduling for Multiple Connected Disruptions</td><td><a href="https://www.sciencedirect.com/science/article/pii/S0968090X21001029">Transp. Research C, 2021</a></td><td>MILP model reschedules under multiple overlapping disruptions.</td><td>Railway; MILP is heavy; no NL interface.</td><td>Reinforces multi-disruption handling; we keep it lightweight and agentic.</td></tr>
+      <tr><td class="paper-title">Automated Faculty Substitution Using Classification Algorithms</td><td><a href="https://ijarcce.com/wp-content/uploads/2025/05/IJARCCE.2025.14540.pdf">IJARCCE, 2025</a></td><td>Classifies suitable replacement teachers by subject compatibility.</td><td>Classification only; no full rescheduling, approval, or agent.</td><td>Closest prior work &mdash; we go further: ranking + plan + HITL + notify.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  The Substitution Agent combines the minimal-perturbation repair objective (Elsevier&nbsp;2021) with
+  substitute selection by subject compatibility (IJARCCE&nbsp;2025). We rank candidates as
+  teaches-same-subject &gt; same-department &gt; any-free, weighted by workload for fairness. What makes ours
+  novel: it is autonomous and event-triggered (runs the moment leave is approved), keeps a human in the loop,
+  and is applied to campus staff rather than railways &mdash; where prior work stops at classification.</div>
+</section>
+
+<!-- ===================== 07 CAMPUS ===================== -->
+<section class="page" id="campus">
+  <h2><span class="num">Section 07 &middot; Set A</span>Smart Campus Management Systems</h2>
+  <div class="section-rule"></div>
+  <p class="lead">The project domain. Our contribution is to move the smart campus from sensing and
+  dashboards (reactive) to an agentic decision layer (proactive).</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Internet of Things Based Model for Smart Campus: Challenges and Limitations</td><td><a href="https://ieeexplore.ieee.org/document/9036629/">IEEE, 2020</a></td><td>Three-layer smart-campus model: perception &rarr; network &rarr; application.</td><td>Hardware / sensing-centric; reactive; no autonomous decision-making.</td><td>The layered model; our agents sit in an enhanced decision layer.</td></tr>
+      <tr><td class="paper-title">Roadmap to Smart Campus Based on IoT</td><td><a href="https://ieeexplore.ieee.org/abstract/document/9197926/">IEEE, 2020</a></td><td>Vision for smart schooling, classrooms, parking via IoT.</td><td>Roadmap; no intelligent automation.</td><td>Frames the campus subsystems (scheduling, facilities) we automate.</td></tr>
+      <tr><td class="paper-title">IoT, AI and Digital Twin for Smart Campus</td><td><a href="https://ieeexplore.ieee.org/document/9910286/">IEEE, 2022</a></td><td>Digital twin + IoT for campus energy management.</td><td>Focus on energy infrastructure, not operations agents.</td><td>Precedent for our (stretch) Energy Watchdog agent.</td></tr>
+      <tr><td class="paper-title">Survey Toward a Smart Campus Using the Internet of Things</td><td><a href="https://ieeexplore.ieee.org/document/7575869/">IEEE, 2016</a></td><td>Survey of smart-campus drivers: service quality, cost, sustainability.</td><td>Survey; IoT lens only.</td><td>Motivation (cost, efficiency) for our problem statement.</td></tr>
+      <tr><td class="paper-title">Internet of Things Based Smart Campus &mdash; A Review</td><td><a href="https://ieeexplore.ieee.org/document/9770699">IET/IEEE, 2022</a></td><td>Reviews smart-campus types by IoT layers and applications.</td><td>Review; no decision intelligence.</td><td>Establishes the state-of-the-art baseline we extend with agents.</td></tr>
+      <tr><td class="paper-title">Smart Campus as a Learning Platform for Industry 4.0 and IoT</td><td><a href="https://ieeexplore.ieee.org/document/9277679/">IEEE, 2019</a></td><td>Uses the smart campus as an education / Industry-4.0 platform.</td><td>Pedagogical framing.</td><td>Broadens relevance; supports the education context.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  Every smart-campus paper here is IoT- and sensing-centric and, by its own framing, reactive &mdash; matching
+  our problem statement's critique of &ldquo;rigid, reactive, manually-supervised&rdquo; systems. We adopt their
+  layered view but add a new top layer: an agentic decision layer that acts on the data autonomously.</div>
+</section>
+
+<!-- ===================== 08 RAG ===================== -->
+<section class="page" id="rag">
+  <h2><span class="num">Section 08 &middot; Set A</span>Retrieval-Augmented Generation (RAG)</h2>
+  <div class="section-rule"></div>
+  <p class="lead">Combining information retrieval with an LLM so answers are grounded in trusted documents,
+  with citations. Our Knowledge Agent uses RAG over the college's own documents.</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Domain-Specific Retrieval-Augmented Generation Using Vector Stores, Knowledge Graphs, and Tensor Factorization</td><td><a href="https://ieeexplore.ieee.org/document/10903241/">IEEE, 2025</a></td><td>Combines vector stores + knowledge graphs for domain-specific accuracy.</td><td>More complex infrastructure.</td><td>Confirms vector-store RAG for a domain corpus; KG is a future upgrade path.</td></tr>
+      <tr><td class="paper-title">QuIM-RAG: Advancing RAG With Inverted Question Matching for Enhanced QA</td><td><a href="https://ieeexplore.ieee.org/">IEEE Access, v12, 2024</a></td><td>Inverted question&ndash;chunk matching improves retrieval precision.</td><td>Adds a matching layer; more indexing cost.</td><td>Retrieval-quality technique if naive similarity search underperforms.</td></tr>
+      <tr><td class="paper-title">ICCA-RAG: Intelligent Customs Clearance Assistant Using RAG</td><td><a href="https://ieeexplore.ieee.org/">IEEE Access, v13, 2025</a></td><td>Domain assistant answering regulatory questions via RAG.</td><td>Narrow regulatory domain.</td><td>Template for a domain assistant &mdash; ours is the campus equivalent.</td></tr>
+      <tr><td class="paper-title">Enhancing Precision &amp; Interpretability of RAG in Legal Technology: A Survey</td><td><a href="https://ieeexplore.ieee.org/">IEEE Access, v13, 2025</a></td><td>Surveys precision and interpretability (citations) in high-stakes RAG.</td><td>Survey; legal focus.</td><td>Motivates our citation requirement &mdash; answers must be traceable to a source.</td></tr>
+      <tr><td class="paper-title">A Novel Framework for Educational Q&amp;A: Leveraging RAG and Code Interpreters</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12668533/">PMC, 2024</a></td><td>RAG + code interpreter for educational question answering.</td><td>Adds code-execution complexity.</td><td>Direct evidence RAG works for educational Q&amp;A &mdash; our exact use case.</td></tr>
+      <tr><td class="paper-title">A Research of Challenges and Solutions in RAG Systems</td><td><a href="https://drpress.org/ojs/index.php/HSET/article/view/28756">HSET, 2024</a></td><td>Catalogues RAG challenges (retrieval quality, hallucination, chunking) and solutions.</td><td>Survey.</td><td>Checklist of pitfalls we design around: chunk size, &ldquo;say I don't know&rdquo;.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  Our <code>app/rag/</code> module ingests PDFs &rarr; chunks &rarr; embeddings &rarr; ChromaDB; the Knowledge
+  Agent retrieves top-k chunks and answers grounded in them, citing source document and page. The
+  domain-assistant papers (customs, legal) are our closest analogues &mdash; we build the campus version. The
+  educational-QA paper confirms RAG suits education, and the challenges survey gives the failure list we guard
+  against, especially the rule that the agent says &ldquo;not found&rdquo; rather than invent policy.</div>
+</section>
+
+<!-- ===================== 09 HITL ===================== -->
+<section class="page" id="hitl">
+  <h2><span class="num">Section 09 &middot; Set A</span>Human-in-the-Loop &amp; Approval Workflows</h2>
+  <div class="section-rule"></div>
+  <p class="lead">Integrating human oversight at critical decision points: the AI proposes, then pauses
+  until a human approves, edits, or rejects. This gives safe autonomy.</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">A Decoupled Human-in-the-Loop System for Controlled Autonomy in Agentic Workflows</td><td><a href="https://arxiv.org/pdf/2604.23049">arXiv, 2026</a></td><td>Decouples agent execution from human approval checkpoints for controlled autonomy.</td><td>Recent preprint; general framework.</td><td><b>Directly matches</b> our interrupt &rarr; approve &rarr; resume design.</td></tr>
+      <tr><td class="paper-title">A Comprehensive Framework for Human-AI Collaborative Decision Making</td><td><a href="https://www.sciencedirect.com/science/article/pii/S0957417425036292">Expert Sys. w/ Apps, 2025</a></td><td>Framework for human&ndash;AI collaborative decisions.</td><td>Retail domain.</td><td>Tiered oversight: low-risk auto, high-risk human sign-off.</td></tr>
+      <tr><td class="paper-title">Human-in-the-Loop AI in Ongoing Process Verification (Pharma)</td><td><a href="https://www.mdpi.com/2078-2489/16/12/1082">Information (MDPI), 2025</a></td><td>HITL for regulated pharmaceutical process verification.</td><td>Regulated-industry specific.</td><td>Evidence HITL is the norm where mistakes are costly &mdash; like altering a live timetable.</td></tr>
+      <tr><td class="paper-title">Trustworthy Human Computation: A Survey</td><td><a href="https://arxiv.org/pdf/2210.12324">arXiv, 2022</a></td><td>Trust via human participation &mdash; humans provide info or confirm / modify AI decisions.</td><td>Survey.</td><td>Grounds why HITL builds trust in our approvals.</td></tr>
+      <tr><td class="paper-title">Automating Document Intelligence in Statutory City Planning</td><td><a href="https://arxiv.org/pdf/2603.13245">arXiv, 2026</a></td><td>HITL document automation in a government / statutory setting.</td><td>Document-processing domain.</td><td>Precedent for HITL in administrative workflows like ours.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  We implement HITL with LangGraph's <code>interrupt()</code> plus a checkpointer: when a specialist reaches a
+  high-impact action, the graph pauses and writes an <code>approvals</code> row with the
+  <code>langgraph_thread_id</code>. The dashboard shows an approval card; when the HOD clicks Approve/Reject, the
+  graph resumes from the exact paused state &mdash; even days later. Low-risk actions like notifications proceed
+  automatically; high-risk timetable / booking changes require sign-off.</div>
+</section>
+
+<!-- ===================== 10 BOOKING ===================== -->
+<section class="page" id="booking">
+  <h2><span class="num">Section 10 &middot; Set A</span>Facility / Room Booking &amp; Resource Allocation</h2>
+  <div class="section-rule"></div>
+  <p class="lead">Allocating scarce venues without clashes and with capacity matching. Our Booking Agent
+  handles natural-language requests and checks conflicts against bookings and the timetable.</p>
+  <table>
+    <thead><tr><th style="width:22%">Paper</th><th style="width:11%">Source / Year</th><th style="width:23%">Core Idea</th><th style="width:22%">Limitation / Gap</th><th>What We Take</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Design and Development of an Integrated Room Reservation System for Higher Education Institutions</td><td><a href="https://ieeexplore.ieee.org/document/9436766/">IEEE, 2021</a></td><td>Online system easing room / facility management with real-time info exchange.</td><td>Form-based CRUD; no NL interface, no autonomous conflict resolution, no agent.</td><td>Baseline reservation system &mdash; we add NL + agentic conflict handling.</td></tr>
+      <tr><td class="paper-title">Optimization of Room Allocation Plans (Univ. Duisburg-Essen) with a Regulatory Algorithm</td><td><a href="https://ieeexplore.ieee.org/document/7744407/">IEEE, 2016</a></td><td>Evolutionary regulatory algorithm optimizes room allocation on real data.</td><td>Optimization only; batch; not interactive.</td><td>Evidence of algorithmic room allocation; we keep it conversational and real-time.</td></tr>
+      <tr><td class="paper-title">Online Reservation Inventory Systems in Higher Education</td><td><a href="https://www.ijres.org/papers/Volume-13/Issue-7/13077382.pdf">IJRES, 2025</a></td><td>Architecture and layers of online room-booking systems for universities.</td><td>Traditional IS design; no AI.</td><td>System-design reference for our booking data model and flow.</td></tr>
+      <tr><td class="paper-title">DHMS: A Digital Hostel Management System Integrating Campus ChatBot, Predictive Intelligence, and Real-Time Automation</td><td><a href="https://arxiv.org/pdf/2507.17759">arXiv, 2025</a></td><td>Campus system combining a chatbot + predictive automation for hostel management.</td><td>Hostel-specific; chatbot, not a full agent.</td><td>Nearby example of chatbot + campus automation; we generalize to an agent.</td></tr>
+    </tbody>
+  </table>
+  <div class="map"><div class="h">How this maps to our project</div>
+  Existing reservation systems are form-based CRUD. Our Booking Agent instead accepts natural language, extracts
+  structured fields via the supervisor, and checks conflicts against the live timetable as well as other bookings
+  &mdash; a check those systems do not perform. When a venue is taken, it proposes alternatives by capacity, then
+  routes to the approval chain.</div>
+</section>
+
+<!-- ===================== 11 DIFFERENTIATION ===================== -->
+<section class="page" id="diff">
+  <h2><span class="num">Section 11 &middot; Set B</span>Differentiation &mdash; What Makes This Project Stand Out</h2>
+  <div class="section-rule"></div>
+  <p class="lead">The gap in existing work, and how our approach is novel. This section supports the
+  novelty / contribution slide and the gap-analysis chapter.</p>
+
+  <div class="thesis">
+    <div class="h">The one-line thesis</div>
+    <p>Existing campus systems are reactive (IoT dashboards), and existing agentic-AI research is generic or
+    applied to other domains (cloud, parking, railways). No prior system combines autonomous multi-agent
+    orchestration, proactive event-driven action, and human-in-the-loop approval, applied to integrated campus
+    operations. That combination is our contribution.</p>
+  </div>
+
+  <h3>Gap analysis &mdash; existing &rarr; limitation &rarr; our improvement</h3>
+  <table>
+    <thead><tr><th style="width:13%">Area</th><th>What Existing Work Does</th><th>Its Limitation</th><th>Our Differentiation</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Smart campus</td><td>IoT sensing, dashboards, digital twins</td><td>Reactive; hardware-centric; no autonomous decisions</td><td>An agentic decision layer that acts, not just displays.</td></tr>
+      <tr><td class="paper-title">Timetabling</td><td>Genetic algorithms dominate</td><td>Slow, stochastic, no infeasibility explanation</td><td>CP-SAT (~175&times; faster) + LLM explains why a timetable is impossible and suggests fixes.</td></tr>
+      <tr><td class="paper-title">Rescheduling</td><td>Railway / transport, offline; faculty substitution = classification only</td><td>Manual trigger; not autonomous; no approval</td><td>Event-triggered autonomous substitution with human approval.</td></tr>
+      <tr><td class="paper-title">Multi-agent AI</td><td>Surveys + apps: cloud, parking</td><td>Not applied to campus operations</td><td>First to apply the agentic pattern to integrated campus operations.</td></tr>
+      <tr><td class="paper-title">Reservation</td><td>Form-based CRUD booking</td><td>No NL; no timetable-aware conflict check</td><td>NL booking + conflict check against the live timetable + alternatives.</td></tr>
+      <tr><td class="paper-title">Knowledge / FAQ</td><td>Generic or domain RAG</td><td>Not campus-grounded</td><td>RAG over the college's own documents with citations.</td></tr>
+      <tr><td class="paper-title">Autonomy safety</td><td>HITL described conceptually</td><td>Often theoretical</td><td>Concrete interrupt &rarr; approve &rarr; resume loop in a working product.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The four pillars of our novelty</h3>
+  <div class="pillars">
+    <div class="pillar"><div class="n"></div><div class="t"><b>Proactive, not reactive.</b> Agents act on events (leave approved &rarr; reschedule) and schedules (nightly checks) with no human prompt. Smart-campus literature is explicitly reactive by its own framing.</div></div>
+    <div class="pillar"><div class="n"></div><div class="t"><b>Right tool for each job.</b> Constraint solver for timetables, RAG for knowledge, structured-output LLM for routing &mdash; the LLM orchestrates, it does not guess. Timetabling research shows LLM-free CP-SAT is the correct engineering choice.</div></div>
+    <div class="pillar"><div class="n"></div><div class="t"><b>Safe autonomy via human-in-the-loop.</b> The system proposes; humans approve high-impact actions in one click.</div></div>
+    <div class="pillar"><div class="n"></div><div class="t"><b>Integrated, single platform.</b> One agentic system spans scheduling, substitution, booking, and knowledge &mdash; prior work solves these in isolation.</div></div>
+  </div>
+
+  <h3>Set B &mdash; Agentic AI specifically for education / administration</h3>
+  <table>
+    <thead><tr><th style="width:26%">Paper</th><th style="width:13%">Source / Year</th><th style="width:28%">Core Idea</th><th>Why It Supports Our Differentiation</th></tr></thead>
+    <tbody>
+      <tr><td class="paper-title">Agent4EDU: Advancing AI for Education with Agentic Workflows</td><td><a href="https://dl.acm.org/doi/10.1145/3722237.3722268">ACM ICAIE, 2024</a></td><td>Agentic workflows applied to education.</td><td>Confirms agentic AI in education is a recognized, publishable direction.</td></tr>
+      <tr><td class="paper-title">Instructional Agents: Reducing Teaching Faculty Workload through Multi-Agent Instructional Design</td><td><a href="https://arxiv.org/pdf/2508.19611">arXiv, 2025</a></td><td>Multi-agent system reduces faculty workload.</td><td>Same motivation as ours (cut staff workload) but targets instructional design, not operations.</td></tr>
+      <tr><td class="paper-title">Agentic Workflow for Education: Concepts and Applications</td><td><a href="https://arxiv.org/pdf/2509.01517">arXiv, 2025</a></td><td>Concepts and applications of agentic workflows in education.</td><td>Positions our operations focus as an unexplored application area.</td></tr>
+      <tr><td class="paper-title">LLM Agents for Education: Advances and Applications</td><td><a href="https://arxiv.org/pdf/2503.11733">arXiv, 2025</a></td><td>Survey of LLM agents in education.</td><td>Shows operations / administration is under-addressed.</td></tr>
+      <tr><td class="paper-title">Large-Language-Model-Based Agents for Education (Survey)</td><td>IEEE Trans. Learning Tech., 2025</td><td>Comprehensive survey of LLM agents for education.</td><td>Strong IEEE citation establishing the research area.</td></tr>
+      <tr><td class="paper-title">The Impact of LLMs on Higher Education: AI and Education 4.0</td><td><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1392091/full">Frontiers, 2024</a></td><td>LLMs and the Education 4.0 vision.</td><td>Macro-context: why now, why campuses.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Report-ready formulation</h3>
+  <div class="quote">&ldquo;While agentic AI has been surveyed extensively and applied to domains such as cloud
+  support and smart parking, and while smart-campus research is mature in IoT sensing, the two have not been
+  combined. Existing campus systems remain reactive and siloed, timetabling research relies largely on slower
+  stochastic genetic algorithms without infeasibility reasoning, and teacher-substitution work stops at
+  classification. Our system unifies these into a single agentic platform that acts proactively on events, uses a
+  constraint solver with LLM-generated explanations for timetabling, and keeps humans in control through explicit
+  approval checkpoints &mdash; a combination not present in the reviewed literature.&rdquo;</div>
+
+  <div class="foot">
+    <span>Agentic AI&ndash;Driven Smart Campus Operations Management System &mdash; Research Foundation</span>
+    <span>Department of Computer Science and Engineering, NMAM Institute of Technology</span>
+  </div>
+</section>
+
+</body>
+</html>
