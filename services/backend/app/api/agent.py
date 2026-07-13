@@ -11,6 +11,7 @@ router = APIRouter()
 
 AGENT_NAMES = {
     "timetable": "Timetable Agent",
+    "substitution": "Substitution Agent",
     "facility": "Facility Agent",
     "scheduler": "Scheduler Agent",
     "general": "Campus Orchestrator",

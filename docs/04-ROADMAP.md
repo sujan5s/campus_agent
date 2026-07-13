@@ -29,16 +29,16 @@ Phase 0 turns it into the real platform every feature plugs into.
 - [x] 2026-07-13 Timetable Agent specialist + supervisor route "timetable" + REST: POST /api/timetable/generate (admin, 422+reasons on infeasible), GET /timetable/section/{name}, /teacher/{id}, /status. Chat "Generate a fresh timetable" → Timetable Agent → v3 stored (verified). Infeasibility explanations verified on 3 synthetic cases (no-teacher, demand>capacity, tight daily limits)
 - [x] 2026-07-13 Admin data-entry UI (subjects, teachers, teacher-subject map, sections, rooms) + CSV import — `/setup` page (tabbed CRUD, subject-chip picker for teachers, CSV upsert with per-row error reporting + downloadable templates) backed by `app/api/setup.py` (14 endpoints; reads = any authenticated user, writes = admin-only; verified 200/403/401 via curl)
 - [x] 2026-07-13 Timetable grid view — `/timetable` page: section selector, MON-FRI × P1-P7 grid with per-subject colors, lab-block markers, teacher+room per cell, admin-only Generate button, infeasibility explanation banner. (Teacher-view UI deferred; API already exists)
-- [~] Demo script: generation + infeasibility both proven via tests; write the rehearsed demo flow before review 1
+- [x] 2026-07-14 Demo script — `docs/05-DEMO-SCRIPT.md` (4 acts + Q&A ammunition)
 
 ## Phase 2 — F2 Leave & Substitution — the flagship (≈2 weeks)
 
-- [ ] Leave application UI + API; approval card UI for HOD role
-- [ ] Substitution Agent: candidate ranking tool (`find_free_teachers` with subject/dept/workload weighting), plan builder producing a timetable diff
-- [ ] Proactive trigger: leave-approved event → agent runs automatically (APScheduler + DB hook)
-- [ ] Human-in-the-loop: `interrupt()` → approval record → `POST /api/approvals/{id}/decide` resumes the graph thread
-- [ ] Notification Agent v1 (in-app inbox + WebSocket push)
-- [ ] Demo script: approve a leave, watch the plan appear with zero prompting, approve it, see notifications land
+- [x] 2026-07-14 Leave application UI + API — `/leaves` page (faculty apply form + admin approve/reject) backed by `app/api/leaves.py`; approving invokes the agent graph inline (source="system")
+- [x] 2026-07-14 Substitution Agent — `app/tools/substitution.py` ranks candidates (subject match +3 > same dept +2 > free, minus weekly-load ×0.1 and per-plan-load ×0.5 for fairness/spread), builds plan grouped by `plan_id="leave-<id>"`, idempotent (safe across interrupt re-execution). `app/agents/specialists/substitution.py` node + supervisor route "substitution"
+- [x] 2026-07-14 Proactive trigger — leave-approval API invokes agent immediately; APScheduler sweep (every 2 min) re-triggers any approved leave with no plan (restart safety net)
+- [x] 2026-07-14 Human-in-the-loop — LangGraph `interrupt()` pauses node; Approval row stores `langgraph_thread_id`; `POST /api/approvals/{id}/decide` resumes with `Command(resume={"action": ...})`. **Verified live: approve path (2 subs confirmed + 3 notifications) and reject path (subs discarded)** — `/approvals` page shows plan cards with rationale per lesson
+- [x] 2026-07-14 Notification Agent v1 — in-app inbox (`/inbox` page, 15s polling, unread badges, mark-read) via `app/api/notifications.py`. WebSocket push deferred to Phase 3
+- [x] 2026-07-14 Flagship demo flow scripted in `docs/05-DEMO-SCRIPT.md` Act 3 and verified end-to-end twice (leave #1 approve path, leave #2 reject path)
 
 ## Phase 3 — F3 Event Booking + F4 Knowledge RAG (≈2 weeks)
 

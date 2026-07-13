@@ -14,6 +14,7 @@ from app.agents.specialists.scheduling import scheduler_node
 from app.agents.specialists.booking import facility_node
 from app.agents.specialists.general import general_fallback_node
 from app.agents.specialists.timetable import timetable_node
+from app.agents.specialists.substitution import substitution_node
 from app.core.config import settings
 
 
@@ -41,6 +42,7 @@ workflow.add_node("scheduler", scheduler_node)
 workflow.add_node("facility", facility_node)
 workflow.add_node("general_fallback", general_fallback_node)
 workflow.add_node("timetable", timetable_node)
+workflow.add_node("substitution", substitution_node)
 
 workflow.set_entry_point("supervisor")
 
@@ -49,6 +51,7 @@ workflow.add_conditional_edges(
     route_to,
     {
         "timetable": "timetable",
+        "substitution": "substitution",
         "facility": "facility",
         "scheduler": "scheduler",
         "general_fallback": "general_fallback",
@@ -56,6 +59,7 @@ workflow.add_conditional_edges(
 )
 
 workflow.add_edge("timetable", END)
+workflow.add_edge("substitution", END)
 workflow.add_edge("facility", END)
 workflow.add_edge("scheduler", END)
 workflow.add_edge("general_fallback", END)

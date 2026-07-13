@@ -1,6 +1,8 @@
+import uuid
 from contextlib import asynccontextmanager
 
 import uvicorn
+from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,12 +12,46 @@ from app.db.session import init_db
 from app.db.seed import seed
 
 
+def _substitution_sweep():
+    """Proactive safety net (docs/02-ARCHITECTURE.md trigger engine): if a leave
+    was approved but no substitution plan exists (e.g. server restarted mid-flow),
+    trigger the Substitution Agent. Normal path is the leave-approval API call."""
+    from app.agents.graph import compiled_graph
+    from app.db.models import Leave, Substitution
+    from app.db.session import SessionLocal
+    from app.tools.substitution import plan_id_for
+
+    db = SessionLocal()
+    try:
+        approved = db.query(Leave).filter(Leave.status == "approved").all()
+        pending = [lv for lv in approved
+                   if db.query(Substitution)
+                        .filter(Substitution.plan_id == plan_id_for(lv.id)).count() == 0]
+    finally:
+        db.close()
+    for lv in pending:
+        compiled_graph.invoke(
+            {"messages": [{"role": "user",
+                           "content": f"Plan substitutions for approved leave #{lv.id}"}],
+             "steps": [], "params": {}, "final_response": "",
+             "current_action": "general", "source": "system",
+             "task_spec": {"leave_id": lv.id}},
+            config={"configurable": {"thread_id": f"leave-{lv.id}-{uuid.uuid4().hex[:8]}"}},
+        )
+        print(f"[sweep] Substitution Agent triggered for unplanned approved leave #{lv.id}")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
     if seed():
         print("Database seeded with demo data (see app/db/seed.py for demo logins).")
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(_substitution_sweep, "interval", minutes=2,
+                      id="substitution_sweep", coalesce=True, max_instances=1)
+    scheduler.start()
     yield
+    scheduler.shutdown(wait=False)
 
 
 app = FastAPI(

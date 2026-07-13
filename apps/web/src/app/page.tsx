@@ -19,6 +19,9 @@ import {
   Zap,
   Database,
   LogIn,
+  CalendarX,
+  ClipboardCheck,
+  Inbox,
 } from "lucide-react";
 
 // Types
@@ -308,6 +311,27 @@ export default function Dashboard() {
               >
                 <CalendarDays className="h-5 w-5" />
                 <span className="text-sm font-medium">Timetable</span>
+              </a>
+              <a
+                href="/leaves"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <CalendarX className="h-5 w-5" />
+                <span className="text-sm font-medium">Leaves</span>
+              </a>
+              <a
+                href="/approvals"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <ClipboardCheck className="h-5 w-5" />
+                <span className="text-sm font-medium">Approvals</span>
+              </a>
+              <a
+                href="/inbox"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <Inbox className="h-5 w-5" />
+                <span className="text-sm font-medium">Inbox</span>
               </a>
               <a
                 href="/setup"

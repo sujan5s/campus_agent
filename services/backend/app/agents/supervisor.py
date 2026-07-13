@@ -16,10 +16,11 @@ from app.core.llm import get_llm, is_llm_configured
 class RouteDecision(BaseModel):
     """Structured routing decision returned by the supervisor LLM."""
 
-    route: Literal["timetable", "scheduler", "facility", "general"] = Field(
+    route: Literal["timetable", "substitution", "scheduler", "facility", "general"] = Field(
         description=(
             "timetable: generate/regenerate/rebuild the weekly class timetable. "
-            "scheduler: schedule conflicts, checks, substitutions, teacher leave. "
+            "substitution: plan/arrange substitute teachers for an approved leave (message mentions a leave id). "
+            "scheduler: schedule conflicts, checks, teacher leave status questions. "
             "facility: booking/reserving/availability of rooms, halls, labs, auditoriums, grounds, events. "
             "general: anything else (campus info, FAQs, greetings)."
         )
@@ -40,6 +41,8 @@ _SUPERVISOR_SYSTEM = (
 def _keyword_fallback(query: str) -> tuple[str, str]:
     """Deterministic routing used when no LLM provider is configured."""
     q = query.lower()
+    if "substitut" in q and ("leave" in q or "plan" in q):
+        return "substitution", "keyword match: substitution planning"
     if "timetable" in q and any(kw in q for kw in ["generate", "create", "build", "make", "regenerate"]):
         return "timetable", "keyword match: timetable generation"
     if any(kw in q for kw in ["book", "reserve", "facility", "room", "hall", "lab", "auditorium", "ground", "event"]):
@@ -89,7 +92,8 @@ def supervisor_node(state: AgentState) -> dict:
     return {
         "steps": steps,
         "current_action": action,
-        "task_spec": task_spec,
+        # merge, don't replace — system triggers pre-seed task_spec (e.g. leave_id)
+        "task_spec": {**(state.get("task_spec") or {}), **task_spec},
     }
 
 
@@ -97,6 +101,8 @@ def route_to(state: AgentState) -> str:
     action = state.get("current_action", "general")
     if action == "timetable":
         return "timetable"
+    if action == "substitution":
+        return "substitution"
     if action == "facility":
         return "facility"
     if action == "scheduler":
