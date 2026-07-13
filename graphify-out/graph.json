@@ -1,0 +1,2724 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "langgraph_agent_routing_flow",
+        "label": "LangGraph Query Routing Flow",
+        "nodes": [
+          "readme_router_node_concept",
+          "readme_scheduler_agent_concept",
+          "readme_facility_agent_concept",
+          "readme_general_fallback_concept",
+          "readme_agentstate_concept"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "README.md"
+      },
+      {
+        "id": "campus_specialist_agent_nodes",
+        "label": "Campus Specialist Agent Nodes",
+        "nodes": [
+          "services_backend_app_agents_graph_router_node",
+          "services_backend_app_agents_nodes_scheduler_scheduler_node",
+          "services_backend_app_agents_nodes_facility_facility_node",
+          "services_backend_app_agents_graph_general_fallback_node"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "README.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "apps/web/next-env.d.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_next_env_d",
+      "community": 12,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "NOTE: This file should not be edited",
+      "file_type": "rationale",
+      "source_file": "apps/web/next-env.d.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "apps_web_next_env_d_rationale_4",
+      "community": 12,
+      "norm_label": "note: this file should not be edited"
+    },
+    {
+      "label": "next.config.mjs",
+      "file_type": "code",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_next_config",
+      "community": 11,
+      "norm_label": "next.config.mjs"
+    },
+    {
+      "label": "nextConfig",
+      "file_type": "code",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "apps_web_next_config_nextconfig",
+      "community": 11,
+      "norm_label": "nextconfig"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_package",
+      "community": 4,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "apps_web_package_name",
+      "community": 4,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "apps_web_package_version",
+      "community": 4,
+      "norm_label": "version"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "apps_web_package_private",
+      "community": 4,
+      "norm_label": "private"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "apps_web_package_scripts",
+      "community": 4,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "dev",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "apps_web_package_scripts_dev",
+      "community": 4,
+      "norm_label": "dev"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "apps_web_package_scripts_build",
+      "community": 4,
+      "norm_label": "build"
+    },
+    {
+      "label": "start",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_package_scripts_start",
+      "community": 4,
+      "norm_label": "start"
+    },
+    {
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "apps_web_package_scripts_lint",
+      "community": 4,
+      "norm_label": "lint"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies",
+      "community": 3,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "react",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies_react",
+      "community": 3,
+      "norm_label": "react"
+    },
+    {
+      "label": "react",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "react",
+      "community": 3,
+      "norm_label": "react"
+    },
+    {
+      "label": "react-dom",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies_react_dom",
+      "community": 3,
+      "norm_label": "react-dom"
+    },
+    {
+      "label": "react-dom",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "react_dom",
+      "community": 3,
+      "norm_label": "react-dom"
+    },
+    {
+      "label": "next",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies_next",
+      "community": 3,
+      "norm_label": "next"
+    },
+    {
+      "label": "next",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "next",
+      "community": 3,
+      "norm_label": "next"
+    },
+    {
+      "label": "lucide-react",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies_lucide_react",
+      "community": 3,
+      "norm_label": "lucide-react"
+    },
+    {
+      "label": "lucide-react",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "lucide_react",
+      "community": 3,
+      "norm_label": "lucide-react"
+    },
+    {
+      "label": "clsx",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies_clsx",
+      "community": 3,
+      "norm_label": "clsx"
+    },
+    {
+      "label": "clsx",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "clsx",
+      "community": 3,
+      "norm_label": "clsx"
+    },
+    {
+      "label": "tailwind-merge",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "apps_web_package_dependencies_tailwind_merge",
+      "community": 3,
+      "norm_label": "tailwind-merge"
+    },
+    {
+      "label": "tailwind-merge",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "tailwind_merge",
+      "community": 3,
+      "norm_label": "tailwind-merge"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies",
+      "community": 2,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "typescript",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_typescript",
+      "community": 2,
+      "norm_label": "typescript"
+    },
+    {
+      "label": "typescript",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "typescript",
+      "community": 2,
+      "norm_label": "typescript"
+    },
+    {
+      "label": "@types/node",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_types_node",
+      "community": 2,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "@types/node",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "types_node",
+      "community": 2,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_types_react",
+      "community": 2,
+      "norm_label": "@types/react"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "types_react",
+      "community": 2,
+      "norm_label": "@types/react"
+    },
+    {
+      "label": "@types/react-dom",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_types_react_dom",
+      "community": 2,
+      "norm_label": "@types/react-dom"
+    },
+    {
+      "label": "@types/react-dom",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "types_react_dom",
+      "community": 2,
+      "norm_label": "@types/react-dom"
+    },
+    {
+      "label": "postcss",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_postcss",
+      "community": 2,
+      "norm_label": "postcss"
+    },
+    {
+      "label": "postcss",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "postcss",
+      "community": 2,
+      "norm_label": "postcss"
+    },
+    {
+      "label": "tailwindcss",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_tailwindcss",
+      "community": 2,
+      "norm_label": "tailwindcss"
+    },
+    {
+      "label": "tailwindcss",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "tailwindcss",
+      "community": 2,
+      "norm_label": "tailwindcss"
+    },
+    {
+      "label": "autoprefixer",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_autoprefixer",
+      "community": 2,
+      "norm_label": "autoprefixer"
+    },
+    {
+      "label": "autoprefixer",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "autoprefixer",
+      "community": 2,
+      "norm_label": "autoprefixer"
+    },
+    {
+      "label": "eslint",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_eslint",
+      "community": 2,
+      "norm_label": "eslint"
+    },
+    {
+      "label": "eslint",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "eslint",
+      "community": 2,
+      "norm_label": "eslint"
+    },
+    {
+      "label": "eslint-config-next",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_eslint_config_next",
+      "community": 2,
+      "norm_label": "eslint-config-next"
+    },
+    {
+      "label": "eslint-config-next",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "eslint_config_next",
+      "community": 2,
+      "norm_label": "eslint-config-next"
+    },
+    {
+      "label": "postcss.config.mjs",
+      "file_type": "code",
+      "source_file": "apps/web/postcss.config.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_postcss_config",
+      "community": 13,
+      "norm_label": "postcss.config.mjs"
+    },
+    {
+      "label": "config",
+      "file_type": "code",
+      "source_file": "apps/web/postcss.config.mjs",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "apps_web_postcss_config_config",
+      "community": 13,
+      "norm_label": "config"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_app_layout",
+      "community": 9,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "inter",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "apps_web_src_app_layout_inter",
+      "community": 9,
+      "norm_label": "inter"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "apps_web_src_app_layout_metadata",
+      "community": 9,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "apps_web_src_app_layout_rootlayout",
+      "community": 9,
+      "norm_label": "rootlayout()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_app_page",
+      "community": 7,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "Message",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "apps_web_src_app_page_message",
+      "community": 7,
+      "norm_label": "message"
+    },
+    {
+      "label": "Task",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "apps_web_src_app_page_task",
+      "community": 7,
+      "norm_label": "task"
+    },
+    {
+      "label": "Facility",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "apps_web_src_app_page_facility",
+      "community": 7,
+      "norm_label": "facility"
+    },
+    {
+      "label": "Dashboard()",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "apps_web_src_app_page_dashboard",
+      "community": 7,
+      "norm_label": "dashboard()"
+    },
+    {
+      "label": "tailwind.config.ts",
+      "file_type": "code",
+      "source_file": "apps/web/tailwind.config.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_tailwind_config",
+      "community": 14,
+      "norm_label": "tailwind.config.ts"
+    },
+    {
+      "label": "config",
+      "file_type": "code",
+      "source_file": "apps/web/tailwind.config.ts",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "apps_web_tailwind_config_config",
+      "community": 14,
+      "norm_label": "config"
+    },
+    {
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig",
+      "community": 5,
+      "norm_label": "tsconfig.json"
+    },
+    {
+      "label": "compilerOptions",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions",
+      "community": 0,
+      "norm_label": "compileroptions"
+    },
+    {
+      "label": "target",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_target",
+      "community": 0,
+      "norm_label": "target"
+    },
+    {
+      "label": "lib",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_lib",
+      "community": 0,
+      "norm_label": "lib"
+    },
+    {
+      "label": "dom",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "ref_dom",
+      "community": 0,
+      "norm_label": "dom"
+    },
+    {
+      "label": "dom.iterable",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "ref_dom_iterable",
+      "community": 0,
+      "norm_label": "dom.iterable"
+    },
+    {
+      "label": "esnext",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "ref_esnext",
+      "community": 0,
+      "norm_label": "esnext"
+    },
+    {
+      "label": "allowJs",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_allowjs",
+      "community": 0,
+      "norm_label": "allowjs"
+    },
+    {
+      "label": "skipLibCheck",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_skiplibcheck",
+      "community": 0,
+      "norm_label": "skiplibcheck"
+    },
+    {
+      "label": "strict",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_strict",
+      "community": 0,
+      "norm_label": "strict"
+    },
+    {
+      "label": "noEmit",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_noemit",
+      "community": 0,
+      "norm_label": "noemit"
+    },
+    {
+      "label": "esModuleInterop",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_esmoduleinterop",
+      "community": 0,
+      "norm_label": "esmoduleinterop"
+    },
+    {
+      "label": "module",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_module",
+      "community": 0,
+      "norm_label": "module"
+    },
+    {
+      "label": "moduleResolution",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_moduleresolution",
+      "community": 0,
+      "norm_label": "moduleresolution"
+    },
+    {
+      "label": "resolveJsonModule",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_resolvejsonmodule",
+      "community": 0,
+      "norm_label": "resolvejsonmodule"
+    },
+    {
+      "label": "isolatedModules",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_isolatedmodules",
+      "community": 0,
+      "norm_label": "isolatedmodules"
+    },
+    {
+      "label": "jsx",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_jsx",
+      "community": 0,
+      "norm_label": "jsx"
+    },
+    {
+      "label": "incremental",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_incremental",
+      "community": 0,
+      "norm_label": "incremental"
+    },
+    {
+      "label": "plugins",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_plugins",
+      "community": 0,
+      "norm_label": "plugins"
+    },
+    {
+      "label": "paths",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_compileroptions_paths",
+      "community": 0,
+      "norm_label": "paths"
+    },
+    {
+      "label": "@/*",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_paths",
+      "community": 0,
+      "norm_label": "@/*"
+    },
+    {
+      "label": "./src/*",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "ref_src",
+      "community": 0,
+      "norm_label": "./src/*"
+    },
+    {
+      "label": "include",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_include",
+      "community": 5,
+      "norm_label": "include"
+    },
+    {
+      "label": "next-env.d.ts",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "ref_next_env_d_ts",
+      "community": 5,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "**/*.ts",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "ref_ts",
+      "community": 5,
+      "norm_label": "**/*.ts"
+    },
+    {
+      "label": "**/*.tsx",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "ref_tsx",
+      "community": 5,
+      "norm_label": "**/*.tsx"
+    },
+    {
+      "label": ".next/types/**/*.ts",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "ref_next_types_ts",
+      "community": 5,
+      "norm_label": ".next/types/**/*.ts"
+    },
+    {
+      "label": "exclude",
+      "file_type": "code",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "apps_web_tsconfig_exclude",
+      "community": 5,
+      "norm_label": "exclude"
+    },
+    {
+      "label": "node_modules",
+      "file_type": "concept",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "ref_node_modules",
+      "community": 5,
+      "norm_label": "node_modules"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_init",
+      "community": 19,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_init",
+      "community": 15,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "graph.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_graph",
+      "community": 1,
+      "norm_label": "graph.py"
+    },
+    {
+      "label": "router_node()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_graph_router_node",
+      "community": 1,
+      "norm_label": "router_node()"
+    },
+    {
+      "label": "general_fallback_node()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_graph_general_fallback_node",
+      "community": 1,
+      "norm_label": "general_fallback_node()"
+    },
+    {
+      "label": "route_to()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_graph_route_to",
+      "community": 1,
+      "norm_label": "route_to()"
+    },
+    {
+      "label": "Analyzes message query to determine which sub-agent node should execute.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_graph_rationale_7",
+      "community": 1,
+      "norm_label": "analyzes message query to determine which sub-agent node should execute."
+    },
+    {
+      "label": "Default node fallback for general campus FAQs.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_graph_rationale_33",
+      "community": 1,
+      "norm_label": "default node fallback for general campus faqs."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/nodes/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_init",
+      "community": 16,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "facility.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_facility",
+      "community": 1,
+      "norm_label": "facility.py"
+    },
+    {
+      "label": "facility_node()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_facility_facility_node",
+      "community": 1,
+      "norm_label": "facility_node()"
+    },
+    {
+      "label": "Node solver handling room status checks, capacity records,     and booking confi",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_facility_rationale_4",
+      "community": 1,
+      "norm_label": "node solver handling room status checks, capacity records,     and booking confi"
+    },
+    {
+      "label": "scheduler.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_scheduler",
+      "community": 1,
+      "norm_label": "scheduler.py"
+    },
+    {
+      "label": "scheduler_node()",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "community": 1,
+      "norm_label": "scheduler_node()"
+    },
+    {
+      "label": "Node solver handling daily timetable checks, automated scheduling runs,     and",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_nodes_scheduler_rationale_4",
+      "community": 1,
+      "norm_label": "node solver handling daily timetable checks, automated scheduling runs,     and"
+    },
+    {
+      "label": "state.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/state.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_state",
+      "community": 1,
+      "norm_label": "state.py"
+    },
+    {
+      "label": "AgentState",
+      "file_type": "code",
+      "source_file": "services/backend/app/agents/state.py",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_state_agentstate",
+      "community": 1,
+      "norm_label": "agentstate"
+    },
+    {
+      "label": "TypedDict",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "typeddict",
+      "community": 1,
+      "norm_label": "typeddict"
+    },
+    {
+      "label": "Universal state representation for the Smart Campus Orchestration Graph.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/agents/state.py",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "services_backend_app_agents_state_rationale_5",
+      "community": 1,
+      "norm_label": "universal state representation for the smart campus orchestration graph."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_init",
+      "community": 17,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "router.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router",
+      "community": 6,
+      "norm_label": "router.py"
+    },
+    {
+      "label": "ChatRequest",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router_chatrequest",
+      "community": 6,
+      "norm_label": "chatrequest"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "basemodel",
+      "community": 6,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "ChatResponse",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router_chatresponse",
+      "community": 6,
+      "norm_label": "chatresponse"
+    },
+    {
+      "label": "health_check()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router_health_check",
+      "community": 6,
+      "norm_label": "health_check()"
+    },
+    {
+      "label": "run_agent_workflow()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "services_backend_app_api_router_run_agent_workflow",
+      "community": 6,
+      "norm_label": "run_agent_workflow()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_core_init",
+      "community": 18,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "config.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/config.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_core_config",
+      "community": 10,
+      "norm_label": "config.py"
+    },
+    {
+      "label": "Settings",
+      "file_type": "code",
+      "source_file": "services/backend/app/core/config.py",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "services_backend_app_core_config_settings",
+      "community": 10,
+      "norm_label": "settings"
+    },
+    {
+      "label": "BaseSettings",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "basesettings",
+      "community": 10,
+      "norm_label": "basesettings"
+    },
+    {
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "services/backend/main.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_main",
+      "community": 8,
+      "norm_label": "main.py"
+    },
+    {
+      "label": "read_root()",
+      "file_type": "code",
+      "source_file": "services/backend/main.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "services_backend_main_read_root",
+      "community": 8,
+      "norm_label": "read_root()"
+    },
+    {
+      "label": "Smart Campus Agent System",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Agentic AI-driven campus management framework that replaces rigid, reactive, manually-supervised legacy systems with intelligent real-time monitoring and autonomous collaborative agents to reduce timetable conflicts and operational costs.",
+      "id": "readme_smart_campus_agent_system",
+      "community": 8,
+      "norm_label": "smart campus agent system"
+    },
+    {
+      "label": "LangGraph Multi-Agent Orchestration",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "A compiled LangGraph StateGraph routes natural-language queries to specialist agent nodes and delegates tasks; entry point is always the router node and all nodes converge on END.",
+      "id": "readme_langgraph_orchestration",
+      "community": 8,
+      "norm_label": "langgraph multi-agent orchestration"
+    },
+    {
+      "label": "Router Node (Intent Classification)",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:16",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Classifies user intent (facility / scheduling / general) via keyword detection and sets current_action to drive conditional routing.",
+      "id": "readme_router_node_concept",
+      "community": 1,
+      "norm_label": "router node (intent classification)"
+    },
+    {
+      "label": "Scheduler Agent Node",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:19",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Handles timetable conflicts and automated task scheduling when the router classifies scheduling/task intent.",
+      "id": "readme_scheduler_agent_concept",
+      "community": 1,
+      "norm_label": "scheduler agent node"
+    },
+    {
+      "label": "Facility Agent Node",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:20",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Manages room bookings and facility reservations when the router classifies room-booking intent.",
+      "id": "readme_facility_agent_concept",
+      "community": 1,
+      "norm_label": "facility agent node"
+    },
+    {
+      "label": "General Fallback Node",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:21",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Default node for general campus FAQ / info queries that do not match scheduling or facility intent.",
+      "id": "readme_general_fallback_concept",
+      "community": 1,
+      "norm_label": "general fallback node"
+    },
+    {
+      "label": "AgentState (Centralized State)",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:25",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Universal state (messages, steps, params, current_action, final_response) that every node reads and updates as the query flows through the graph.",
+      "id": "readme_agentstate_concept",
+      "community": 1,
+      "norm_label": "agentstate (centralized state)"
+    },
+    {
+      "label": "POST /api/agent/chat Contract",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Main REST endpoint accepting {message} and returning ChatResponse (agent, response, steps, params); front-end integration point for the orchestration workflow.",
+      "id": "readme_api_chat_contract",
+      "community": 6,
+      "norm_label": "post /api/agent/chat contract"
+    },
+    {
+      "label": "Next.js Campus Dashboard",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:53",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Single-page Next.js/Tailwind dashboard with overview/chat/scheduler/facilities tabs; polls /api/health and falls back to demo mock mode when backend is unreachable.",
+      "id": "readme_frontend_dashboard_concept",
+      "community": 7,
+      "norm_label": "next.js campus dashboard"
+    },
+    {
+      "label": "FastAPI Backend Service",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Python FastAPI server hosting REST endpoints and WebSockets that compiles and runs the LangGraph orchestration workflow.",
+      "id": "readme_fastapi_backend_concept",
+      "community": 8,
+      "norm_label": "fastapi backend service"
+    }
+  ],
+  "links": [
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next-env.d.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_next_env_d_rationale_4",
+      "target": "apps_web_next_env_d",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/next.config.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "apps_web_next_config",
+      "target": "apps_web_next_config_nextconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "apps_web_package",
+      "target": "apps_web_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "apps_web_package",
+      "target": "apps_web_package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "apps_web_package",
+      "target": "apps_web_package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_package",
+      "target": "apps_web_package_private",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_package",
+      "target": "apps_web_package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "apps_web_package",
+      "target": "apps_web_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "apps_web_package_scripts",
+      "target": "apps_web_package_scripts_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_package_scripts",
+      "target": "apps_web_package_scripts_dev",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "apps_web_package_scripts",
+      "target": "apps_web_package_scripts_lint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "apps_web_package_scripts",
+      "target": "apps_web_package_scripts_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "apps_web_package_dependencies",
+      "target": "apps_web_package_dependencies_clsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "apps_web_package_dependencies",
+      "target": "apps_web_package_dependencies_lucide_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "apps_web_package_dependencies",
+      "target": "apps_web_package_dependencies_next",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "apps_web_package_dependencies",
+      "target": "apps_web_package_dependencies_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "apps_web_package_dependencies",
+      "target": "apps_web_package_dependencies_react_dom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "apps_web_package_dependencies",
+      "target": "apps_web_package_dependencies_tailwind_merge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_dependencies_react",
+      "target": "react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_dependencies_react_dom",
+      "target": "react_dom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_dependencies_next",
+      "target": "next",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_dependencies_lucide_react",
+      "target": "lucide_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_dependencies_clsx",
+      "target": "clsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_dependencies_tailwind_merge",
+      "target": "tailwind_merge",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_autoprefixer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_eslint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_eslint_config_next",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_postcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_tailwindcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_types_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_types_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_types_react_dom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "apps_web_package_devdependencies",
+      "target": "apps_web_package_devdependencies_typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_typescript",
+      "target": "typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_types_node",
+      "target": "types_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_types_react",
+      "target": "types_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_types_react_dom",
+      "target": "types_react_dom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_postcss",
+      "target": "postcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_tailwindcss",
+      "target": "tailwindcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_autoprefixer",
+      "target": "autoprefixer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_eslint",
+      "target": "eslint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_eslint_config_next",
+      "target": "eslint_config_next",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/postcss.config.mjs",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "apps_web_postcss_config",
+      "target": "apps_web_postcss_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_src_app_layout",
+      "target": "apps_web_src_app_layout_inter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "apps_web_src_app_layout",
+      "target": "apps_web_src_app_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/layout.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "apps_web_src_app_layout",
+      "target": "apps_web_src_app_layout_rootlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_app_page_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_app_page_facility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_app_page_message",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_app_page_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:53",
+      "weight": 1.0,
+      "source": "readme_frontend_dashboard_concept",
+      "target": "apps_web_src_app_page_dashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tailwind.config.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "apps_web_tailwind_config",
+      "target": "apps_web_tailwind_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig",
+      "target": "apps_web_tsconfig_compileroptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig",
+      "target": "apps_web_tsconfig_exclude",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig",
+      "target": "apps_web_tsconfig_include",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_allowjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_esmoduleinterop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_incremental",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_isolatedmodules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_lib",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_module",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_moduleresolution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_noemit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_plugins",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_resolvejsonmodule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_skiplibcheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_strict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions",
+      "target": "apps_web_tsconfig_compileroptions_target",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_compileroptions_lib",
+      "target": "ref_dom",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_compileroptions_lib",
+      "target": "ref_dom_iterable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_compileroptions_lib",
+      "target": "ref_esnext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "apps_web_tsconfig_compileroptions_paths",
+      "target": "apps_web_tsconfig_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_paths",
+      "target": "ref_src",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_include",
+      "target": "ref_next_env_d_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_include",
+      "target": "ref_next_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_include",
+      "target": "ref_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_include",
+      "target": "ref_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/tsconfig.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_tsconfig_exclude",
+      "target": "ref_node_modules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_langgraph_orchestration",
+      "target": "services_backend_app_agents_graph"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph",
+      "target": "services_backend_app_agents_graph_general_fallback_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph",
+      "target": "services_backend_app_agents_graph_route_to",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph",
+      "target": "services_backend_app_agents_graph_router_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:16",
+      "weight": 1.0,
+      "source": "readme_router_node_concept",
+      "target": "services_backend_app_agents_graph_router_node"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph_rationale_7",
+      "target": "services_backend_app_agents_graph_router_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph_router_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:21",
+      "weight": 1.0,
+      "source": "readme_general_fallback_concept",
+      "target": "services_backend_app_agents_graph_general_fallback_node"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph_general_fallback_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph_rationale_33",
+      "target": "services_backend_app_agents_graph_general_fallback_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/graph.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_graph_route_to",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_nodes_facility",
+      "target": "services_backend_app_agents_nodes_facility_facility_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:20",
+      "weight": 1.0,
+      "source": "readme_facility_agent_concept",
+      "target": "services_backend_app_agents_nodes_facility_facility_node"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_nodes_facility_facility_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/nodes/facility.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_nodes_facility_rationale_4",
+      "target": "services_backend_app_agents_nodes_facility_facility_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_nodes_scheduler",
+      "target": "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:19",
+      "weight": 1.0,
+      "source": "readme_scheduler_agent_concept",
+      "target": "services_backend_app_agents_nodes_scheduler_scheduler_node"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_nodes_scheduler_rationale_4",
+      "target": "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/nodes/scheduler.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/state.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_state",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:25",
+      "weight": 1.0,
+      "source": "readme_agentstate_concept",
+      "target": "services_backend_app_agents_state_agentstate"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/state.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_state_agentstate",
+      "target": "typeddict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/agents/state.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "services_backend_app_agents_state_rationale_5",
+      "target": "services_backend_app_agents_state_agentstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router",
+      "target": "services_backend_app_api_router_chatrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router",
+      "target": "services_backend_app_api_router_chatresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router",
+      "target": "services_backend_app_api_router_health_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router",
+      "target": "services_backend_app_api_router_run_agent_workflow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_api_chat_contract",
+      "target": "services_backend_app_api_router_chatrequest"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router_chatrequest",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router_run_agent_workflow",
+      "target": "services_backend_app_api_router_chatrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router_chatresponse",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_api_chat_contract",
+      "target": "services_backend_app_api_router_chatresponse"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/router.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "services_backend_app_api_router_run_agent_workflow",
+      "target": "services_backend_app_api_router_chatresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_api_chat_contract",
+      "target": "services_backend_app_api_router_run_agent_workflow"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/config.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_app_core_config",
+      "target": "services_backend_app_core_config_settings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/core/config.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_backend_app_core_config_settings",
+      "target": "basesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_fastapi_backend_concept",
+      "target": "services_backend_main"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/main.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "services_backend_main",
+      "target": "services_backend_main_read_root",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:3",
+      "weight": 1.0,
+      "source": "readme_smart_campus_agent_system",
+      "target": "readme_langgraph_orchestration"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_fastapi_backend_concept",
+      "target": "readme_langgraph_orchestration"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:16",
+      "weight": 1.0,
+      "source": "readme_langgraph_orchestration",
+      "target": "readme_router_node_concept"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:20",
+      "weight": 1.0,
+      "source": "readme_router_node_concept",
+      "target": "readme_facility_agent_concept"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:21",
+      "weight": 1.0,
+      "source": "readme_router_node_concept",
+      "target": "readme_general_fallback_concept"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:19",
+      "weight": 1.0,
+      "source": "readme_router_node_concept",
+      "target": "readme_scheduler_agent_concept"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:28",
+      "weight": 1.0,
+      "source": "readme_scheduler_agent_concept",
+      "target": "readme_agentstate_concept"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:29",
+      "weight": 1.0,
+      "source": "readme_facility_agent_concept",
+      "target": "readme_agentstate_concept"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:30",
+      "weight": 1.0,
+      "source": "readme_general_fallback_concept",
+      "target": "readme_agentstate_concept"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "README.md:54",
+      "weight": 1.0,
+      "source": "readme_fastapi_backend_concept",
+      "target": "readme_api_chat_contract"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": "README.md:53",
+      "weight": 1.0,
+      "source": "readme_frontend_dashboard_concept",
+      "target": "readme_api_chat_contract"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "langgraph_agent_routing_flow",
+      "label": "LangGraph Query Routing Flow",
+      "nodes": [
+        "readme_router_node_concept",
+        "readme_scheduler_agent_concept",
+        "readme_facility_agent_concept",
+        "readme_general_fallback_concept",
+        "readme_agentstate_concept"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "README.md"
+    },
+    {
+      "id": "campus_specialist_agent_nodes",
+      "label": "Campus Specialist Agent Nodes",
+      "nodes": [
+        "services_backend_app_agents_graph_router_node",
+        "services_backend_app_agents_nodes_scheduler_scheduler_node",
+        "services_backend_app_agents_nodes_facility_facility_node",
+        "services_backend_app_agents_graph_general_fallback_node"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md"
+    }
+  ],
+  "built_at_commit": "061f85cd732aeccb91ad6005130648a70af6c842"
+}
