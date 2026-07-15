@@ -17,16 +17,16 @@ def _substitution_sweep():
     was approved but no substitution plan exists (e.g. server restarted mid-flow),
     trigger the Substitution Agent. Normal path is the leave-approval API call."""
     from app.agents.graph import compiled_graph
-    from app.db.models import Leave, Substitution
+    from app.db.models import Leave, PeriodExchange
     from app.db.session import SessionLocal
-    from app.tools.substitution import plan_id_for
+    from app.tools.exchange import plan_id_for
 
     db = SessionLocal()
     try:
         approved = db.query(Leave).filter(Leave.status == "approved").all()
         pending = [lv for lv in approved
-                   if db.query(Substitution)
-                        .filter(Substitution.plan_id == plan_id_for(lv.id)).count() == 0]
+                   if db.query(PeriodExchange)
+                        .filter(PeriodExchange.plan_id == plan_id_for(lv.id)).count() == 0]
     finally:
         db.close()
     for lv in pending:

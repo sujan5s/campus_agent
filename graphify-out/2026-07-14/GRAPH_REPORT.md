@@ -1,16 +1,16 @@
-# Graph Report - campus_agent  (2026-07-13)
+# Graph Report - campus_agent  (2026-07-14)
 
 ## Corpus Check
-- 59 files · ~36,028 words
+- 68 files · ~41,708 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 445 nodes · 639 edges · 42 communities (26 shown, 16 thin omitted)
-- Extraction: 80% EXTRACTED · 20% INFERRED · 0% AMBIGUOUS · INFERRED: 129 edges (avg confidence: 0.65)
+- 512 nodes · 807 edges · 43 communities (27 shown, 16 thin omitted)
+- Extraction: 79% EXTRACTED · 21% INFERRED · 0% AMBIGUOUS · INFERRED: 172 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `74dfbfff`
+- Built from commit: `cc7dab98`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -49,30 +49,31 @@
 - page.tsx
 - load_timetable_input
 - timetable_model.py
+- 05 — Rehearsed Demo Script (Reviews & Final Viva)
 
 ## God Nodes (most connected - your core abstractions)
-1. `Subject` - 21 edges
-2. `User` - 20 edges
-3. `Section` - 20 edges
-4. `Room` - 19 edges
-5. `Teacher` - 18 edges
+1. `User` - 30 edges
+2. `Teacher` - 26 edges
+3. `Subject` - 21 edges
+4. `Section` - 20 edges
+5. `Room` - 19 edges
 6. `compilerOptions` - 16 edges
 7. `Base` - 16 edges
-8. `load_timetable_input()` - 12 edges
-9. `AgentState` - 10 edges
-10. `SubjectIn` - 10 edges
+8. `Leave` - 15 edges
+9. `getToken()` - 12 edges
+10. `AgentState` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `facility_node()` --indirect_call--> `Room`  [INFERRED]
   services/backend/app/agents/specialists/booking.py → services/backend/app/db/models.py
+- `substitution_node()` --indirect_call--> `Approval`  [INFERRED]
+  services/backend/app/agents/specialists/substitution.py → services/backend/app/db/models.py
 - `timetable_node()` --calls--> `generate_timetable()`  [INFERRED]
   services/backend/app/agents/specialists/timetable.py → services/backend/app/tools/timetable.py
-- `LoginRequest` --uses--> `User`  [INFERRED]
-  services/backend/app/api/auth.py → services/backend/app/db/models.py
-- `UserOut` --uses--> `User`  [INFERRED]
-  services/backend/app/api/auth.py → services/backend/app/db/models.py
-- `LoginResponse` --uses--> `User`  [INFERRED]
-  services/backend/app/api/auth.py → services/backend/app/db/models.py
+- `DecisionIn` --uses--> `User`  [INFERRED]
+  services/backend/app/api/approvals.py → services/backend/app/db/models.py
+- `list_approvals()` --calls--> `plan_summary()`  [INFERRED]
+  services/backend/app/api/approvals.py → services/backend/app/tools/substitution.py
 
 ## Import Cycles
 - None detected.
@@ -80,7 +81,7 @@
 ## Hyperedges (group relationships)
 - **LangGraph Query Routing Flow** — readme_router_node_concept, readme_scheduler_agent_concept, readme_facility_agent_concept, readme_general_fallback_concept, readme_agentstate_concept [EXTRACTED 0.90]
 
-## Communities (42 total, 16 thin omitted)
+## Communities (43 total, 16 thin omitted)
 
 ### Community 0 - "compilerOptions"
 Cohesion: 0.07
@@ -100,23 +101,23 @@ Nodes (21): dependencies, clsx, lucide-react, next, react, react-dom, tailwind-m
 
 ### Community 4 - "CLAUDE.md"
 Cohesion: 0.06
-Nodes (29): Adding a domain router (Phase 2+ example: booking approvals), Adding a new feature (Phase 1 example: F1 Timetable generation), Architecture (Phase 0+), Backend, Backend (services/backend), Backend (`services/backend/app`) — Phase 0, Code navigation (graphify knowledge graph), Common Commands (+21 more)
+Nodes (29): Adding a domain router (Phase 2+ example: booking approvals), Adding a new feature (Phase 1 example: F1 Timetable generation), Architecture (Phase 0+), Backend, Backend (services/backend), Backend (`services/backend/app`) — Phase 0 + Phase 1, Code navigation (graphify knowledge graph), Common Commands (+21 more)
 
 ### Community 5 - "models.py"
-Cohesion: 0.17
-Nodes (15): datetime, DeclarativeBase, Approval, Booking, Document, Event, Leave, Notification (+7 more)
+Cohesion: 0.11
+Nodes (25): datetime, DeclarativeBase, decide(), DecisionIn, list_approvals(), BaseModel, Session, Approvals API — the human side of human-in-the-loop (docs/02-ARCHITECTURE.md). (+17 more)
 
 ### Community 7 - "page.tsx"
 Cohesion: 0.40
 Nodes (3): Facility, Message, Task
 
 ### Community 8 - "FastAPI"
-Cohesion: 0.14
-Nodes (12): FastAPI, ChatRequest, ChatResponse, BaseModel, Agent chat endpoint — unified entry into the LangGraph supervisor., run_agent_workflow(), API aggregator — one sub-router per domain (docs/02-ARCHITECTURE.md §4).  main.p, get_db() (+4 more)
+Cohesion: 0.43
+Nodes (5): ChatRequest, ChatResponse, BaseModel, Agent chat endpoint — unified entry into the LangGraph supervisor., run_agent_workflow()
 
 ### Community 16 - "security.py"
-Cohesion: 0.14
-Nodes (18): HTTPAuthorizationCredentials, login(), LoginRequest, LoginResponse, me(), BaseModel, Session, Auth endpoints — JWT login + current-user. Roles: admin | faculty | student. (+10 more)
+Cohesion: 0.09
+Nodes (25): FastAPI, HTTPAuthorizationCredentials, login(), LoginRequest, LoginResponse, me(), BaseModel, Session (+17 more)
 
 ### Community 20 - "04 — Roadmap & Status"
 Cohesion: 0.07
@@ -143,36 +144,40 @@ Cohesion: 0.16
 Nodes (42): Scheduling specialist — evolves into the Timetable + Substitution agents (docs/0, scheduler_node(), Config, create_room(), create_section(), create_subject(), create_teacher(), delete_room() (+34 more)
 
 ### Community 37 - "page.tsx"
-Cohesion: 0.11
-Nodes (26): LoginPage(), LoginResponse, CSV_TEMPLATES, ImportResult, Room, ROOM_TYPES, Section, SetupPage() (+18 more)
+Cohesion: 0.08
+Nodes (37): ApprovalCard, ApprovalsPage(), DecideResult, PlanItem, InboxPage(), NotificationRow, DecideResponse, LeaveRow (+29 more)
 
 ### Community 38 - "load_timetable_input"
-Cohesion: 0.15
-Nodes (21): generate(), Session, Timetable API — generation (admin) + grid views (any authenticated user)., Run the CP-SAT solver on current master data. Stores a new version on success., section_grid(), status(), teacher_grid(), TimeSlot (+13 more)
+Cohesion: 0.09
+Nodes (32): generate(), Session, Timetable API — generation (admin) + grid views (any authenticated user)., Run the CP-SAT solver on current master data. Stores a new version on success., section_grid(), status(), teacher_grid(), _consecutive_pairs() (+24 more)
 
 ### Community 39 - "timetable_model.py"
-Cohesion: 0.22
-Nodes (13): _consecutive_pairs(), Lesson, precheck(), OR-Tools CP-SAT timetable model (docs/02-ARCHITECTURE.md, research/03).  Design, Indices of same-day adjacent slot pairs (end == next start, no break between)., RoomIn, SectionIn, SlotIn (+5 more)
+Cohesion: 0.13
+Nodes (33): date_t, _extract_leave_id(), Substitution Agent — the F2 flagship (docs/01-FEATURES.md, research/04+07).  Tri, substitution_node(), apply_leave(), decide_leave(), DecisionIn, _leave_out() (+25 more)
+
+### Community 42 - "05 — Rehearsed Demo Script (Reviews & Final Viva)"
+Cohesion: 0.29
+Nodes (6): 05 — Rehearsed Demo Script (Reviews & Final Viva), Act 1 — The platform (90s), Act 2 — Constraint-solver timetabling (2 min), Act 3 — THE FLAGSHIP: autonomous substitution with human-in-the-loop (3 min), Act 4 — Chat + resilience (60s), Q&A ammunition
 
 ## Knowledge Gaps
-- **170 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+165 more)
+- **183 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+178 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AgentState` connect `AgentState` to `setup.py`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
-- **Why does `generate_timetable()` connect `load_timetable_input` to `AgentState`, `timetable_model.py`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
-- **Why does `load_timetable_input()` connect `load_timetable_input` to `setup.py`, `timetable_model.py`?**
-  _High betweenness centrality (0.022) - this node is a cross-community bridge._
+- **Why does `AgentState` connect `AgentState` to `setup.py`, `timetable_model.py`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Why does `User` connect `setup.py` to `security.py`, `models.py`, `timetable_model.py`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `Teacher` connect `setup.py` to `models.py`, `load_timetable_input`, `timetable_model.py`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Are the 21 inferred relationships involving `User` (e.g. with `DecisionIn` and `login()`) actually correct?**
+  _`User` has 21 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 25 inferred relationships involving `Teacher` (e.g. with `scheduler_node()` and `apply_leave()`) actually correct?**
+  _`Teacher` has 25 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 20 inferred relationships involving `Subject` (e.g. with `scheduler_node()` and `Config`) actually correct?**
   _`Subject` has 20 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 18 inferred relationships involving `User` (e.g. with `login()` and `LoginRequest`) actually correct?**
-  _`User` has 18 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 19 inferred relationships involving `Section` (e.g. with `scheduler_node()` and `Config`) actually correct?**
   _`Section` has 19 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 18 inferred relationships involving `Room` (e.g. with `facility_node()` and `Config`) actually correct?**
-  _`Room` has 18 INFERRED edges - model-reasoned connections that need verification._

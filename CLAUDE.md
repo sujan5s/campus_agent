@@ -7,7 +7,7 @@
 - **SQLAlchemy models** (15 tables) + idempotent seeding; JWT auth + role-based access
 - **OR-Tools CP-SAT timetable solver** — 8 hard constraints, fairness objective, clash-free verified
 - **F1 Timetable Agent** + admin `/setup` (CRUD + CSV) + `/timetable` grid UI
-- **F2 Leave & Substitution (flagship)** — proactive trigger → Substitution Agent ranks candidates (subject>dept>free, fairness-weighted) → LangGraph `interrupt()` → HOD approval card → resume with `Command(resume=...)` → notifications. Both paths verified live.
+- **F2 Leave & Substitution (flagship)** — proactive trigger → Substitution Agent builds a **period-exchange** plan (partner of same section swaps their lesson into the leave slot; absent teacher recovers it later in the partner's slot — subject hours preserved, original timetable untouched) → LangGraph `interrupt()` → HOD approval card → resume with `Command(resume=...)` → notifications to partner + returning teacher. Dated overlay via `/api/timetable/effective/{section}?date=` + `/exchanges` page. Spec: `docs/06-EXCHANGE-PLAN.md`. Both paths verified live.
 - **LangGraph checkpointer** (durable threads per `thread_id`); **APScheduler safety sweep**
 - **Docs:** architecture in `docs/02-ARCHITECTURE.md`, demo script in `docs/05-DEMO-SCRIPT.md`
 - **Use `graphify query "<question>"` to navigate code** (graph updated 2026-07-14)
@@ -40,7 +40,7 @@ npm run dev  # starts at http://localhost:3000
 **Backend** (`services/backend/app/`):
 - `api/` — router, agent, auth, setup, timetable, leaves (Phase 2), approvals, notifications
 - `agents/` — graph, supervisor, state, specialists/ (timetable, substitution, general, stubs)
-- `tools/` — timetable, substitution (Phase 2)
+- `tools/` — timetable, exchange (Phase 2.1 period-exchange, live), substitution (Phase 2.0 legacy)
 - `solver/` — timetable_model (OR-Tools CP-SAT, 8 hard constraints)
 - `db/` — models (15 tables), seed, session
 - `core/` — llm (swappable), config, security
@@ -51,6 +51,7 @@ npm run dev  # starts at http://localhost:3000
 - `timetable/` — grid view (MON-FRI × P1-P7)
 - `leaves/` — faculty apply + admin approve (Phase 2)
 - `approvals/` — HOD plan cards (Phase 2)
+- `exchanges/` — period-exchange board + dated day grid (Phase 2.1)
 - `inbox/` — notifications (Phase 2)
 
 ## Essential Config

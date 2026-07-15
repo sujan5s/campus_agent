@@ -9,9 +9,13 @@ import {
 import { api, getToken, getUser } from "../../lib/api";
 
 interface PlanItem {
-  date: string; day: string; period: number; time: string; section: string;
-  subject: string; subject_name: string; room: string;
-  original: string; substitute: string | null; rationale: string;
+  leave_date: string; leave_day: string; leave_period: number; leave_time: string;
+  section: string; room: string;
+  missed_subject: string; missed_subject_name: string;
+  partner: string | null; partner_subject: string | null; partner_subject_name: string | null;
+  recovery_date: string | null; recovery_day: string | null;
+  recovery_period: number | null; recovery_time: string | null;
+  rationale: string;
 }
 interface ApprovalCard {
   id: number;
@@ -20,7 +24,7 @@ interface ApprovalCard {
   status: string;
   plan?: {
     teacher: string; from_date: string; to_date: string; reason: string;
-    lessons_affected: number; covered: number; items: PlanItem[];
+    lessons_affected: number; exchanged: number; items: PlanItem[];
   };
 }
 interface DecideResult {
@@ -112,7 +116,7 @@ export default function ApprovalsPage() {
                 <div className="flex items-center space-x-2">
                   <Bot className="h-4 w-4 text-indigo-400" />
                   <h2 className="text-sm font-semibold text-slate-100">
-                    Substitution plan — {c.plan?.teacher}
+                    Period-exchange plan — {c.plan?.teacher}
                   </h2>
                   <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">
                     awaiting approval
@@ -120,7 +124,7 @@ export default function ApprovalsPage() {
                 </div>
                 <p className="text-xs text-slate-400 mt-1">
                   Leave {c.plan?.from_date} → {c.plan?.to_date} · {c.plan?.reason} ·{" "}
-                  <span className="text-emerald-400 font-semibold">{c.plan?.covered}/{c.plan?.lessons_affected} lessons covered</span>
+                  <span className="text-emerald-400 font-semibold">{c.plan?.exchanged}/{c.plan?.lessons_affected} lessons exchanged</span>
                 </p>
               </div>
               <div className="flex items-center space-x-2">
@@ -136,34 +140,52 @@ export default function ApprovalsPage() {
               </div>
             </div>
 
+            <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="border-b border-slate-800">
                 <tr>
-                  {["Date", "Slot", "Class", "Original", "Substitute", "Why"].map((h) => (
-                    <th key={h} className="text-left text-[10px] text-slate-400 uppercase tracking-wider font-semibold px-3 py-2">{h}</th>
+                  {["Leave date", "Class", "Missed subject", "Partner teaches", "Recovery", "Why"].map((h) => (
+                    <th key={h} className="text-left text-[10px] text-slate-400 uppercase tracking-wider font-semibold px-3 py-2 whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60">
                 {c.plan?.items.map((it, i) => (
                   <tr key={i}>
-                    <td className="px-3 py-2.5 text-sm text-slate-300 whitespace-nowrap">{it.date}<div className="text-[10px] text-slate-500">{it.day}</div></td>
-                    <td className="px-3 py-2.5 text-sm text-slate-300 whitespace-nowrap">P{it.period}<div className="text-[10px] text-slate-500">{it.time}</div></td>
-                    <td className="px-3 py-2.5 text-sm">
-                      <span className="font-mono text-indigo-300 font-bold text-xs">{it.subject}</span>
-                      <div className="text-[10px] text-slate-500">{it.section} · {it.room}</div>
+                    <td className="px-3 py-2.5 text-sm text-slate-300 whitespace-nowrap">
+                      {it.leave_date}
+                      <div className="text-[10px] text-slate-500">{it.leave_day} P{it.leave_period} · {it.leave_time}</div>
                     </td>
-                    <td className="px-3 py-2.5 text-sm text-slate-400">{it.original}</td>
                     <td className="px-3 py-2.5 text-sm">
-                      {it.substitute
-                        ? <span className="text-emerald-300 font-medium">{it.substitute}</span>
-                        : <span className="text-rose-400 font-medium">no cover</span>}
+                      <span className="text-slate-300 font-medium">{it.section}</span>
+                      <div className="text-[10px] text-slate-500">{it.room}</div>
                     </td>
-                    <td className="px-3 py-2.5 text-xs text-slate-500 max-w-[180px]">{it.rationale}</td>
+                    <td className="px-3 py-2.5 text-sm">
+                      <span className="font-mono text-indigo-300 font-bold text-xs">{it.missed_subject}</span>
+                      <div className="text-[10px] text-slate-500">{it.missed_subject_name}</div>
+                    </td>
+                    <td className="px-3 py-2.5 text-sm">
+                      {it.partner ? (
+                        <>
+                          <span className="text-emerald-300 font-medium">{it.partner}</span>
+                          <div className="text-[10px] text-slate-500 font-mono">{it.partner_subject}</div>
+                        </>
+                      ) : <span className="text-rose-400 font-medium">no exchange</span>}
+                    </td>
+                    <td className="px-3 py-2.5 text-sm text-slate-300 whitespace-nowrap">
+                      {it.recovery_date ? (
+                        <>
+                          {it.recovery_date}
+                          <div className="text-[10px] text-slate-500">{it.recovery_day} P{it.recovery_period} · {it.recovery_time}</div>
+                        </>
+                      ) : <span className="text-slate-600">—</span>}
+                    </td>
+                    <td className="px-3 py-2.5 text-xs text-slate-500 max-w-[200px]">{it.rationale}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         ))}
       </div>

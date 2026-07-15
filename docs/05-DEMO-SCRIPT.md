@@ -33,23 +33,35 @@
    *Say: "GA-based systems just fail. Ours tells you exactly what to fix."*
    → Restore the teacher mapping, regenerate. ✅
 
-## Act 3 — THE FLAGSHIP: autonomous substitution with human-in-the-loop (3 min)
+## Act 3 — THE FLAGSHIP: autonomous period-exchange with human-in-the-loop (3 min)
 
 1. **Sign out → login as faculty** `anita.rao@campus.edu` / `faculty123`.
-2. Open **Leaves** → apply for leave (pick a MON/TUE next week, reason "Medical").
+2. Open **Leaves** → apply for leave (pick a TUE next week, reason "Medical").
    *Say: "A teacher applies for leave. Watch what happens with zero further prompting."*
 3. **Sign out → login as admin** → **Leaves** → click **Approve** on Anita's row.
    *Say — this is the key sentence: "The approval event itself triggered the
-   Substitution Agent. It queried her affected lessons, ranked every candidate —
-   teaches-the-same-subject beats same-department beats merely-free, weighted by
-   workload for fairness — built a minimal-perturbation plan, and now it has PAUSED.
-   LangGraph checkpointed the workflow mid-execution; it resumes only when a human decides."*
-4. Banner appears → open **Approvals** → walk through the plan card:
-   date, period, class, original → substitute, and the **rationale column**.
+   Substitution Agent. This college doesn't put a stand-in in front of the class to
+   teach the wrong subject — teachers **exchange periods**. So the agent found, for each
+   of Anita's affected lessons, a partner who already teaches that same section: the
+   partner moves their own lesson into Anita's slot on the leave day, and Anita
+   **recovers** the missed lesson later in the partner's vacated slot — nearest recovery
+   date, workload-balanced. Subject hours are preserved and the original timetable is
+   never touched. Then it PAUSED — LangGraph checkpointed the workflow mid-execution; it
+   resumes only when a human decides."*
+4. Banner appears → open **Approvals** → walk through the plan card: leave date/slot,
+   class, missed subject, **partner teaches (their own subject)**, **recovery date/slot**,
+   and the rationale column.
 5. Click **Approve plan**.
    *Say: "The paused workflow just resumed from the exact interrupt point."*
-6. **Sign out → login as** `suresh.shetty@campus.edu` / `faculty123` → **Inbox**:
-   "Substitution assigned: you cover CS704 for CSE-7B…" — proactive notification.
+6. Open **Exchanges** → show the board (both sides of each swap) and the **effective day
+   view**: pick CSE-7B on the leave date — the partner teaches their subject in Anita's
+   slot (amber ⇄); switch to the recovery date — Anita teaches her own subject back.
+   *Say: "This is a dated overlay. The master timetable is unchanged — only these dates
+   differ."*
+7. **Sign out → login as the partner** (e.g. `meera.nair@campus.edu` / `faculty123`) →
+   **Inbox**: "Period exchange scheduled: on <date> you teach <your subject> to CSE-7B in
+   place of Anita; your <day/slot> lesson will be taken by her (recovery)." Anita's inbox
+   has the recovery schedule.
    *Say: "Nobody asked the system anything after the approval click. Detect → plan →
    human gate → act → notify. That's agentic, and no published campus system does it."*
 
@@ -66,8 +78,13 @@
 - **"Why not let the LLM make the timetable?"** — NP-hard; LLMs can't guarantee
   clash-freeness. CP-SAT proves it. The LLM parses intent and explains results —
   each tool does what it's provably good at (research/02, /03).
-- **"What if no substitute is free?"** — The plan marks the lesson "NO COVER
-  AVAILABLE"; the HOD sees it before approving. Human stays in control.
+- **"What if no partner is free to exchange?"** — The plan marks the lesson "NO EXCHANGE
+  AVAILABLE — needs manual arrangement" (labs are flagged for manual handling too, since a
+  consecutive lab block shouldn't be split); the HOD sees it before approving. Human stays
+  in control.
+- **"Why exchange instead of a substitute teacher?"** — It's how this college actually runs:
+  the right teacher always teaches the subject, and weekly subject hours are preserved — the
+  lesson just moves to another date. A stand-in teaching an unfamiliar subject helps no one.
 - **"What if the server restarts mid-approval?"** — The workflow is checkpointed in
   SQLite; the approval row stores the thread id; resume works after restart. Plus an
   APScheduler sweep re-triggers planning for any approved leave that lost its plan.

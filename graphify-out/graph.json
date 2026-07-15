@@ -288,7 +288,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies",
-      "community": 2,
+      "community": 3,
       "norm_label": "devdependencies"
     },
     {
@@ -298,7 +298,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_typescript",
-      "community": 2,
+      "community": 3,
       "norm_label": "typescript"
     },
     {
@@ -308,7 +308,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "typescript",
-      "community": 2,
+      "community": 3,
       "norm_label": "typescript"
     },
     {
@@ -318,7 +318,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_node",
-      "community": 2,
+      "community": 3,
       "norm_label": "@types/node"
     },
     {
@@ -328,7 +328,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "types_node",
-      "community": 2,
+      "community": 3,
       "norm_label": "@types/node"
     },
     {
@@ -338,7 +338,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_react",
-      "community": 2,
+      "community": 3,
       "norm_label": "@types/react"
     },
     {
@@ -348,7 +348,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "types_react",
-      "community": 2,
+      "community": 3,
       "norm_label": "@types/react"
     },
     {
@@ -358,7 +358,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_react_dom",
-      "community": 2,
+      "community": 3,
       "norm_label": "@types/react-dom"
     },
     {
@@ -368,7 +368,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "types_react_dom",
-      "community": 2,
+      "community": 3,
       "norm_label": "@types/react-dom"
     },
     {
@@ -378,7 +378,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_postcss",
-      "community": 2,
+      "community": 3,
       "norm_label": "postcss"
     },
     {
@@ -388,7 +388,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "postcss",
-      "community": 2,
+      "community": 3,
       "norm_label": "postcss"
     },
     {
@@ -398,7 +398,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_tailwindcss",
-      "community": 2,
+      "community": 3,
       "norm_label": "tailwindcss"
     },
     {
@@ -408,7 +408,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tailwindcss",
-      "community": 2,
+      "community": 3,
       "norm_label": "tailwindcss"
     },
     {
@@ -418,7 +418,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_autoprefixer",
-      "community": 2,
+      "community": 3,
       "norm_label": "autoprefixer"
     },
     {
@@ -428,7 +428,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "autoprefixer",
-      "community": 2,
+      "community": 3,
       "norm_label": "autoprefixer"
     },
     {
@@ -438,7 +438,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_eslint",
-      "community": 2,
+      "community": 3,
       "norm_label": "eslint"
     },
     {
@@ -448,7 +448,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "eslint",
-      "community": 2,
+      "community": 3,
       "norm_label": "eslint"
     },
     {
@@ -458,7 +458,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_eslint_config_next",
-      "community": 2,
+      "community": 3,
       "norm_label": "eslint-config-next"
     },
     {
@@ -468,7 +468,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "eslint_config_next",
-      "community": 2,
+      "community": 3,
       "norm_label": "eslint-config-next"
     },
     {
@@ -515,7 +515,7 @@
       "label": "ApprovalCard",
       "file_type": "code",
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L16",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "apps_web_src_app_approvals_page_approvalcard",
       "community": 37,
@@ -525,7 +525,7 @@
       "label": "DecideResult",
       "file_type": "code",
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L26",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "apps_web_src_app_approvals_page_decideresult",
       "community": 37,
@@ -535,11 +535,91 @@
       "label": "ApprovalsPage()",
       "file_type": "code",
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L30",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "apps_web_src_app_approvals_page_approvalspage",
       "community": 37,
       "norm_label": "approvalspage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page",
+      "community": 37,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ExchangeRow",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_exchangerow",
+      "community": 37,
+      "norm_label": "exchangerow"
+    },
+    {
+      "label": "ExchangeBoard",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_exchangeboard",
+      "community": 37,
+      "norm_label": "exchangeboard"
+    },
+    {
+      "label": "Swap",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_swap",
+      "community": 37,
+      "norm_label": "swap"
+    },
+    {
+      "label": "DayEntry",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_dayentry",
+      "community": 37,
+      "norm_label": "dayentry"
+    },
+    {
+      "label": "EffectiveDay",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_effectiveday",
+      "community": 37,
+      "norm_label": "effectiveday"
+    },
+    {
+      "label": "todayISO()",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_todayiso",
+      "community": 37,
+      "norm_label": "todayiso()"
+    },
+    {
+      "label": "ExchangesPage()",
+      "file_type": "code",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "apps_web_src_app_exchanges_page_exchangespage",
+      "community": 37,
+      "norm_label": "exchangespage()"
     },
     {
       "label": "page.tsx",
@@ -715,7 +795,7 @@
       "label": "Message",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "apps_web_src_app_page_message",
       "community": 7,
@@ -725,7 +805,7 @@
       "label": "Task",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "apps_web_src_app_page_task",
       "community": 7,
@@ -735,7 +815,7 @@
       "label": "Facility",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "apps_web_src_app_page_facility",
       "community": 7,
@@ -745,7 +825,7 @@
       "label": "Dashboard()",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L53",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "apps_web_src_app_page_dashboard",
       "community": 7,
@@ -1518,38 +1598,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_agents_specialists_substitution",
-      "community": 39,
+      "community": 1,
       "norm_label": "substitution.py"
     },
     {
       "label": "_extract_leave_id()",
       "file_type": "code",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L24",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "services_backend_app_agents_specialists_substitution_extract_leave_id",
-      "community": 39,
+      "community": 1,
       "norm_label": "_extract_leave_id()"
     },
     {
       "label": "substitution_node()",
       "file_type": "code",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L38",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "services_backend_app_agents_specialists_substitution_substitution_node",
-      "community": 39,
+      "community": 1,
       "norm_label": "substitution_node()"
     },
     {
-      "label": "Substitution Agent \u2014 the F2 flagship (docs/01-FEATURES.md, research/04+07).  Tri",
+      "label": "Substitution Agent \u2014 the F2 flagship (docs/06-EXCHANGE-PLAN.md, research/04+07).",
       "file_type": "rationale",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_agents_specialists_substitution_rationale_1",
-      "community": 39,
-      "norm_label": "substitution agent \u2014 the f2 flagship (docs/01-features.md, research/04+07).  tri"
+      "community": 1,
+      "norm_label": "substitution agent \u2014 the f2 flagship (docs/06-exchange-plan.md, research/04+07)."
     },
     {
       "label": "timetable.py",
@@ -2128,7 +2208,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_router",
-      "community": 16,
+      "community": 8,
       "norm_label": "router.py"
     },
     {
@@ -2138,7 +2218,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_router_rationale_1",
-      "community": 16,
+      "community": 8,
       "norm_label": "api aggregator \u2014 one sub-router per domain (docs/02-architecture.md \u00a74).  main.p"
     },
     {
@@ -2482,10 +2562,40 @@
       "norm_label": "timetable.py"
     },
     {
+      "label": "_parse_date()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_parse_date",
+      "community": 38,
+      "norm_label": "_parse_date()"
+    },
+    {
+      "label": "date_t",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_py_date_t",
+      "community": 38,
+      "norm_label": "date_t"
+    },
+    {
+      "label": "_slot_time()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_slot_time",
+      "community": 38,
+      "norm_label": "_slot_time()"
+    },
+    {
       "label": "generate()",
       "file_type": "code",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L15",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "services_backend_app_api_timetable_generate",
       "community": 38,
@@ -2495,7 +2605,7 @@
       "label": "status()",
       "file_type": "code",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L25",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "services_backend_app_api_timetable_status",
       "community": 38,
@@ -2515,7 +2625,7 @@
       "label": "section_grid()",
       "file_type": "code",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L30",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "services_backend_app_api_timetable_section_grid",
       "community": 38,
@@ -2525,31 +2635,71 @@
       "label": "teacher_grid()",
       "file_type": "code",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L38",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "services_backend_app_api_timetable_teacher_grid",
       "community": 38,
       "norm_label": "teacher_grid()"
     },
     {
-      "label": "Timetable API \u2014 generation (admin) + grid views (any authenticated user).",
+      "label": "effective_grid()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_effective_grid",
+      "community": 38,
+      "norm_label": "effective_grid()"
+    },
+    {
+      "label": "exchanges_board()",
+      "file_type": "code",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L150",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_exchanges_board",
+      "community": 38,
+      "norm_label": "exchanges_board()"
+    },
+    {
+      "label": "Timetable API \u2014 generation (admin) + grid views (any authenticated user).  Inclu",
       "file_type": "rationale",
       "source_file": "services/backend/app/api/timetable.py",
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_timetable_rationale_1",
       "community": 38,
-      "norm_label": "timetable api \u2014 generation (admin) + grid views (any authenticated user)."
+      "norm_label": "timetable api \u2014 generation (admin) + grid views (any authenticated user).  inclu"
     },
     {
       "label": "Run the CP-SAT solver on current master data. Stores a new version on success.",
       "file_type": "rationale",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L16",
+      "source_location": "L36",
       "_origin": "ast",
-      "id": "services_backend_app_api_timetable_rationale_16",
+      "id": "services_backend_app_api_timetable_rationale_36",
       "community": 38,
       "norm_label": "run the cp-sat solver on current master data. stores a new version on success."
+    },
+    {
+      "label": "Single-day grid for a section on a given date, with confirmed period     exchang",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_rationale_68",
+      "community": 38,
+      "norm_label": "single-day grid for a section on a given date, with confirmed period     exchang"
+    },
+    {
+      "label": "Flat list of confirmed period exchanges within a date range (default:     today",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "services_backend_app_api_timetable_rationale_154",
+      "community": 38,
+      "norm_label": "flat list of confirmed period exchanges within a date range (default:     today"
     },
     {
       "label": "__init__.py",
@@ -2888,7 +3038,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "services_backend_app_db_models_timeslot",
-      "community": 5,
+      "community": 38,
       "norm_label": "timeslot"
     },
     {
@@ -2898,7 +3048,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "services_backend_app_db_models_timetableentry",
-      "community": 39,
+      "community": 38,
       "norm_label": "timetableentry"
     },
     {
@@ -2922,10 +3072,20 @@
       "norm_label": "substitution"
     },
     {
-      "label": "Event",
+      "label": "PeriodExchange",
       "file_type": "code",
       "source_file": "services/backend/app/db/models.py",
       "source_location": "L141",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_periodexchange",
+      "community": 38,
+      "norm_label": "periodexchange"
+    },
+    {
+      "label": "Event",
+      "file_type": "code",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L169",
       "_origin": "ast",
       "id": "services_backend_app_db_models_event",
       "community": 5,
@@ -2935,7 +3095,7 @@
       "label": "Booking",
       "file_type": "code",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L151",
+      "source_location": "L179",
       "_origin": "ast",
       "id": "services_backend_app_db_models_booking",
       "community": 5,
@@ -2945,7 +3105,7 @@
       "label": "Approval",
       "file_type": "code",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L168",
+      "source_location": "L196",
       "_origin": "ast",
       "id": "services_backend_app_db_models_approval",
       "community": 5,
@@ -2955,7 +3115,7 @@
       "label": "Document",
       "file_type": "code",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L182",
+      "source_location": "L210",
       "_origin": "ast",
       "id": "services_backend_app_db_models_document",
       "community": 5,
@@ -2965,7 +3125,7 @@
       "label": "Notification",
       "file_type": "code",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L194",
+      "source_location": "L222",
       "_origin": "ast",
       "id": "services_backend_app_db_models_notification",
       "community": 5,
@@ -2982,12 +3142,32 @@
       "norm_label": "sqlalchemy models \u2014 mirrors the data model in docs/02-architecture.md \u00a73."
     },
     {
+      "label": "Legacy ranked-cover model (Phase 2.0). Kept for history; the live flow now     u",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L128",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_rationale_128",
+      "community": 39,
+      "norm_label": "legacy ranked-cover model (phase 2.0). kept for history; the live flow now     u"
+    },
+    {
+      "label": "One exchanged pair (Phase 2.1): A's missed lesson on the leave date is taken",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L142",
+      "_origin": "ast",
+      "id": "services_backend_app_db_models_rationale_142",
+      "community": 38,
+      "norm_label": "one exchanged pair (phase 2.1): a's missed lesson on the leave date is taken"
+    },
+    {
       "label": "Human-in-the-loop record. langgraph_thread_id resumes the paused graph.",
       "file_type": "rationale",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L169",
+      "source_location": "L197",
       "_origin": "ast",
-      "id": "services_backend_app_db_models_rationale_169",
+      "id": "services_backend_app_db_models_rationale_197",
       "community": 5,
       "norm_label": "human-in-the-loop record. langgraph_thread_id resumes the paused graph."
     },
@@ -2995,9 +3175,9 @@
       "label": "RAG corpus registry (Phase 3).",
       "file_type": "rationale",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L183",
+      "source_location": "L211",
       "_origin": "ast",
-      "id": "services_backend_app_db_models_rationale_183",
+      "id": "services_backend_app_db_models_rationale_211",
       "community": 5,
       "norm_label": "rag corpus registry (phase 3)."
     },
@@ -3048,7 +3228,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_db_session",
-      "community": 16,
+      "community": 8,
       "norm_label": "session.py"
     },
     {
@@ -3078,7 +3258,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "services_backend_app_db_session_get_db",
-      "community": 16,
+      "community": 8,
       "norm_label": "get_db()"
     },
     {
@@ -3088,7 +3268,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "services_backend_app_db_session_init_db",
-      "community": 16,
+      "community": 8,
       "norm_label": "init_db()"
     },
     {
@@ -3098,7 +3278,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "services_backend_app_db_session_rationale_19",
-      "community": 16,
+      "community": 8,
       "norm_label": "fastapi dependency yielding a request-scoped session."
     },
     {
@@ -3108,7 +3288,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "services_backend_app_db_session_rationale_28",
-      "community": 16,
+      "community": 8,
       "norm_label": "create all tables (dev convenience; alembic takes over once schema stabilizes)."
     },
     {
@@ -3128,7 +3308,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model",
-      "community": 38,
+      "community": 21,
       "norm_label": "timetable_model.py"
     },
     {
@@ -3138,7 +3318,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_slotin",
-      "community": 38,
+      "community": 21,
       "norm_label": "slotin"
     },
     {
@@ -3148,7 +3328,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_subjectin",
-      "community": 38,
+      "community": 21,
       "norm_label": "subjectin"
     },
     {
@@ -3158,7 +3338,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_teacherin",
-      "community": 38,
+      "community": 21,
       "norm_label": "teacherin"
     },
     {
@@ -3168,7 +3348,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_sectionin",
-      "community": 38,
+      "community": 21,
       "norm_label": "sectionin"
     },
     {
@@ -3178,7 +3358,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_roomin",
-      "community": 38,
+      "community": 21,
       "norm_label": "roomin"
     },
     {
@@ -3188,7 +3368,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_timetableinput",
-      "community": 38,
+      "community": 21,
       "norm_label": "timetableinput"
     },
     {
@@ -3198,7 +3378,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_lesson",
-      "community": 38,
+      "community": 21,
       "norm_label": "lesson"
     },
     {
@@ -3208,7 +3388,7 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_solveresult",
-      "community": 38,
+      "community": 21,
       "norm_label": "solveresult"
     },
     {
@@ -3218,7 +3398,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_precheck",
-      "community": 38,
+      "community": 21,
       "norm_label": "precheck()"
     },
     {
@@ -3228,7 +3408,7 @@
       "source_location": "L153",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_consecutive_pairs",
-      "community": 38,
+      "community": 21,
       "norm_label": "_consecutive_pairs()"
     },
     {
@@ -3238,7 +3418,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_solve",
-      "community": 38,
+      "community": 21,
       "norm_label": "solve()"
     },
     {
@@ -3248,7 +3428,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_1",
-      "community": 38,
+      "community": 21,
       "norm_label": "or-tools cp-sat timetable model (docs/02-architecture.md, research/03).  design"
     },
     {
@@ -3258,7 +3438,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_154",
-      "community": 38,
+      "community": 21,
       "norm_label": "indices of same-day adjacent slot pairs (end == next start, no break between)."
     },
     {
@@ -3270,6 +3450,206 @@
       "id": "services_backend_app_tools_init",
       "community": 41,
       "norm_label": "__init__.py"
+    },
+    {
+      "label": "exchange.py",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange",
+      "community": 38,
+      "norm_label": "exchange.py"
+    },
+    {
+      "label": "plan_id_for()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_plan_id_for",
+      "community": 38,
+      "norm_label": "plan_id_for()"
+    },
+    {
+      "label": "_slot_time()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_slot_time",
+      "community": 38,
+      "norm_label": "_slot_time()"
+    },
+    {
+      "label": "_next_date_for_weekday()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_next_date_for_weekday",
+      "community": 38,
+      "norm_label": "_next_date_for_weekday()"
+    },
+    {
+      "label": "date_t",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_py_date_t",
+      "community": 38,
+      "norm_label": "date_t"
+    },
+    {
+      "label": "_teacher_busy_at()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_teacher_busy_at",
+      "community": 38,
+      "norm_label": "_teacher_busy_at()"
+    },
+    {
+      "label": "Session",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_py_session",
+      "community": 38,
+      "norm_label": "session"
+    },
+    {
+      "label": "build_plan()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_build_plan",
+      "community": 38,
+      "norm_label": "build_plan()"
+    },
+    {
+      "label": "_no_partner_row()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L147",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_no_partner_row",
+      "community": 38,
+      "norm_label": "_no_partner_row()"
+    },
+    {
+      "label": "_pick_partner()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L158",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_pick_partner",
+      "community": 38,
+      "norm_label": "_pick_partner()"
+    },
+    {
+      "label": "plan_summary()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L232",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_plan_summary",
+      "community": 38,
+      "norm_label": "plan_summary()"
+    },
+    {
+      "label": "apply_plan()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L275",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_apply_plan",
+      "community": 38,
+      "norm_label": "apply_plan()"
+    },
+    {
+      "label": "reject_plan()",
+      "file_type": "code",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L328",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_reject_plan",
+      "community": 38,
+      "norm_label": "reject_plan()"
+    },
+    {
+      "label": "Period-exchange tools \u2014 F2 flagship, Phase 2.1 (docs/06-EXCHANGE-PLAN.md).  Real",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_1",
+      "community": 38,
+      "norm_label": "period-exchange tools \u2014 f2 flagship, phase 2.1 (docs/06-exchange-plan.md).  real"
+    },
+    {
+      "label": "Nearest date strictly after `after` whose weekday matches `day` (MON..FRI).",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_40",
+      "community": 38,
+      "norm_label": "nearest date strictly after `after` whose weekday matches `day` (mon..fri)."
+    },
+    {
+      "label": "True if the teacher already teaches some section at (day, period) in the     liv",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_54",
+      "community": 38,
+      "norm_label": "true if the teacher already teaches some section at (day, period) in the     liv"
+    },
+    {
+      "label": "Create proposed PeriodExchange rows for every lesson the leave disrupts.     Ide",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_67",
+      "community": 38,
+      "norm_label": "create proposed periodexchange rows for every lesson the leave disrupts.     ide"
+    },
+    {
+      "label": "Return (entry_b, recovery_date, rationale) for the best exchange, or None.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L160",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_160",
+      "community": 38,
+      "norm_label": "return (entry_b, recovery_date, rationale) for the best exchange, or none."
+    },
+    {
+      "label": "JSON-friendly plan detail for the approval card / interrupt payload.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L233",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_233",
+      "community": 38,
+      "norm_label": "json-friendly plan detail for the approval card / interrupt payload."
+    },
+    {
+      "label": "HOD approved: confirm rows + notify both partners and the absent teacher.",
+      "file_type": "rationale",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L276",
+      "_origin": "ast",
+      "id": "services_backend_app_tools_exchange_rationale_276",
+      "community": 38,
+      "norm_label": "hod approved: confirm rows + notify both partners and the absent teacher."
     },
     {
       "label": "substitution.py",
@@ -3327,7 +3707,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "date_t",
+      "id": "services_backend_app_tools_substitution_py_date_t",
       "community": 39,
       "norm_label": "date_t"
     },
@@ -3388,7 +3768,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "services_backend_app_tools_substitution_notify_user",
-      "community": 39,
+      "community": 5,
       "norm_label": "notify_user()"
     },
     {
@@ -3578,7 +3958,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_main",
-      "community": 16,
+      "community": 8,
       "norm_label": "main.py"
     },
     {
@@ -3588,7 +3968,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "services_backend_main_substitution_sweep",
-      "community": 39,
+      "community": 8,
       "norm_label": "_substitution_sweep()"
     },
     {
@@ -3598,7 +3978,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "services_backend_main_lifespan",
-      "community": 16,
+      "community": 8,
       "norm_label": "lifespan()"
     },
     {
@@ -3608,7 +3988,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "fastapi",
-      "community": 16,
+      "community": 8,
       "norm_label": "fastapi"
     },
     {
@@ -3618,7 +3998,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "services_backend_main_read_root",
-      "community": 16,
+      "community": 8,
       "norm_label": "read_root()"
     },
     {
@@ -3628,7 +4008,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "services_backend_main_rationale_16",
-      "community": 39,
+      "community": 8,
       "norm_label": "proactive safety net (docs/02-architecture.md trigger engine): if a leave     wa"
     },
     {
@@ -3652,294 +4032,64 @@
       "norm_label": "claude.md"
     },
     {
-      "label": "Project Overview",
+      "label": "Quick Start",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L31",
+      "source_location": "L15",
       "_origin": "ast",
-      "id": "claude_project_overview",
+      "id": "claude_quick_start",
       "community": 4,
-      "norm_label": "project overview"
-    },
-    {
-      "label": "Architecture (Phase 0+)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L39",
-      "_origin": "ast",
-      "id": "claude_architecture_phase_0",
-      "community": 4,
-      "norm_label": "architecture (phase 0+)"
-    },
-    {
-      "label": "Development Setup",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L60",
-      "_origin": "ast",
-      "id": "claude_development_setup",
-      "community": 4,
-      "norm_label": "development setup"
-    },
-    {
-      "label": "Prerequisites",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L62",
-      "_origin": "ast",
-      "id": "claude_prerequisites",
-      "community": 4,
-      "norm_label": "prerequisites"
-    },
-    {
-      "label": "Backend (services/backend)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L66",
-      "_origin": "ast",
-      "id": "claude_backend_services_backend",
-      "community": 4,
-      "norm_label": "backend (services/backend)"
-    },
-    {
-      "label": "Frontend (apps/web)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L112",
-      "_origin": "ast",
-      "id": "claude_frontend_apps_web",
-      "community": 4,
-      "norm_label": "frontend (apps/web)"
-    },
-    {
-      "label": "Common Commands",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L126",
-      "_origin": "ast",
-      "id": "claude_common_commands",
-      "community": 4,
-      "norm_label": "common commands"
-    },
-    {
-      "label": "Backend",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L128",
-      "_origin": "ast",
-      "id": "claude_backend",
-      "community": 4,
-      "norm_label": "backend"
-    },
-    {
-      "label": "Frontend",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L136",
-      "_origin": "ast",
-      "id": "claude_frontend",
-      "community": 4,
-      "norm_label": "frontend"
+      "norm_label": "quick start"
     },
     {
       "label": "Key File Structure",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L145",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "claude_key_file_structure",
       "community": 4,
       "norm_label": "key file structure"
     },
     {
-      "label": "Backend (`services/backend/app`) \u2014 Phase 0 + Phase 1",
+      "label": "Essential Config",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L147",
+      "source_location": "L57",
       "_origin": "ast",
-      "id": "claude_backend_services_backend_app_phase_0_phase_1",
+      "id": "claude_essential_config",
       "community": 4,
-      "norm_label": "backend (`services/backend/app`) \u2014 phase 0 + phase 1"
+      "norm_label": "essential config"
     },
     {
-      "label": "Frontend (`apps/web`) \u2014 Phase 0 + Phase 1",
+      "label": "Testing",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L187",
+      "source_location": "L80",
       "_origin": "ast",
-      "id": "claude_frontend_apps_web_phase_0_phase_1",
+      "id": "claude_testing",
       "community": 4,
-      "norm_label": "frontend (`apps/web`) \u2014 phase 0 + phase 1"
+      "norm_label": "testing"
     },
     {
-      "label": "Important Implementation Details",
+      "label": "Patterns",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L210",
+      "source_location": "L92",
       "_origin": "ast",
-      "id": "claude_important_implementation_details",
+      "id": "claude_patterns",
       "community": 4,
-      "norm_label": "important implementation details"
+      "norm_label": "patterns"
     },
     {
-      "label": "Data Model",
+      "label": "Navigation",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L212",
+      "source_location": "L104",
       "_origin": "ast",
-      "id": "claude_data_model",
+      "id": "claude_navigation",
       "community": 4,
-      "norm_label": "data model"
-    },
-    {
-      "label": "Environment Configuration",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L229",
-      "_origin": "ast",
-      "id": "claude_environment_configuration",
-      "community": 4,
-      "norm_label": "environment configuration"
-    },
-    {
-      "label": "LangGraph Workflow (Phase 0)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L256",
-      "_origin": "ast",
-      "id": "claude_langgraph_workflow_phase_0",
-      "community": 4,
-      "norm_label": "langgraph workflow (phase 0)"
-    },
-    {
-      "label": "Frontend Architecture",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L275",
-      "_origin": "ast",
-      "id": "claude_frontend_architecture",
-      "community": 4,
-      "norm_label": "frontend architecture"
-    },
-    {
-      "label": "Testing & Verification",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L285",
-      "_origin": "ast",
-      "id": "claude_testing_verification",
-      "community": 4,
-      "norm_label": "testing & verification"
-    },
-    {
-      "label": "Quick backend test (no frontend)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L287",
-      "_origin": "ast",
-      "id": "claude_quick_backend_test_no_frontend",
-      "community": 4,
-      "norm_label": "quick backend test (no frontend)"
-    },
-    {
-      "label": "Full manual testing workflow",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L307",
-      "_origin": "ast",
-      "id": "claude_full_manual_testing_workflow",
-      "community": 4,
-      "norm_label": "full manual testing workflow"
-    },
-    {
-      "label": "Common Patterns (Phase 0+)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L332",
-      "_origin": "ast",
-      "id": "claude_common_patterns_phase_0",
-      "community": 4,
-      "norm_label": "common patterns (phase 0+)"
-    },
-    {
-      "label": "Adding a new feature (Phase 1 example: F1 Timetable generation)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L334",
-      "_origin": "ast",
-      "id": "claude_adding_a_new_feature_phase_1_example_f1_timetable_generation",
-      "community": 4,
-      "norm_label": "adding a new feature (phase 1 example: f1 timetable generation)"
-    },
-    {
-      "label": "Adding a domain router (Phase 2+ example: booking approvals)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L353",
-      "_origin": "ast",
-      "id": "claude_adding_a_domain_router_phase_2_example_booking_approvals",
-      "community": 4,
-      "norm_label": "adding a domain router (phase 2+ example: booking approvals)"
-    },
-    {
-      "label": "Working with the database",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L360",
-      "_origin": "ast",
-      "id": "claude_working_with_the_database",
-      "community": 4,
-      "norm_label": "working with the database"
-    },
-    {
-      "label": "What's next (Phases 2\u20134)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L367",
-      "_origin": "ast",
-      "id": "claude_what_s_next_phases_2_4",
-      "community": 4,
-      "norm_label": "what's next (phases 2\u20134)"
-    },
-    {
-      "label": "Deployment Notes",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L385",
-      "_origin": "ast",
-      "id": "claude_deployment_notes",
-      "community": 4,
-      "norm_label": "deployment notes"
-    },
-    {
-      "label": "Phase 0 + Phase 1 \u2014 What you have now (2026-07-13)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L394",
-      "_origin": "ast",
-      "id": "claude_phase_0_phase_1_what_you_have_now_2026_07_13",
-      "community": 4,
-      "norm_label": "phase 0 + phase 1 \u2014 what you have now (2026-07-13)"
-    },
-    {
-      "label": "Useful Links",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L414",
-      "_origin": "ast",
-      "id": "claude_useful_links",
-      "community": 4,
-      "norm_label": "useful links"
-    },
-    {
-      "label": "Code navigation (graphify knowledge graph)",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": "L425",
-      "_origin": "ast",
-      "id": "claude_code_navigation_graphify_knowledge_graph",
-      "community": 4,
-      "norm_label": "code navigation (graphify knowledge graph)"
+      "norm_label": "navigation"
     },
     {
       "label": "README.md",
@@ -4048,7 +4198,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_01_features",
-      "community": 21,
+      "community": 20,
       "norm_label": "01-features.md"
     },
     {
@@ -4058,7 +4208,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_01_features_01_features",
-      "community": 21,
+      "community": 20,
       "norm_label": "01 \u2014 features"
     },
     {
@@ -4068,7 +4218,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "docs_01_features_core_features",
-      "community": 21,
+      "community": 20,
       "norm_label": "core features"
     },
     {
@@ -4078,7 +4228,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "docs_01_features_f1_timetable_generation_agent",
-      "community": 21,
+      "community": 20,
       "norm_label": "f1. timetable generation agent \ud83d\uddd3\ufe0f"
     },
     {
@@ -4088,7 +4238,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "docs_01_features_f2_leave_substitution_agent_the_flagship",
-      "community": 21,
+      "community": 20,
       "norm_label": "f2. leave & substitution agent (the flagship) \ud83d\udd01"
     },
     {
@@ -4098,7 +4248,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "docs_01_features_f3_event_venue_booking_agent",
-      "community": 21,
+      "community": 20,
       "norm_label": "f3. event & venue booking agent \ud83c\udfaa"
     },
     {
@@ -4108,7 +4258,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "docs_01_features_f4_campus_knowledge_assistant_rag",
-      "community": 21,
+      "community": 20,
       "norm_label": "f4. campus knowledge assistant (rag) \ud83d\udcda"
     },
     {
@@ -4118,7 +4268,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "docs_01_features_f5_notification_agent_cross_cutting",
-      "community": 21,
+      "community": 20,
       "norm_label": "f5. notification agent \ud83d\udce3 (cross-cutting)"
     },
     {
@@ -4128,7 +4278,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "docs_01_features_stretch_features_independent_add_ons_in_recommended_order",
-      "community": 21,
+      "community": 20,
       "norm_label": "stretch features (independent add-ons, in recommended order)"
     },
     {
@@ -4138,7 +4288,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "docs_01_features_f6_attendance_sentinel_agent",
-      "community": 21,
+      "community": 20,
       "norm_label": "f6. attendance sentinel agent \ud83d\udcc9"
     },
     {
@@ -4148,7 +4298,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "docs_01_features_f7_complaint_maintenance_triage_agent",
-      "community": 21,
+      "community": 20,
       "norm_label": "f7. complaint & maintenance triage agent \ud83d\udd27"
     },
     {
@@ -4158,7 +4308,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "docs_01_features_f8_exam_scheduling_agent",
-      "community": 21,
+      "community": 20,
       "norm_label": "f8. exam scheduling agent \ud83d\udcdd"
     },
     {
@@ -4168,7 +4318,7 @@
       "source_location": "L131",
       "_origin": "ast",
       "id": "docs_01_features_f9_analytics_agent_talk_to_your_data",
-      "community": 21,
+      "community": 20,
       "norm_label": "f9. analytics agent (talk to your data) \ud83d\udcca"
     },
     {
@@ -4178,7 +4328,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "docs_01_features_f10_energy_watchdog_agent_ties_to_the_synopsis",
-      "community": 21,
+      "community": 20,
       "norm_label": "f10. energy watchdog agent \u26a1 (ties to the synopsis)"
     },
     {
@@ -4188,7 +4338,7 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "docs_01_features_what_makes_this_one_of_the_best_projects",
-      "community": 21,
+      "community": 20,
       "norm_label": "what makes this one of the best projects"
     },
     {
@@ -4402,10 +4552,20 @@
       "norm_label": "phase 2 \u2014 f2 leave & substitution \u2014 the flagship (\u22482 weeks)"
     },
     {
-      "label": "Phase 3 \u2014 F3 Event Booking + F4 Knowledge RAG (\u22482 weeks)",
+      "label": "Phase 2.1 \u2014 Period-exchange substitution model (replaces ranked-cover)",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
       "source_location": "L43",
+      "_origin": "ast",
+      "id": "docs_04_roadmap_phase_2_1_period_exchange_substitution_model_replaces_ranked_cover",
+      "community": 20,
+      "norm_label": "phase 2.1 \u2014 period-exchange substitution model (replaces ranked-cover)"
+    },
+    {
+      "label": "Phase 3 \u2014 F3 Event Booking + F4 Knowledge RAG (\u22482 weeks)",
+      "file_type": "document",
+      "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L66",
       "_origin": "ast",
       "id": "docs_04_roadmap_phase_3_f3_event_booking_f4_knowledge_rag_2_weeks",
       "community": 20,
@@ -4415,7 +4575,7 @@
       "label": "Phase 4 \u2014 Polish + stretch picks (remaining time)",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L51",
+      "source_location": "L74",
       "_origin": "ast",
       "id": "docs_04_roadmap_phase_4_polish_stretch_picks_remaining_time",
       "community": 20,
@@ -4425,7 +4585,7 @@
       "label": "Research base",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L63",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "docs_04_roadmap_research_base",
       "community": 20,
@@ -4435,7 +4595,7 @@
       "label": "Decision log",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L72",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "docs_04_roadmap_decision_log",
       "community": 20,
@@ -4482,20 +4642,20 @@
       "norm_label": "act 2 \u2014 constraint-solver timetabling (2 min)"
     },
     {
-      "label": "Act 3 \u2014 THE FLAGSHIP: autonomous substitution with human-in-the-loop (3 min)",
+      "label": "Act 3 \u2014 THE FLAGSHIP: autonomous period-exchange with human-in-the-loop (3 min)",
       "file_type": "document",
       "source_file": "docs/05-DEMO-SCRIPT.md",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "docs_05_demo_script_act_3_the_flagship_autonomous_substitution_with_human_in_the_loop_3_min",
+      "id": "docs_05_demo_script_act_3_the_flagship_autonomous_period_exchange_with_human_in_the_loop_3_min",
       "community": 42,
-      "norm_label": "act 3 \u2014 the flagship: autonomous substitution with human-in-the-loop (3 min)"
+      "norm_label": "act 3 \u2014 the flagship: autonomous period-exchange with human-in-the-loop (3 min)"
     },
     {
       "label": "Act 4 \u2014 Chat + resilience (60s)",
       "file_type": "document",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L56",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "docs_05_demo_script_act_4_chat_resilience_60s",
       "community": 42,
@@ -4505,11 +4665,201 @@
       "label": "Q&A ammunition",
       "file_type": "document",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L64",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "docs_05_demo_script_q_a_ammunition",
       "community": 42,
       "norm_label": "q&a ammunition"
+    },
+    {
+      "label": "06-EXCHANGE-PLAN.md",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan",
+      "community": 2,
+      "norm_label": "06-exchange-plan.md"
+    },
+    {
+      "label": "06 \u2014 Phase 2.1 Plan: Period-Exchange Substitution (replaces ranked-cover model)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "community": 2,
+      "norm_label": "06 \u2014 phase 2.1 plan: period-exchange substitution (replaces ranked-cover model)"
+    },
+    {
+      "label": "1. Why this change",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_1_why_this_change",
+      "community": 2,
+      "norm_label": "1. why this change"
+    },
+    {
+      "label": "Concrete example",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_concrete_example",
+      "community": 2,
+      "norm_label": "concrete example"
+    },
+    {
+      "label": "2. What stays exactly the same (do not touch)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_2_what_stays_exactly_the_same_do_not_touch",
+      "community": 2,
+      "norm_label": "2. what stays exactly the same (do not touch)"
+    },
+    {
+      "label": "3. Data model \u2014 new table (do NOT alter existing tables)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_3_data_model_new_table_do_not_alter_existing_tables",
+      "community": 2,
+      "norm_label": "3. data model \u2014 new table (do not alter existing tables)"
+    },
+    {
+      "label": "4. Exchange-planning algorithm",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "community": 2,
+      "norm_label": "4. exchange-planning algorithm"
+    },
+    {
+      "label": "`build_plan(db, leave)` \u2014 for each affected lesson of A",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_build_plan_db_leave_for_each_affected_lesson_of_a",
+      "community": 2,
+      "norm_label": "`build_plan(db, leave)` \u2014 for each affected lesson of a"
+    },
+    {
+      "label": "`plan_summary(db, leave_id) -> dict`",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_plan_summary_db_leave_id_dict",
+      "community": 2,
+      "norm_label": "`plan_summary(db, leave_id) -> dict`"
+    },
+    {
+      "label": "`apply_plan(db, leave_id)` (on HOD approve)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_apply_plan_db_leave_id_on_hod_approve",
+      "community": 2,
+      "norm_label": "`apply_plan(db, leave_id)` (on hod approve)"
+    },
+    {
+      "label": "`reject_plan(db, leave_id)` (on HOD reject)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L163",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_reject_plan_db_leave_id_on_hod_reject",
+      "community": 2,
+      "norm_label": "`reject_plan(db, leave_id)` (on hod reject)"
+    },
+    {
+      "label": "Agent node text",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L167",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_agent_node_text",
+      "community": 2,
+      "norm_label": "agent node text"
+    },
+    {
+      "label": "Safety sweep (`main.py`)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L173",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_safety_sweep_main_py",
+      "community": 2,
+      "norm_label": "safety sweep (`main.py`)"
+    },
+    {
+      "label": "5. Dated (effective) timetable \u2014 separate view, original untouched",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L178",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_5_dated_effective_timetable_separate_view_original_untouched",
+      "community": 2,
+      "norm_label": "5. dated (effective) timetable \u2014 separate view, original untouched"
+    },
+    {
+      "label": "Backend \u2014 add to `app/api/timetable.py`",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L180",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_backend_add_to_app_api_timetable_py",
+      "community": 2,
+      "norm_label": "backend \u2014 add to `app/api/timetable.py`"
+    },
+    {
+      "label": "Frontend \u2014 new page `apps/web/src/app/exchanges/page.tsx` (shown separately, per requirement)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L198",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_frontend_new_page_apps_web_src_app_exchanges_page_tsx_shown_separately_per_requirement",
+      "community": 2,
+      "norm_label": "frontend \u2014 new page `apps/web/src/app/exchanges/page.tsx` (shown separately, per requirement)"
+    },
+    {
+      "label": "Approval card update (`apps/web/src/app/approvals/page.tsx`)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L218",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_approval_card_update_apps_web_src_app_approvals_page_tsx",
+      "community": 2,
+      "norm_label": "approval card update (`apps/web/src/app/approvals/page.tsx`)"
+    },
+    {
+      "label": "6. Task order for implementation",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L226",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_6_task_order_for_implementation",
+      "community": 2,
+      "norm_label": "6. task order for implementation"
+    },
+    {
+      "label": "7. Verification checklist (run all before declaring done)",
+      "file_type": "document",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L244",
+      "_origin": "ast",
+      "id": "docs_06_exchange_plan_7_verification_checklist_run_all_before_declaring_done",
+      "community": 2,
+      "norm_label": "7. verification checklist (run all before declaring done)"
     },
     {
       "label": "README.md",
@@ -5632,7 +5982,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L16",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "apps_web_src_app_approvals_page",
       "target": "apps_web_src_app_approvals_page_approvalcard",
@@ -5642,7 +5992,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L30",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "apps_web_src_app_approvals_page",
       "target": "apps_web_src_app_approvals_page_approvalspage",
@@ -5652,7 +6002,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L26",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "apps_web_src_app_approvals_page",
       "target": "apps_web_src_app_approvals_page_decideresult",
@@ -5718,7 +6068,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L46",
+      "source_location": "L50",
       "weight": 1.0,
       "source": "apps_web_src_app_approvals_page_approvalspage",
       "target": "apps_web_src_lib_api_gettoken"
@@ -5729,10 +6079,135 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/app/approvals/page.tsx",
-      "source_location": "L47",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "apps_web_src_app_approvals_page_approvalspage",
       "target": "apps_web_src_lib_api_getuser"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_dayentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_effectiveday",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_exchangeboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_exchangerow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_exchangespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_swap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_app_exchanges_page_todayiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_lib_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_lib_api_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page",
+      "target": "apps_web_src_lib_api_gettoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page_exchangespage",
+      "target": "apps_web_src_app_exchanges_page_todayiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/exchanges/page.tsx",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "apps_web_src_app_exchanges_page_exchangespage",
+      "target": "apps_web_src_lib_api_gettoken"
     },
     {
       "relation": "contains",
@@ -6067,7 +6542,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_dashboard",
@@ -6077,7 +6552,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_facility",
@@ -6087,7 +6562,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_message",
@@ -6097,7 +6572,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_task",
@@ -7064,7 +7539,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L24",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution",
       "target": "services_backend_app_agents_specialists_substitution_extract_leave_id",
@@ -7074,7 +7549,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L38",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution",
       "target": "services_backend_app_agents_specialists_substitution_substitution_node",
@@ -7095,7 +7570,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L24",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution_extract_leave_id",
       "target": "services_backend_app_agents_state_agentstate",
@@ -7106,7 +7581,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L42",
+      "source_location": "L44",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution_substitution_node",
       "target": "services_backend_app_agents_specialists_substitution_extract_leave_id",
@@ -7117,7 +7592,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L38",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution_substitution_node",
       "target": "services_backend_app_agents_state_agentstate",
@@ -7129,7 +7604,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L72",
+      "source_location": "L75",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution_substitution_node",
       "target": "services_backend_app_db_models_approval"
@@ -7140,54 +7615,10 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L50",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "services_backend_app_agents_specialists_substitution_substitution_node",
       "target": "services_backend_app_db_models_leave"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L98",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_specialists_substitution_substitution_node",
-      "target": "services_backend_app_tools_substitution_apply_plan"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_specialists_substitution_substitution_node",
-      "target": "services_backend_app_tools_substitution_build_plan"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L59",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_specialists_substitution_substitution_node",
-      "target": "services_backend_app_tools_substitution_plan_summary"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "services/backend/app/agents/specialists/substitution.py",
-      "source_location": "L108",
-      "weight": 1.0,
-      "source": "services_backend_app_agents_specialists_substitution_substitution_node",
-      "target": "services_backend_app_tools_substitution_reject_plan"
     },
     {
       "relation": "contains",
@@ -7676,17 +8107,6 @@
       "weight": 1.0,
       "source": "services_backend_app_api_approvals_list_approvals",
       "target": "services_backend_app_db_models_approval"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "services/backend/app/api/approvals.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "source": "services_backend_app_api_approvals_list_approvals",
-      "target": "services_backend_app_tools_substitution_plan_summary"
     },
     {
       "relation": "references",
@@ -9945,7 +10365,18 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L2",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable",
       "target": "fastapi",
@@ -9955,7 +10386,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L15",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable",
+      "target": "services_backend_app_api_timetable_effective_grid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable",
+      "target": "services_backend_app_api_timetable_exchanges_board",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable",
       "target": "services_backend_app_api_timetable_generate",
@@ -9965,7 +10416,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L30",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable",
+      "target": "services_backend_app_api_timetable_parse_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L50",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable",
       "target": "services_backend_app_api_timetable_section_grid",
@@ -9975,7 +10436,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L25",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable",
+      "target": "services_backend_app_api_timetable_slot_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable",
       "target": "services_backend_app_api_timetable_status",
@@ -9985,7 +10456,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L38",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable",
       "target": "services_backend_app_api_timetable_teacher_grid",
@@ -10004,10 +10475,76 @@
     {
       "relation": "calls",
       "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_api_timetable_parse_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_exchanges_board",
+      "target": "services_backend_app_api_timetable_parse_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_parse_date",
+      "target": "services_backend_app_api_timetable_py_date_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_api_timetable_slot_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_exchanges_board",
+      "target": "services_backend_app_api_timetable_slot_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_slot_time",
+      "target": "services_backend_app_db_models_timetableentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L17",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_generate",
       "target": "services_backend_app_tools_timetable_generate_timetable"
@@ -10016,9 +10553,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L16",
+      "source_location": "L36",
       "weight": 1.0,
-      "source": "services_backend_app_api_timetable_rationale_16",
+      "source": "services_backend_app_api_timetable_rationale_36",
       "target": "services_backend_app_api_timetable_generate",
       "confidence_score": 1.0
     },
@@ -10027,7 +10564,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L25",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_status",
       "target": "services_backend_app_api_timetable_py_session",
@@ -10039,7 +10576,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L26",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_status",
       "target": "services_backend_app_tools_timetable_latest_version"
@@ -10049,7 +10586,29 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L30",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_api_timetable_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_exchanges_board",
+      "target": "services_backend_app_api_timetable_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L50",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_section_grid",
       "target": "services_backend_app_api_timetable_py_session",
@@ -10060,7 +10619,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L38",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_teacher_grid",
       "target": "services_backend_app_api_timetable_py_session",
@@ -10072,7 +10631,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L31",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_section_grid",
       "target": "services_backend_app_tools_timetable_get_section_grid"
@@ -10083,10 +10642,96 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "services/backend/app/api/timetable.py",
-      "source_location": "L39",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "services_backend_app_api_timetable_teacher_grid",
       "target": "services_backend_app_tools_timetable_get_teacher_grid"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_db_models_periodexchange"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_db_models_section"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_effective_grid",
+      "target": "services_backend_app_tools_timetable_latest_version"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_rationale_68",
+      "target": "services_backend_app_api_timetable_effective_grid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_exchanges_board",
+      "target": "services_backend_app_db_models_periodexchange"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_exchanges_board",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/api/timetable.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "services_backend_app_api_timetable_rationale_154",
+      "target": "services_backend_app_api_timetable_exchanges_board",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10382,7 +11027,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L168",
+      "source_location": "L196",
       "weight": 1.0,
       "source": "services_backend_app_db_models",
       "target": "services_backend_app_db_models_approval",
@@ -10392,7 +11037,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L151",
+      "source_location": "L179",
       "weight": 1.0,
       "source": "services_backend_app_db_models",
       "target": "services_backend_app_db_models_booking",
@@ -10402,7 +11047,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L182",
+      "source_location": "L210",
       "weight": 1.0,
       "source": "services_backend_app_db_models",
       "target": "services_backend_app_db_models_document",
@@ -10412,7 +11057,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L141",
+      "source_location": "L169",
       "weight": 1.0,
       "source": "services_backend_app_db_models",
       "target": "services_backend_app_db_models_event",
@@ -10432,10 +11077,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L194",
+      "source_location": "L222",
       "weight": 1.0,
       "source": "services_backend_app_db_models",
       "target": "services_backend_app_db_models_notification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models",
+      "target": "services_backend_app_db_models_periodexchange",
       "confidence_score": 1.0
     },
     {
@@ -10564,6 +11219,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "services/backend/app/tools/substitution.py",
       "source_location": "L14",
       "weight": 1.0,
@@ -10622,6 +11288,39 @@
       "source_location": "L43",
       "weight": 1.0,
       "source": "services_backend_app_db_seed_seed",
+      "target": "services_backend_app_db_models_teacher"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L281",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_db_models_teacher"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L179",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_pick_partner",
+      "target": "services_backend_app_db_models_teacher"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L241",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
       "target": "services_backend_app_db_models_teacher"
     },
     {
@@ -10844,6 +11543,72 @@
       "context": "argument",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L287",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_pick_partner",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L239",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_slot_time",
+      "target": "services_backend_app_db_models_timetableentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_teacher_busy_at",
+      "target": "services_backend_app_db_models_timetableentry"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
       "source_file": "services/backend/app/tools/substitution.py",
       "source_location": "L184",
       "weight": 1.0,
@@ -10920,6 +11685,39 @@
       "context": "argument",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L280",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_db_models_leave"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_db_models_leave",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L234",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
+      "target": "services_backend_app_db_models_leave"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
       "source_file": "services/backend/app/tools/substitution.py",
       "source_location": "L195",
       "weight": 1.0,
@@ -10982,6 +11780,16 @@
       "target": "services_backend_app_db_models_leave"
     },
     {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models_rationale_128",
+      "target": "services_backend_app_db_models_substitution",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "uses",
       "confidence": "INFERRED",
       "source_file": "services/backend/app/db/models.py",
@@ -11036,6 +11844,81 @@
       "target": "services_backend_app_db_models_substitution"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "services_backend_app_db_models_periodexchange",
+      "target": "services_backend_app_db_session_base",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/db/models.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "services_backend_app_db_models_rationale_142",
+      "target": "services_backend_app_db_models_periodexchange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L277",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_db_models_periodexchange"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_db_models_periodexchange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_no_partner_row",
+      "target": "services_backend_app_db_models_periodexchange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L235",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
+      "target": "services_backend_app_db_models_periodexchange"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L329",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_reject_plan",
+      "target": "services_backend_app_db_models_periodexchange"
+    },
+    {
       "relation": "indirect_call",
       "context": "argument",
       "confidence": "INFERRED",
@@ -11044,7 +11927,7 @@
       "source_location": "L28",
       "weight": 1.0,
       "source": "services_backend_main_substitution_sweep",
-      "target": "services_backend_app_db_models_substitution"
+      "target": "services_backend_app_db_models_periodexchange"
     },
     {
       "relation": "uses",
@@ -11080,9 +11963,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L169",
+      "source_location": "L197",
       "weight": 1.0,
-      "source": "services_backend_app_db_models_rationale_169",
+      "source": "services_backend_app_db_models_rationale_197",
       "target": "services_backend_app_db_models_approval",
       "confidence_score": 1.0
     },
@@ -11100,9 +11983,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/db/models.py",
-      "source_location": "L183",
+      "source_location": "L211",
       "weight": 1.0,
-      "source": "services_backend_app_db_models_rationale_183",
+      "source": "services_backend_app_db_models_rationale_211",
       "target": "services_backend_app_db_models_document",
       "confidence_score": 1.0
     },
@@ -11115,6 +11998,17 @@
       "source": "services_backend_app_db_models_notification",
       "target": "services_backend_app_db_session_base",
       "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L297",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_db_models_notification"
     },
     {
       "relation": "calls",
@@ -11493,6 +12387,374 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L275",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_apply_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_build_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_next_date_for_weekday",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_no_partner_row",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_pick_partner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_plan_id_for",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L232",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_plan_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L328",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_reject_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_slot_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange",
+      "target": "services_backend_app_tools_exchange_teacher_busy_at",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_1",
+      "target": "services_backend_app_tools_exchange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L278",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_tools_exchange_plan_id_for",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_tools_exchange_plan_id_for",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L236",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
+      "target": "services_backend_app_tools_exchange_plan_id_for",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L330",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_reject_plan",
+      "target": "services_backend_app_tools_exchange_plan_id_for",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L247",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
+      "target": "services_backend_app_tools_exchange_slot_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_next_date_for_weekday",
+      "target": "services_backend_app_tools_exchange_py_date_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L195",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_pick_partner",
+      "target": "services_backend_app_tools_exchange_next_date_for_weekday",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_40",
+      "target": "services_backend_app_tools_exchange_next_date_for_weekday",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L189",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_pick_partner",
+      "target": "services_backend_app_tools_exchange_teacher_busy_at",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_54",
+      "target": "services_backend_app_tools_exchange_teacher_busy_at",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_teacher_busy_at",
+      "target": "services_backend_app_tools_exchange_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L275",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_apply_plan",
+      "target": "services_backend_app_tools_exchange_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_tools_exchange_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L232",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_plan_summary",
+      "target": "services_backend_app_tools_exchange_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L328",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_reject_plan",
+      "target": "services_backend_app_tools_exchange_py_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_tools_exchange_no_partner_row",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_tools_exchange_pick_partner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_tools_substitution_latest_version"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_build_plan",
+      "target": "services_backend_app_tools_substitution_leave_dates"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_67",
+      "target": "services_backend_app_tools_exchange_build_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_pick_partner",
+      "target": "services_backend_app_tools_substitution_on_leave"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_160",
+      "target": "services_backend_app_tools_exchange_pick_partner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L233",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_233",
+      "target": "services_backend_app_tools_exchange_plan_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "services/backend/app/tools/exchange.py",
+      "source_location": "L276",
+      "weight": 1.0,
+      "source": "services_backend_app_tools_exchange_rationale_276",
+      "target": "services_backend_app_tools_exchange_apply_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "services/backend/app/tools/substitution.py",
       "source_location": "L176",
       "weight": 1.0,
@@ -11637,17 +12899,6 @@
     {
       "relation": "calls",
       "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "services/backend/main.py",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "services_backend_main_substitution_sweep",
-      "target": "services_backend_app_tools_substitution_plan_id_for"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "services/backend/app/tools/substitution.py",
       "source_location": "L61",
@@ -11752,7 +13003,7 @@
       "source_location": "L34",
       "weight": 1.0,
       "source": "services_backend_app_tools_substitution_leave_dates",
-      "target": "date_t",
+      "target": "services_backend_app_tools_substitution_py_date_t",
       "confidence_score": 1.0
     },
     {
@@ -11773,7 +13024,7 @@
       "source_location": "L44",
       "weight": 1.0,
       "source": "services_backend_app_tools_substitution_on_leave",
-      "target": "date_t",
+      "target": "services_backend_app_tools_substitution_py_date_t",
       "confidence_score": 1.0
     },
     {
@@ -12102,67 +13353,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L425",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "claude_claude_md",
-      "target": "claude_code_navigation_graphify_knowledge_graph",
+      "target": "claude_essential_config",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L126",
-      "weight": 1.0,
-      "source": "claude_claude_md",
-      "target": "claude_common_commands",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L332",
-      "weight": 1.0,
-      "source": "claude_claude_md",
-      "target": "claude_common_patterns_phase_0",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L385",
-      "weight": 1.0,
-      "source": "claude_claude_md",
-      "target": "claude_deployment_notes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "claude_claude_md",
-      "target": "claude_development_setup",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L210",
-      "weight": 1.0,
-      "source": "claude_claude_md",
-      "target": "claude_important_implementation_details",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L145",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "claude_claude_md",
       "target": "claude_key_file_structure",
@@ -12172,220 +13373,40 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L394",
+      "source_location": "L104",
       "weight": 1.0,
       "source": "claude_claude_md",
-      "target": "claude_phase_0_phase_1_what_you_have_now_2026_07_13",
+      "target": "claude_navigation",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L31",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "claude_claude_md",
-      "target": "claude_project_overview",
+      "target": "claude_patterns",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L285",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "claude_claude_md",
-      "target": "claude_testing_verification",
+      "target": "claude_quick_start",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L414",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "claude_claude_md",
-      "target": "claude_useful_links",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L367",
-      "weight": 1.0,
-      "source": "claude_claude_md",
-      "target": "claude_what_s_next_phases_2_4",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L39",
-      "weight": 1.0,
-      "source": "claude_project_overview",
-      "target": "claude_architecture_phase_0",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L66",
-      "weight": 1.0,
-      "source": "claude_development_setup",
-      "target": "claude_backend_services_backend",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L112",
-      "weight": 1.0,
-      "source": "claude_development_setup",
-      "target": "claude_frontend_apps_web",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L62",
-      "weight": 1.0,
-      "source": "claude_development_setup",
-      "target": "claude_prerequisites",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L128",
-      "weight": 1.0,
-      "source": "claude_common_commands",
-      "target": "claude_backend",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L136",
-      "weight": 1.0,
-      "source": "claude_common_commands",
-      "target": "claude_frontend",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L147",
-      "weight": 1.0,
-      "source": "claude_key_file_structure",
-      "target": "claude_backend_services_backend_app_phase_0_phase_1",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L187",
-      "weight": 1.0,
-      "source": "claude_key_file_structure",
-      "target": "claude_frontend_apps_web_phase_0_phase_1",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L212",
-      "weight": 1.0,
-      "source": "claude_important_implementation_details",
-      "target": "claude_data_model",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L229",
-      "weight": 1.0,
-      "source": "claude_important_implementation_details",
-      "target": "claude_environment_configuration",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L275",
-      "weight": 1.0,
-      "source": "claude_important_implementation_details",
-      "target": "claude_frontend_architecture",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L256",
-      "weight": 1.0,
-      "source": "claude_important_implementation_details",
-      "target": "claude_langgraph_workflow_phase_0",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L307",
-      "weight": 1.0,
-      "source": "claude_testing_verification",
-      "target": "claude_full_manual_testing_workflow",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L287",
-      "weight": 1.0,
-      "source": "claude_testing_verification",
-      "target": "claude_quick_backend_test_no_frontend",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L353",
-      "weight": 1.0,
-      "source": "claude_common_patterns_phase_0",
-      "target": "claude_adding_a_domain_router_phase_2_example_booking_approvals",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L334",
-      "weight": 1.0,
-      "source": "claude_common_patterns_phase_0",
-      "target": "claude_adding_a_new_feature_phase_1_example_f1_timetable_generation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L360",
-      "weight": 1.0,
-      "source": "claude_common_patterns_phase_0",
-      "target": "claude_working_with_the_database",
+      "target": "claude_testing",
       "confidence_score": 1.0
     },
     {
@@ -12812,7 +13833,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L72",
+      "source_location": "L95",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_decision_log",
@@ -12842,6 +13863,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_04_roadmap_04_roadmap_status",
+      "target": "docs_04_roadmap_phase_2_1_period_exchange_substitution_model_replaces_ranked_cover",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/04-ROADMAP.md",
       "source_location": "L34",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
@@ -12852,7 +13883,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L43",
+      "source_location": "L66",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_phase_3_f3_event_booking_f4_knowledge_rag_2_weeks",
@@ -12862,7 +13893,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L51",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_phase_4_polish_stretch_picks_remaining_time",
@@ -12872,7 +13903,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L63",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_research_base",
@@ -12915,14 +13946,14 @@
       "source_location": "L36",
       "weight": 1.0,
       "source": "docs_05_demo_script_05_rehearsed_demo_script_reviews_final_viva",
-      "target": "docs_05_demo_script_act_3_the_flagship_autonomous_substitution_with_human_in_the_loop_3_min",
+      "target": "docs_05_demo_script_act_3_the_flagship_autonomous_period_exchange_with_human_in_the_loop_3_min",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L56",
+      "source_location": "L68",
       "weight": 1.0,
       "source": "docs_05_demo_script_05_rehearsed_demo_script_reviews_final_viva",
       "target": "docs_05_demo_script_act_4_chat_resilience_60s",
@@ -12932,10 +13963,190 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L64",
+      "source_location": "L76",
       "weight": 1.0,
       "source": "docs_05_demo_script_05_rehearsed_demo_script_reviews_final_viva",
       "target": "docs_05_demo_script_q_a_ammunition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan",
+      "target": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_1_why_this_change",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_2_what_stays_exactly_the_same_do_not_touch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_3_data_model_new_table_do_not_alter_existing_tables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L178",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_5_dated_effective_timetable_separate_view_original_untouched",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L226",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_6_task_order_for_implementation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L244",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_06_phase_2_1_plan_period_exchange_substitution_replaces_ranked_cover_model",
+      "target": "docs_06_exchange_plan_7_verification_checklist_run_all_before_declaring_done",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_1_why_this_change",
+      "target": "docs_06_exchange_plan_concrete_example",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "target": "docs_06_exchange_plan_agent_node_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "target": "docs_06_exchange_plan_apply_plan_db_leave_id_on_hod_approve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "target": "docs_06_exchange_plan_build_plan_db_leave_for_each_affected_lesson_of_a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "target": "docs_06_exchange_plan_plan_summary_db_leave_id_dict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "target": "docs_06_exchange_plan_reject_plan_db_leave_id_on_hod_reject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_4_exchange_planning_algorithm",
+      "target": "docs_06_exchange_plan_safety_sweep_main_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_5_dated_effective_timetable_separate_view_original_untouched",
+      "target": "docs_06_exchange_plan_approval_card_update_apps_web_src_app_approvals_page_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_5_dated_effective_timetable_separate_view_original_untouched",
+      "target": "docs_06_exchange_plan_backend_add_to_app_api_timetable_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/06-EXCHANGE-PLAN.md",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "docs_06_exchange_plan_5_dated_effective_timetable_separate_view_original_untouched",
+      "target": "docs_06_exchange_plan_frontend_new_page_apps_web_src_app_exchanges_page_tsx_shown_separately_per_requirement",
       "confidence_score": 1.0
     },
     {
@@ -13576,5 +14787,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "cc7dab98f9b3af7553d3dd6b03b374f069a87c9d"
+  "built_at_commit": "5d40d1594cbaad549b678b7596d165fc2956be07"
 }

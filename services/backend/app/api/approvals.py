@@ -15,7 +15,7 @@ from app.agents.graph import compiled_graph
 from app.core.security import get_current_user, require_role
 from app.db.models import Approval, User
 from app.db.session import get_db
-from app.tools.substitution import plan_summary
+from app.tools.exchange import plan_summary
 
 router = APIRouter()
 

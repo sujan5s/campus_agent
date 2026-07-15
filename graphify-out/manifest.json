@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1783968704.6128414,
-    "ast_hash": "9410cdcf61482b076d6c31039efd3b40",
+    "mtime": 1784007775.161167,
+    "ast_hash": "3f8773a73c7b8aec0de9b10d7c09bb41",
     "semantic_hash": ""
   },
   "apps/web/tailwind.config.ts": {
@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "services/backend/app/db/models.py": {
-    "mtime": 1783928386.6128955,
-    "ast_hash": "f85db78418243d8b2463c321fb49c838",
+    "mtime": 1784007095.7477696,
+    "ast_hash": "a9a09e93c88e74cf6f7d2799cae0f2b7",
     "semantic_hash": ""
   },
   "services/backend/app/db/seed.py": {
@@ -150,13 +150,13 @@
     "semantic_hash": ""
   },
   "services/backend/main.py": {
-    "mtime": 1783968330.4566162,
-    "ast_hash": "aaf198282205c3e1f1db88acf8a69720",
+    "mtime": 1784007207.3291166,
+    "ast_hash": "5d7e16cb6d946742d1f183740232721f",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1783968837.7489052,
-    "ast_hash": "60b47f745ab3d68dc21adb54253e2dcc",
+    "mtime": 1784008441.549584,
+    "ast_hash": "a83f52f4592b8961c26231ddce8fc98b",
     "semantic_hash": ""
   },
   "README.md": {
@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "docs/04-ROADMAP.md": {
-    "mtime": 1783968829.5727284,
-    "ast_hash": "a639254edb87351d126ff08de4993d62",
+    "mtime": 1784008421.5802412,
+    "ast_hash": "6fd0ff206610e3d88dfc517492c6801a",
     "semantic_hash": ""
   },
   "docs/README.md": {
@@ -295,8 +295,8 @@
     "semantic_hash": ""
   },
   "services/backend/app/api/timetable.py": {
-    "mtime": 1783959207.0884683,
-    "ast_hash": "a128eafe9b75522677c13409b7d2c614",
+    "mtime": 1784007259.6825373,
+    "ast_hash": "e1da9d52917f4a820cbb2d1bf1f6f794",
     "semantic_hash": ""
   },
   "services/backend/app/solver/__init__.py": {
@@ -320,8 +320,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/approvals/page.tsx": {
-    "mtime": 1783968658.1064382,
-    "ast_hash": "dc7140923128a7aa0e5679722a0cf127",
+    "mtime": 1784007694.4329195,
+    "ast_hash": "077447187f4aacc1e0b3cdac361f77a7",
     "semantic_hash": ""
   },
   "apps/web/src/app/inbox/page.tsx": {
@@ -335,13 +335,13 @@
     "semantic_hash": ""
   },
   "services/backend/app/agents/specialists/substitution.py": {
-    "mtime": 1783968206.1291168,
-    "ast_hash": "4eee2ebbdba77099e170e59da9ec6a81",
+    "mtime": 1784007199.3443058,
+    "ast_hash": "def0fa2e1c76cb9abc4db69f252430a7",
     "semantic_hash": ""
   },
   "services/backend/app/api/approvals.py": {
-    "mtime": 1783968234.0811708,
-    "ast_hash": "382ec78b28f6147953b7f9ffaf45d1e6",
+    "mtime": 1784007221.4733362,
+    "ast_hash": "4d7d8eca4a9dd5bfb5990f3e1f5f0738",
     "semantic_hash": ""
   },
   "services/backend/app/api/leaves.py": {
@@ -360,8 +360,23 @@
     "semantic_hash": ""
   },
   "docs/05-DEMO-SCRIPT.md": {
-    "mtime": 1783968818.6243527,
-    "ast_hash": "63ea1b9f5e0f13a919143125f44c473a",
+    "mtime": 1784008474.0821526,
+    "ast_hash": "d25880eac298a7d17896e259b52a592a",
+    "semantic_hash": ""
+  },
+  "apps/web/src/app/exchanges/page.tsx": {
+    "mtime": 1784007735.5275502,
+    "ast_hash": "590673d74b50026d24912e4b00142c84",
+    "semantic_hash": ""
+  },
+  "services/backend/app/tools/exchange.py": {
+    "mtime": 1784007275.0799065,
+    "ast_hash": "beb38921cfd687b10b5825260ac0b21d",
+    "semantic_hash": ""
+  },
+  "docs/06-EXCHANGE-PLAN.md": {
+    "mtime": 1784006744.9399114,
+    "ast_hash": "8d39ed07d00a4bd484141297ef5be8b5",
     "semantic_hash": ""
   }
 }

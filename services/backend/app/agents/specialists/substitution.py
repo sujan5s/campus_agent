@@ -1,9 +1,11 @@
-"""Substitution Agent — the F2 flagship (docs/01-FEATURES.md, research/04+07).
+"""Substitution Agent — the F2 flagship (docs/06-EXCHANGE-PLAN.md, research/04+07).
 
 Triggered proactively when a leave is approved (no human prompt). Builds a
-minimal-perturbation cover plan, then PAUSES via LangGraph interrupt() until
-the HOD approves — the checkpointer stores the paused thread; the Approval row
-stores the thread id. POST /api/approvals/{id}/decide resumes this exact node.
+period-exchange plan (a partner teacher of the same section swaps their lesson
+into the leave slot; the absent teacher recovers it later in the partner's slot),
+then PAUSES via LangGraph interrupt() until the HOD approves — the checkpointer
+stores the paused thread; the Approval row stores the thread id.
+POST /api/approvals/{id}/decide resumes this exact node.
 
 NOTE on idempotency: after resume, LangGraph re-executes this node from the
 top, so every step before interrupt() must be safe to run twice. build_plan()
@@ -16,7 +18,7 @@ from langgraph.types import interrupt
 from app.agents.state import AgentState
 from app.db.models import Approval, Leave
 from app.db.session import SessionLocal
-from app.tools.substitution import (
+from app.tools.exchange import (
     apply_plan, build_plan, plan_summary, reject_plan,
 )
 
@@ -58,14 +60,15 @@ def substitution_node(state: AgentState, config) -> dict:
         rows = build_plan(db, leave)   # idempotent
         summary = plan_summary(db, leave_id)
         steps.append(f"SubstitutionAgent: {summary['lessons_affected']} lesson(s) affected; "
-                     f"{summary['covered']} covered by ranked candidates "
-                     "(subject match > same dept > free, workload-weighted).")
+                     f"{summary['exchanged']} resolved by period exchanges "
+                     "(same-section partner swaps in, absent teacher recovers the lesson later — "
+                     "subject hours preserved).")
 
         if not rows:
             return {"steps": steps,
                     "final_response": (f"Leave approved for {summary['teacher']} "
                                        f"({summary['from_date']} → {summary['to_date']}). "
-                                       "No scheduled classes fall in this window — no substitutions needed."),
+                                       "No scheduled classes fall in this window — no exchanges needed."),
                     "params": summary}
 
         # Approval record (idempotent) so the HOD sees a card + we can resume
@@ -96,19 +99,20 @@ def substitution_node(state: AgentState, config) -> dict:
         action = (decision or {}).get("action", "reject")
         if action == "approve":
             result = apply_plan(db, leave_id)
-            steps.append(f"SubstitutionAgent: plan approved — {result['applied']} substitution(s) "
-                         f"confirmed, {result['notified']} teacher(s) notified.")
+            steps.append(f"SubstitutionAgent: plan approved — {result['exchanged']} period "
+                         f"exchange(s) confirmed, {result['notified']} partner(s) notified.")
             response = (
-                f"Substitution plan for {summary['teacher']}'s leave is now in effect.\n"
-                f"- {result['applied']} lesson(s) reassigned, {summary['covered']} covered\n"
-                f"- {result['notified']} substitute teacher(s) notified in their inbox\n"
-                f"- {summary['teacher']} has been informed their classes are covered"
+                f"Period-exchange plan for {summary['teacher']}'s leave is now in effect.\n"
+                f"- {result['exchanged']} of {summary['lessons_affected']} lesson(s) resolved by exchange\n"
+                f"- {result['notified']} partner teacher(s) notified in their inbox\n"
+                f"- {summary['teacher']} informed of the recovery schedule\n"
+                f"- Original timetable unchanged — exchanges apply only on the affected dates"
             )
         else:
             reject_plan(db, leave_id)
-            steps.append("SubstitutionAgent: plan rejected by approver — substitutions discarded.")
-            response = ("The substitution plan was rejected. The affected classes remain "
-                        "uncovered — an admin can re-trigger planning or arrange cover manually.")
+            steps.append("SubstitutionAgent: plan rejected by approver — exchanges discarded.")
+            response = ("The period-exchange plan was rejected. The affected classes remain "
+                        "unarranged — an admin can re-trigger planning or arrange cover manually.")
         return {"steps": steps, "final_response": response,
                 "params": {**summary, "decision": action}}
     finally:

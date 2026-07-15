@@ -21,6 +21,7 @@ import {
   LogIn,
   CalendarX,
   ClipboardCheck,
+  ArrowLeftRight,
   Inbox,
 } from "lucide-react";
 
@@ -325,6 +326,13 @@ export default function Dashboard() {
               >
                 <ClipboardCheck className="h-5 w-5" />
                 <span className="text-sm font-medium">Approvals</span>
+              </a>
+              <a
+                href="/exchanges"
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              >
+                <ArrowLeftRight className="h-5 w-5" />
+                <span className="text-sm font-medium">Exchanges</span>
               </a>
               <a
                 href="/inbox"

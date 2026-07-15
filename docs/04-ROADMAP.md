@@ -40,6 +40,29 @@ Phase 0 turns it into the real platform every feature plugs into.
 - [x] 2026-07-14 Notification Agent v1 — in-app inbox (`/inbox` page, 15s polling, unread badges, mark-read) via `app/api/notifications.py`. WebSocket push deferred to Phase 3
 - [x] 2026-07-14 Flagship demo flow scripted in `docs/05-DEMO-SCRIPT.md` Act 3 and verified end-to-end twice (leave #1 approve path, leave #2 reject path)
 
+## Phase 2.1 — Period-exchange substitution model (replaces ranked-cover)
+
+Real college practice: teachers **exchange periods** rather than have a stand-in teach the
+wrong subject. Partner B (same section) teaches their own lesson in A's leave slot; A recovers
+the missed lesson later in B's vacated slot. Subject hours preserved; original timetable never
+mutated. Full spec: `docs/06-EXCHANGE-PLAN.md`.
+
+- [x] 2026-07-14 New `PeriodExchange` table (new table only — `create_all` can't alter columns;
+  legacy `substitutions` kept as history). `app/tools/exchange.py` (same 5-function interface
+  as the old `substitution.py`): partner search = same-section teacher free at A's slot on the
+  leave date, with a recovery date on the partner's weekday after leave end; scored by nearest
+  recovery > plan-spread > weekly-load fairness; labs excluded (manual); idempotent by `plan_id`
+- [x] 2026-07-14 Agent node + approvals API + safety sweep re-pointed to the exchange tools;
+  `interrupt()`/resume/Approval flow unchanged. HOD card now shows exchange pairs with recovery
+  dates; notifications go to both the partner and the returning teacher
+- [x] 2026-07-14 Dated overlay views: `GET /api/timetable/effective/{section}?date=` (single-day
+  grid with exchanged cells flagged) + `GET /api/timetable/exchanges?from=&to=` (board). New
+  `/exchanges` frontend page (board + effective day grid); `/approvals` card reworked. Original
+  `timetable_entries` verified unchanged (312→312) across an approve cycle
+- [x] 2026-07-14 Verified live: approve path (2 exchanges, partners teach own subjects on leave
+  date, Anita recovers next day; both inboxes correct), reject path (rows rejected, overlay clean),
+  idempotency across interrupt/resume (build_plan ran twice, produced 2 rows not 4). TSC clean
+
 ## Phase 3 — F3 Event Booking + F4 Knowledge RAG (≈2 weeks)
 
 - [ ] Booking tools (availability vs bookings **and** timetable, capacity match, alternatives)

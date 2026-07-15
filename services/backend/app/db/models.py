@@ -125,6 +125,8 @@ class Leave(Base):
 
 
 class Substitution(Base):
+    """Legacy ranked-cover model (Phase 2.0). Kept for history; the live flow now
+    uses PeriodExchange (Phase 2.1). Do not remove — old plan rows reference it."""
     __tablename__ = "substitutions"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -134,6 +136,32 @@ class Substitution(Base):
     substitute_teacher_id: Mapped[int | None] = mapped_column(ForeignKey("teachers.id"), nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="proposed")  # proposed | approved | rejected
     plan_id: Mapped[str | None] = mapped_column(String(64), nullable=True)  # groups one agent plan
+
+
+class PeriodExchange(Base):
+    """One exchanged pair (Phase 2.1): A's missed lesson on the leave date is taken
+    by partner B (teaching B's own subject), and A recovers it in B's slot on
+    recovery_date. The original timetable_entries are never mutated — this is a
+    dated overlay only."""
+    __tablename__ = "period_exchanges"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    plan_id: Mapped[str] = mapped_column(String(64))              # "exchange-leave-<leave_id>"
+    leave_id: Mapped[int] = mapped_column(ForeignKey("leaves.id"))
+
+    # Leave-date side: A's lesson that is missed
+    absent_entry_id: Mapped[int] = mapped_column(ForeignKey("timetable_entries.id"))
+    leave_date: Mapped[date] = mapped_column(Date)                # D
+
+    # Partner side: B's lesson whose slot hosts the recovery. NULL = no exchange found.
+    partner_entry_id: Mapped[int | None] = mapped_column(ForeignKey("timetable_entries.id"), nullable=True)
+    recovery_date: Mapped[date | None] = mapped_column(Date, nullable=True)  # R
+
+    absent_teacher_id: Mapped[int] = mapped_column(ForeignKey("teachers.id"))
+    partner_teacher_id: Mapped[int | None] = mapped_column(ForeignKey("teachers.id"), nullable=True)
+
+    status: Mapped[str] = mapped_column(String(20), default="proposed")  # proposed | confirmed | rejected
+    rationale: Mapped[str] = mapped_column(Text, default="")
 
 
 # --- Events & bookings (Phase 3) ---------------------------------------------
