@@ -2,12 +2,12 @@
 
 **START HERE:** Read `docs/README.md`, then `docs/04-ROADMAP.md` before starting work.
 
-**Status (2026-07-14):** Phases 0, 1, 2 complete. Smart Campus Agent System — AI-driven campus ops platform.
-- **Supervisor-router** LLM with keyword fallback; swappable providers (Gemini/Claude/OpenAI/Ollama) via `.env` only
-- **SQLAlchemy models** (15 tables) + idempotent seeding; JWT auth + role-based access
-- **OR-Tools CP-SAT timetable solver** — 8 hard constraints, fairness objective, clash-free verified
-- **F1 Timetable Agent** + admin `/setup` (CRUD + CSV) + `/timetable` grid UI
-- **F2 Leave & Substitution (flagship)** — proactive trigger → Substitution Agent builds a **period-exchange** plan (partner of same section swaps their lesson into the leave slot; absent teacher recovers it later in the partner's slot — subject hours preserved, original timetable untouched) → LangGraph `interrupt()` → HOD approval card → resume with `Command(resume=...)` → notifications to partner + returning teacher. Dated overlay via `/api/timetable/effective/{section}?date=` + `/exchanges` page. Spec: `docs/06-EXCHANGE-PLAN.md`. Both paths verified live.
+**Status (2026-07-15):** Phases 0, 1, 2, 2.2, 2.3 complete. Smart Campus Agent System — AI-driven campus ops platform.
+- **Supervisor-router** LLM with keyword fallback; swappable providers (Gemini/Claude/OpenAI/Ollama) via `.env` only. **System-sourced triggers (leave approval, sweep) skip the LLM** and route deterministically.
+- **SQLAlchemy models** (16 tables) + idempotent seeding; JWT auth + role-based access
+- **OR-Tools CP-SAT timetable solver** — 8 base hard constraints + optional admin constraints (H9 no same-subject back-to-back — **ON by default**, H10 teacher consecutive-teaching cap, half-days), all configurable **per class** (`section_rules`: global defaults + per-section overrides), fairness objective, clash-free verified
+- **F1 Timetable Agent** + admin `/setup` (CRUD + CSV) + `/timetable` grid UI with a **Constraints panel** (scope selector: all-classes vs per-class; half-days, anti-consecutive, teacher run cap) and a **Download PDF** button (client-side jsPDF + jspdf-autotable, per-section grid, any role); config stored per version in `timetable_configs`. Specs: `docs/07-PHASE2.2-PLAN.md`, `docs/08-PHASE2.3-PLAN.md`.
+- **F2 Leave & Substitution (flagship)** — proactive trigger → Substitution Agent builds a **period-exchange** plan (partner of same section swaps their lesson into the leave slot; absent teacher recovers it later in the partner's slot — subject hours preserved, original timetable untouched). The planner now **avoids hectic back-to-back scheduling**: candidates that create same-subject adjacency for students or 3+ consecutive teaching periods are penalised (with a ⚠ warning on the approval card) rather than chosen. → LangGraph `interrupt()` → HOD approval card → resume with `Command(resume=...)` → notifications to partner + returning teacher. Dated overlay via `/api/timetable/effective/{section}?date=` + `/exchanges` page (table view). Spec: `docs/06-EXCHANGE-PLAN.md`. Both paths verified live.
 - **LangGraph checkpointer** (durable threads per `thread_id`); **APScheduler safety sweep**
 - **Docs:** architecture in `docs/02-ARCHITECTURE.md`, demo script in `docs/05-DEMO-SCRIPT.md`
 - **Use `graphify query "<question>"` to navigate code** (graph updated 2026-07-14)
@@ -42,7 +42,7 @@ npm run dev  # starts at http://localhost:3000
 - `agents/` — graph, supervisor, state, specialists/ (timetable, substitution, general, stubs)
 - `tools/` — timetable, exchange (Phase 2.1 period-exchange, live), substitution (Phase 2.0 legacy)
 - `solver/` — timetable_model (OR-Tools CP-SAT, 8 hard constraints)
-- `db/` — models (15 tables), seed, session
+- `db/` — models (16 tables), seed, session
 - `core/` — llm (swappable), config, security
 
 **Frontend** (`apps/web/src/app/`):
@@ -71,7 +71,7 @@ JWT_SECRET=change-me-in-production
 
 **Note:** If LLM key is missing/invalid, system falls back to deterministic keyword routing — demo never fails. Full semantic routing requires a valid LLM key.
 
-**Data model:** 15 tables in `app/db/models.py`. See code for schema; tools query DB, agents never do raw SQL.
+**Data model:** 16 tables in `app/db/models.py`. See code for schema; tools query DB, agents never do raw SQL.
 
 **LangGraph workflow:** Supervisor routes → specialist node (timetable|substitution|general) → tool calls → END. State persisted per `thread_id` for durable resumption. `interrupt()` pauses for human approval (Phase 2).
 

@@ -177,35 +177,58 @@ export default function ExchangesPage() {
 
           {day && !day.note && (
             <>
-              <p className="text-xs text-slate-400 mb-3">{day.section} · {day.day} {day.date}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {day.entries.map((e) => (
-                  <div key={e.period}
-                    className={`glass-card rounded-xl p-3 ${e.exchanged ? "border border-amber-500/40" : ""}`}>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-slate-500 font-semibold">P{e.period} · {e.time}</span>
-                      {e.exchanged && (
-                        <span className="text-[10px] font-bold text-amber-300 flex items-center space-x-1">
-                          <ArrowLeftRight className="h-3 w-3" /><span>swap</span>
-                        </span>
-                      )}
-                    </div>
-                    <div className="font-mono text-indigo-300 font-bold text-sm mt-1">{e.subject}</div>
-                    <div className="text-[11px] text-slate-400">{e.subject_name}</div>
-                    <div className="text-xs text-slate-300 mt-1">{e.teacher} · {e.room}</div>
-                    {e.exchanged && e.swap && (
-                      <div className="text-[10px] text-amber-400/80 mt-1.5 leading-relaxed">
-                        {e.swap.role === "exchanged_in"
-                          ? `⇄ covers for ${e.swap.with} — their ${e.swap.their_subject} recovered ${e.swap.counterpart_day} P${e.swap.counterpart_period}${e.swap.counterpart_date ? ` (${e.swap.counterpart_date})` : ""}`
-                          : `⇄ recovery of ${e.teacher}'s lesson swapped with ${e.swap.with} (${e.swap.their_subject}, ${e.swap.counterpart_day} P${e.swap.counterpart_period}${e.swap.counterpart_date ? `, ${e.swap.counterpart_date}` : ""})`}
-                      </div>
-                    )}
-                  </div>
-                ))}
-                {day.entries.length === 0 && (
-                  <p className="text-slate-500 text-sm col-span-full text-center py-4">No periods scheduled for this day.</p>
-                )}
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <p className="text-xs text-slate-400">{day.section} · {day.day} {day.date}</p>
+                <div className="flex items-center space-x-1.5 text-[10px] text-slate-500">
+                  <span className="inline-block w-3 h-3 rounded-sm bg-amber-500/20 border border-amber-500/40" />
+                  <span>exchanged period</span>
+                </div>
               </div>
+              {day.entries.length === 0 ? (
+                <p className="text-slate-500 text-sm text-center py-6">No periods scheduled for this day.</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="border-b border-slate-800">
+                      <tr>
+                        {["Period", "Subject", "Teacher", "Room", "Exchange"].map((h) => (
+                          <th key={h} className="text-left text-[10px] text-slate-400 uppercase tracking-wider font-semibold px-3 py-2 whitespace-nowrap">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/60">
+                      {day.entries.map((e) => (
+                        <tr key={e.period} className={e.exchanged ? "bg-amber-500/[0.07]" : ""}>
+                          <td className="px-3 py-2.5 whitespace-nowrap align-top">
+                            <div className="text-sm font-semibold text-slate-300">P{e.period}</div>
+                            <div className="text-[10px] text-slate-500">{e.time}</div>
+                          </td>
+                          <td className="px-3 py-2.5 align-top">
+                            <div className="flex items-center space-x-1.5">
+                              <span className="font-mono text-indigo-300 font-bold text-sm">{e.subject}</span>
+                              {e.exchanged && <ArrowLeftRight className="h-3 w-3 text-amber-400" />}
+                            </div>
+                            <div className="text-[11px] text-slate-400">{e.subject_name}</div>
+                          </td>
+                          <td className="px-3 py-2.5 text-sm text-slate-300 align-top whitespace-nowrap">{e.teacher}</td>
+                          <td className="px-3 py-2.5 text-sm text-slate-400 align-top whitespace-nowrap">{e.room}</td>
+                          <td className="px-3 py-2.5 align-top max-w-[280px]">
+                            {e.exchanged && e.swap ? (
+                              <span className="text-[10px] text-amber-400/90 leading-relaxed">
+                                {e.swap.role === "exchanged_in"
+                                  ? `⇄ covers for ${e.swap.with} — their ${e.swap.their_subject} recovered ${e.swap.counterpart_day} P${e.swap.counterpart_period}${e.swap.counterpart_date ? ` (${e.swap.counterpart_date})` : ""}`
+                                  : `⇄ recovery of ${e.teacher}'s lesson swapped with ${e.swap.with} (${e.swap.their_subject}, ${e.swap.counterpart_day} P${e.swap.counterpart_period}${e.swap.counterpart_date ? `, ${e.swap.counterpart_date}` : ""})`}
+                              </span>
+                            ) : (
+                              <span className="text-slate-600 text-xs">—</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </>
           )}
         </div>

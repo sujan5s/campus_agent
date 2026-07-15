@@ -8,7 +8,8 @@ research/03).
 """
 from app.agents.state import AgentState
 from app.core.llm import get_llm, is_llm_configured
-from app.tools.timetable import generate_timetable
+from app.db.session import SessionLocal
+from app.tools.timetable import generate_timetable, options_from_config
 
 _EXPLAIN_SYSTEM = (
     "You are the Timetable Agent of a smart campus system. The constraint solver "
@@ -21,7 +22,14 @@ _EXPLAIN_SYSTEM = (
 def timetable_node(state: AgentState) -> dict:
     steps = ["TimetableAgent: loading master data (sections, subjects, teachers, rooms, slots)..."]
 
-    result = generate_timetable()
+    # Reuse the constraints the admin last generated with (half-days, no
+    # back-to-back, teacher caps) so chat regeneration doesn't silently drop them.
+    db = SessionLocal()
+    try:
+        options = options_from_config(db)
+    finally:
+        db.close()
+    result = generate_timetable(options=options)
     steps.append("TimetableAgent: CP-SAT solver executed "
                  f"({result.get('wall_time_s', '?')}s).")
 

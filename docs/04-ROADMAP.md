@@ -63,6 +63,60 @@ mutated. Full spec: `docs/06-EXCHANGE-PLAN.md`.
   date, Anita recovers next day; both inboxes correct), reject path (rows rejected, overlay clean),
   idempotency across interrupt/resume (build_plan ran twice, produced 2 rows not 4). TSC clean
 
+## Phase 2.2 — Anti-hectic scheduling: exchange adjacency guard + configurable generation
+
+Two follow-ups from real college practice: keep back-to-back same-subject periods out of both
+exchange plans and generated timetables, and let admins encode local rules (half-days, etc.) at
+generation time. Full spec: `docs/07-PHASE2.2-PLAN.md`.
+
+- [x] 2026-07-15 Exchange adjacency guard — `_pick_partner` now computes an *effective* per-date
+  section map (base timetable + other confirmed exchanges + this plan's in-progress placements) and
+  penalises candidates (−100 each, not hard-rejected) that would create same-subject student
+  back-to-back, >2 of a subject/day, or 3+ consecutive teaching periods for either teacher. A clean
+  swap always wins; an unavoidable one is still proposed but carries a ⚠ rationale + `warning` flag.
+  Break-aware adjacency mirrors the solver's `_consecutive_pairs`. Verified: clean flow finds
+  non-hectic swaps, forced-adjacency scenario emits the warning, idempotency preserved
+- [x] 2026-07-15 Configurable generation constraints — `SolveOptions` (half_days, no_same_subject
+  _consecutive→H9, max_consecutive_teaching→H10) threaded through `solve()`/`generate_timetable`;
+  half-days implemented by slot filtering (precheck explains infeasibility for free); H9/H10 as
+  optional CP-SAT assumption groups (named in infeasibility output). Per-version config persisted in
+  new `timetable_configs` table (16th). `POST /generate` takes an optional validated body; `/status`
+  returns the active version's config. Verified: each constraint holds in solver output, defaults =
+  unchanged behavior, half-day/bad-day validation returns 422
+- [x] 2026-07-15 UI — `/timetable` Constraints panel (per-day half-day toggles + last-period, anti-
+  consecutive toggle, teacher run-cap input) posts the body and shows a config summary; `/approvals`
+  tints ⚠ rows amber; `/exchanges` effective day view rendered as a **table** (period rows). TSC clean
+
+## Phase 2.3 — Per-class constraints, back-to-back off by default, fast plan creation
+
+Three bug/UX fixes surfaced in real use. Full spec: `docs/08-PHASE2.3-PLAN.md`.
+
+- [x] 2026-07-15 **Per-class constraints** — `SolveOptions` gained `section_rules` (by section id):
+  global defaults + per-section overrides for half-days and no-back-to-back (`SectionRules`, section
+  wins per day). Half-days reimplemented as **per-section allowed-slot sets** (global slot filtering
+  was wrong once one class keeps the full day) — disallowed placements pinned `x==0`. `precheck` is
+  now per-section and adds a lab consecutive-block feasibility check. `POST /generate` body takes
+  `sections: [{section, half_days, no_same_subject_consecutive}]`; config persisted with section
+  **names**. Verified: per-section half-day cuts only that class, override beats global, unknown/
+  duplicate section → 422, lab-infeasible half-days → precise 422, config round-trips
+- [x] 2026-07-15 **No back-to-back by default** — `no_same_subject_consecutive` now defaults **ON**
+  (solver, API `GenerateIn`, UI checkbox). The agent/chat path (`timetable_node`) was calling
+  `generate_timetable()` bare — it now loads `options_from_config(db)` so chat regeneration keeps the
+  admin's rules. Lab hardening: H8 "≤2/day" now applies to lab subjects too (a ppw>2 lab can't stack
+  a 3rd period next to its block). Verified: empty body & chat path both yield 0 theory back-to-back;
+  explicit `false` opts out; synthetic lab ppw=3 never places 3 adjacent
+- [x] 2026-07-15 **Fast plan creation** — two culprits fixed. (a) `supervisor_node` now short-circuits
+  system-sourced triggers (leave approval / APScheduler sweep) straight to `substitution` with **no
+  LLM call** — the trigger already carries the intent. (b) The Phase 2.2 adjacency guard was an N+1
+  query storm (per candidate per lesson); replaced with a `PlanContext` built once (~5 queries,
+  everything else in-memory). Differential test vs the old query-based helpers: **0 mismatches** across
+  all sections/teachers/days. Measured: leave-approval graph invoke **~7 s → 72 ms**, no LLM in trace,
+  interrupt/resume + idempotency unchanged
+- [x] 2026-07-15 **Download timetable as PDF** — `/timetable` PDF button (any role) renders the
+  current section's grid via client-side jsPDF + jspdf-autotable (dynamic-imported), landscape A4,
+  lab cells tinted, title/version/constraints header + app footer. Filename
+  `timetable-<section>-v<version>.pdf`. Verified headless: valid `%PDF-`, all autotable hooks run
+
 ## Phase 3 — F3 Event Booking + F4 Knowledge RAG (≈2 weeks)
 
 - [ ] Booking tools (availability vs bookings **and** timetable, capacity match, alternatives)

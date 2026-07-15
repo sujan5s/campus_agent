@@ -162,64 +162,64 @@
       "norm_label": "dependencies"
     },
     {
-      "label": "clsx",
+      "label": "react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "apps_web_package_dependencies_clsx",
+      "id": "apps_web_package_dependencies_react",
       "community": 3,
-      "norm_label": "clsx"
+      "norm_label": "react"
     },
     {
-      "label": "clsx",
+      "label": "react",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "clsx",
+      "id": "react",
       "community": 3,
-      "norm_label": "clsx"
+      "norm_label": "react"
     },
     {
-      "label": "jspdf",
+      "label": "react-dom",
       "file_type": "code",
       "source_file": "apps/web/package.json",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "apps_web_package_dependencies_jspdf",
+      "id": "apps_web_package_dependencies_react_dom",
       "community": 3,
-      "norm_label": "jspdf"
+      "norm_label": "react-dom"
     },
     {
-      "label": "jspdf",
+      "label": "react-dom",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "jspdf",
+      "id": "react_dom",
       "community": 3,
-      "norm_label": "jspdf"
+      "norm_label": "react-dom"
     },
     {
-      "label": "jspdf-autotable",
+      "label": "next",
       "file_type": "code",
       "source_file": "apps/web/package.json",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "apps_web_package_dependencies_jspdf_autotable",
+      "id": "apps_web_package_dependencies_next",
       "community": 3,
-      "norm_label": "jspdf-autotable"
+      "norm_label": "next"
     },
     {
-      "label": "jspdf-autotable",
+      "label": "next",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "jspdf_autotable",
+      "id": "next",
       "community": 3,
-      "norm_label": "jspdf-autotable"
+      "norm_label": "next"
     },
     {
       "label": "lucide-react",
@@ -242,70 +242,30 @@
       "norm_label": "lucide-react"
     },
     {
-      "label": "next",
+      "label": "clsx",
       "file_type": "code",
       "source_file": "apps/web/package.json",
       "source_location": "L16",
       "_origin": "ast",
-      "id": "apps_web_package_dependencies_next",
+      "id": "apps_web_package_dependencies_clsx",
       "community": 3,
-      "norm_label": "next"
+      "norm_label": "clsx"
     },
     {
-      "label": "next",
+      "label": "clsx",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
       "source_location": "L16",
       "_origin": "ast",
-      "id": "next",
+      "id": "clsx",
       "community": 3,
-      "norm_label": "next"
-    },
-    {
-      "label": "react",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "apps_web_package_dependencies_react",
-      "community": 3,
-      "norm_label": "react"
-    },
-    {
-      "label": "react",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "react",
-      "community": 3,
-      "norm_label": "react"
-    },
-    {
-      "label": "react-dom",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "apps_web_package_dependencies_react_dom",
-      "community": 3,
-      "norm_label": "react-dom"
-    },
-    {
-      "label": "react-dom",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "react_dom",
-      "community": 3,
-      "norm_label": "react-dom"
+      "norm_label": "clsx"
     },
     {
       "label": "tailwind-merge",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L19",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_tailwind_merge",
       "community": 3,
@@ -315,7 +275,7 @@
       "label": "tailwind-merge",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L19",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "tailwind_merge",
       "community": 3,
@@ -325,177 +285,17 @@
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L21",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies",
       "community": 3,
       "norm_label": "devdependencies"
     },
     {
-      "label": "@types/node",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_types_node",
-      "community": 3,
-      "norm_label": "@types/node"
-    },
-    {
-      "label": "@types/node",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "types_node",
-      "community": 3,
-      "norm_label": "@types/node"
-    },
-    {
-      "label": "@types/react",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L23",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_types_react",
-      "community": 3,
-      "norm_label": "@types/react"
-    },
-    {
-      "label": "@types/react",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L23",
-      "_origin": "ast",
-      "id": "types_react",
-      "community": 3,
-      "norm_label": "@types/react"
-    },
-    {
-      "label": "@types/react-dom",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_types_react_dom",
-      "community": 3,
-      "norm_label": "@types/react-dom"
-    },
-    {
-      "label": "@types/react-dom",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "types_react_dom",
-      "community": 3,
-      "norm_label": "@types/react-dom"
-    },
-    {
-      "label": "autoprefixer",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L25",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_autoprefixer",
-      "community": 3,
-      "norm_label": "autoprefixer"
-    },
-    {
-      "label": "autoprefixer",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L25",
-      "_origin": "ast",
-      "id": "autoprefixer",
-      "community": 3,
-      "norm_label": "autoprefixer"
-    },
-    {
-      "label": "eslint",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L26",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_eslint",
-      "community": 3,
-      "norm_label": "eslint"
-    },
-    {
-      "label": "eslint",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L26",
-      "_origin": "ast",
-      "id": "eslint",
-      "community": 3,
-      "norm_label": "eslint"
-    },
-    {
-      "label": "eslint-config-next",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_eslint_config_next",
-      "community": 3,
-      "norm_label": "eslint-config-next"
-    },
-    {
-      "label": "eslint-config-next",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "eslint_config_next",
-      "community": 3,
-      "norm_label": "eslint-config-next"
-    },
-    {
-      "label": "postcss",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L28",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_postcss",
-      "community": 3,
-      "norm_label": "postcss"
-    },
-    {
-      "label": "postcss",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L28",
-      "_origin": "ast",
-      "id": "postcss",
-      "community": 3,
-      "norm_label": "postcss"
-    },
-    {
-      "label": "tailwindcss",
-      "file_type": "code",
-      "source_file": "apps/web/package.json",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "apps_web_package_devdependencies_tailwindcss",
-      "community": 3,
-      "norm_label": "tailwindcss"
-    },
-    {
-      "label": "tailwindcss",
-      "file_type": "concept",
-      "source_file": "apps/web/package.json",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "tailwindcss",
-      "community": 3,
-      "norm_label": "tailwindcss"
-    },
-    {
       "label": "typescript",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_typescript",
       "community": 3,
@@ -505,11 +305,171 @@
       "label": "typescript",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "typescript",
       "community": 3,
       "norm_label": "typescript"
+    },
+    {
+      "label": "@types/node",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_types_node",
+      "community": 3,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "@types/node",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "types_node",
+      "community": 3,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_types_react",
+      "community": 3,
+      "norm_label": "@types/react"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "types_react",
+      "community": 3,
+      "norm_label": "@types/react"
+    },
+    {
+      "label": "@types/react-dom",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_types_react_dom",
+      "community": 3,
+      "norm_label": "@types/react-dom"
+    },
+    {
+      "label": "@types/react-dom",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "types_react_dom",
+      "community": 3,
+      "norm_label": "@types/react-dom"
+    },
+    {
+      "label": "postcss",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_postcss",
+      "community": 3,
+      "norm_label": "postcss"
+    },
+    {
+      "label": "postcss",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "postcss",
+      "community": 3,
+      "norm_label": "postcss"
+    },
+    {
+      "label": "tailwindcss",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_tailwindcss",
+      "community": 3,
+      "norm_label": "tailwindcss"
+    },
+    {
+      "label": "tailwindcss",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "tailwindcss",
+      "community": 3,
+      "norm_label": "tailwindcss"
+    },
+    {
+      "label": "autoprefixer",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_autoprefixer",
+      "community": 3,
+      "norm_label": "autoprefixer"
+    },
+    {
+      "label": "autoprefixer",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "autoprefixer",
+      "community": 3,
+      "norm_label": "autoprefixer"
+    },
+    {
+      "label": "eslint",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_eslint",
+      "community": 3,
+      "norm_label": "eslint"
+    },
+    {
+      "label": "eslint",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "eslint",
+      "community": 3,
+      "norm_label": "eslint"
+    },
+    {
+      "label": "eslint-config-next",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "apps_web_package_devdependencies_eslint_config_next",
+      "community": 3,
+      "norm_label": "eslint-config-next"
+    },
+    {
+      "label": "eslint-config-next",
+      "file_type": "concept",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "eslint_config_next",
+      "community": 3,
+      "norm_label": "eslint-config-next"
     },
     {
       "label": "postcss.config.mjs",
@@ -1005,7 +965,7 @@
       "label": "WEEKDAYS",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L21",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_weekdays",
       "community": 37,
@@ -1015,7 +975,7 @@
       "label": "ScopeRules",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L23",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_scoperules",
       "community": 37,
@@ -1025,7 +985,7 @@
       "label": "Cell",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_cell",
       "community": 37,
@@ -1035,7 +995,7 @@
       "label": "Grid",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L36",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_grid",
       "community": 37,
@@ -1045,7 +1005,7 @@
       "label": "SectionRow",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L43",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_sectionrow",
       "community": 37,
@@ -1055,7 +1015,7 @@
       "label": "GenerateResult",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L47",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_generateresult",
       "community": 37,
@@ -1065,7 +1025,7 @@
       "label": "SectionRuleCfg",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L56",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_sectionrulecfg",
       "community": 37,
@@ -1075,7 +1035,7 @@
       "label": "SolveConfig",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L60",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_solveconfig",
       "community": 37,
@@ -1085,7 +1045,7 @@
       "label": "halfDayStr()",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L67",
+      "source_location": "L66",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_halfdaystr",
       "community": 37,
@@ -1095,7 +1055,7 @@
       "label": "configSummary()",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L72",
+      "source_location": "L71",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_configsummary",
       "community": 37,
@@ -1105,7 +1065,7 @@
       "label": "PALETTE",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L91",
+      "source_location": "L90",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_palette",
       "community": 37,
@@ -1115,7 +1075,7 @@
       "label": "colorFor()",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L101",
+      "source_location": "L100",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_colorfor",
       "community": 37,
@@ -1125,7 +1085,7 @@
       "label": "TimetablePage()",
       "file_type": "code",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L107",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "apps_web_src_app_timetable_page_timetablepage",
       "community": 37,
@@ -2058,7 +2018,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_auth",
-      "community": 16,
+      "community": 8,
       "norm_label": "auth.py"
     },
     {
@@ -2068,7 +2028,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_loginrequest",
-      "community": 16,
+      "community": 8,
       "norm_label": "loginrequest"
     },
     {
@@ -2078,7 +2038,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_py_basemodel",
-      "community": 16,
+      "community": 8,
       "norm_label": "basemodel"
     },
     {
@@ -2088,7 +2048,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_userout",
-      "community": 16,
+      "community": 8,
       "norm_label": "userout"
     },
     {
@@ -2098,7 +2058,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_loginresponse",
-      "community": 16,
+      "community": 8,
       "norm_label": "loginresponse"
     },
     {
@@ -2108,7 +2068,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_login",
-      "community": 16,
+      "community": 8,
       "norm_label": "login()"
     },
     {
@@ -2118,7 +2078,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_py_session",
-      "community": 16,
+      "community": 8,
       "norm_label": "session"
     },
     {
@@ -2128,7 +2088,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_me",
-      "community": 16,
+      "community": 8,
       "norm_label": "me()"
     },
     {
@@ -2138,7 +2098,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_auth_rationale_1",
-      "community": 16,
+      "community": 8,
       "norm_label": "auth endpoints \u2014 jwt login + current-user. roles: admin | faculty | student."
     },
     {
@@ -2988,7 +2948,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_core_security",
-      "community": 16,
+      "community": 8,
       "norm_label": "security.py"
     },
     {
@@ -3008,7 +2968,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "services_backend_app_core_security_verify_password",
-      "community": 16,
+      "community": 8,
       "norm_label": "verify_password()"
     },
     {
@@ -3018,7 +2978,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "services_backend_app_core_security_create_access_token",
-      "community": 16,
+      "community": 8,
       "norm_label": "create_access_token()"
     },
     {
@@ -3028,7 +2988,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "services_backend_app_core_security_decode_token",
-      "community": 16,
+      "community": 8,
       "norm_label": "decode_token()"
     },
     {
@@ -3038,7 +2998,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "services_backend_app_core_security_get_current_user",
-      "community": 16,
+      "community": 8,
       "norm_label": "get_current_user()"
     },
     {
@@ -3048,7 +3008,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "httpauthorizationcredentials",
-      "community": 16,
+      "community": 8,
       "norm_label": "httpauthorizationcredentials"
     },
     {
@@ -3058,7 +3018,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "services_backend_app_core_security_py_session",
-      "community": 16,
+      "community": 8,
       "norm_label": "session"
     },
     {
@@ -3068,7 +3028,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "services_backend_app_core_security_require_role",
-      "community": 16,
+      "community": 8,
       "norm_label": "require_role()"
     },
     {
@@ -3078,7 +3038,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_core_security_rationale_1",
-      "community": 16,
+      "community": 8,
       "norm_label": "jwt auth + password hashing (docs/02-architecture.md \u00a76).  roles: admin | facult"
     },
     {
@@ -3088,7 +3048,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "services_backend_app_core_security_rationale_47",
-      "community": 16,
+      "community": 8,
       "norm_label": "fastapi dependency: resolve the authenticated user from a bearer token."
     },
     {
@@ -3098,7 +3058,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "services_backend_app_core_security_rationale_60",
-      "community": 16,
+      "community": 8,
       "norm_label": "dependency factory: require_role('admin', 'faculty')."
     },
     {
@@ -3148,7 +3108,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "services_backend_app_db_models_user",
-      "community": 16,
+      "community": 36,
       "norm_label": "user"
     },
     {
@@ -3488,7 +3448,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model",
-      "community": 44,
+      "community": 38,
       "norm_label": "timetable_model.py"
     },
     {
@@ -3498,7 +3458,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_slotin",
-      "community": 44,
+      "community": 38,
       "norm_label": "slotin"
     },
     {
@@ -3508,7 +3468,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_subjectin",
-      "community": 44,
+      "community": 38,
       "norm_label": "subjectin"
     },
     {
@@ -3518,7 +3478,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_teacherin",
-      "community": 44,
+      "community": 38,
       "norm_label": "teacherin"
     },
     {
@@ -3528,7 +3488,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_sectionin",
-      "community": 44,
+      "community": 38,
       "norm_label": "sectionin"
     },
     {
@@ -3538,7 +3498,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_roomin",
-      "community": 44,
+      "community": 38,
       "norm_label": "roomin"
     },
     {
@@ -3548,7 +3508,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_timetableinput",
-      "community": 44,
+      "community": 38,
       "norm_label": "timetableinput"
     },
     {
@@ -3578,7 +3538,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_section_half_days",
-      "community": 44,
+      "community": 38,
       "norm_label": "_section_half_days()"
     },
     {
@@ -3588,7 +3548,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_section_nosc",
-      "community": 44,
+      "community": 38,
       "norm_label": "_section_nosc()"
     },
     {
@@ -3598,7 +3558,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_allowed_indices",
-      "community": 44,
+      "community": 38,
       "norm_label": "_allowed_indices()"
     },
     {
@@ -3608,7 +3568,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_lesson",
-      "community": 44,
+      "community": 38,
       "norm_label": "lesson"
     },
     {
@@ -3618,7 +3578,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_solveresult",
-      "community": 44,
+      "community": 38,
       "norm_label": "solveresult"
     },
     {
@@ -3628,7 +3588,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_precheck",
-      "community": 44,
+      "community": 38,
       "norm_label": "precheck()"
     },
     {
@@ -3638,7 +3598,7 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_consecutive_pairs",
-      "community": 44,
+      "community": 38,
       "norm_label": "_consecutive_pairs()"
     },
     {
@@ -3648,7 +3608,7 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_consecutive_runs",
-      "community": 44,
+      "community": 38,
       "norm_label": "_consecutive_runs()"
     },
     {
@@ -3658,7 +3618,7 @@
       "source_location": "L251",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_solve",
-      "community": 44,
+      "community": 38,
       "norm_label": "solve()"
     },
     {
@@ -3668,7 +3628,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_1",
-      "community": 44,
+      "community": 38,
       "norm_label": "or-tools cp-sat timetable model (docs/02-architecture.md, research/03).  design"
     },
     {
@@ -3698,7 +3658,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_102",
-      "community": 44,
+      "community": 38,
       "norm_label": "global half-days merged with a section's overrides (section wins per day)."
     },
     {
@@ -3708,7 +3668,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_111",
-      "community": 44,
+      "community": 38,
       "norm_label": "effective no-same-subject-consecutive flag for one section."
     },
     {
@@ -3718,7 +3678,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_120",
-      "community": 44,
+      "community": 38,
       "norm_label": "slot indices a section may use, after applying its effective half-days."
     },
     {
@@ -3728,7 +3688,7 @@
       "source_location": "L212",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_212",
-      "community": 44,
+      "community": 38,
       "norm_label": "indices of same-day adjacent slot pairs (end == next start, no break between)."
     },
     {
@@ -3738,7 +3698,7 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "services_backend_app_solver_timetable_model_rationale_226",
-      "community": 44,
+      "community": 38,
       "norm_label": "same-day chains of slot indices that are pairwise time-adjacent (a break     bet"
     },
     {
@@ -4148,7 +4108,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "services_backend_app_tools_substitution_notify_user",
-      "community": 16,
+      "community": 39,
       "norm_label": "notify_user()"
     },
     {
@@ -5045,7 +5005,7 @@
       "label": "Phase 3 \u2014 F3 Event Booking + F4 Knowledge RAG (\u22482 weeks)",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L120",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "docs_04_roadmap_phase_3_f3_event_booking_f4_knowledge_rag_2_weeks",
       "community": 20,
@@ -5055,7 +5015,7 @@
       "label": "Phase 4 \u2014 Polish + stretch picks (remaining time)",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L128",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "docs_04_roadmap_phase_4_polish_stretch_picks_remaining_time",
       "community": 20,
@@ -5065,7 +5025,7 @@
       "label": "Research base",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L140",
+      "source_location": "L136",
       "_origin": "ast",
       "id": "docs_04_roadmap_research_base",
       "community": 20,
@@ -5075,7 +5035,7 @@
       "label": "Decision log",
       "file_type": "document",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L149",
+      "source_location": "L145",
       "_origin": "ast",
       "id": "docs_04_roadmap_decision_log",
       "community": 20,
@@ -5125,7 +5085,7 @@
       "label": "Act 3 \u2014 THE FLAGSHIP: autonomous period-exchange with human-in-the-loop (3 min)",
       "file_type": "document",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L47",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "docs_05_demo_script_act_3_the_flagship_autonomous_period_exchange_with_human_in_the_loop_3_min",
       "community": 42,
@@ -5135,7 +5095,7 @@
       "label": "Act 4 \u2014 Chat + resilience (60s)",
       "file_type": "document",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L81",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "docs_05_demo_script_act_4_chat_resilience_60s",
       "community": 42,
@@ -5145,7 +5105,7 @@
       "label": "Q&A ammunition",
       "file_type": "document",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L89",
+      "source_location": "L88",
       "_origin": "ast",
       "id": "docs_05_demo_script_q_a_ammunition",
       "community": 42,
@@ -6357,7 +6317,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L21",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "apps_web_package",
       "target": "apps_web_package_devdependencies",
@@ -6447,30 +6407,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L12",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "apps_web_package_dependencies",
       "target": "apps_web_package_dependencies_clsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "apps_web_package_dependencies",
-      "target": "apps_web_package_dependencies_jspdf",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L14",
-      "weight": 1.0,
-      "source": "apps_web_package_dependencies",
-      "target": "apps_web_package_dependencies_jspdf_autotable",
       "confidence_score": 1.0
     },
     {
@@ -6487,7 +6427,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L16",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "apps_web_package_dependencies",
       "target": "apps_web_package_dependencies_next",
@@ -6497,7 +6437,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L17",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "apps_web_package_dependencies",
       "target": "apps_web_package_dependencies_react",
@@ -6507,7 +6447,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L18",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "apps_web_package_dependencies",
       "target": "apps_web_package_dependencies_react_dom",
@@ -6517,7 +6457,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L19",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "apps_web_package_dependencies",
       "target": "apps_web_package_dependencies_tailwind_merge",
@@ -6530,8 +6470,8 @@
       "source_location": "L12",
       "weight": 1.0,
       "context": "import",
-      "source": "apps_web_package_dependencies_clsx",
-      "target": "clsx",
+      "source": "apps_web_package_dependencies_react",
+      "target": "react",
       "confidence_score": 1.0
     },
     {
@@ -6541,20 +6481,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "context": "import",
-      "source": "apps_web_package_dependencies_jspdf",
-      "target": "jspdf",
+      "source": "apps_web_package_dependencies_react_dom",
+      "target": "react_dom",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L240",
-      "weight": 1.0,
-      "source": "apps_web_src_app_timetable_page_timetablepage",
-      "target": "apps_web_package_dependencies_jspdf"
     },
     {
       "relation": "imports",
@@ -6563,8 +6492,8 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "import",
-      "source": "apps_web_package_dependencies_jspdf_autotable",
-      "target": "jspdf_autotable",
+      "source": "apps_web_package_dependencies_next",
+      "target": "next",
       "confidence_score": 1.0
     },
     {
@@ -6585,8 +6514,8 @@
       "source_location": "L16",
       "weight": 1.0,
       "context": "import",
-      "source": "apps_web_package_dependencies_next",
-      "target": "next",
+      "source": "apps_web_package_dependencies_clsx",
+      "target": "clsx",
       "confidence_score": 1.0
     },
     {
@@ -6594,28 +6523,6 @@
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
       "source_location": "L17",
-      "weight": 1.0,
-      "context": "import",
-      "source": "apps_web_package_dependencies_react",
-      "target": "react",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L18",
-      "weight": 1.0,
-      "context": "import",
-      "source": "apps_web_package_dependencies_react_dom",
-      "target": "react_dom",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L19",
       "weight": 1.0,
       "context": "import",
       "source": "apps_web_package_dependencies_tailwind_merge",
@@ -6626,7 +6533,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_autoprefixer",
@@ -6636,7 +6543,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_eslint",
@@ -6646,7 +6553,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_eslint_config_next",
@@ -6656,7 +6563,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L28",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_postcss",
@@ -6666,7 +6573,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L29",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_tailwindcss",
@@ -6676,7 +6583,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L22",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_types_node",
@@ -6686,7 +6593,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L23",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_types_react",
@@ -6696,7 +6603,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L24",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_types_react_dom",
@@ -6706,7 +6613,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "apps_web_package_devdependencies",
       "target": "apps_web_package_devdependencies_typescript",
@@ -6716,7 +6623,18 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L22",
+      "source_location": "L20",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_typescript",
+      "target": "typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L21",
       "weight": 1.0,
       "context": "import",
       "source": "apps_web_package_devdependencies_types_node",
@@ -6727,7 +6645,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L23",
+      "source_location": "L22",
       "weight": 1.0,
       "context": "import",
       "source": "apps_web_package_devdependencies_types_react",
@@ -6738,7 +6656,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L24",
+      "source_location": "L23",
       "weight": 1.0,
       "context": "import",
       "source": "apps_web_package_devdependencies_types_react_dom",
@@ -6749,40 +6667,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L25",
-      "weight": 1.0,
-      "context": "import",
-      "source": "apps_web_package_devdependencies_autoprefixer",
-      "target": "autoprefixer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L26",
-      "weight": 1.0,
-      "context": "import",
-      "source": "apps_web_package_devdependencies_eslint",
-      "target": "eslint",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L27",
-      "weight": 1.0,
-      "context": "import",
-      "source": "apps_web_package_devdependencies_eslint_config_next",
-      "target": "eslint_config_next",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/package.json",
-      "source_location": "L28",
+      "source_location": "L24",
       "weight": 1.0,
       "context": "import",
       "source": "apps_web_package_devdependencies_postcss",
@@ -6793,7 +6678,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L29",
+      "source_location": "L25",
       "weight": 1.0,
       "context": "import",
       "source": "apps_web_package_devdependencies_tailwindcss",
@@ -6804,11 +6689,33 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L26",
       "weight": 1.0,
       "context": "import",
-      "source": "apps_web_package_devdependencies_typescript",
-      "target": "typescript",
+      "source": "apps_web_package_devdependencies_autoprefixer",
+      "target": "autoprefixer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_eslint",
+      "target": "eslint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "context": "import",
+      "source": "apps_web_package_devdependencies_eslint_config_next",
+      "target": "eslint_config_next",
       "confidence_score": 1.0
     },
     {
@@ -7645,7 +7552,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_cell",
@@ -7655,7 +7562,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L101",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_colorfor",
@@ -7665,7 +7572,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L72",
+      "source_location": "L71",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_configsummary",
@@ -7675,7 +7582,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L47",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_generateresult",
@@ -7685,7 +7592,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L36",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_grid",
@@ -7695,7 +7602,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L67",
+      "source_location": "L66",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_halfdaystr",
@@ -7705,7 +7612,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L91",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_palette",
@@ -7715,7 +7622,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L23",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_scoperules",
@@ -7725,7 +7632,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L43",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_sectionrow",
@@ -7735,7 +7642,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L56",
+      "source_location": "L55",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_sectionrulecfg",
@@ -7745,7 +7652,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L60",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_solveconfig",
@@ -7755,7 +7662,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L107",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_timetablepage",
@@ -7765,7 +7672,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L21",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_app_timetable_page_weekdays",
@@ -7776,7 +7683,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_lib_api",
@@ -7787,7 +7694,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_lib_api_api",
@@ -7798,7 +7705,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_lib_api_authuser",
@@ -7809,7 +7716,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_lib_api_gettoken",
@@ -7820,7 +7727,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page",
       "target": "apps_web_src_lib_api_getuser",
@@ -7832,7 +7739,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L134",
+      "source_location": "L132",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page_timetablepage",
       "target": "apps_web_src_app_timetable_page_weekdays"
@@ -7842,7 +7749,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L75",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page_configsummary",
       "target": "apps_web_src_app_timetable_page_halfdaystr",
@@ -7853,7 +7760,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L196",
+      "source_location": "L194",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page_timetablepage",
       "target": "apps_web_src_app_timetable_page_configsummary",
@@ -7864,7 +7771,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L525",
+      "source_location": "L439",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page_timetablepage",
       "target": "apps_web_src_app_timetable_page_colorfor",
@@ -7876,7 +7783,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L152",
+      "source_location": "L150",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page_timetablepage",
       "target": "apps_web_src_lib_api_gettoken"
@@ -7887,7 +7794,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/app/timetable/page.tsx",
-      "source_location": "L156",
+      "source_location": "L154",
       "weight": 1.0,
       "source": "apps_web_src_app_timetable_page_timetablepage",
       "target": "apps_web_src_lib_api_getuser"
@@ -15905,7 +15812,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L149",
+      "source_location": "L145",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_decision_log",
@@ -15975,7 +15882,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L120",
+      "source_location": "L116",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_phase_3_f3_event_booking_f4_knowledge_rag_2_weeks",
@@ -15985,7 +15892,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L128",
+      "source_location": "L124",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_phase_4_polish_stretch_picks_remaining_time",
@@ -15995,7 +15902,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/04-ROADMAP.md",
-      "source_location": "L140",
+      "source_location": "L136",
       "weight": 1.0,
       "source": "docs_04_roadmap_04_roadmap_status",
       "target": "docs_04_roadmap_research_base",
@@ -16035,7 +15942,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L47",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "docs_05_demo_script_05_rehearsed_demo_script_reviews_final_viva",
       "target": "docs_05_demo_script_act_3_the_flagship_autonomous_period_exchange_with_human_in_the_loop_3_min",
@@ -16045,7 +15952,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L81",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "docs_05_demo_script_05_rehearsed_demo_script_reviews_final_viva",
       "target": "docs_05_demo_script_act_4_chat_resilience_60s",
@@ -16055,7 +15962,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/05-DEMO-SCRIPT.md",
-      "source_location": "L89",
+      "source_location": "L88",
       "weight": 1.0,
       "source": "docs_05_demo_script_05_rehearsed_demo_script_reviews_final_viva",
       "target": "docs_05_demo_script_q_a_ammunition",

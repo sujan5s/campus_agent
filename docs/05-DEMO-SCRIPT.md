@@ -25,11 +25,22 @@
    minimizes the load gap between teachers. Deterministic and provably clash-free,
    ~175× faster than the genetic algorithms that dominate the literature (IEEE 2024)."*
 2. Grid appears → point at a **lab block** (two consecutive periods, flask icon, lab room).
-3. Switch section in the dropdown — different grid, same guarantees.
-4. **Infeasibility explanation** (the wow): in Data Setup, edit a teacher and remove
+3. Switch section in the dropdown — different grid, same guarantees. Click **PDF** to
+   download the current section's timetable as a formatted PDF (works for any role).
+4. **Configurable constraints** (Phase 2.2/2.3): click **Constraints**. No-same-subject
+   back-to-back is **already on by default**. Use the **"Rules for"** scope selector →
+   pick one class → tick **WED** ends after **P4** → Generate. Banner's config summary
+   shows the per-class rule (e.g. `CSE-7A: WED≤P4`); only that class loses WED P5–P7,
+   the others keep the full day.
+   *Say: "Every college has its own rules, and they differ per class — one section has a
+   half-day, another doesn't. These plug straight into the solver as optional hard
+   constraints, per class, and each version records exactly which rules produced it.
+   Avoiding hectic back-to-back periods is the default, not an afterthought."*
+5. **Infeasibility explanation** (the wow): in Data Setup, edit a teacher and remove
    ALL subjects covering e.g. CS701 (note who taught it first!). Back in Timetable →
    Generate → the banner explains in plain language: *"No teacher can teach CS701 —
-   map at least one teacher to it in Data Setup."*
+   map at least one teacher to it in Data Setup."* (Over-aggressive half-days trigger the
+   same clear explanation.)
    *Say: "GA-based systems just fail. Ours tells you exactly what to fix."*
    → Restore the teacher mapping, regenerate. ✅
 
@@ -39,6 +50,8 @@
 2. Open **Leaves** → apply for leave (pick a TUE next week, reason "Medical").
    *Say: "A teacher applies for leave. Watch what happens with zero further prompting."*
 3. **Sign out → login as admin** → **Leaves** → click **Approve** on Anita's row.
+   The plan appears **instantly** (~0.1 s — the system trigger routes deterministically
+   with no LLM round-trip, and the whole plan is built in one DB pass).
    *Say — this is the key sentence: "The approval event itself triggered the
    Substitution Agent. This college doesn't put a stand-in in front of the class to
    teach the wrong subject — teachers **exchange periods**. So the agent found, for each

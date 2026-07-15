@@ -1,0 +1,341 @@
+{
+  "communities": {
+    "0": [
+      "apps_web_tsconfig_compileroptions",
+      "apps_web_tsconfig_compileroptions_allowjs",
+      "apps_web_tsconfig_compileroptions_esmoduleinterop",
+      "apps_web_tsconfig_compileroptions_incremental",
+      "apps_web_tsconfig_compileroptions_isolatedmodules",
+      "apps_web_tsconfig_compileroptions_jsx",
+      "apps_web_tsconfig_compileroptions_lib",
+      "apps_web_tsconfig_compileroptions_module",
+      "apps_web_tsconfig_compileroptions_moduleresolution",
+      "apps_web_tsconfig_compileroptions_noemit",
+      "apps_web_tsconfig_compileroptions_paths",
+      "apps_web_tsconfig_compileroptions_plugins",
+      "apps_web_tsconfig_compileroptions_resolvejsonmodule",
+      "apps_web_tsconfig_compileroptions_skiplibcheck",
+      "apps_web_tsconfig_compileroptions_strict",
+      "apps_web_tsconfig_compileroptions_target",
+      "apps_web_tsconfig_paths",
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "ref_src"
+    ],
+    "1": [
+      "readme_agentstate_concept",
+      "readme_facility_agent_concept",
+      "readme_general_fallback_concept",
+      "readme_router_node_concept",
+      "readme_scheduler_agent_concept",
+      "services_backend_app_agents_graph",
+      "services_backend_app_agents_graph_general_fallback_node",
+      "services_backend_app_agents_graph_rationale_33",
+      "services_backend_app_agents_graph_rationale_7",
+      "services_backend_app_agents_graph_route_to",
+      "services_backend_app_agents_graph_router_node",
+      "services_backend_app_agents_nodes_facility",
+      "services_backend_app_agents_nodes_facility_facility_node",
+      "services_backend_app_agents_nodes_facility_rationale_4",
+      "services_backend_app_agents_nodes_scheduler",
+      "services_backend_app_agents_nodes_scheduler_rationale_4",
+      "services_backend_app_agents_nodes_scheduler_scheduler_node",
+      "services_backend_app_agents_state",
+      "services_backend_app_agents_state_agentstate",
+      "services_backend_app_agents_state_rationale_5",
+      "typeddict"
+    ],
+    "2": [
+      "apps_web_package_devdependencies",
+      "apps_web_package_devdependencies_autoprefixer",
+      "apps_web_package_devdependencies_eslint",
+      "apps_web_package_devdependencies_eslint_config_next",
+      "apps_web_package_devdependencies_postcss",
+      "apps_web_package_devdependencies_tailwindcss",
+      "apps_web_package_devdependencies_types_node",
+      "apps_web_package_devdependencies_types_react",
+      "apps_web_package_devdependencies_types_react_dom",
+      "apps_web_package_devdependencies_typescript",
+      "autoprefixer",
+      "eslint",
+      "eslint_config_next",
+      "postcss",
+      "tailwindcss",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "typescript"
+    ],
+    "3": [
+      "apps_web_package_dependencies",
+      "apps_web_package_dependencies_clsx",
+      "apps_web_package_dependencies_lucide_react",
+      "apps_web_package_dependencies_next",
+      "apps_web_package_dependencies_react",
+      "apps_web_package_dependencies_react_dom",
+      "apps_web_package_dependencies_tailwind_merge",
+      "clsx",
+      "lucide_react",
+      "next",
+      "react",
+      "react_dom",
+      "tailwind_merge"
+    ],
+    "4": [
+      "apps_web_package",
+      "apps_web_package_name",
+      "apps_web_package_private",
+      "apps_web_package_scripts",
+      "apps_web_package_scripts_build",
+      "apps_web_package_scripts_dev",
+      "apps_web_package_scripts_lint",
+      "apps_web_package_scripts_start",
+      "apps_web_package_version"
+    ],
+    "5": [
+      "apps_web_tsconfig",
+      "apps_web_tsconfig_exclude",
+      "apps_web_tsconfig_include",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx"
+    ],
+    "6": [
+      "basemodel",
+      "readme_api_chat_contract",
+      "services_backend_app_api_router",
+      "services_backend_app_api_router_chatrequest",
+      "services_backend_app_api_router_chatresponse",
+      "services_backend_app_api_router_health_check",
+      "services_backend_app_api_router_run_agent_workflow"
+    ],
+    "7": [
+      "apps_web_src_app_page",
+      "apps_web_src_app_page_dashboard",
+      "apps_web_src_app_page_facility",
+      "apps_web_src_app_page_message",
+      "apps_web_src_app_page_task",
+      "readme_frontend_dashboard_concept"
+    ],
+    "8": [
+      "readme_fastapi_backend_concept",
+      "readme_langgraph_orchestration",
+      "readme_smart_campus_agent_system",
+      "services_backend_main",
+      "services_backend_main_read_root"
+    ],
+    "9": [
+      "apps_web_src_app_layout",
+      "apps_web_src_app_layout_inter",
+      "apps_web_src_app_layout_metadata",
+      "apps_web_src_app_layout_rootlayout"
+    ],
+    "10": [
+      "basesettings",
+      "services_backend_app_core_config",
+      "services_backend_app_core_config_settings"
+    ],
+    "11": [
+      "apps_web_next_config",
+      "apps_web_next_config_nextconfig"
+    ],
+    "12": [
+      "apps_web_next_env_d",
+      "apps_web_next_env_d_rationale_4"
+    ],
+    "13": [
+      "apps_web_postcss_config",
+      "apps_web_postcss_config_config"
+    ],
+    "14": [
+      "apps_web_tailwind_config",
+      "apps_web_tailwind_config_config"
+    ],
+    "15": [
+      "services_backend_app_agents_init"
+    ],
+    "16": [
+      "services_backend_app_agents_nodes_init"
+    ],
+    "17": [
+      "services_backend_app_api_init"
+    ],
+    "18": [
+      "services_backend_app_core_init"
+    ],
+    "19": [
+      "services_backend_app_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09523809523809523,
+    "1": 0.13333333333333333,
+    "2": 0.10526315789473684,
+    "3": 0.15384615384615385,
+    "4": 0.2222222222222222,
+    "5": 0.25,
+    "6": 0.5238095238095238,
+    "7": 0.3333333333333333,
+    "8": 0.4,
+    "9": 0.5,
+    "10": 0.6666666666666666,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0
+  },
+  "gods": [
+    {
+      "id": "apps_web_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "services_backend_app_agents_state_agentstate",
+      "label": "AgentState",
+      "degree": 9
+    },
+    {
+      "id": "apps_web_package_scripts",
+      "label": "scripts",
+      "degree": 5
+    },
+    {
+      "id": "apps_web_tsconfig_include",
+      "label": "include",
+      "degree": 5
+    },
+    {
+      "id": "readme_router_node_concept",
+      "label": "Router Node (Intent Classification)",
+      "degree": 5
+    },
+    {
+      "id": "readme_api_chat_contract",
+      "label": "POST /api/agent/chat Contract",
+      "degree": 5
+    },
+    {
+      "id": "apps_web_tsconfig_compileroptions_lib",
+      "label": "lib",
+      "degree": 4
+    },
+    {
+      "id": "services_backend_app_agents_graph_router_node",
+      "label": "router_node()",
+      "degree": 4
+    },
+    {
+      "id": "services_backend_app_agents_graph_general_fallback_node",
+      "label": "general_fallback_node()",
+      "degree": 4
+    },
+    {
+      "id": "services_backend_app_agents_nodes_facility_facility_node",
+      "label": "facility_node()",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Next.js Campus Dashboard",
+      "target": "Dashboard()",
+      "source_files": [
+        "README.md",
+        "apps/web/src/app/page.tsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
+    },
+    {
+      "source": "Router Node (Intent Classification)",
+      "target": "router_node()",
+      "source_files": [
+        "README.md",
+        "services/backend/app/agents/graph.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
+    },
+    {
+      "source": "General Fallback Node",
+      "target": "general_fallback_node()",
+      "source_files": [
+        "README.md",
+        "services/backend/app/agents/graph.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
+    },
+    {
+      "source": "Facility Agent Node",
+      "target": "facility_node()",
+      "source_files": [
+        "README.md",
+        "services/backend/app/agents/nodes/facility.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
+    },
+    {
+      "source": "Scheduler Agent Node",
+      "target": "scheduler_node()",
+      "source_files": [
+        "README.md",
+        "services/backend/app/agents/nodes/scheduler.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `devDependencies` connect `Community 2` to `Community 4`?",
+      "why": "High betweenness centrality (0.066) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `Community 3` to `Community 4`?",
+      "why": "High betweenness centrality (0.049) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `LangGraph Multi-Agent Orchestration` connect `Community 8` to `Community 1`?",
+      "why": "High betweenness centrality (0.046) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `nextConfig`, `name`, `version` to the rest of the system?",
+      "why": "53 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

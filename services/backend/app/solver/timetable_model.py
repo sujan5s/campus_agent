@@ -79,6 +79,51 @@ class TimetableInput:
 
 
 @dataclass
+class SectionRules:
+    """Per-section overrides of the global SolveOptions (by section id)."""
+    half_days: dict[str, int] = field(default_factory=dict)   # {"WED": 4}; overrides global per day
+    no_same_subject_consecutive: bool | None = None           # None = inherit the global default
+
+
+@dataclass
+class SolveOptions:
+    """Admin-configurable generation constraints.
+
+    no_same_subject_consecutive defaults ON — real timetables should not put the
+    same subject in adjacent periods (hectic for students and teachers). Every
+    field can be overridden per section via `section_rules`."""
+    half_days: dict[str, int] = field(default_factory=dict)   # global default: {"WED": 4}
+    no_same_subject_consecutive: bool = True                  # H9 (theory only; labs exempt)
+    max_consecutive_teaching: int | None = None               # H10 teacher run cap (global)
+    section_rules: dict[int, SectionRules] = field(default_factory=dict)  # by section_id
+
+
+def _section_half_days(opts: "SolveOptions", sec_id: int) -> dict[str, int]:
+    """Global half-days merged with a section's overrides (section wins per day)."""
+    hd = dict(opts.half_days)
+    sr = opts.section_rules.get(sec_id)
+    if sr and sr.half_days:
+        hd.update(sr.half_days)
+    return hd
+
+
+def _section_nosc(opts: "SolveOptions", sec_id: int) -> bool:
+    """Effective no-same-subject-consecutive flag for one section."""
+    sr = opts.section_rules.get(sec_id)
+    if sr is not None and sr.no_same_subject_consecutive is not None:
+        return sr.no_same_subject_consecutive
+    return opts.no_same_subject_consecutive
+
+
+def _allowed_indices(data: "TimetableInput", opts: "SolveOptions",
+                     sec_id: int) -> set[int]:
+    """Slot indices a section may use, after applying its effective half-days."""
+    hd = _section_half_days(opts, sec_id)
+    return {i for i, s in enumerate(data.slots)
+            if not (s.day in hd and s.period_no > hd[s.day])}
+
+
+@dataclass
 class Lesson:
     section_id: int
     subject_id: int
@@ -97,11 +142,12 @@ class SolveResult:
 
 # ---------- pre-solve sanity checks (precise, cheap explanations) ----------
 
-def precheck(data: TimetableInput) -> list[str]:
+def precheck(data: TimetableInput, opts: "SolveOptions | None" = None) -> list[str]:
+    opts = opts or SolveOptions()
     reasons: list[str] = []
-    slots_per_week = len(data.slots)
     classrooms = [r for r in data.rooms if r.type == "classroom"]
     labs = [r for r in data.rooms if r.type == "lab"]
+    pairs = _consecutive_pairs(data.slots)
 
     if not data.sections:
         reasons.append("No sections defined — add sections in Data Setup.")
@@ -109,14 +155,26 @@ def precheck(data: TimetableInput) -> list[str]:
         reasons.append("No timeslots defined — seed or add the period grid first.")
 
     for sec in data.sections:
+        allowed = _allowed_indices(data, opts, sec.id)
         need = sum(data.subjects[sid].periods_per_week for sid in sec.subject_ids)
-        if need > slots_per_week:
+        if need > len(allowed):
+            hint = ("its half-day rules leave only" if len(allowed) < len(data.slots)
+                    else "only")
             reasons.append(
-                f"Section {sec.name} needs {need} periods/week but only "
-                f"{slots_per_week} timeslots exist — reduce periods_per_week or add slots."
+                f"Section {sec.name} needs {need} periods/week but {hint} "
+                f"{len(allowed)} slots — reduce periods_per_week, add slots, "
+                f"or relax its half-days."
             )
         if not sec.subject_ids:
             reasons.append(f"Section {sec.name} has no subjects for its dept/semester.")
+        # a lab needs at least one consecutive pair fully inside the allowed slots
+        for sid in sec.subject_ids:
+            if data.subjects[sid].needs_lab and not any(
+                    a in allowed and b in allowed for a, b in pairs):
+                reasons.append(
+                    f"Section {sec.name}'s half-days leave no consecutive block for "
+                    f"lab {data.subjects[sid].code} — relax its half-days."
+                )
 
     for sid, subj in data.subjects.items():
         qualified = [t for t in data.teachers if sid in t.subject_ids]
@@ -164,10 +222,37 @@ def _consecutive_pairs(slots: list[SlotIn]) -> list[tuple[int, int]]:
     return pairs
 
 
+def _consecutive_runs(slots: list[SlotIn]) -> list[list[int]]:
+    """Same-day chains of slot indices that are pairwise time-adjacent (a break
+    between periods starts a new run). Used for the teacher run-length cap."""
+    runs: list[list[int]] = []
+    by_day: dict[str, list[int]] = {}
+    for i, s in enumerate(slots):
+        by_day.setdefault(s.day, []).append(i)
+    for day_idx in by_day.values():
+        day_idx.sort(key=lambda i: slots[i].period_no)
+        cur: list[int] = []
+        prev_end = None
+        for i in day_idx:
+            if prev_end is not None and slots[i].start_min == prev_end:
+                cur.append(i)
+            else:
+                if cur:
+                    runs.append(cur)
+                cur = [i]
+            prev_end = slots[i].end_min
+        if cur:
+            runs.append(cur)
+    return runs
+
+
 # ---------- the CP-SAT model ----------
 
-def solve(data: TimetableInput, time_limit_s: float = 20.0) -> SolveResult:
-    reasons = precheck(data)
+def solve(data: TimetableInput, opts: SolveOptions | None = None,
+          time_limit_s: float = 20.0) -> SolveResult:
+    opts = opts or SolveOptions()
+
+    reasons = precheck(data, opts)
     if reasons:
         return SolveResult(status="infeasible", reasons=reasons)
 
@@ -180,6 +265,11 @@ def solve(data: TimetableInput, time_limit_s: float = 20.0) -> SolveResult:
     classrooms = [r for r in data.rooms if r.type == "classroom"]
     labs = [r for r in data.rooms if r.type == "lab"]
 
+    # Per-section allowed slots (half-days remove trailing periods for that section
+    # only — global filtering is wrong once one section keeps the full day).
+    allowed = {sec.id: _allowed_indices(data, opts, sec.id) for sec in data.sections}
+    any_nosc = any(_section_nosc(opts, sec.id) for sec in data.sections)
+
     # Assumption literals per constraint group -> named infeasibility explanations
     groups = {
         "teacher availability (clash-free teaching)": m.NewBoolVar("g_teacher"),
@@ -188,6 +278,10 @@ def solve(data: TimetableInput, time_limit_s: float = 20.0) -> SolveResult:
         "same-subject daily spread limit": m.NewBoolVar("g_spread"),
         "home classroom allocation": m.NewBoolVar("g_room"),
     }
+    if any_nosc:
+        groups["no same-subject back-to-back"] = m.NewBoolVar("g_nosc")
+    if opts.max_consecutive_teaching is not None:
+        groups["teacher consecutive-teaching cap"] = m.NewBoolVar("g_teachrun")
     m.AddAssumptions(list(groups.values()))
     lit_name = {v.Index(): k for k, v in groups.items()}
 
@@ -205,13 +299,24 @@ def solve(data: TimetableInput, time_limit_s: float = 20.0) -> SolveResult:
     # lesson placement x[(sec,subj,slot)]
     x: dict[tuple[int, int, int], cp_model.IntVar] = {}
     for sec in data.sections:
+        sec_allowed = allowed[sec.id]
+        sec_nosc = _section_nosc(opts, sec.id)
         for sid in sec.subject_ids:
             subj = data.subjects[sid]
             for si in range(n_slots):
                 x[(sec.id, sid, si)] = m.NewBoolVar(f"x_{sec.id}_{sid}_{si}")
+                # slots this section may not use (its half-days) are pinned off
+                if si not in sec_allowed:
+                    m.Add(x[(sec.id, sid, si)] == 0)
             # H1: exact weekly period count
             m.Add(sum(x[(sec.id, sid, si)] for si in range(n_slots))
                   == subj.periods_per_week)
+
+            # H8: spread — at most 2 periods of one subject per day. Applies to
+            # labs too so a lab's extra periods can't stack a 3rd next to the block.
+            for d in days:
+                m.Add(sum(x[(sec.id, sid, si)] for si in slots_of_day[d]) <= 2)\
+                    .OnlyEnforceIf(groups["same-subject daily spread limit"])
 
             if subj.needs_lab:
                 # H5: one consecutive pair (labs are seeded/entered as 2 periods)
@@ -222,11 +327,11 @@ def solve(data: TimetableInput, time_limit_s: float = 20.0) -> SolveResult:
                     m.Add(x[(sec.id, sid, a)] == 1).OnlyEnforceIf(pv)
                     m.Add(x[(sec.id, sid, b)] == 1).OnlyEnforceIf(pv)
                 m.AddExactlyOne(p_vars).OnlyEnforceIf(groups["lab consecutive-block scheduling"])
-            else:
-                # H8: spread — at most 2 periods of one subject per day
-                for d in days:
-                    m.Add(sum(x[(sec.id, sid, si)] for si in slots_of_day[d]) <= 2)\
-                        .OnlyEnforceIf(groups["same-subject daily spread limit"])
+            elif sec_nosc:
+                # H9: no same-subject back-to-back (per section) — theory only
+                for a, b in pairs:
+                    m.Add(x[(sec.id, sid, a)] + x[(sec.id, sid, b)] <= 1)\
+                        .OnlyEnforceIf(groups["no same-subject back-to-back"])
 
     # H2: section clash-free
     for sec in data.sections:
@@ -258,6 +363,23 @@ def solve(data: TimetableInput, time_limit_s: float = 20.0) -> SolveResult:
             if in_day:
                 m.Add(sum(in_day) <= t.max_hours_per_day)\
                     .OnlyEnforceIf(groups["teacher daily hour limits"])
+
+    # H10: cap consecutive teaching periods per teacher (optional). In every
+    # window of k+1 time-adjacent slots, the teacher teaches at most k of them.
+    if opts.max_consecutive_teaching is not None:
+        k = opts.max_consecutive_teaching
+        runs = _consecutive_runs(slots)
+        for t in data.teachers:
+            by_slot: dict[int, list] = {}
+            for key in (kk for kk in w if kk[2] == t.id):
+                by_slot.setdefault(key[3], []).append(w[key])
+            for run in runs:
+                for start in range(len(run) - k):
+                    window = run[start:start + k + 1]
+                    terms = [v for si in window for v in by_slot.get(si, [])]
+                    if terms:
+                        m.Add(sum(terms) <= k)\
+                            .OnlyEnforceIf(groups["teacher consecutive-teaching cap"])
 
     # H6: dedicated home classroom per section (capacity-checked, distinct)
     c: dict[tuple[int, int], cp_model.IntVar] = {}

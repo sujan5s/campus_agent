@@ -16,6 +16,7 @@ interface PlanItem {
   recovery_date: string | null; recovery_day: string | null;
   recovery_period: number | null; recovery_time: string | null;
   rationale: string;
+  warning?: boolean;
 }
 interface ApprovalCard {
   id: number;
@@ -151,7 +152,7 @@ export default function ApprovalsPage() {
               </thead>
               <tbody className="divide-y divide-slate-800/60">
                 {c.plan?.items.map((it, i) => (
-                  <tr key={i}>
+                  <tr key={i} className={it.warning ? "bg-amber-500/[0.07]" : ""}>
                     <td className="px-3 py-2.5 text-sm text-slate-300 whitespace-nowrap">
                       {it.leave_date}
                       <div className="text-[10px] text-slate-500">{it.leave_day} P{it.leave_period} · {it.leave_time}</div>
@@ -180,7 +181,7 @@ export default function ApprovalsPage() {
                         </>
                       ) : <span className="text-slate-600">—</span>}
                     </td>
-                    <td className="px-3 py-2.5 text-xs text-slate-500 max-w-[200px]">{it.rationale}</td>
+                    <td className={`px-3 py-2.5 text-xs max-w-[200px] ${it.warning ? "text-amber-400/90" : "text-slate-500"}`}>{it.rationale}</td>
                   </tr>
                 ))}
               </tbody>

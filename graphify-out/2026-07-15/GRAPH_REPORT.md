@@ -1,12 +1,12 @@
 # Graph Report - campus_agent  (2026-07-15)
 
 ## Corpus Check
-- 73 files · ~52,969 words
+- 73 files · ~52,521 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 626 nodes · 1042 edges · 45 communities (29 shown, 16 thin omitted)
-- Extraction: 79% EXTRACTED · 21% INFERRED · 0% AMBIGUOUS · INFERRED: 224 edges (avg confidence: 0.67)
+- 622 nodes · 1037 edges · 44 communities (28 shown, 16 thin omitted)
+- Extraction: 78% EXTRACTED · 22% INFERRED · 0% AMBIGUOUS · INFERRED: 224 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -51,7 +51,6 @@
 - timetable_model.py
 - 05 — Rehearsed Demo Script (Reviews & Final Viva)
 - Feature B — Configurable constraints at timetable generation (half-days, anti-consecutive, teacher run cap)
-- timetable_model.py
 
 ## God Nodes (most connected - your core abstractions)
 1. `User` - 30 edges
@@ -83,7 +82,7 @@
 ## Hyperedges (group relationships)
 - **LangGraph Query Routing Flow** — readme_router_node_concept, readme_scheduler_agent_concept, readme_facility_agent_concept, readme_general_fallback_concept, readme_agentstate_concept [EXTRACTED 0.90]
 
-## Communities (45 total, 16 thin omitted)
+## Communities (44 total, 16 thin omitted)
 
 ### Community 0 - "compilerOptions"
 Cohesion: 0.07
@@ -98,8 +97,8 @@ Cohesion: 0.11
 Nodes (18): 06 — Phase 2.1 Plan: Period-Exchange Substitution (replaces ranked-cover model), 1. Why this change, 2. What stays exactly the same (do not touch), 3. Data model — new table (do NOT alter existing tables), 4. Exchange-planning algorithm, 5. Dated (effective) timetable — separate view, original untouched, 6. Task order for implementation, 7. Verification checklist (run all before declaring done) (+10 more)
 
 ### Community 3 - "dependencies"
-Cohesion: 0.04
-Nodes (44): dependencies, clsx, jspdf, jspdf-autotable, lucide-react, next, react, react-dom (+36 more)
+Cohesion: 0.05
+Nodes (40): dependencies, clsx, lucide-react, next, react, react-dom, tailwind-merge, devDependencies (+32 more)
 
 ### Community 4 - "CLAUDE.md"
 Cohesion: 0.25
@@ -114,12 +113,12 @@ Cohesion: 0.40
 Nodes (3): Facility, Message, Task
 
 ### Community 8 - "FastAPI"
-Cohesion: 0.13
-Nodes (14): FastAPI, ChatRequest, ChatResponse, BaseModel, Agent chat endpoint — unified entry into the LangGraph supervisor., run_agent_workflow(), API aggregator — one sub-router per domain (docs/02-ARCHITECTURE.md §4).  main.p, get_db() (+6 more)
+Cohesion: 0.07
+Nodes (32): FastAPI, HTTPAuthorizationCredentials, ChatRequest, ChatResponse, BaseModel, Agent chat endpoint — unified entry into the LangGraph supervisor., run_agent_workflow(), login() (+24 more)
 
 ### Community 16 - "security.py"
-Cohesion: 0.07
-Nodes (46): datetime, DeclarativeBase, HTTPAuthorizationCredentials, decide(), DecisionIn, list_approvals(), BaseModel, Session (+38 more)
+Cohesion: 0.10
+Nodes (26): datetime, DeclarativeBase, decide(), DecisionIn, list_approvals(), BaseModel, Session, Approvals API — the human side of human-in-the-loop (docs/02-ARCHITECTURE.md). (+18 more)
 
 ### Community 20 - "04 — Roadmap & Status"
 Cohesion: 0.04
@@ -142,20 +141,20 @@ Cohesion: 0.50
 Nodes (3): _make_checkpointer(), LangGraph workflow assembly + durable checkpointer (docs/02-ARCHITECTURE.md §2)., SqliteSaver if available, else in-memory (never blocks startup).
 
 ### Community 36 - "setup.py"
-Cohesion: 0.15
-Nodes (41): Scheduling specialist — evolves into the Timetable + Substitution agents (docs/0, scheduler_node(), Config, create_room(), create_section(), create_subject(), create_teacher(), delete_room() (+33 more)
+Cohesion: 0.16
+Nodes (42): Scheduling specialist — evolves into the Timetable + Substitution agents (docs/0, scheduler_node(), Config, create_room(), create_section(), create_subject(), create_teacher(), delete_room() (+34 more)
 
 ### Community 37 - "page.tsx"
 Cohesion: 0.06
 Nodes (50): ApprovalCard, ApprovalsPage(), DecideResult, PlanItem, DayEntry, EffectiveDay, ExchangeBoard, ExchangeRow (+42 more)
 
 ### Community 38 - "load_timetable_input"
-Cohesion: 0.09
-Nodes (46): _build_options(), effective_grid(), exchanges_board(), generate(), GenerateIn, HalfDayIn, _parse_date(), BaseModel (+38 more)
+Cohesion: 0.06
+Nodes (67): _build_options(), effective_grid(), exchanges_board(), generate(), GenerateIn, HalfDayIn, _parse_date(), BaseModel (+59 more)
 
 ### Community 39 - "timetable_model.py"
 Cohesion: 0.15
-Nodes (27): apply_leave(), decide_leave(), DecisionIn, _leave_out(), LeaveIn, list_leaves(), BaseModel, Session (+19 more)
+Nodes (28): apply_leave(), decide_leave(), DecisionIn, _leave_out(), LeaveIn, list_leaves(), BaseModel, Session (+20 more)
 
 ### Community 42 - "05 — Rehearsed Demo Script (Reviews & Final Viva)"
 Cohesion: 0.29
@@ -165,19 +164,15 @@ Nodes (6): 05 — Rehearsed Demo Script (Reviews & Final Viva), Act 1 — The pl
 Cohesion: 0.12
 Nodes (16): Acceptance checks (A), Acceptance checks (B), B1. Solver — `services/backend/app/solver/timetable_model.py`, B2. Persist the config per version — `services/backend/app/db/models.py`, B3. Tools — `services/backend/app/tools/timetable.py`, B4. API — `services/backend/app/api/timetable.py`, B5. Frontend — `apps/web/src/app/timetable/page.tsx`, Changes — all in `services/backend/app/tools/exchange.py` (+8 more)
 
-### Community 44 - "timetable_model.py"
-Cohesion: 0.15
-Nodes (21): _allowed_indices(), _consecutive_pairs(), _consecutive_runs(), Lesson, precheck(), OR-Tools CP-SAT timetable model (docs/02-ARCHITECTURE.md, research/03).  Design, Global half-days merged with a section's overrides (section wins per day)., Effective no-same-subject-consecutive flag for one section. (+13 more)
-
 ## Knowledge Gaps
-- **216 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+211 more)
+- **214 isolated node(s):** `nextConfig`, `name`, `version`, `private`, `dev` (+209 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `User` connect `security.py` to `setup.py`, `timetable_model.py`?**
+- **Why does `User` connect `setup.py` to `security.py`, `FastAPI`, `timetable_model.py`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
 - **Why does `AgentState` connect `AgentState` to `setup.py`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._

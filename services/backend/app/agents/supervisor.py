@@ -61,6 +61,16 @@ def supervisor_node(state: AgentState) -> dict:
     steps = ["Supervisor: analyzing incoming request..."]
     task_spec: dict = {}
 
+    # System-sourced triggers already carry the intent (leave approval → substitution).
+    # Never spend an LLM round-trip on them — the leave-approval endpoint and the
+    # APScheduler safety sweep both invoke us this way, and the latency compounds.
+    if state.get("source") == "system" and (state.get("task_spec") or {}).get("leave_id"):
+        return {
+            "steps": steps + ["Supervisor: system trigger → substitution (deterministic, no LLM)."],
+            "current_action": "substitution",
+            "task_spec": state.get("task_spec") or {},
+        }
+
     if is_llm_configured():
         try:
             llm = get_llm().with_structured_output(RouteDecision)

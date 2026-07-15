@@ -164,6 +164,18 @@ class PeriodExchange(Base):
     rationale: Mapped[str] = mapped_column(Text, default="")
 
 
+class TimetableConfig(Base):
+    """The SolveOptions that produced one timetable version (Phase 2.2): which
+    admin-configurable constraints (half-days, anti-consecutive, teacher run cap)
+    were active. Lets the UI show *what rules made version N*."""
+    __tablename__ = "timetable_configs"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    version: Mapped[int] = mapped_column(Integer, unique=True)
+    config_json: Mapped[str] = mapped_column(Text, default="{}")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+
 # --- Events & bookings (Phase 3) ---------------------------------------------
 
 class Event(Base):

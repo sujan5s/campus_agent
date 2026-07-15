@@ -6,17 +6,38 @@ mutated (docs/06-EXCHANGE-PLAN.md §5)."""
 from datetime import date as date_t, datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from app.core.security import get_current_user, require_role
-from app.db.models import PeriodExchange, Section, TimetableEntry
+from app.db.models import PeriodExchange, Section, TimeSlot, TimetableEntry
 from app.db.session import get_db
+from app.solver.timetable_model import SolveOptions, SectionRules
 from app.tools.substitution import WEEKDAY_TO_DAY
 from app.tools.timetable import (
-    generate_timetable, get_section_grid, get_teacher_grid, latest_version,
+    generate_timetable, get_section_grid, get_teacher_grid,
+    get_version_config, latest_version,
 )
 
 router = APIRouter()
+
+
+class HalfDayIn(BaseModel):
+    day: str                                    # MON..FRI
+    last_period: int = Field(ge=1)              # day ends after this period
+
+
+class SectionRulesIn(BaseModel):
+    section: str                                # section name, e.g. "CSE-7A"
+    half_days: list[HalfDayIn] = []
+    no_same_subject_consecutive: bool | None = None   # None = inherit global
+
+
+class GenerateIn(BaseModel):
+    half_days: list[HalfDayIn] = []
+    no_same_subject_consecutive: bool = True    # default ON — avoid back-to-back subjects
+    max_consecutive_teaching: int | None = Field(default=None, ge=1)
+    sections: list[SectionRulesIn] = []         # per-section overrides
 
 
 def _parse_date(s: str) -> date_t:
@@ -32,18 +53,64 @@ def _slot_time(entry: TimetableEntry) -> str:
 
 
 @router.post("/generate", dependencies=[Depends(require_role("admin"))])
-def generate():
-    """Run the CP-SAT solver on current master data. Stores a new version on success."""
-    result = generate_timetable()
+def generate(body: GenerateIn | None = None, db: Session = Depends(get_db)):
+    """Run the CP-SAT solver on current master data. Stores a new version on
+    success. An optional body carries admin constraints (half-days, no
+    back-to-back subjects, teacher run cap); no body = default generation."""
+    body = body or GenerateIn()
+    opts = _build_options(db, body)
+    result = generate_timetable(options=opts)
     if result["status"] in ("optimal", "feasible"):
         return result
     # infeasible / error → 422 with the precise reasons for the UI to display
     raise HTTPException(status_code=422, detail=result)
 
 
+def _build_options(db: Session, body: GenerateIn) -> SolveOptions:
+    """Validate the request against the real slot grid and map it to SolveOptions."""
+    grid: dict[str, list[int]] = {}
+    for s in db.query(TimeSlot).all():
+        grid.setdefault(s.day, []).append(s.period_no)
+
+    def _half_days(items: list[HalfDayIn], where: str) -> dict[str, int]:
+        out: dict[str, int] = {}
+        for hd in items:
+            if hd.day not in grid:
+                raise HTTPException(422, f"{where}Day '{hd.day}' has no timeslots.")
+            max_p = max(grid[hd.day])
+            if hd.last_period < 1 or hd.last_period >= max_p:
+                raise HTTPException(
+                    422, f"{where}{hd.day}: last_period must be 1..{max_p - 1} "
+                    f"(the day has periods up to P{max_p}).")
+            out[hd.day] = hd.last_period
+        return out
+
+    name_to_id = {s.name: s.id for s in db.query(Section).all()}
+    section_rules: dict[int, SectionRules] = {}
+    for sr in body.sections:
+        sec_id = name_to_id.get(sr.section)
+        if sec_id is None:
+            raise HTTPException(422, f"Unknown section '{sr.section}'.")
+        if sec_id in section_rules:
+            raise HTTPException(422, f"Duplicate rules for section '{sr.section}'.")
+        section_rules[sec_id] = SectionRules(
+            half_days=_half_days(sr.half_days, f"Section {sr.section}: "),
+            no_same_subject_consecutive=sr.no_same_subject_consecutive,
+        )
+
+    return SolveOptions(
+        half_days=_half_days(body.half_days, ""),
+        no_same_subject_consecutive=body.no_same_subject_consecutive,
+        max_consecutive_teaching=body.max_consecutive_teaching,
+        section_rules=section_rules,
+    )
+
+
 @router.get("/status")
 def status(db: Session = Depends(get_db), user=Depends(get_current_user)):
-    return {"latest_version": latest_version(db)}
+    ver = latest_version(db)
+    return {"latest_version": ver,
+            "config": get_version_config(db, ver) if ver is not None else {}}
 
 
 @router.get("/section/{name}")

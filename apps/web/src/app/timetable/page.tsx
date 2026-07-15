@@ -12,8 +12,19 @@ import {
   AlertTriangle,
   CheckCircle2,
   FlaskConical,
+  SlidersHorizontal,
+  ChevronDown,
+  FileDown,
 } from "lucide-react";
 import { api, getToken, getUser, AuthUser } from "../../lib/api";
+
+const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI"] as const;
+
+interface ScopeRules {
+  halfDays: Record<string, boolean>;
+  halfDayLast: Record<string, number>;
+  noConsecutive: boolean | null; // null = inherit global (sections only)
+}
 
 interface Cell {
   subject_code: string;
@@ -40,6 +51,40 @@ interface GenerateResult {
   load_gap?: number;
   wall_time_s?: number;
   reasons?: string[];
+  config?: SolveConfig;
+}
+interface SectionRuleCfg {
+  half_days?: Record<string, number>;
+  no_same_subject_consecutive?: boolean | null;
+}
+interface SolveConfig {
+  half_days?: Record<string, number>;
+  no_same_subject_consecutive?: boolean;
+  max_consecutive_teaching?: number | null;
+  section_rules?: Record<string, SectionRuleCfg>;
+}
+
+function halfDayStr(hd?: Record<string, number>): string {
+  const e = hd && Object.entries(hd);
+  return e && e.length ? e.map(([d, p]) => `${d}≤P${p}`).join(",") : "";
+}
+
+function configSummary(c?: SolveConfig): string {
+  if (!c) return "";
+  const parts: string[] = [];
+  const hd = halfDayStr(c.half_days);
+  if (hd) parts.push("half days: " + hd);
+  if (c.no_same_subject_consecutive) parts.push("no back-to-back subjects");
+  if (c.max_consecutive_teaching) parts.push(`≤${c.max_consecutive_teaching} consecutive/teacher`);
+  for (const [name, sr] of Object.entries(c.section_rules ?? {})) {
+    const bits: string[] = [];
+    const shd = halfDayStr(sr.half_days);
+    if (shd) bits.push(shd);
+    if (sr.no_same_subject_consecutive === true) bits.push("no back-to-back");
+    if (sr.no_same_subject_consecutive === false) bits.push("back-to-back allowed");
+    if (bits.length) parts.push(`${name}: ${bits.join(" ")}`);
+  }
+  return parts.length ? parts.join(" · ") : "default rules";
 }
 
 // deterministic pastel per subject code
@@ -66,8 +111,29 @@ export default function TimetablePage() {
   const [selected, setSelected] = useState<string>("");
   const [grid, setGrid] = useState<Grid | null>(null);
   const [generating, setGenerating] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const [flash, setFlash] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
   const [noTimetable, setNoTimetable] = useState(false);
+
+  // --- generation constraints (Phase 2.2 + per-class scoping in 2.3) ---
+  // scope "*" = global default; other keys are section names.
+  // noConsecutive: true/false, or null = inherit global (only for sections).
+  const [showOpts, setShowOpts] = useState(false);
+  const [scope, setScope] = useState<string>("*");
+  const [rulesByScope, setRulesByScope] = useState<Record<string, ScopeRules>>({
+    "*": { halfDays: {}, halfDayLast: {}, noConsecutive: true },
+  });
+  const [maxConsecutive, setMaxConsecutive] = useState<string>("");
+
+  const cur: ScopeRules = rulesByScope[scope] ?? { halfDays: {}, halfDayLast: {}, noConsecutive: scope === "*" ? true : null };
+  const patchScope = (patch: Partial<ScopeRules>) =>
+    setRulesByScope((r) => ({ ...r, [scope]: { ...cur, ...patch } }));
+  const scopeHasOverride = (s: string): boolean => {
+    const r = rulesByScope[s];
+    if (!r) return false;
+    const anyHalf = WEEKDAYS.some((d) => r.halfDays[d] && r.halfDayLast[d]);
+    return anyHalf || (s !== "*" && r.noConsecutive !== null);
+  };
 
   const loadGrid = useCallback(async (name: string) => {
     try {
@@ -106,10 +172,32 @@ export default function TimetablePage() {
     setGenerating(true);
     setFlash(null);
     try {
-      const r = await api<GenerateResult>("/timetable/generate", { method: "POST" });
+      const halfDaysOf = (r: ScopeRules) =>
+        WEEKDAYS.filter((d) => r.halfDays[d] && r.halfDayLast[d])
+          .map((d) => ({ day: d, last_period: r.halfDayLast[d] }));
+      const g = rulesByScope["*"] ?? { halfDays: {}, halfDayLast: {}, noConsecutive: true };
+      const sectionRules = Object.entries(rulesByScope)
+        .filter(([s]) => s !== "*" && scopeHasOverride(s))
+        .map(([section, r]) => ({
+          section,
+          half_days: halfDaysOf(r),
+          no_same_subject_consecutive: r.noConsecutive, // null = inherit
+        }));
+      const body = {
+        half_days: halfDaysOf(g),
+        no_same_subject_consecutive: g.noConsecutive ?? true,
+        max_consecutive_teaching: maxConsecutive ? Number(maxConsecutive) : null,
+        sections: sectionRules,
+      };
+      const r = await api<GenerateResult>("/timetable/generate", {
+        method: "POST",
+        body: JSON.stringify(body),
+      });
+      const summary = configSummary(r.config);
       setFlash({
         kind: "ok",
-        text: `Generated v${r.version}: ${r.lessons} lessons, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).`,
+        text: `Generated v${r.version}: ${r.lessons} lessons, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).`
+          + (summary ? `\nConstraints — ${summary}.` : ""),
       });
       if (selected) await loadGrid(selected);
     } catch (e: unknown) {
@@ -118,6 +206,79 @@ export default function TimetablePage() {
       setFlash({ kind: "err", text: msg });
     } finally {
       setGenerating(false);
+    }
+  };
+
+  const downloadPdf = async () => {
+    if (!grid) return;
+    setDownloading(true);
+    setFlash(null);
+    try {
+      // dynamic import — jsPDF touches `window`, so keep it out of SSR/initial bundle
+      const { jsPDF } = await import("jspdf");
+      const autoTable = (await import("jspdf-autotable")).default;
+
+      // best-effort: which constraints produced this version (shown under the title)
+      let constraints = "";
+      try {
+        const st = await api<{ latest_version: number | null; config?: SolveConfig }>("/timetable/status");
+        constraints = configSummary(st.config);
+      } catch { /* status is optional for the PDF */ }
+
+      const ps = grid.periods;
+      const periodNos = Object.keys(ps).map(Number).sort((a, b) => a - b);
+      const rows = periodNos.map((p) => [
+        `P${p}\n${ps[String(p)]}`,
+        ...grid.days.map((d) => {
+          const c = grid.cells[`${d}-${p}`];
+          return c ? `${c.subject_code}${c.is_lab ? " (lab)" : ""}\n${c.teacher}\n${c.room}` : "—";
+        }),
+      ]);
+
+      const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+      const margin = 40;
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(16);
+      doc.setTextColor(15, 23, 42);
+      doc.text(`Timetable — ${grid.section}`, margin, 46);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(100, 116, 139);
+      doc.text(`Version ${grid.version}  ·  Generated ${new Date().toLocaleString()}`, margin, 62);
+      let startY = 76;
+      if (constraints && constraints !== "default rules") {
+        doc.text(`Constraints: ${constraints}`, margin, 76);
+        startY = 90;
+      }
+
+      autoTable(doc, {
+        startY,
+        head: [["Period", ...grid.days]],
+        body: rows,
+        theme: "grid",
+        styles: { fontSize: 8, cellPadding: 3, valign: "middle",
+          lineColor: [226, 232, 240], lineWidth: 0.3, textColor: [30, 41, 59] },
+        headStyles: { fillColor: [79, 70, 229], textColor: 255, fontStyle: "bold", halign: "center" },
+        columnStyles: { 0: { fontStyle: "bold", halign: "center", cellWidth: 60, fillColor: [241, 245, 249] } },
+        didParseCell: (data) => {
+          if (data.section === "body" && data.column.index > 0) {
+            const raw = Array.isArray(data.cell.raw) ? data.cell.raw.join("\n") : String(data.cell.raw ?? "");
+            if (raw.includes("(lab)")) data.cell.styles.fillColor = [254, 243, 199];
+          }
+        },
+        didDrawPage: () => {
+          doc.setFontSize(8);
+          doc.setTextColor(148, 163, 184);
+          doc.text("Smart Campus Agent System", margin, doc.internal.pageSize.getHeight() - 20);
+        },
+      });
+
+      const safe = grid.section.replace(/[^\w.-]+/g, "_");
+      doc.save(`timetable-${safe}-v${grid.version}.pdf`);
+    } catch (e: unknown) {
+      setFlash({ kind: "err", text: e instanceof Error ? e.message : "PDF export failed" });
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -160,6 +321,30 @@ export default function TimetablePage() {
                 <option key={s.id} value={s.name}>{s.name}</option>
               ))}
             </select>
+            {grid && (
+              <button
+                onClick={downloadPdf}
+                disabled={downloading}
+                className="flex items-center space-x-2 glass-card rounded-xl px-4 py-2.5 text-sm font-medium text-slate-300 hover:text-slate-100 disabled:opacity-60 transition-colors"
+                title="Download this section's timetable as PDF"
+              >
+                {downloading ? <RefreshCw className="h-4 w-4 animate-spin" /> : <FileDown className="h-4 w-4" />}
+                <span>PDF</span>
+              </button>
+            )}
+            {user?.role === "admin" && (
+              <button
+                onClick={() => setShowOpts((v) => !v)}
+                className={`flex items-center space-x-2 glass-card rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
+                  showOpts ? "text-indigo-300" : "text-slate-300 hover:text-slate-100"
+                }`}
+                title="Generation constraints"
+              >
+                <SlidersHorizontal className="h-4 w-4" />
+                <span>Constraints</span>
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showOpts ? "rotate-180" : ""}`} />
+              </button>
+            )}
             {user?.role === "admin" && (
               <button
                 onClick={generate}
@@ -172,6 +357,125 @@ export default function TimetablePage() {
             )}
           </div>
         </div>
+
+        {user?.role === "admin" && showOpts && (
+          <div className="glass-panel rounded-2xl p-5 mb-4">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div className="flex items-center space-x-2">
+                <SlidersHorizontal className="h-4 w-4 text-indigo-400" />
+                <h2 className="text-sm font-semibold text-slate-100">Generation constraints</h2>
+                <span className="text-[11px] text-slate-500">applied on the next Generate · all optional</span>
+              </div>
+              {/* scope selector: global default vs a specific class */}
+              <div className="flex items-center space-x-2">
+                <span className="text-[11px] text-slate-500">Rules for</span>
+                <select
+                  value={scope}
+                  onChange={(e) => setScope(e.target.value)}
+                  className="glass-input rounded-lg px-3 py-1.5 text-xs"
+                >
+                  <option value="*">All classes (default)</option>
+                  {sections.map((s) => (
+                    <option key={s.id} value={s.name}>
+                      {s.name}{scopeHasOverride(s.name) ? " ●" : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-slate-500 mb-3">
+              {scope === "*"
+                ? "Defaults for every class. Override a specific class by picking it above."
+                : `Overrides for ${scope} only — leave a control untouched to inherit the default.`}
+            </p>
+
+            {/* Half days */}
+            <div className="mb-5">
+              <p className="text-xs font-semibold text-slate-300 mb-2">Half days</p>
+              <p className="text-[11px] text-slate-500 mb-3">Tick a day and set the last teaching period; later periods are dropped that day.</p>
+              <div className="flex flex-wrap gap-2">
+                {WEEKDAYS.map((d) => (
+                  <div
+                    key={d}
+                    className={`flex items-center space-x-2 rounded-xl border px-3 py-2 ${
+                      cur.halfDays[d] ? "border-indigo-500/40 bg-indigo-500/10" : "border-slate-700 bg-slate-900/40"
+                    }`}
+                  >
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={!!cur.halfDays[d]}
+                        onChange={(e) =>
+                          patchScope({
+                            halfDays: { ...cur.halfDays, [d]: e.target.checked },
+                            halfDayLast: e.target.checked && !cur.halfDayLast[d]
+                              ? { ...cur.halfDayLast, [d]: 4 } : cur.halfDayLast,
+                          })
+                        }
+                        className="accent-indigo-500"
+                      />
+                      <span className="text-xs font-medium text-slate-200">{d}</span>
+                    </label>
+                    <span className="text-[10px] text-slate-500">ends P</span>
+                    <input
+                      type="number"
+                      min={1}
+                      disabled={!cur.halfDays[d]}
+                      value={cur.halfDayLast[d] ?? ""}
+                      onChange={(e) => patchScope({ halfDayLast: { ...cur.halfDayLast, [d]: Number(e.target.value) } })}
+                      className="w-14 bg-slate-900/60 border border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-200 disabled:opacity-40"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Same-subject back-to-back: checkbox for global, tri-state select for a class */}
+            <div className="flex flex-wrap items-center gap-6">
+              {scope === "*" ? (
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={cur.noConsecutive === true}
+                    onChange={(e) => patchScope({ noConsecutive: e.target.checked })}
+                    className="accent-indigo-500"
+                  />
+                  <span className="text-xs text-slate-200">No same-subject back-to-back <span className="text-slate-500">(theory only)</span></span>
+                </label>
+              ) : (
+                <label className="flex items-center space-x-2">
+                  <span className="text-xs text-slate-200">Same-subject back-to-back</span>
+                  <select
+                    value={cur.noConsecutive === null ? "inherit" : cur.noConsecutive ? "no" : "yes"}
+                    onChange={(e) =>
+                      patchScope({ noConsecutive: e.target.value === "inherit" ? null : e.target.value === "no" })
+                    }
+                    className="glass-input rounded-lg px-2 py-1 text-xs"
+                  >
+                    <option value="inherit">Inherit default</option>
+                    <option value="no">Not allowed</option>
+                    <option value="yes">Allowed</option>
+                  </select>
+                </label>
+              )}
+
+              {scope === "*" && (
+                <label className="flex items-center space-x-2">
+                  <span className="text-xs text-slate-200">Max consecutive teaching periods / teacher</span>
+                  <input
+                    type="number"
+                    min={1}
+                    placeholder="off"
+                    value={maxConsecutive}
+                    onChange={(e) => setMaxConsecutive(e.target.value)}
+                    className="w-16 bg-slate-900/60 border border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-200"
+                  />
+                </label>
+              )}
+            </div>
+          </div>
+        )}
 
         {flash && (
           <div

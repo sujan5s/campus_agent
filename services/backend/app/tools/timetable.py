@@ -3,13 +3,17 @@
 Agents and API routes call these; nothing else touches the solver or the
 timetable tables directly. Every mutation is versioned — history is preserved.
 """
+import json
+
 from sqlalchemy.orm import Session
 
-from app.db.models import Room, Section, Subject, Teacher, TimeSlot, TimetableEntry
+from app.db.models import (
+    Room, Section, Subject, Teacher, TimeSlot, TimetableConfig, TimetableEntry,
+)
 from app.db.session import SessionLocal
 from app.solver.timetable_model import (
-    RoomIn, SectionIn, SlotIn, SubjectIn, TeacherIn, TimetableInput,
-    SolveResult, solve,
+    RoomIn, SectionIn, SectionRules, SlotIn, SubjectIn, TeacherIn,
+    TimetableInput, SolveOptions, SolveResult, solve,
 )
 
 
@@ -37,13 +41,55 @@ def load_timetable_input(db: Session) -> TimetableInput:
                           teachers=teachers, rooms=rooms, slots=slots)
 
 
-def generate_timetable(time_limit_s: float = 8.0) -> dict:
+def _options_to_dict(db: Session, options: SolveOptions) -> dict:
+    """SolveOptions -> JSON-friendly dict with section *names* (not ids) as keys,
+    so persisted config is readable and stable across regenerations."""
+    id_to_name = {s.id: s.name for s in db.query(Section).all()}
+    section_rules = {}
+    for sec_id, sr in options.section_rules.items():
+        name = id_to_name.get(sec_id, str(sec_id))
+        section_rules[name] = {
+            "half_days": dict(sr.half_days),
+            "no_same_subject_consecutive": sr.no_same_subject_consecutive,
+        }
+    return {
+        "half_days": dict(options.half_days),
+        "no_same_subject_consecutive": options.no_same_subject_consecutive,
+        "max_consecutive_teaching": options.max_consecutive_teaching,
+        "section_rules": section_rules,
+    }
+
+
+def _options_from_dict(db: Session, cfg: dict) -> SolveOptions:
+    """Inverse of _options_to_dict — rebuild SolveOptions with section ids."""
+    name_to_id = {s.name: s.id for s in db.query(Section).all()}
+    section_rules: dict[int, SectionRules] = {}
+    for name, sr in (cfg.get("section_rules") or {}).items():
+        sec_id = name_to_id.get(name)
+        if sec_id is None:
+            continue
+        section_rules[sec_id] = SectionRules(
+            half_days={k: int(v) for k, v in (sr.get("half_days") or {}).items()},
+            no_same_subject_consecutive=sr.get("no_same_subject_consecutive"),
+        )
+    return SolveOptions(
+        half_days={k: int(v) for k, v in (cfg.get("half_days") or {}).items()},
+        no_same_subject_consecutive=cfg.get("no_same_subject_consecutive", True),
+        max_consecutive_teaching=cfg.get("max_consecutive_teaching"),
+        section_rules=section_rules,
+    )
+
+
+def generate_timetable(time_limit_s: float = 8.0,
+                       options: SolveOptions | None = None) -> dict:
     """Run the CP-SAT solver on current master data; on success store the result
-    as a new timetable version. Returns a JSON-friendly summary either way."""
+    as a new timetable version and record the SolveOptions that produced it.
+    Returns a JSON-friendly summary either way."""
+    options = options or SolveOptions()
     db = SessionLocal()
     try:
         data = load_timetable_input(db)
-        result: SolveResult = solve(data, time_limit_s=time_limit_s)
+        result: SolveResult = solve(data, opts=options, time_limit_s=time_limit_s)
 
         if result.status in ("optimal", "feasible"):
             prev = db.query(TimetableEntry.version)\
@@ -55,6 +101,8 @@ def generate_timetable(time_limit_s: float = 8.0) -> dict:
                     teacher_id=les.teacher_id, room_id=les.room_id,
                     timeslot_id=les.timeslot_id, status="active", version=version,
                 ))
+            cfg = _options_to_dict(db, options)
+            db.add(TimetableConfig(version=version, config_json=json.dumps(cfg)))
             db.commit()
             return {
                 "status": result.status,
@@ -62,10 +110,30 @@ def generate_timetable(time_limit_s: float = 8.0) -> dict:
                 **result.stats,
                 "sections": len(data.sections),
                 "teachers": len(data.teachers),
+                "config": cfg,
             }
         return {"status": result.status, "reasons": result.reasons, **result.stats}
     finally:
         db.close()
+
+
+def get_version_config(db: Session, version: int) -> dict:
+    """The SolveOptions JSON that produced a timetable version ({} if none)."""
+    row = (db.query(TimetableConfig)
+           .filter(TimetableConfig.version == version).first())
+    return json.loads(row.config_json) if row else {}
+
+
+def options_from_config(db: Session, version: int | None = None) -> SolveOptions:
+    """Rebuild the SolveOptions that produced a version (latest if None). Falls
+    back to defaults (which keep no-same-subject-consecutive ON) when there is no
+    stored config — so agent/chat regeneration still avoids back-to-back periods."""
+    if version is None:
+        version = latest_version(db)
+    if version is None:
+        return SolveOptions()
+    cfg = get_version_config(db, version)
+    return _options_from_dict(db, cfg) if cfg else SolveOptions()
 
 
 def latest_version(db: Session) -> int | None:

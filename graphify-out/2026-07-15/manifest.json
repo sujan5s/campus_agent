@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/package.json": {
-    "mtime": 1784100995.2989435,
-    "ast_hash": "944c62c662f7d7477f320d4fdf0e0f80",
+    "mtime": 1780833518.6380355,
+    "ast_hash": "6d7e27247ccbef6dea03cf765c4d3e54",
     "semantic_hash": ""
   },
   "apps/web/postcss.config.mjs": {
@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1784101232.5017135,
-    "ast_hash": "192497d16e66b6dc0f4ff55bab708fed",
+    "mtime": 1784100359.3221388,
+    "ast_hash": "4f6f9a2483777e0540fba806cab94d2a",
     "semantic_hash": ""
   },
   "README.md": {
@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "docs/04-ROADMAP.md": {
-    "mtime": 1784101250.6040275,
-    "ast_hash": "9cc7ca1228f1c202ea90a03ff57a2444",
+    "mtime": 1784100346.0675738,
+    "ast_hash": "f2eed1d1ebac93ff68dfb247e5328a37",
     "semantic_hash": ""
   },
   "docs/README.md": {
@@ -285,8 +285,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/timetable/page.tsx": {
-    "mtime": 1784101122.3727775,
-    "ast_hash": "a194ae093235df737cb921d236c0c4df",
+    "mtime": 1784100194.0431232,
+    "ast_hash": "444eabb3508d5091bef06f30c2ce2c72",
     "semantic_hash": ""
   },
   "services/backend/app/agents/specialists/timetable.py": {
@@ -360,8 +360,8 @@
     "semantic_hash": ""
   },
   "docs/05-DEMO-SCRIPT.md": {
-    "mtime": 1784101238.6531632,
-    "ast_hash": "cb8cf23dd43c389121233f0361303482",
+    "mtime": 1784100386.0729585,
+    "ast_hash": "de6de38919d787c9481a124e5b7be06b",
     "semantic_hash": ""
   },
   "apps/web/src/app/exchanges/page.tsx": {
