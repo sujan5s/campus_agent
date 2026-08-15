@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { getToken, getUser, clearAuth, AuthUser } from "../lib/api";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -19,6 +21,7 @@ import {
   Zap,
   Database,
   LogIn,
+  LogOut,
   CalendarX,
   ClipboardCheck,
   ArrowLeftRight,
@@ -52,6 +55,10 @@ interface Facility {
 }
 
 export default function Dashboard() {
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+
   const [activeTab, setActiveTab] = useState<"overview" | "chat" | "scheduler" | "facilities">("overview");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -65,6 +72,17 @@ export default function Dashboard() {
   const [isTyping, setIsTyping] = useState(false);
   const [activeWorkflowSteps, setActiveWorkflowSteps] = useState<string[]>([]);
   const [backendConnected, setBackendConnected] = useState(false);
+
+  // Check auth on mount
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+    setCurrentUser(getUser());
+    setAuthChecked(true);
+  }, [router]);
 
   // Scheduler State
   const [tasks, setTasks] = useState<Task[]>([
@@ -90,6 +108,7 @@ export default function Dashboard() {
   const [bookingDetails, setBookingDetails] = useState("");
 
   const chatEndRef = useRef<HTMLDivElement>(null);
+
 
   // Check backend health on mount
   useEffect(() => {
@@ -348,13 +367,17 @@ export default function Dashboard() {
                 <Database className="h-5 w-5" />
                 <span className="text-sm font-medium">Data Setup</span>
               </a>
-              <a
-                href="/login"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+              <button
+                type="button"
+                onClick={() => {
+                  clearAuth();
+                  router.push("/login");
+                }}
+                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-rose-400/80 hover:bg-rose-500/10 hover:text-rose-300 text-left"
               >
-                <LogIn className="h-5 w-5" />
-                <span className="text-sm font-medium">Sign In</span>
-              </a>
+                <LogOut className="h-5 w-5" />
+                <span className="text-sm font-medium">Sign Out</span>
+              </button>
             </div>
           </nav>
         </div>
