@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        navy: "#00078b",
+        gold: "#fdb813",
+        sand: "#f6f6f6",
         primary: {
           50: "#f0f4ff",
           100: "#e1e9ff",
