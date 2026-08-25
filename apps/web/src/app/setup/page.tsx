@@ -18,8 +18,10 @@ import {
   CheckCircle2,
   AlertTriangle,
   X,
+  LogOut,
 } from "lucide-react";
 import { api, getUser, getToken, clearAuth, AuthUser } from "../../lib/api";
+import AppLayout from "../../components/AppLayout";
 
 /* ---------- types mirroring the backend schemas ---------- */
 interface Subject {
@@ -265,10 +267,10 @@ export default function SetupPage() {
   };
 
   /* ---------- small UI helpers ---------- */
-  const inputCls = "glass-input rounded-lg px-3 py-2 text-sm w-full";
-  const labelCls = "block text-[10px] text-slate-400 uppercase tracking-wider font-semibold mb-1";
-  const thCls = "text-left text-[10px] text-slate-400 uppercase tracking-wider font-semibold px-4 py-3";
-  const tdCls = "px-4 py-3 text-sm text-slate-200";
+  const inputCls = "bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] placeholder-[#00078b]/40 rounded-xl px-3.5 py-2 text-sm w-full focus:border-[#00078b] outline-none font-medium";
+  const labelCls = "block text-[10px] text-[#00078b] uppercase tracking-wider font-bold mb-1";
+  const thCls = "text-left text-[10px] text-[#00078b] uppercase tracking-wider font-bold px-4 py-3";
+  const tdCls = "px-4 py-3 text-sm text-[#00078b] font-semibold";
 
   const counts: Record<TabKey, number> = {
     subjects: subjects.length,
@@ -278,53 +280,26 @@ export default function SetupPage() {
   };
 
   return (
-    <div className="min-h-screen p-6 relative overflow-x-hidden">
-      <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
-
+    <AppLayout title="Data Setup" subtitle="Master academic data — Subjects, Teachers, Sections & Rooms.">
       <div className="max-w-6xl mx-auto relative">
         {/* header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/"
-              className="glass-card rounded-xl p-2.5 text-slate-400 hover:text-slate-200"
-              title="Back to dashboard"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Link>
-            <div className="flex items-center space-x-3">
-              <div className="bg-indigo-500/10 p-2 rounded-xl border border-indigo-500/20 text-indigo-400">
-                <Sparkles className="h-5 w-5" />
-              </div>
-              <div>
-                <h1 className="font-bold text-xl text-slate-100">Data Setup</h1>
-                <p className="text-xs text-slate-400">
-                  Master academic data — the timetable solver and agents read from here.
-                </p>
-              </div>
+          <div className="flex items-center space-x-3">
+            <div className="bg-[#00078b] p-2 rounded-xl text-[#fdb813] shadow-md">
+              <Sparkles className="h-5 w-5" />
             </div>
-          </div>
-          <div className="flex items-center space-x-3 text-sm">
-            {user && (
-              <span className="text-slate-400">
-                {user.name} · <span className="uppercase text-[10px] tracking-wider font-bold text-indigo-400">{user.role}</span>
-              </span>
-            )}
-            <button
-              onClick={() => {
-                clearAuth();
-                router.replace("/login");
-              }}
-              className="text-slate-500 hover:text-slate-300 text-xs underline underline-offset-4"
-            >
-              Sign out
-            </button>
+            <div>
+              <h1 className="font-bold text-xl text-[#00078b]">Academic Data Setup</h1>
+              <p className="text-xs text-[#00078b]/70 font-medium">
+                Master academic database for solver and campus agents.
+              </p>
+            </div>
           </div>
         </div>
 
         {!isAdmin && user && (
-          <div className="flex items-center space-x-2 text-amber-400 text-sm bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3 mb-4">
-            <AlertTriangle className="h-4 w-4 shrink-0" />
+          <div className="flex items-center space-x-2 text-amber-700 text-sm bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-4 font-medium">
+            <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
             <span>You are signed in as <b>{user.role}</b> — data is read-only. Sign in as admin to edit.</span>
           </div>
         )}
@@ -335,50 +310,48 @@ export default function SetupPage() {
             <button
               key={t.key}
               onClick={() => switchTab(t.key)}
-              className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                tab === t.key
-                  ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
-                  : "glass-card text-slate-400 hover:text-slate-200"
-              }`}
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${tab === t.key
+                  ? "bg-[#00078b] text-white shadow-md"
+                  : "bg-white text-[#00078b] border border-[#00078b]/15 hover:bg-[#f6f6f6] shadow-sm"
+                }`}
             >
               {t.icon}
               <span>{t.label}</span>
-              <span className="text-[10px] bg-slate-800/80 rounded-full px-2 py-0.5">{counts[t.key]}</span>
+              <span className={`text-[10px] rounded-full px-2 py-0.5 font-bold ${tab === t.key ? "bg-[#fdb813] text-[#00078b]" : "bg-[#f6f6f6] text-[#00078b]"}`}>{counts[t.key]}</span>
             </button>
           ))}
         </div>
 
         {flash && (
           <div
-            className={`flex items-center space-x-2 text-sm rounded-xl px-4 py-2.5 mb-4 border ${
-              flash.kind === "ok"
-                ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
-                : "text-amber-400 bg-amber-500/10 border-amber-500/20"
-            }`}
+            className={`flex items-center space-x-2 text-sm rounded-xl px-4 py-2.5 mb-4 border font-medium ${flash.kind === "ok"
+                ? "text-emerald-700 bg-emerald-50 border-emerald-200"
+                : "text-amber-700 bg-amber-50 border-amber-200"
+              }`}
           >
-            {flash.kind === "ok" ? <CheckCircle2 className="h-4 w-4 shrink-0" /> : <AlertTriangle className="h-4 w-4 shrink-0" />}
+            {flash.kind === "ok" ? <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" /> : <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />}
             <span className="truncate">{flash.text}</span>
           </div>
         )}
 
         {/* add / edit form */}
         {isAdmin && (
-          <form onSubmit={submit} className="glass-panel rounded-2xl p-5 mb-5">
+          <form onSubmit={submit} className="bg-white border border-[#00078b]/15 rounded-2xl p-5 mb-5 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-semibold text-slate-200 flex items-center space-x-2">
-                {editingId !== null ? <Pencil className="h-4 w-4 text-indigo-400" /> : <Plus className="h-4 w-4 text-indigo-400" />}
+              <h2 className="text-sm font-bold text-[#00078b] flex items-center space-x-2">
+                {editingId !== null ? <Pencil className="h-4 w-4 text-[#00078b]" /> : <Plus className="h-4 w-4 text-[#00078b]" />}
                 <span>{editingId !== null ? `Edit ${tab.slice(0, -1)} #${editingId}` : `Add ${tab.slice(0, -1)}`}</span>
               </h2>
               <div className="flex items-center space-x-2">
                 {editingId !== null && (
-                  <button type="button" onClick={resetForm} className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1">
+                  <button type="button" onClick={resetForm} className="text-xs text-[#00078b]/60 hover:text-[#00078b] flex items-center space-x-1 font-semibold">
                     <X className="h-3.5 w-3.5" /><span>Cancel edit</span>
                   </button>
                 )}
-                <button type="button" onClick={downloadTemplate} className="glass-card rounded-lg px-3 py-1.5 text-xs text-slate-300 flex items-center space-x-1.5">
+                <button type="button" onClick={downloadTemplate} className="bg-white border border-[#00078b]/20 rounded-lg px-3 py-1.5 text-xs text-[#00078b] font-semibold flex items-center space-x-1.5 shadow-sm hover:bg-[#f6f6f6]">
                   <Download className="h-3.5 w-3.5" /><span>CSV template</span>
                 </button>
-                <label className="glass-card rounded-lg px-3 py-1.5 text-xs text-slate-300 flex items-center space-x-1.5 cursor-pointer">
+                <label className="bg-white border border-[#00078b]/20 rounded-lg px-3 py-1.5 text-xs text-[#00078b] font-semibold flex items-center space-x-1.5 cursor-pointer shadow-sm hover:bg-[#f6f6f6]">
                   <Upload className="h-3.5 w-3.5" /><span>Import CSV</span>
                   <input
                     ref={fileRef}
@@ -433,18 +406,17 @@ export default function SetupPage() {
                             onClick={() =>
                               setFormSubjects(on ? formSubjects.filter((x) => x !== s.id) : [...formSubjects, s.id])
                             }
-                            className={`text-xs px-3 py-1.5 rounded-lg border transition-all ${
-                              on
-                                ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/40"
-                                : "bg-slate-800/40 text-slate-400 border-slate-700/50 hover:text-slate-200"
-                            }`}
+                            className={`text-xs px-3 py-1.5 rounded-lg border font-bold transition-all ${on
+                                ? "bg-[#00078b] text-white border-[#00078b]"
+                                : "bg-[#f6f6f6] text-[#00078b] border-[#00078b]/20 hover:bg-[#00078b]/10"
+                              }`}
                           >
                             {s.code}
                           </button>
                         );
                       })}
                       {subjects.length === 0 && (
-                        <span className="text-xs text-slate-500">Add subjects first.</span>
+                        <span className="text-xs text-[#00078b]/50">Add subjects first.</span>
                       )}
                     </div>
                   </div>
@@ -482,7 +454,7 @@ export default function SetupPage() {
               <button
                 type="submit"
                 disabled={busy}
-                className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-sm font-medium rounded-xl px-5 py-2.5 transition-colors"
+                className="bg-[#00078b] hover:bg-[#000566] disabled:opacity-50 text-white text-sm font-bold rounded-xl px-5 py-2.5 transition-colors shadow-md"
               >
                 {busy ? "Saving..." : editingId !== null ? "Save changes" : `Add ${tab.slice(0, -1)}`}
               </button>
@@ -491,9 +463,9 @@ export default function SetupPage() {
         )}
 
         {/* data table */}
-        <div className="glass-panel rounded-2xl overflow-hidden">
+        <div className="bg-white border border-[#00078b]/15 rounded-2xl overflow-hidden shadow-sm">
           <table className="w-full">
-            <thead className="border-b border-slate-800 bg-slate-900/40">
+            <thead className="border-b border-[#00078b]/15 bg-[#f6f6f6]">
               <tr>
                 {tab === "subjects" && (<><th className={thCls}>Code</th><th className={thCls}>Name</th><th className={thCls}>Dept</th><th className={thCls}>Sem</th><th className={thCls}>Periods/wk</th><th className={thCls}>Lab</th></>)}
                 {tab === "teachers" && (<><th className={thCls}>Name</th><th className={thCls}>Email</th><th className={thCls}>Dept</th><th className={thCls}>Max hrs/day</th><th className={thCls}>Can teach</th></>)}
@@ -502,38 +474,38 @@ export default function SetupPage() {
                 {isAdmin && <th className={`${thCls} text-right`}>Actions</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-[#00078b]/10">
               {tab === "subjects" && subjects.map((s) => (
-                <tr key={s.id} className="hover:bg-slate-800/20">
-                  <td className={`${tdCls} font-mono text-indigo-300`}>{s.code}</td>
+                <tr key={s.id} className="hover:bg-[#f6f6f6]/60 transition">
+                  <td className={`${tdCls} font-mono text-[#00078b] font-bold`}>{s.code}</td>
                   <td className={tdCls}>{s.name}</td>
                   <td className={tdCls}>{s.dept}</td>
                   <td className={tdCls}>{s.semester}</td>
                   <td className={tdCls}>{s.periods_per_week}</td>
-                  <td className={tdCls}>{s.needs_lab ? <span className="text-emerald-400 text-xs font-semibold">LAB</span> : <span className="text-slate-600">—</span>}</td>
+                  <td className={tdCls}>{s.needs_lab ? <span className="text-emerald-700 font-extrabold text-xs bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">LAB</span> : <span className="text-[#00078b]/40">—</span>}</td>
                   {isAdmin && <RowActions onEdit={() => startEdit(s)} onDelete={() => remove(s.id)} />}
                 </tr>
               ))}
               {tab === "teachers" && teachers.map((t) => (
-                <tr key={t.id} className="hover:bg-slate-800/20">
+                <tr key={t.id} className="hover:bg-[#f6f6f6]/60 transition">
                   <td className={tdCls}>{t.name}</td>
-                  <td className={`${tdCls} text-slate-400`}>{t.email}</td>
+                  <td className={`${tdCls} text-[#00078b]/70 font-medium`}>{t.email}</td>
                   <td className={tdCls}>{t.dept}</td>
                   <td className={tdCls}>{t.max_hours_per_day}</td>
                   <td className={tdCls}>
                     <div className="flex flex-wrap gap-1">
                       {t.subject_codes.map((c) => (
-                        <span key={c} className="text-[10px] font-mono bg-slate-800/80 text-slate-300 rounded px-1.5 py-0.5">{c}</span>
+                        <span key={c} className="text-[10px] font-mono bg-[#f6f6f6] text-[#00078b] border border-[#00078b]/20 font-bold rounded px-1.5 py-0.5">{c}</span>
                       ))}
-                      {t.subject_codes.length === 0 && <span className="text-slate-600 text-xs">none</span>}
+                      {t.subject_codes.length === 0 && <span className="text-[#00078b]/40 text-xs italic">none</span>}
                     </div>
                   </td>
                   {isAdmin && <RowActions onEdit={() => startEdit(t)} onDelete={() => remove(t.id)} />}
                 </tr>
               ))}
               {tab === "sections" && sections.map((s) => (
-                <tr key={s.id} className="hover:bg-slate-800/20">
-                  <td className={`${tdCls} font-semibold`}>{s.name}</td>
+                <tr key={s.id} className="hover:bg-[#f6f6f6]/60 transition">
+                  <td className={`${tdCls} font-bold`}>{s.name}</td>
                   <td className={tdCls}>{s.dept}</td>
                   <td className={tdCls}>{s.semester}</td>
                   <td className={tdCls}>{s.strength}</td>
@@ -541,16 +513,16 @@ export default function SetupPage() {
                 </tr>
               ))}
               {tab === "rooms" && rooms.map((r) => (
-                <tr key={r.id} className="hover:bg-slate-800/20">
-                  <td className={`${tdCls} font-semibold`}>{r.name}</td>
-                  <td className={tdCls}><span className="text-xs uppercase tracking-wider text-slate-400">{r.type}</span></td>
+                <tr key={r.id} className="hover:bg-[#f6f6f6]/60 transition">
+                  <td className={`${tdCls} font-bold`}>{r.name}</td>
+                  <td className={tdCls}><span className="text-xs uppercase tracking-wider font-bold text-[#00078b]/70">{r.type}</span></td>
                   <td className={tdCls}>{r.capacity}</td>
                   {isAdmin && <RowActions onEdit={() => startEdit(r)} onDelete={() => remove(r.id)} />}
                 </tr>
               ))}
               {counts[tab] === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-slate-500">
+                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-[#00078b]/60 font-medium">
                     No {tab} yet — add one above or import a CSV.
                   </td>
                 </tr>
@@ -559,23 +531,23 @@ export default function SetupPage() {
           </table>
         </div>
 
-        <p className="text-[11px] text-slate-500 mt-4 leading-relaxed">
+        <p className="text-[11px] text-[#00078b]/70 font-medium mt-4 leading-relaxed">
           CSV import upserts by unique key (subject <b>code</b>, teacher <b>email</b>, section/room <b>name</b>).
-          New teachers get the default password <code className="text-slate-400">faculty123</code>.
+          New teachers get the default password <code className="bg-white border border-[#00078b]/15 px-1 rounded text-[#00078b] font-bold">faculty123</code>.
           Once this data is complete, Phase 1&apos;s <b>Generate Timetable</b> reads it directly — nothing is re-entered.
         </p>
       </div>
-    </div>
+    </AppLayout>
   );
 }
 
 function RowActions({ onEdit, onDelete }: { onEdit: () => void; onDelete: () => void }) {
   return (
     <td className="px-4 py-3 text-right whitespace-nowrap">
-      <button onClick={onEdit} className="text-slate-500 hover:text-indigo-300 p-1.5" title="Edit">
+      <button onClick={onEdit} className="text-[#00078b]/60 hover:text-[#00078b] p-1.5 transition-colors" title="Edit">
         <Pencil className="h-4 w-4" />
       </button>
-      <button onClick={onDelete} className="text-slate-500 hover:text-rose-400 p-1.5" title="Delete">
+      <button onClick={onDelete} className="text-rose-500 hover:text-rose-700 p-1.5 transition-colors" title="Delete">
         <Trash2 className="h-4 w-4" />
       </button>
     </td>

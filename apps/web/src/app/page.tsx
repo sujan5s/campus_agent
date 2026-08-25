@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { getToken, getUser, clearAuth, AuthUser } from "../lib/api";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -17,6 +19,7 @@ import {
   Zap,
   Database,
   LogIn,
+  LogOut,
   CalendarX,
   ClipboardCheck,
   ArrowLeftRight,
@@ -24,7 +27,8 @@ import {
   ArrowRight,
   Users,
 } from "lucide-react";
-import { api, getToken, getUser, AuthUser } from "../lib/api";
+
+import AppLayout from "../components/AppLayout";
 
 // Types
 interface Message {
@@ -53,6 +57,10 @@ interface Facility {
 }
 
 export default function Dashboard() {
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+
   const [activeTab, setActiveTab] = useState<"overview" | "chat" | "scheduler" | "facilities">("overview");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -67,20 +75,23 @@ export default function Dashboard() {
   const [activeWorkflowSteps, setActiveWorkflowSteps] = useState<string[]>([]);
   const [backendConnected, setBackendConnected] = useState(false);
 
-  // Live overview stats (only when signed in; degrades to "—" otherwise)
-  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
-  const [stats, setStats] = useState<{
-    version: number | null;
-    pendingApprovals: number | null;
-    upcomingExchanges: number | null;
-  }>({ version: null, pendingApprovals: null, upcomingExchanges: null });
+  // Check auth on mount
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+    setCurrentUser(getUser());
+    setAuthChecked(true);
+  }, [router]);
 
   // Scheduler State
   const [tasks, setTasks] = useState<Task[]>([
     { id: "1", name: "Daily Timetable Synchronization", trigger: "Every day at 06:00", status: "completed", lastRun: "Today, 06:00" },
-    { id: "2", name: "Facility HVAC Optimization Run", trigger: "Hourly, at :00", status: "running", lastRun: "Today, 17:00" },
-    { id: "3", name: "Campus Cleanliness Node Scan", trigger: "Every Monday at 08:00", status: "idle", lastRun: "June 1, 08:00" },
-    { id: "4", name: "Automated Energy Saving Mode", trigger: "Every day at 22:00", status: "idle", lastRun: "Yesterday, 22:00" },
+    { id: "2", name: "Faculty Substitution Auto-Solver", trigger: "On Leave Approval", status: "running", lastRun: "Today, 17:00" },
+    { id: "3", name: "Room Allocation & Facility Check", trigger: "Every day at 08:00", status: "idle", lastRun: "Today, 08:00" },
+    { id: "4", name: "Daily Attendance & Leave Backup", trigger: "Every day at 22:00", status: "idle", lastRun: "Yesterday, 22:00" },
   ]);
   const [showNewTaskModal, setShowNewTaskModal] = useState(false);
   const [newTaskName, setNewTaskName] = useState("");
@@ -99,6 +110,7 @@ export default function Dashboard() {
   const [bookingDetails, setBookingDetails] = useState("");
 
   const chatEndRef = useRef<HTMLDivElement>(null);
+
 
   // Check backend health on mount
   useEffect(() => {
@@ -147,7 +159,7 @@ export default function Dashboard() {
 
     const userMsg = inputVal;
     setInputVal("");
-    
+
     // Add user message
     setMessages((prev) => [
       ...prev,
@@ -166,9 +178,9 @@ export default function Dashboard() {
           body: JSON.stringify({ message: userMsg }),
         });
         const data = await response.json();
-        
+
         setActiveWorkflowSteps(data.steps || ["RouterNode", "Completed"]);
-        
+
         setTimeout(() => {
           setMessages((prev) => [
             ...prev,
@@ -205,7 +217,7 @@ export default function Dashboard() {
         "FacilityAgent: Processing mock reservation..."
       ];
       responseText = "I see you want to reserve a facility. In demo mode, I can help mock book room space. For example, Lecture Theater 302 has been marked as reserved for you!";
-      
+
       // Reserve LT 302 mock
       setFacilities(prev => prev.map(f => f.id === 'F3' ? { ...f, status: 'Reserved', currentReservation: 'Ad-hoc Reservation (Requested by Admin)' } : f));
     } else if (msgLower.includes("schedule") || msgLower.includes("task") || msgLower.includes("timetable")) {
@@ -270,241 +282,73 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-[#080b11] text-slate-100 font-sans overflow-hidden">
-      
-      {/* SIDEBAR */}
-      <aside className="w-64 glass-panel border-r border-slate-800 flex flex-col justify-between shrink-0">
-        <div>
-          <div className="p-6 flex items-center space-x-3 border-b border-slate-800">
-            <div className="bg-primary-500/10 p-2 rounded-xl border border-primary-500/20 text-primary-400">
-              <Sparkles className="h-6 w-6" />
-            </div>
-            <div>
-              <h1 className="font-bold text-lg leading-tight tracking-wider bg-gradient-to-r from-primary-400 to-indigo-400 bg-clip-text text-transparent">
-                CAMPUS OPS
-              </h1>
-              <span className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">
-                Agent Controller
-              </span>
-            </div>
-          </div>
-
-          <nav className="p-4 space-y-2">
-            <button
-              onClick={() => setActiveTab("overview")}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                activeTab === "overview"
-                  ? "bg-primary-500/20 text-primary-300 shadow-glass-inset border border-primary-500/30"
-                  : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              }`}
-            >
-              <LayoutDashboard className="h-5 w-5" />
-              <span className="text-sm font-medium">Overview</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("chat")}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                activeTab === "chat"
-                  ? "bg-primary-500/20 text-primary-300 shadow-glass-inset border border-primary-500/30"
-                  : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              }`}
-            >
-              <MessageSquare className="h-5 w-5" />
-              <span className="text-sm font-medium">Agent Chat</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("scheduler")}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                activeTab === "scheduler"
-                  ? "bg-primary-500/20 text-primary-300 shadow-glass-inset border border-primary-500/30"
-                  : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              }`}
-            >
-              <CalendarDays className="h-5 w-5" />
-              <span className="text-sm font-medium">Task Scheduler</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("facilities")}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                activeTab === "facilities"
-                  ? "bg-primary-500/20 text-primary-300 shadow-glass-inset border border-primary-500/30"
-                  : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              }`}
-            >
-              <Building2 className="h-5 w-5" />
-              <span className="text-sm font-medium">Facilities</span>
-            </button>
-
-            <div className="pt-3 mt-3 border-t border-slate-800/60">
-              <a
-                href="/timetable"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <CalendarDays className="h-5 w-5" />
-                <span className="text-sm font-medium">Timetable</span>
-              </a>
-              <a
-                href="/leaves"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <CalendarX className="h-5 w-5" />
-                <span className="text-sm font-medium">Leaves</span>
-              </a>
-              <a
-                href="/approvals"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <ClipboardCheck className="h-5 w-5" />
-                <span className="text-sm font-medium">Approvals</span>
-              </a>
-              <a
-                href="/exchanges"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <ArrowLeftRight className="h-5 w-5" />
-                <span className="text-sm font-medium">Exchanges</span>
-              </a>
-              <a
-                href="/inbox"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <Inbox className="h-5 w-5" />
-                <span className="text-sm font-medium">Inbox</span>
-              </a>
-              <a
-                href="/setup"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <Database className="h-5 w-5" />
-                <span className="text-sm font-medium">Data Setup</span>
-              </a>
-              <a
-                href="/login"
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
-              >
-                <LogIn className="h-5 w-5" />
-                <span className="text-sm font-medium">Sign In</span>
-              </a>
-            </div>
-          </nav>
-        </div>
-
-        {/* System Status Foot */}
-        <div className="p-4 border-t border-slate-800/60 bg-slate-900/20">
-          <div className="flex items-center justify-between text-xs mb-2">
-            <span className="text-slate-400">Services Endpoint</span>
-            <div className="flex items-center space-x-1.5">
-              <span className={`h-2.5 w-2.5 rounded-full ${backendConnected ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`}></span>
-              <span className="font-semibold">{backendConnected ? "Online" : "Demo Mode"}</span>
-            </div>
-          </div>
-          <p className="text-[11px] text-slate-500 leading-normal">
-            {backendConnected ? "Connected to FastAPI on port 8000." : "Failed to reach backend. Interactive features run as simulation."}
-          </p>
-        </div>
-      </aside>
-
-      {/* MAIN CONTAINER */}
-      <main className="flex-1 flex flex-col min-w-0 bg-[#080b11] relative">
-        {/* Glow Effects */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-        {/* HEADER */}
-        <header className="h-20 glass-panel border-b border-slate-800/60 flex items-center justify-between px-8 z-10 shrink-0">
-          <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-100 flex items-center space-x-2">
-              <span>Smart Campus Ops</span>
-              <span className="text-xs bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 px-2 py-0.5 rounded-full font-medium uppercase tracking-wide">
-                v1.0.0
-              </span>
-            </h2>
-            <p className="text-xs text-slate-400 mt-0.5">Automating day-to-day administrative overhead</p>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800 text-xs">
-              <Zap className="h-4 w-4 text-amber-500" />
-              <span>Orchestrator: <strong>LangGraph Engine</strong></span>
-            </div>
-          </div>
-        </header>
-
-        {/* CONTENT */}
-        <div className="flex-1 overflow-y-auto p-8 z-10">
-          
-          {/* TAB 1: OVERVIEW */}
-          {activeTab === "overview" && (
+    <AppLayout activeHomeTab={activeTab} onSelectHomeTab={setActiveTab}>
+      {/* TAB 1: OVERVIEW */}
+      {activeTab === "overview" && (
             <div className="space-y-8 animate-fadeIn">
-              
-              {/* Stat Cards — real system metrics (live when signed in) */}
+
+              {/* Stat Cards */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div className="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl relative overflow-hidden shadow-sm hover:border-[#fdb813] transition-all">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Specialist Agents</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">4 Nodes</h3>
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#00078b]/60">Active Modules</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-[#00078b]">4 Core</h3>
                     </div>
-                    <span className="bg-primary-500/10 p-2.5 rounded-xl border border-primary-500/20 text-primary-400">
-                      <Users className="h-5 w-5" />
+                    <span className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] shadow-md">
+                      <LayoutDashboard className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1">
+                  <p className="text-[11px] text-[#00078b]/70 mt-4 flex items-center space-x-1.5 font-medium">
                     <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span>Supervisor · Timetable · Substitution · General</span>
+                    <span>Timetable, Leaves, Facilities, Swaps</span>
                   </p>
                 </div>
 
-                <a href="/timetable" className="glass-card p-6 rounded-2xl relative overflow-hidden group hover:border-primary-500/30 transition-colors">
+                <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl relative overflow-hidden shadow-sm hover:border-[#fdb813] transition-all">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Timetable</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">
-                        {stats.version === null ? "—" : `v${stats.version}`}
-                      </h3>
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#00078b]/60">Scheduled Tasks</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-[#00078b]">{tasks.length} Active</h3>
                     </div>
-                    <span className="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 text-emerald-400">
+                    <span className="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 text-emerald-700">
                       <CalendarDays className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1 group-hover:text-emerald-400 transition-colors">
-                    <span>CP-SAT, provably clash-free</span>
-                    <ArrowRight className="h-3 w-3" />
+                  <p className="text-[11px] text-emerald-700 mt-4 font-bold">
+                    1 running currently
                   </p>
                 </a>
 
-                <a href="/approvals" className="glass-card p-6 rounded-2xl relative overflow-hidden group hover:border-primary-500/30 transition-colors">
+                <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl relative overflow-hidden shadow-sm hover:border-[#fdb813] transition-all">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Pending Approvals</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">
-                        {stats.pendingApprovals === null ? "—" : stats.pendingApprovals}
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#00078b]/60">Facility Occupancy</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-[#00078b]">
+                        {facilities.filter(f => f.status === "Reserved" || f.status === "Occupied").length} / {facilities.length}
                       </h3>
                     </div>
-                    <span className="bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 text-amber-400">
-                      <ClipboardCheck className="h-5 w-5" />
+                    <span className="bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 text-amber-700">
+                      <Building2 className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1 group-hover:text-amber-400 transition-colors">
-                    <span>HOD sign-off queue (human-in-the-loop)</span>
-                    <ArrowRight className="h-3 w-3" />
+                  <p className="text-[11px] text-[#00078b]/70 mt-4 font-medium">
+                    Rooms allocated for today
                   </p>
                 </a>
 
-                <a href="/exchanges" className="glass-card p-6 rounded-2xl relative overflow-hidden group hover:border-primary-500/30 transition-colors">
+                <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl relative overflow-hidden shadow-sm hover:border-[#fdb813] transition-all">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Upcoming Exchanges</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">
-                        {stats.upcomingExchanges === null ? "—" : stats.upcomingExchanges}
-                      </h3>
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#00078b]/60">Academic Solver</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-[#00078b]">Clash-Free</h3>
                     </div>
-                    <span className="bg-indigo-500/10 p-2.5 rounded-xl border border-indigo-500/20 text-indigo-400">
-                      <ArrowLeftRight className="h-5 w-5" />
+                    <span className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] shadow-md">
+                      <CheckCircle2 className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1 group-hover:text-indigo-400 transition-colors">
-                    <span>Confirmed swaps, next 14 days</span>
-                    <ArrowRight className="h-3 w-3" />
+                  <p className="text-[11px] text-[#00078b]/70 mt-4 font-medium">
+                    OR-Tools CP-SAT Active
                   </p>
                 </a>
               </div>
@@ -520,99 +364,129 @@ export default function Dashboard() {
                 </div>
               )}
 
-              {/* Real LangGraph pipeline + workflow shortcuts */}
+              {/* Dynamic Operations Overview Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                {/* Actual supervisor → specialist → END graph */}
-                <div className="lg:col-span-2 glass-card p-6 rounded-2xl flex flex-col">
-                  <h4 className="font-bold text-sm uppercase tracking-wider text-slate-400 mb-6 flex items-center justify-between">
-                    <span>LangGraph Orchestration</span>
-                    <span className="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Supervisor-router</span>
-                  </h4>
-
-                  <div className="flex-1 flex items-center justify-between relative px-2">
-                    {/* connector line */}
-                    <div className="absolute left-[22%] right-[22%] top-[46px] h-0.5 bg-gradient-to-r from-primary-500 to-indigo-500 z-0"></div>
-
-                    <div className="z-10 flex flex-col items-center space-y-2 w-24">
-                      <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-primary-500 flex items-center justify-center shadow-lg shadow-primary-500/20">
-                        <Bot className="h-7 w-7 text-primary-400" />
-                      </div>
-                      <span className="text-xs font-bold">Supervisor</span>
-                      <span className="text-[10px] text-slate-500 text-center">LLM routing<br/>(keyword fallback)</span>
-                    </div>
-
-                    <div className="flex flex-col space-y-3 z-10">
-                      <div className="flex items-center space-x-2 bg-slate-900/70 border border-slate-700 rounded-xl px-3 py-2">
-                        <CalendarDays className="h-4 w-4 text-emerald-400" />
-                        <span className="text-[11px] font-semibold">Timetable</span>
-                      </div>
-                      <div className="flex items-center space-x-2 bg-slate-900/70 border border-amber-500/30 rounded-xl px-3 py-2">
-                        <ArrowLeftRight className="h-4 w-4 text-amber-400" />
-                        <span className="text-[11px] font-semibold">Substitution</span>
-                        <span className="text-[9px] text-amber-300/80 uppercase tracking-wide">pauses</span>
-                      </div>
-                      <div className="flex items-center space-x-2 bg-slate-900/70 border border-slate-700 rounded-xl px-3 py-2">
-                        <MessageSquare className="h-4 w-4 text-slate-400" />
-                        <span className="text-[11px] font-semibold">General</span>
-                      </div>
-                    </div>
-
-                    <div className="z-10 flex flex-col items-center space-y-2 w-24">
-                      <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                        <CheckCircle2 className="h-7 w-7 text-indigo-400" />
-                      </div>
-                      <span className="text-xs font-bold">Response</span>
-                      <span className="text-[10px] text-slate-500 text-center">Durable state<br/>per thread</span>
-                    </div>
+                {/* Quick Launch & Operational Modules */}
+                <div className="lg:col-span-2 bg-white border border-[#00078b]/15 p-6 rounded-2xl flex flex-col shadow-sm">
+                  <div className="flex items-center justify-between mb-5">
+                    <h4 className="font-bold text-sm uppercase tracking-wider text-[#00078b]">
+                      Operational Hub &amp; Quick Access
+                    </h4>
+                    <span className="text-xs bg-[#fdb813] text-[#00078b] px-2.5 py-0.5 rounded-md font-bold">
+                      Campus Portal
+                    </span>
                   </div>
 
-                  <div className="mt-6 p-3 bg-slate-950/60 rounded-xl border border-amber-500/20 text-xs text-slate-400 flex items-start space-x-2">
-                    <ArrowLeftRight className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
-                    <span>
-                      <strong className="text-amber-300">F2 flagship:</strong> approving a leave triggers the
-                      Substitution agent (deterministically, no LLM), which builds a period-exchange plan and
-                      pauses at <code className="text-slate-300">interrupt()</code> for HOD approval — then resumes
-                      and notifies both teachers. Original timetable never mutated.
-                    </span>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1">
+                    <a
+                      href="/setup"
+                      className="p-4 rounded-xl border border-[#00078b]/15 bg-[#f6f6f6] hover:bg-[#00078b]/5 hover:border-[#00078b] transition-all group flex flex-col justify-between"
+                    >
+                      <div className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] w-fit mb-3 shadow-sm group-hover:scale-105 transition-transform">
+                        <Database className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-sm text-[#00078b] group-hover:text-[#00078b]">Data Setup</h5>
+                        <p className="text-[11px] text-[#00078b]/70 font-medium mt-1">Subjects, Teachers, Sections &amp; Rooms</p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/timetable"
+                      className="p-4 rounded-xl border border-[#00078b]/15 bg-[#f6f6f6] hover:bg-[#00078b]/5 hover:border-[#00078b] transition-all group flex flex-col justify-between"
+                    >
+                      <div className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] w-fit mb-3 shadow-sm group-hover:scale-105 transition-transform">
+                        <CalendarDays className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-sm text-[#00078b] group-hover:text-[#00078b]">Timetable</h5>
+                        <p className="text-[11px] text-[#00078b]/70 font-medium mt-1">Class Schedules &amp; PDF Export</p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/leaves"
+                      className="p-4 rounded-xl border border-[#00078b]/15 bg-[#f6f6f6] hover:bg-[#00078b]/5 hover:border-[#00078b] transition-all group flex flex-col justify-between"
+                    >
+                      <div className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] w-fit mb-3 shadow-sm group-hover:scale-105 transition-transform">
+                        <CalendarX className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-sm text-[#00078b] group-hover:text-[#00078b]">Leave Portal</h5>
+                        <p className="text-[11px] text-[#00078b]/70 font-medium mt-1">Apply &amp; Approve Faculty Leaves</p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/approvals"
+                      className="p-4 rounded-xl border border-[#00078b]/15 bg-[#f6f6f6] hover:bg-[#00078b]/5 hover:border-[#00078b] transition-all group flex flex-col justify-between"
+                    >
+                      <div className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] w-fit mb-3 shadow-sm group-hover:scale-105 transition-transform">
+                        <ClipboardCheck className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-sm text-[#00078b] group-hover:text-[#00078b]">Approvals</h5>
+                        <p className="text-[11px] text-[#00078b]/70 font-medium mt-1">Review Substitution Plans</p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/exchanges"
+                      className="p-4 rounded-xl border border-[#00078b]/15 bg-[#f6f6f6] hover:bg-[#00078b]/5 hover:border-[#00078b] transition-all group flex flex-col justify-between"
+                    >
+                      <div className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] w-fit mb-3 shadow-sm group-hover:scale-105 transition-transform">
+                        <ArrowLeftRight className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-sm text-[#00078b] group-hover:text-[#00078b]">Exchanges</h5>
+                        <p className="text-[11px] text-[#00078b]/70 font-medium mt-1">Period Swaps &amp; Daily Schedule</p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/inbox"
+                      className="p-4 rounded-xl border border-[#00078b]/15 bg-[#f6f6f6] hover:bg-[#00078b]/5 hover:border-[#00078b] transition-all group flex flex-col justify-between"
+                    >
+                      <div className="bg-[#00078b] p-2.5 rounded-xl text-[#fdb813] w-fit mb-3 shadow-sm group-hover:scale-105 transition-transform">
+                        <Inbox className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-sm text-[#00078b] group-hover:text-[#00078b]">Campus Inbox</h5>
+                        <p className="text-[11px] text-[#00078b]/70 font-medium mt-1">Notifications &amp; Activity Log</p>
+                      </div>
+                    </a>
                   </div>
                 </div>
 
-                {/* Workflow shortcuts */}
-                <div className="glass-card p-6 rounded-2xl flex flex-col">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-bold text-sm uppercase tracking-wider text-slate-400">Workflows</h4>
-                    {authUser && (
-                      <span className="text-[10px] text-slate-500">
-                        {authUser.name} · <span className="uppercase">{authUser.role}</span>
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex-1 space-y-2">
-                    {[
-                      { href: "/timetable", icon: CalendarDays, title: "Timetable", desc: "Generate, per-class constraints, PDF" },
-                      { href: "/leaves", icon: CalendarX, title: "Leave & Substitution", desc: "Apply / approve — flagship flow" },
-                      { href: "/approvals", icon: ClipboardCheck, title: "Approvals", desc: "HOD plan cards, resume paused agent" },
-                      { href: "/exchanges", icon: ArrowLeftRight, title: "Period Exchanges", desc: "Dated board + effective day table" },
-                      { href: "/inbox", icon: Inbox, title: "Inbox", desc: "Agent notifications" },
-                      { href: "/setup", icon: Database, title: "Data Setup", desc: "Subjects, teachers, rooms, CSV" },
-                    ].map((w) => (
-                      <a
-                        key={w.href}
-                        href={w.href}
-                        className="group flex items-center space-x-3 p-3 bg-slate-950/40 border border-slate-800/60 rounded-xl hover:border-primary-500/30 hover:bg-slate-900/40 transition-colors"
-                      >
-                        <span className="bg-slate-800/70 p-2 rounded-lg text-slate-400 group-hover:text-primary-400 transition-colors">
-                          <w.icon className="h-4 w-4" />
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-slate-200">{w.title}</p>
-                          <p className="text-[10px] text-slate-500 truncate">{w.desc}</p>
+                {/* Operations Summary */}
+                <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl flex flex-col shadow-sm">
+                  <h4 className="font-bold text-sm uppercase tracking-wider text-[#00078b] mb-4">
+                    Automated Task Queue
+                  </h4>
+                  <div className="flex-1 overflow-y-auto space-y-3 pr-1">
+                    {tasks.map(task => (
+                      <div key={task.id} className="p-3 bg-[#f6f6f6] border border-[#00078b]/10 rounded-xl flex items-center justify-between">
+                        <div>
+                          <p className="text-xs font-bold text-[#00078b]">{task.name}</p>
+                          <p className="text-[10px] text-[#00078b]/60 font-medium mt-0.5">{task.trigger}</p>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span className={`h-2 w-2 rounded-full ${task.status === "running" ? "bg-[#00078b] animate-ping" :
+                              task.status === "completed" ? "bg-emerald-500" : "bg-[#00078b]/30"
+                            }`}></span>
+                          <span className="text-[10px] font-bold uppercase text-[#00078b]">{task.status}</span>
                         </div>
                         <ArrowRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-primary-400 transition-colors" />
                       </a>
                     ))}
                   </div>
+                  <button
+                    onClick={() => setActiveTab("scheduler")}
+                    className="w-full mt-4 bg-[#00078b] hover:bg-[#000566] text-white font-bold py-2.5 rounded-xl text-xs transition duration-200 shadow-md"
+                  >
+                    Manage Task Scheduler
+                  </button>
                 </div>
 
               </div>
@@ -623,55 +497,54 @@ export default function Dashboard() {
           {/* TAB 2: AGENT CHAT */}
           {activeTab === "chat" && (
             <div className="h-[calc(100vh-14rem)] flex gap-8 animate-fadeIn">
-              
+
               {/* Chat Thread */}
-              <div className="flex-1 glass-card rounded-2xl flex flex-col overflow-hidden relative">
-                
+              <div className="flex-1 bg-white border border-[#00078b]/15 rounded-2xl flex flex-col overflow-hidden relative shadow-sm">
+
                 {/* Chat Header */}
-                <div className="px-6 py-4 border-b border-slate-800/80 bg-slate-900/10 flex items-center justify-between">
+                <div className="px-6 py-4 border-b border-[#00078b]/15 bg-[#f6f6f6] flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="h-10 w-10 bg-primary-500/10 rounded-xl border border-primary-500/30 flex items-center justify-center text-primary-400">
+                    <div className="h-10 w-10 bg-[#00078b] text-[#fdb813] rounded-xl flex items-center justify-center shadow-sm font-bold">
                       <Bot className="h-5 w-5" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold">Campus Orchestrator Agent</h4>
-                      <p className="text-[11px] text-slate-400">Active Node State Listener</p>
+                      <h4 className="text-sm font-bold text-[#00078b]">Campus Orchestrator Agent</h4>
+                      <p className="text-[11px] text-[#00078b]/70 font-semibold">Active Node State Listener</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-semibold">
-                    <span className="h-1.5 w-1.5 bg-emerald-400 rounded-full"></span>
+                  <div className="flex items-center space-x-1 bg-emerald-50 border border-emerald-200 text-emerald-700 px-2.5 py-1 rounded-md text-[10px] font-bold">
+                    <span className="h-1.5 w-1.5 bg-emerald-500 rounded-full"></span>
                     <span>LangGraph Mode</span>
                   </div>
                 </div>
 
                 {/* Messages Box */}
-                <div className="flex-1 p-6 overflow-y-auto space-y-4">
+                <div className="flex-1 p-6 overflow-y-auto space-y-4 bg-[#f8fbfe]">
                   {messages.map((msg, index) => (
                     <div
                       key={index}
                       className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"} items-start gap-3`}
                     >
                       {msg.sender === "agent" && (
-                        <div className="h-8 w-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-primary-400 shrink-0 text-xs font-bold">
+                        <div className="h-8 w-8 rounded-lg bg-[#00078b] text-[#fdb813] flex items-center justify-center shrink-0 text-xs font-bold shadow-sm">
                           <Bot className="h-4 w-4" />
                         </div>
                       )}
                       <div className="max-w-[70%]">
                         <div
-                          className={`p-4 rounded-2xl text-sm leading-relaxed border ${
-                            msg.sender === "user"
-                              ? "bg-primary-600/20 border-primary-500/30 text-slate-100 rounded-tr-none"
-                              : "bg-slate-900/60 border-slate-800/80 text-slate-200 rounded-tl-none"
-                          }`}
+                          className={`p-4 rounded-2xl text-sm leading-relaxed border ${msg.sender === "user"
+                              ? "bg-[#00078b] border-[#00078b] text-white rounded-tr-none shadow-sm font-medium"
+                              : "bg-white border-[#00078b]/15 text-[#00078b] rounded-tl-none shadow-sm"
+                            }`}
                         >
                           {msg.sender === "agent" && msg.agentName && (
-                            <span className="text-[10px] block font-bold text-primary-400 uppercase tracking-wider mb-1">
+                            <span className="text-[10px] block font-extrabold text-[#00078b] uppercase tracking-wider mb-1">
                               {msg.agentName}
                             </span>
                           )}
                           <p>{msg.text}</p>
                         </div>
-                        <span className="text-[10px] text-slate-500 mt-1 block px-2">
+                        <span className="text-[10px] text-[#00078b]/60 font-semibold mt-1 block px-2">
                           {msg.timestamp}
                         </span>
                       </div>
@@ -680,11 +553,11 @@ export default function Dashboard() {
 
                   {isTyping && (
                     <div className="flex justify-start items-center gap-3">
-                      <div className="h-8 w-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-primary-400 shrink-0">
-                        <Bot className="h-4 w-4 animate-spin" />
+                      <div className="h-8 w-8 rounded-lg bg-[#00078b] text-[#fdb813] flex items-center justify-center shrink-0">
+                        <Bot className="h-4 w-4 animate-spin text-[#fdb813]" />
                       </div>
-                      <div className="bg-slate-900/40 border border-slate-850 px-4 py-3 rounded-2xl text-xs text-slate-400 flex items-center space-x-2">
-                        <RefreshCw className="h-3.5 w-3.5 animate-spin text-slate-500" />
+                      <div className="bg-white border border-[#00078b]/15 px-4 py-3 rounded-2xl text-xs text-[#00078b] flex items-center space-x-2 font-medium shadow-sm">
+                        <RefreshCw className="h-3.5 w-3.5 animate-spin text-[#00078b]" />
                         <span>LangGraph executing nodes...</span>
                       </div>
                     </div>
@@ -694,18 +567,18 @@ export default function Dashboard() {
                 </div>
 
                 {/* Input form */}
-                <div className="p-4 border-t border-slate-800/80 bg-slate-900/20 flex items-center space-x-2">
+                <div className="p-4 border-t border-[#00078b]/15 bg-white flex items-center space-x-2">
                   <input
                     type="text"
                     value={inputVal}
                     onChange={(e) => setInputVal(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                     placeholder="Ask agent: 'Book Room 302 tomorrow' or 'List current scheduling issues'"
-                    className="flex-1 glass-input px-4 py-3 rounded-xl text-sm"
+                    className="flex-1 bg-[#f6f6f6] border border-[#00078b]/20 px-4 py-3 rounded-xl text-sm text-[#00078b] placeholder-[#00078b]/40 focus:border-[#00078b] focus:ring-2 focus:ring-[#00078b]/20 outline-none font-medium transition-all"
                   />
                   <button
                     onClick={handleSendMessage}
-                    className="bg-primary-600 hover:bg-primary-500 text-white p-3 rounded-xl transition duration-150 shadow-lg shadow-primary-600/10"
+                    className="bg-[#00078b] hover:bg-[#000566] text-white p-3 rounded-xl transition duration-150 shadow-md font-bold"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -714,27 +587,27 @@ export default function Dashboard() {
               </div>
 
               {/* Steps/Trace Sidebar */}
-              <div className="w-80 glass-card rounded-2xl p-6 flex flex-col h-full">
-                <h4 className="font-bold text-sm uppercase tracking-wider text-slate-400 mb-4 flex items-center space-x-2">
-                  <Zap className="h-4 w-4 text-primary-400" />
+              <div className="w-80 bg-white border border-[#00078b]/15 rounded-2xl p-6 flex flex-col h-full shadow-sm">
+                <h4 className="font-bold text-sm uppercase tracking-wider text-[#00078b] mb-4 flex items-center space-x-2">
+                  <Zap className="h-4 w-4 text-[#00078b]" />
                   <span>Agent Run Log</span>
                 </h4>
-                
-                <div className="flex-1 bg-slate-950/40 rounded-xl border border-slate-850 p-4 overflow-y-auto space-y-4">
+
+                <div className="flex-1 bg-[#f6f6f6] rounded-xl border border-[#00078b]/10 p-4 overflow-y-auto space-y-4">
                   {activeWorkflowSteps.length === 0 ? (
-                    <div className="text-center py-12 text-slate-500 text-xs">
-                      <Clock className="h-8 w-8 mx-auto mb-2 text-slate-600" />
+                    <div className="text-center py-12 text-[#00078b]/60 text-xs font-medium">
+                      <Clock className="h-8 w-8 mx-auto mb-2 text-[#00078b]" />
                       No active workflow runtime trace. Ask the agent a question to view real-time state routing.
                     </div>
                   ) : (
                     <div className="space-y-3">
-                      <p className="text-[11px] font-semibold text-primary-400 uppercase tracking-widest">Active State Nodes</p>
+                      <p className="text-[11px] font-extrabold text-[#00078b] uppercase tracking-widest">Active State Nodes</p>
                       {activeWorkflowSteps.map((step, idx) => (
-                        <div key={idx} className="flex items-start space-x-2 text-xs border-l-2 border-primary-500 pl-3 py-1">
+                        <div key={idx} className="flex items-start space-x-2 text-xs border-l-2 border-[#00078b] pl-3 py-1">
                           <div>
-                            <p className="font-semibold text-slate-300">{step.split(":")[0]}</p>
+                            <p className="font-bold text-[#00078b]">{step.split(":")[0]}</p>
                             {step.split(":")[1] && (
-                              <p className="text-[10px] text-slate-500 mt-0.5">{step.split(":")[1]}</p>
+                              <p className="text-[10px] text-[#00078b]/70 font-medium mt-0.5">{step.split(":")[1]}</p>
                             )}
                           </div>
                         </div>
@@ -743,7 +616,7 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                <div className="mt-4 text-[11px] text-slate-500 leading-normal">
+                <div className="mt-4 text-[11px] text-[#00078b]/70 font-medium leading-normal">
                   LangGraph maintains a central state. During execution, nodes like the Router node route query payload, updating the central state variables asynchronously.
                 </div>
               </div>
@@ -754,15 +627,15 @@ export default function Dashboard() {
           {/* TAB 3: SCHEDULER */}
           {activeTab === "scheduler" && (
             <div className="space-y-6 animate-fadeIn">
-              
+
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-200">Scheduled Operational Scripts</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Autonomous routines executed by the Scheduler Agent node</p>
+                  <h3 className="text-lg font-bold text-[#00078b]">Scheduled Operational Scripts</h3>
+                  <p className="text-xs text-[#00078b]/70 font-medium mt-0.5">Autonomous routines executed by the Scheduler Agent node</p>
                 </div>
                 <button
                   onClick={() => setShowNewTaskModal(true)}
-                  className="bg-primary-600 hover:bg-primary-500 text-white font-medium px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition duration-150"
+                  className="bg-[#00078b] hover:bg-[#000566] text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition duration-150 shadow-md"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Schedule Task</span>
@@ -772,32 +645,31 @@ export default function Dashboard() {
               {/* Grid of Tasks */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {tasks.map(task => (
-                  <div key={task.id} className="glass-card p-6 rounded-2xl flex flex-col justify-between border border-slate-800">
+                  <div key={task.id} className="bg-white p-6 rounded-2xl flex flex-col justify-between border border-[#00078b]/15 shadow-sm hover:border-[#fdb813] transition-all">
                     <div>
                       <div className="flex justify-between items-start">
-                        <h4 className="font-bold text-slate-100 text-sm">{task.name}</h4>
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                          task.status === "completed" ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400" :
-                          task.status === "running" ? "bg-primary-500/10 border border-primary-500/20 text-primary-400 animate-pulse" :
-                          "bg-slate-800 border border-slate-700 text-slate-400"
-                        }`}>
+                        <h4 className="font-bold text-[#00078b] text-sm">{task.name}</h4>
+                        <span className={`px-2.5 py-0.5 rounded text-[10px] font-bold uppercase ${task.status === "completed" ? "bg-emerald-50 border border-emerald-200 text-emerald-700" :
+                            task.status === "running" ? "bg-[#fdb813] text-[#00078b] font-bold animate-pulse" :
+                              "bg-[#f6f6f6] border border-[#00078b]/15 text-[#00078b]"
+                          }`}>
                           {task.status}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400 mt-2 flex items-center space-x-1.5">
-                        <Clock className="h-3.5 w-3.5 text-slate-500" />
-                        <span>Trigger: <strong>{task.trigger}</strong></span>
+                      <p className="text-xs text-[#00078b]/70 font-medium mt-2 flex items-center space-x-1.5">
+                        <Clock className="h-3.5 w-3.5 text-[#00078b]" />
+                        <span>Trigger: <strong className="text-[#00078b]">{task.trigger}</strong></span>
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-slate-800/60 flex justify-between items-center text-xs text-slate-500">
+                    <div className="mt-6 pt-4 border-t border-[#00078b]/10 flex justify-between items-center text-xs text-[#00078b]/60 font-semibold">
                       <span>Last executed: {task.lastRun}</span>
                       <button
                         onClick={() => triggerTaskRun(task.id)}
                         disabled={task.status === "running"}
-                        className="bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 font-semibold flex items-center space-x-1 transition disabled:opacity-40"
+                        className="bg-[#00078b] hover:bg-[#000566] text-white px-3 py-1.5 rounded-lg font-bold flex items-center space-x-1 transition disabled:opacity-40 shadow-sm"
                       >
-                        <Play className="h-3 w-3" />
+                        <Play className="h-3 w-3 text-[#fdb813]" />
                         <span>Execute Now</span>
                       </button>
                     </div>
@@ -807,43 +679,43 @@ export default function Dashboard() {
 
               {/* Create Task Modal */}
               {showNewTaskModal && (
-                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                  <div className="glass-panel w-full max-w-md p-6 rounded-2xl border border-slate-800">
-                    <h3 className="text-base font-bold mb-4">Schedule New Campus Automation</h3>
+                <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                  <div className="bg-white w-full max-w-md p-6 rounded-2xl border border-[#00078b]/20 shadow-2xl">
+                    <h3 className="text-base font-bold text-[#00078b] mb-4">Schedule New Campus Automation</h3>
                     <form onSubmit={handleAddNewTask} className="space-y-4">
                       <div>
-                        <label className="block text-xs font-semibold text-slate-400 mb-1">Automation Task Name</label>
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#00078b] mb-1">Automation Task Name</label>
                         <input
                           type="text"
                           required
                           value={newTaskName}
                           onChange={(e) => setNewTaskName(e.target.value)}
                           placeholder="e.g. Server Backup, Faculty Timetable Audit"
-                          className="w-full glass-input px-3 py-2 rounded-xl text-sm"
+                          className="w-full bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] px-3.5 py-2.5 rounded-xl text-sm focus:border-[#00078b] outline-none font-medium"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-slate-400 mb-1">Trigger (Cron / Interval)</label>
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#00078b] mb-1">Trigger (Cron / Interval)</label>
                         <input
                           type="text"
                           required
                           value={newTaskTrigger}
                           onChange={(e) => setNewTaskTrigger(e.target.value)}
                           placeholder="e.g. Every day at 04:00, Every 2 hours"
-                          className="w-full glass-input px-3 py-2 rounded-xl text-sm"
+                          className="w-full bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] px-3.5 py-2.5 rounded-xl text-sm focus:border-[#00078b] outline-none font-medium"
                         />
                       </div>
-                      <div className="flex justify-end space-x-3 pt-4 border-t border-slate-850">
+                      <div className="flex justify-end space-x-3 pt-4 border-t border-[#00078b]/10">
                         <button
                           type="button"
                           onClick={() => setShowNewTaskModal(false)}
-                          className="text-xs text-slate-400 hover:text-slate-200 px-3 py-2"
+                          className="text-xs text-[#00078b]/60 hover:text-[#00078b] font-bold px-3 py-2"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="bg-primary-600 hover:bg-primary-500 text-white font-medium px-4 py-2 rounded-xl text-xs"
+                          className="bg-[#00078b] hover:bg-[#000566] text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md"
                         >
                           Schedule
                         </button>
@@ -859,15 +731,15 @@ export default function Dashboard() {
           {/* TAB 4: FACILITIES */}
           {activeTab === "facilities" && (
             <div className="space-y-6 animate-fadeIn">
-              
+
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-200">Campus Facilities Control</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Real-time room occupancy and automated allocation tracking</p>
+                  <h3 className="text-lg font-bold text-[#00078b]">Campus Facilities Control</h3>
+                  <p className="text-xs text-[#00078b]/70 font-medium mt-0.5">Real-time room occupancy and automated allocation tracking</p>
                 </div>
                 <button
                   onClick={() => setShowNewBookingModal(true)}
-                  className="bg-primary-600 hover:bg-primary-500 text-white font-medium px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition duration-150"
+                  className="bg-[#00078b] hover:bg-[#000566] text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition duration-150 shadow-md"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Request Booking</span>
@@ -875,11 +747,11 @@ export default function Dashboard() {
               </div>
 
               {/* Facility Table */}
-              <div className="glass-card rounded-2xl overflow-hidden border border-slate-800">
+              <div className="bg-white rounded-2xl overflow-hidden border border-[#00078b]/15 shadow-sm">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="bg-slate-900/40 border-b border-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                      <tr className="bg-[#f6f6f6] border-b border-[#00078b]/15 text-[#00078b] text-xs font-bold uppercase tracking-wider">
                         <th className="p-4 pl-6">Room / Lab</th>
                         <th className="p-4">Type</th>
                         <th className="p-4">Capacity</th>
@@ -887,23 +759,22 @@ export default function Dashboard() {
                         <th className="p-4 pr-6">Current Reservation / User</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/60 text-sm">
+                    <tbody className="divide-y divide-[#00078b]/10 text-sm">
                       {facilities.map(facility => (
-                        <tr key={facility.id} className="hover:bg-slate-900/10 transition">
-                          <td className="p-4 pl-6 font-semibold text-slate-200">{facility.name}</td>
-                          <td className="p-4 text-slate-400">{facility.type}</td>
-                          <td className="p-4 text-slate-400">{facility.capacity} seats</td>
+                        <tr key={facility.id} className="hover:bg-[#f6f6f6]/60 transition">
+                          <td className="p-4 pl-6 font-bold text-[#00078b]">{facility.name}</td>
+                          <td className="p-4 text-[#00078b]/70 font-medium">{facility.type}</td>
+                          <td className="p-4 text-[#00078b]/70 font-medium">{facility.capacity} seats</td>
                           <td className="p-4">
-                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                              facility.status === "Available" ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400" :
-                              facility.status === "Occupied" ? "bg-indigo-500/10 border border-indigo-500/20 text-indigo-400" :
-                              "bg-amber-500/10 border border-amber-500/20 text-amber-400"
-                            }`}>
+                            <span className={`px-2.5 py-0.5 rounded text-[10px] font-bold uppercase ${facility.status === "Available" ? "bg-emerald-50 border border-emerald-200 text-emerald-700" :
+                                facility.status === "Occupied" ? "bg-[#00078b] text-white" :
+                                  "bg-[#fdb813] text-[#00078b]"
+                              }`}>
                               {facility.status}
                             </span>
                           </td>
-                          <td className="p-4 pr-6 text-xs text-slate-300">
-                            {facility.currentReservation || <span className="text-slate-500 italic">None (Ready for Booking)</span>}
+                          <td className="p-4 pr-6 text-xs text-[#00078b] font-semibold">
+                            {facility.currentReservation || <span className="text-[#00078b]/40 italic font-normal">None (Ready for Booking)</span>}
                           </td>
                         </tr>
                       ))}
@@ -914,17 +785,17 @@ export default function Dashboard() {
 
               {/* Booking Modal */}
               {showNewBookingModal && (
-                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                  <div className="glass-panel w-full max-w-md p-6 rounded-2xl border border-slate-800">
-                    <h3 className="text-base font-bold mb-4">Request Facility Booking</h3>
+                <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                  <div className="bg-white w-full max-w-md p-6 rounded-2xl border border-[#00078b]/20 shadow-2xl">
+                    <h3 className="text-base font-bold text-[#00078b] mb-4">Request Facility Booking</h3>
                     <form onSubmit={handleCreateBooking} className="space-y-4">
                       <div>
-                        <label className="block text-xs font-semibold text-slate-400 mb-1">Select Room</label>
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#00078b] mb-1">Select Room</label>
                         <select
                           required
                           value={selectedFacilityId}
                           onChange={(e) => setSelectedFacilityId(e.target.value)}
-                          className="w-full glass-input px-3 py-2 rounded-xl text-sm bg-slate-900"
+                          className="w-full bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] px-3.5 py-2.5 rounded-xl text-sm focus:border-[#00078b] outline-none font-medium"
                         >
                           <option value="">-- Choose Classroom/Lab --</option>
                           {facilities.map(f => (
@@ -935,17 +806,17 @@ export default function Dashboard() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-slate-400 mb-1">Reservation / Event Details</label>
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#00078b] mb-1">Reservation / Event Details</label>
                         <input
                           type="text"
                           required
                           value={bookingDetails}
                           onChange={(e) => setBookingDetails(e.target.value)}
                           placeholder="e.g. Operating Systems Lecture (10:00 - 12:00)"
-                          className="w-full glass-input px-3 py-2 rounded-xl text-sm"
+                          className="w-full bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] px-3.5 py-2.5 rounded-xl text-sm focus:border-[#00078b] outline-none font-medium"
                         />
                       </div>
-                      <div className="flex justify-end space-x-3 pt-4 border-t border-slate-850">
+                      <div className="flex justify-end space-x-3 pt-4 border-t border-[#00078b]/10">
                         <button
                           type="button"
                           onClick={() => {
@@ -953,13 +824,13 @@ export default function Dashboard() {
                             setSelectedFacilityId("");
                             setBookingDetails("");
                           }}
-                          className="text-xs text-slate-400 hover:text-slate-200 px-3 py-2"
+                          className="text-xs text-[#00078b]/60 hover:text-[#00078b] font-bold px-3 py-2"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="bg-primary-600 hover:bg-primary-500 text-white font-medium px-4 py-2 rounded-xl text-xs"
+                          className="bg-[#00078b] hover:bg-[#000566] text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md"
                         >
                           Confirm Booking
                         </button>
@@ -972,9 +843,6 @@ export default function Dashboard() {
             </div>
           )}
 
-        </div>
-      </main>
-
-    </div>
+    </AppLayout>
   );
 }

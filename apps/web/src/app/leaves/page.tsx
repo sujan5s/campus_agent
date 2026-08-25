@@ -8,6 +8,7 @@ import {
   Bot, RefreshCw, ClipboardCheck,
 } from "lucide-react";
 import { api, getToken, getUser, AuthUser } from "../../lib/api";
+import AppLayout from "../../components/AppLayout";
 
 interface LeaveRow {
   id: number;
@@ -33,9 +34,9 @@ interface DecideResponse {
 }
 
 const STATUS_STYLE: Record<string, string> = {
-  pending: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-  approved: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-  rejected: "bg-rose-500/15 text-rose-300 border-rose-500/30",
+  pending: "bg-[#fdb813] text-[#00078b] font-bold",
+  approved: "bg-emerald-100 text-emerald-800 font-bold border border-emerald-300",
+  rejected: "bg-rose-100 text-rose-800 font-bold border border-rose-300",
 };
 
 export default function LeavesPage() {
@@ -106,50 +107,46 @@ export default function LeavesPage() {
 
   const isAdmin = user?.role === "admin";
   const isFaculty = user?.role === "faculty";
-  const inputCls = "glass-input rounded-lg px-3 py-2 text-sm w-full";
-  const labelCls = "block text-[10px] text-slate-400 uppercase tracking-wider font-semibold mb-1";
+  const inputCls = "bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] placeholder-[#00078b]/40 rounded-xl px-3.5 py-2 text-sm w-full outline-none font-medium focus:border-[#00078b]";
+  const labelCls = "block text-[10px] text-[#00078b] uppercase tracking-wider font-bold mb-1";
 
   return (
-    <div className="min-h-screen p-6 relative overflow-x-hidden">
-      <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
+    <AppLayout title="Leave Management" subtitle="Submit applications and approve faculty leaves.">
       <div className="max-w-4xl mx-auto relative">
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="glass-card rounded-xl p-2.5 text-slate-400 hover:text-slate-200"><ArrowLeft className="h-5 w-5" /></Link>
-            <div className="flex items-center space-x-3">
-              <div className="bg-indigo-500/10 p-2 rounded-xl border border-indigo-500/20 text-indigo-400">
-                <CalendarX className="h-5 w-5" />
-              </div>
-              <div>
-                <h1 className="font-bold text-xl text-slate-100">Leave Management</h1>
-                <p className="text-xs text-slate-400">
-                  Approving a leave triggers the Substitution Agent automatically — no prompting.
-                </p>
-              </div>
+          <div className="flex items-center space-x-3">
+            <div className="bg-[#00078b] p-2 rounded-xl text-[#fdb813] shadow-md">
+              <CalendarX className="h-5 w-5" />
+            </div>
+            <div>
+              <h1 className="font-bold text-xl text-[#00078b]">Leave Portal</h1>
+              <p className="text-xs text-[#00078b]/70 font-medium">
+                Approving a leave triggers the Substitution Agent automatically.
+              </p>
             </div>
           </div>
           {isAdmin && (
-            <Link href="/approvals" className="flex items-center space-x-2 glass-card rounded-xl px-4 py-2.5 text-sm text-slate-300 hover:text-white">
-              <ClipboardCheck className="h-4 w-4" /><span>Approvals</span>
+            <Link href="/approvals" className="flex items-center space-x-2 bg-white border border-[#00078b]/20 shadow-sm rounded-xl px-4 py-2.5 text-sm font-bold text-[#00078b] hover:bg-[#f6f6f6] transition-colors">
+              <ClipboardCheck className="h-4 w-4 text-[#00078b]" /><span>Approvals</span>
             </Link>
           )}
         </div>
 
         {flash && (
-          <div className={`flex items-start space-x-2 text-sm rounded-xl px-4 py-3 mb-4 border ${
-            flash.kind === "ok" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
-            : flash.kind === "agent" ? "text-indigo-300 bg-indigo-500/10 border-indigo-500/20"
-            : "text-amber-400 bg-amber-500/10 border-amber-500/20"}`}>
-            {flash.kind === "agent" ? <Bot className="h-4 w-4 shrink-0 mt-0.5" />
-              : flash.kind === "ok" ? <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" />
-              : <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />}
+          <div className={`flex items-start space-x-2 text-sm rounded-xl px-4 py-3 mb-4 border font-medium ${
+            flash.kind === "ok" ? "text-emerald-800 bg-emerald-50 border-emerald-200"
+            : flash.kind === "agent" ? "text-[#00078b] bg-[#fdb813]/20 border-[#fdb813]/50 font-semibold"
+            : "text-amber-800 bg-amber-50 border-amber-200"}`}>
+            {flash.kind === "agent" ? <Bot className="h-4 w-4 shrink-0 mt-0.5 text-[#00078b]" />
+              : flash.kind === "ok" ? <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600" />
+              : <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-amber-600" />}
             <span>{flash.text}</span>
           </div>
         )}
 
         {isFaculty && (
-          <form onSubmit={applyLeave} className="glass-panel rounded-2xl p-5 mb-5">
-            <h2 className="text-sm font-semibold text-slate-200 mb-4">Apply for leave</h2>
+          <form onSubmit={applyLeave} className="bg-white border border-[#00078b]/15 rounded-2xl p-5 mb-5 shadow-sm">
+            <h2 className="text-sm font-bold text-[#00078b] mb-4">Apply for leave</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div><label className={labelCls}>From</label>
                 <input required type="date" className={inputCls} value={form.from_date}
@@ -162,31 +159,31 @@ export default function LeavesPage() {
                   value={form.reason} onChange={(e) => setForm({ ...form, reason: e.target.value })} /></div>
             </div>
             <button type="submit" disabled={submitting}
-              className="mt-4 flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-sm font-medium rounded-xl px-5 py-2.5">
-              <Send className="h-4 w-4" /><span>{submitting ? "Submitting…" : "Submit application"}</span>
+              className="mt-4 flex items-center space-x-2 bg-[#00078b] hover:bg-[#000566] disabled:opacity-50 text-white text-sm font-bold rounded-xl px-5 py-2.5 shadow-md">
+              <Send className="h-4 w-4 text-[#fdb813]" /><span>{submitting ? "Submitting…" : "Submit application"}</span>
             </button>
           </form>
         )}
 
-        <div className="glass-panel rounded-2xl overflow-hidden">
-          <h2 className="text-sm font-semibold text-slate-200 px-5 pt-4 pb-1">
+        <div className="bg-white border border-[#00078b]/15 rounded-2xl overflow-hidden shadow-sm">
+          <h2 className="text-sm font-bold text-[#00078b] px-5 pt-4 pb-1">
             {isAdmin ? "All leave applications" : "My leave applications"}
           </h2>
           <table className="w-full mt-2">
-            <thead className="border-b border-slate-800 bg-slate-900/40">
+            <thead className="border-b border-[#00078b]/15 bg-[#f6f6f6]">
               <tr>
                 {["Teacher", "From", "To", "Reason", "Status", isAdmin ? "Actions" : ""].filter(Boolean).map((h) => (
-                  <th key={h} className="text-left text-[10px] text-slate-400 uppercase tracking-wider font-semibold px-4 py-3">{h}</th>
+                  <th key={h} className="text-left text-[10px] text-[#00078b] uppercase tracking-wider font-bold px-4 py-3">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-[#00078b]/10">
               {leaves.map((lv) => (
-                <tr key={lv.id} className="hover:bg-slate-800/20">
-                  <td className="px-4 py-3 text-sm text-slate-200">{lv.teacher}</td>
-                  <td className="px-4 py-3 text-sm text-slate-300">{lv.from_date}</td>
-                  <td className="px-4 py-3 text-sm text-slate-300">{lv.to_date}</td>
-                  <td className="px-4 py-3 text-sm text-slate-400 max-w-[200px] truncate">{lv.reason}</td>
+                <tr key={lv.id} className="hover:bg-[#f6f6f6]/60 transition">
+                  <td className="px-4 py-3 text-sm text-[#00078b] font-bold">{lv.teacher}</td>
+                  <td className="px-4 py-3 text-sm text-[#00078b] font-semibold">{lv.from_date}</td>
+                  <td className="px-4 py-3 text-sm text-[#00078b] font-semibold">{lv.to_date}</td>
+                  <td className="px-4 py-3 text-sm text-[#00078b]/70 max-w-[200px] truncate font-medium">{lv.reason}</td>
                   <td className="px-4 py-3">
                     <span className={`text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-lg border ${STATUS_STYLE[lv.status] || ""}`}>
                       {lv.status}
@@ -197,27 +194,27 @@ export default function LeavesPage() {
                       {lv.status === "pending" ? (
                         <div className="flex items-center space-x-2">
                           <button onClick={() => decide(lv.id, "approve")} disabled={busyId === lv.id}
-                            className="flex items-center space-x-1 bg-emerald-600/80 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-medium rounded-lg px-3 py-1.5">
+                            className="flex items-center space-x-1 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg px-3 py-1.5 shadow-sm">
                             {busyId === lv.id ? <RefreshCw className="h-3.5 w-3.5 animate-spin" /> : <CheckCircle2 className="h-3.5 w-3.5" />}
                             <span>Approve</span>
                           </button>
                           <button onClick={() => decide(lv.id, "reject")} disabled={busyId === lv.id}
-                            className="flex items-center space-x-1 bg-rose-600/70 hover:bg-rose-500 disabled:opacity-50 text-white text-xs font-medium rounded-lg px-3 py-1.5">
+                            className="flex items-center space-x-1 bg-rose-600 hover:bg-rose-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg px-3 py-1.5 shadow-sm">
                             <XCircle className="h-3.5 w-3.5" /><span>Reject</span>
                           </button>
                         </div>
-                      ) : <span className="text-slate-600 text-xs">—</span>}
+                      ) : <span className="text-[#00078b]/40 text-xs">—</span>}
                     </td>
                   )}
                 </tr>
               ))}
               {leaves.length === 0 && (
-                <tr><td colSpan={6} className="px-4 py-10 text-center text-sm text-slate-500">No leave applications yet.</td></tr>
+                <tr><td colSpan={6} className="px-4 py-10 text-center text-sm text-[#00078b]/60 font-medium">No leave applications yet.</td></tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
