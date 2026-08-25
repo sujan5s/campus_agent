@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Smart Campus Control Center",
   description: "AI-driven campus task automation and multi-agent workflow orchestration system.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
