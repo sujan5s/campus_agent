@@ -8,10 +8,8 @@ import {
   Building2,
   Send,
   Bot,
-  User,
   CheckCircle2,
   Clock,
-  AlertTriangle,
   Play,
   Plus,
   RefreshCw,
@@ -23,7 +21,10 @@ import {
   ClipboardCheck,
   ArrowLeftRight,
   Inbox,
+  ArrowRight,
+  Users,
 } from "lucide-react";
+import { api, getToken, getUser, AuthUser } from "../lib/api";
 
 // Types
 interface Message {
@@ -66,6 +67,14 @@ export default function Dashboard() {
   const [activeWorkflowSteps, setActiveWorkflowSteps] = useState<string[]>([]);
   const [backendConnected, setBackendConnected] = useState(false);
 
+  // Live overview stats (only when signed in; degrades to "—" otherwise)
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  const [stats, setStats] = useState<{
+    version: number | null;
+    pendingApprovals: number | null;
+    upcomingExchanges: number | null;
+  }>({ version: null, pendingApprovals: null, upcomingExchanges: null });
+
   // Scheduler State
   const [tasks, setTasks] = useState<Task[]>([
     { id: "1", name: "Daily Timetable Synchronization", trigger: "Every day at 06:00", status: "completed", lastRun: "Today, 06:00" },
@@ -105,6 +114,27 @@ export default function Dashboard() {
     const interval = setInterval(checkBackend, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  // Pull real overview stats once the backend is reachable and a token exists.
+  useEffect(() => {
+    if (!backendConnected) return;
+    setAuthUser(getUser());
+    if (!getToken()) return;
+    (async () => {
+      try {
+        const st = await api<{ latest_version: number | null }>("/timetable/status");
+        setStats((s) => ({ ...s, version: st.latest_version }));
+      } catch { /* not signed in / no timetable yet */ }
+      try {
+        const ap = await api<unknown[]>("/approvals?status=pending");
+        setStats((s) => ({ ...s, pendingApprovals: ap.length }));
+      } catch { /* non-admin (403) or offline */ }
+      try {
+        const ex = await api<{ exchanges: unknown[] }>("/timetable/exchanges");
+        setStats((s) => ({ ...s, upcomingExchanges: ex.exchanges.length }));
+      } catch { /* offline */ }
+    })();
+  }, [backendConnected]);
 
   // Auto scroll chat
   useEffect(() => {
@@ -406,152 +436,183 @@ export default function Dashboard() {
           {activeTab === "overview" && (
             <div className="space-y-8 animate-fadeIn">
               
-              {/* Stat Cards */}
+              {/* Stat Cards — real system metrics (live when signed in) */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="glass-card p-6 rounded-2xl relative overflow-hidden">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Active Agents</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">3 Nodes</h3>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Specialist Agents</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">4 Nodes</h3>
                     </div>
                     <span className="bg-primary-500/10 p-2.5 rounded-xl border border-primary-500/20 text-primary-400">
-                      <Bot className="h-5 w-5" />
+                      <Users className="h-5 w-5" />
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1">
                     <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span>Router, Scheduler, Facilities</span>
+                    <span>Supervisor · Timetable · Substitution · General</span>
                   </p>
                 </div>
 
-                <div className="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <a href="/timetable" className="glass-card p-6 rounded-2xl relative overflow-hidden group hover:border-primary-500/30 transition-colors">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Scheduled Automations</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">{tasks.length} Active</h3>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Timetable</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">
+                        {stats.version === null ? "—" : `v${stats.version}`}
+                      </h3>
                     </div>
                     <span className="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 text-emerald-400">
                       <CalendarDays className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-emerald-400 mt-4 font-medium">
-                    1 running currently
+                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1 group-hover:text-emerald-400 transition-colors">
+                    <span>CP-SAT, provably clash-free</span>
+                    <ArrowRight className="h-3 w-3" />
                   </p>
-                </div>
+                </a>
 
-                <div className="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <a href="/approvals" className="glass-card p-6 rounded-2xl relative overflow-hidden group hover:border-primary-500/30 transition-colors">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Reservations tracked</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Pending Approvals</p>
                       <h3 className="text-3xl font-extrabold mt-2 text-slate-100">
-                        {facilities.filter(f => f.status === "Reserved" || f.status === "Occupied").length} / {facilities.length}
+                        {stats.pendingApprovals === null ? "—" : stats.pendingApprovals}
                       </h3>
                     </div>
                     <span className="bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 text-amber-400">
-                      <Building2 className="h-5 w-5" />
+                      <ClipboardCheck className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-4">
-                    Rooms allocated for today
+                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1 group-hover:text-amber-400 transition-colors">
+                    <span>HOD sign-off queue (human-in-the-loop)</span>
+                    <ArrowRight className="h-3 w-3" />
                   </p>
-                </div>
+                </a>
 
-                <div className="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <a href="/exchanges" className="glass-card p-6 rounded-2xl relative overflow-hidden group hover:border-primary-500/30 transition-colors">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">System Integrity</p>
-                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">99.8%</h3>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Upcoming Exchanges</p>
+                      <h3 className="text-3xl font-extrabold mt-2 text-slate-100">
+                        {stats.upcomingExchanges === null ? "—" : stats.upcomingExchanges}
+                      </h3>
                     </div>
                     <span className="bg-indigo-500/10 p-2.5 rounded-xl border border-indigo-500/20 text-indigo-400">
-                      <CheckCircle2 className="h-5 w-5" />
+                      <ArrowLeftRight className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-4">
-                    All cron processes active
+                  <p className="text-[11px] text-slate-400 mt-4 flex items-center space-x-1 group-hover:text-indigo-400 transition-colors">
+                    <span>Confirmed swaps, next 14 days</span>
+                    <ArrowRight className="h-3 w-3" />
                   </p>
-                </div>
+                </a>
               </div>
 
-              {/* Dynamic workflow log and instructions */}
+              {!getToken() && (
+                <div className="glass-card rounded-2xl px-5 py-3 flex items-center justify-between text-xs border border-amber-500/20">
+                  <span className="text-slate-400">
+                    Sign in to see live timetable version, approval queue and exchange counts.
+                  </span>
+                  <a href="/login" className="flex items-center space-x-1.5 text-amber-300 font-semibold hover:text-amber-200">
+                    <LogIn className="h-3.5 w-3.5" /><span>Sign in</span>
+                  </a>
+                </div>
+              )}
+
+              {/* Real LangGraph pipeline + workflow shortcuts */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                {/* Graph visualization simulation */}
-                <div className="lg:col-span-2 glass-card p-6 rounded-2xl flex flex-col h-[350px]">
+
+                {/* Actual supervisor → specialist → END graph */}
+                <div className="lg:col-span-2 glass-card p-6 rounded-2xl flex flex-col">
                   <h4 className="font-bold text-sm uppercase tracking-wider text-slate-400 mb-6 flex items-center justify-between">
-                    <span>LangGraph Active Flow Pipeline</span>
-                    <span className="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Visualization</span>
+                    <span>LangGraph Orchestration</span>
+                    <span className="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Supervisor-router</span>
                   </h4>
-                  
-                  <div className="flex-1 flex items-center justify-around relative px-4">
-                    {/* Visual graph connect lines */}
-                    <div className="absolute left-[28%] right-[28%] top-1/2 h-0.5 bg-gradient-to-r from-primary-500 to-indigo-500 -translate-y-1/2 z-0"></div>
-                    
-                    <div className="z-10 flex flex-col items-center space-y-2">
+
+                  <div className="flex-1 flex items-center justify-between relative px-2">
+                    {/* connector line */}
+                    <div className="absolute left-[22%] right-[22%] top-[46px] h-0.5 bg-gradient-to-r from-primary-500 to-indigo-500 z-0"></div>
+
+                    <div className="z-10 flex flex-col items-center space-y-2 w-24">
                       <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-primary-500 flex items-center justify-center shadow-lg shadow-primary-500/20">
                         <Bot className="h-7 w-7 text-primary-400" />
                       </div>
-                      <span className="text-xs font-bold">RouterNode</span>
-                      <span className="text-[10px] text-slate-500">Evaluates Query</span>
+                      <span className="text-xs font-bold">Supervisor</span>
+                      <span className="text-[10px] text-slate-500 text-center">LLM routing<br/>(keyword fallback)</span>
                     </div>
 
-                    <div className="flex flex-col space-y-6 z-10">
-                      <div className="flex flex-col items-center space-y-1">
-                        <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center">
-                          <CalendarDays className="h-5 w-5 text-slate-400" />
-                        </div>
-                        <span className="text-[10px] font-medium">SchedulerNode</span>
+                    <div className="flex flex-col space-y-3 z-10">
+                      <div className="flex items-center space-x-2 bg-slate-900/70 border border-slate-700 rounded-xl px-3 py-2">
+                        <CalendarDays className="h-4 w-4 text-emerald-400" />
+                        <span className="text-[11px] font-semibold">Timetable</span>
                       </div>
-                      <div className="flex flex-col items-center space-y-1">
-                        <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center">
-                          <Building2 className="h-5 w-5 text-slate-400" />
-                        </div>
-                        <span className="text-[10px] font-medium">FacilityNode</span>
+                      <div className="flex items-center space-x-2 bg-slate-900/70 border border-amber-500/30 rounded-xl px-3 py-2">
+                        <ArrowLeftRight className="h-4 w-4 text-amber-400" />
+                        <span className="text-[11px] font-semibold">Substitution</span>
+                        <span className="text-[9px] text-amber-300/80 uppercase tracking-wide">pauses</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-slate-900/70 border border-slate-700 rounded-xl px-3 py-2">
+                        <MessageSquare className="h-4 w-4 text-slate-400" />
+                        <span className="text-[11px] font-semibold">General</span>
                       </div>
                     </div>
 
-                    <div className="z-10 flex flex-col items-center space-y-2">
+                    <div className="z-10 flex flex-col items-center space-y-2 w-24">
                       <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
                         <CheckCircle2 className="h-7 w-7 text-indigo-400" />
                       </div>
-                      <span className="text-xs font-bold">State Response</span>
-                      <span className="text-[10px] text-slate-500">Final Answer</span>
+                      <span className="text-xs font-bold">Response</span>
+                      <span className="text-[10px] text-slate-500 text-center">Durable state<br/>per thread</span>
                     </div>
                   </div>
-                  
-                  <div className="mt-4 p-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs text-slate-400 flex items-center space-x-2">
-                    <AlertTriangle className="h-4 w-4 text-indigo-400 shrink-0" />
-                    <span>The Multi-Agent architecture automatically routes instructions to specific node solvers depending on natural language intent.</span>
+
+                  <div className="mt-6 p-3 bg-slate-950/60 rounded-xl border border-amber-500/20 text-xs text-slate-400 flex items-start space-x-2">
+                    <ArrowLeftRight className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-amber-300">F2 flagship:</strong> approving a leave triggers the
+                      Substitution agent (deterministically, no LLM), which builds a period-exchange plan and
+                      pauses at <code className="text-slate-300">interrupt()</code> for HOD approval — then resumes
+                      and notifies both teachers. Original timetable never mutated.
+                    </span>
                   </div>
                 </div>
 
-                {/* Operations Summary */}
-                <div className="glass-card p-6 rounded-2xl flex flex-col h-[350px]">
-                  <h4 className="font-bold text-sm uppercase tracking-wider text-slate-400 mb-4">
-                    Next Tasks Queue
-                  </h4>
-                  <div className="flex-1 overflow-y-auto space-y-3 pr-1">
-                    {tasks.map(task => (
-                      <div key={task.id} className="p-3 bg-slate-950/40 border border-slate-800/60 rounded-xl flex items-center justify-between">
-                        <div>
-                          <p className="text-xs font-bold text-slate-200">{task.name}</p>
-                          <p className="text-[10px] text-slate-500 mt-0.5">{task.trigger}</p>
+                {/* Workflow shortcuts */}
+                <div className="glass-card p-6 rounded-2xl flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-bold text-sm uppercase tracking-wider text-slate-400">Workflows</h4>
+                    {authUser && (
+                      <span className="text-[10px] text-slate-500">
+                        {authUser.name} · <span className="uppercase">{authUser.role}</span>
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    {[
+                      { href: "/timetable", icon: CalendarDays, title: "Timetable", desc: "Generate, per-class constraints, PDF" },
+                      { href: "/leaves", icon: CalendarX, title: "Leave & Substitution", desc: "Apply / approve — flagship flow" },
+                      { href: "/approvals", icon: ClipboardCheck, title: "Approvals", desc: "HOD plan cards, resume paused agent" },
+                      { href: "/exchanges", icon: ArrowLeftRight, title: "Period Exchanges", desc: "Dated board + effective day table" },
+                      { href: "/inbox", icon: Inbox, title: "Inbox", desc: "Agent notifications" },
+                      { href: "/setup", icon: Database, title: "Data Setup", desc: "Subjects, teachers, rooms, CSV" },
+                    ].map((w) => (
+                      <a
+                        key={w.href}
+                        href={w.href}
+                        className="group flex items-center space-x-3 p-3 bg-slate-950/40 border border-slate-800/60 rounded-xl hover:border-primary-500/30 hover:bg-slate-900/40 transition-colors"
+                      >
+                        <span className="bg-slate-800/70 p-2 rounded-lg text-slate-400 group-hover:text-primary-400 transition-colors">
+                          <w.icon className="h-4 w-4" />
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-bold text-slate-200">{w.title}</p>
+                          <p className="text-[10px] text-slate-500 truncate">{w.desc}</p>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <span className={`h-2 w-2 rounded-full ${
-                            task.status === "running" ? "bg-primary-500 animate-ping" :
-                            task.status === "completed" ? "bg-emerald-500" : "bg-slate-600"
-                          }`}></span>
-                          <span className="text-[10px] font-semibold uppercase text-slate-400">{task.status}</span>
-                        </div>
-                      </div>
+                        <ArrowRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-primary-400 transition-colors" />
+                      </a>
                     ))}
                   </div>
-                  <button 
-                    onClick={() => setActiveTab("scheduler")}
-                    className="w-full mt-4 bg-primary-600 hover:bg-primary-500 text-white font-medium py-2 rounded-xl text-xs transition duration-200"
-                  >
-                    Manage Scheduler
-                  </button>
                 </div>
 
               </div>

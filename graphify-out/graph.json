@@ -828,47 +828,47 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_app_page",
-      "community": 7,
+      "community": 37,
       "norm_label": "page.tsx"
     },
     {
       "label": "Message",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "apps_web_src_app_page_message",
-      "community": 7,
+      "community": 37,
       "norm_label": "message"
     },
     {
       "label": "Task",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "apps_web_src_app_page_task",
-      "community": 7,
+      "community": 37,
       "norm_label": "task"
     },
     {
       "label": "Facility",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "apps_web_src_app_page_facility",
-      "community": 7,
+      "community": 37,
       "norm_label": "facility"
     },
     {
       "label": "Dashboard()",
       "file_type": "code",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L54",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "apps_web_src_app_page_dashboard",
-      "community": 7,
+      "community": 37,
       "norm_label": "dashboard()"
     },
     {
@@ -2308,7 +2308,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_router",
-      "community": 8,
+      "community": 16,
       "norm_label": "router.py"
     },
     {
@@ -2318,7 +2318,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_api_router_rationale_1",
-      "community": 8,
+      "community": 16,
       "norm_label": "api aggregator \u2014 one sub-router per domain (docs/02-architecture.md \u00a74).  main.p"
     },
     {
@@ -3408,7 +3408,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_app_db_session",
-      "community": 8,
+      "community": 16,
       "norm_label": "session.py"
     },
     {
@@ -3438,7 +3438,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "services_backend_app_db_session_get_db",
-      "community": 8,
+      "community": 16,
       "norm_label": "get_db()"
     },
     {
@@ -3448,7 +3448,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "services_backend_app_db_session_init_db",
-      "community": 8,
+      "community": 16,
       "norm_label": "init_db()"
     },
     {
@@ -3458,7 +3458,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "services_backend_app_db_session_rationale_19",
-      "community": 8,
+      "community": 16,
       "norm_label": "fastapi dependency yielding a request-scoped session."
     },
     {
@@ -3468,7 +3468,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "services_backend_app_db_session_rationale_28",
-      "community": 8,
+      "community": 16,
       "norm_label": "create all tables (dev convenience; alembic takes over once schema stabilizes)."
     },
     {
@@ -4418,7 +4418,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_backend_main",
-      "community": 8,
+      "community": 16,
       "norm_label": "main.py"
     },
     {
@@ -4428,7 +4428,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "services_backend_main_substitution_sweep",
-      "community": 8,
+      "community": 16,
       "norm_label": "_substitution_sweep()"
     },
     {
@@ -4438,7 +4438,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "services_backend_main_lifespan",
-      "community": 8,
+      "community": 16,
       "norm_label": "lifespan()"
     },
     {
@@ -4448,7 +4448,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "fastapi",
-      "community": 8,
+      "community": 16,
       "norm_label": "fastapi"
     },
     {
@@ -4458,7 +4458,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "services_backend_main_read_root",
-      "community": 8,
+      "community": 16,
       "norm_label": "read_root()"
     },
     {
@@ -4468,7 +4468,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "services_backend_main_rationale_16",
-      "community": 8,
+      "community": 16,
       "norm_label": "proactive safety net (docs/02-architecture.md trigger engine): if a leave     wa"
     },
     {
@@ -7385,7 +7385,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_dashboard",
@@ -7395,7 +7395,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_facility",
@@ -7405,7 +7405,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_message",
@@ -7415,11 +7415,88 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/app/page.tsx",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "apps_web_src_app_page",
       "target": "apps_web_src_app_page_task",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_lib_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_lib_api_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_lib_api_authuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_lib_api_gettoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page",
+      "target": "apps_web_src_lib_api_getuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page_dashboard",
+      "target": "apps_web_src_lib_api_gettoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/app/page.tsx",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "apps_web_src_app_page_dashboard",
+      "target": "apps_web_src_lib_api_getuser"
     },
     {
       "relation": "contains",
@@ -17169,5 +17246,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "589290c8ac700e026299b622b3c8bac981249bae"
+  "built_at_commit": "bd13a57eb888828ba3b1ba02c0f6bff0aa4d3bdd"
 }

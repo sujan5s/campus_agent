@@ -1,16 +1,16 @@
 # Graph Report - campus_agent  (2026-07-15)
 
 ## Corpus Check
-- 73 files · ~52,969 words
+- 73 files · ~53,354 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 626 nodes · 1042 edges · 45 communities (29 shown, 16 thin omitted)
+- 626 nodes · 1049 edges · 44 communities (28 shown, 16 thin omitted)
 - Extraction: 79% EXTRACTED · 21% INFERRED · 0% AMBIGUOUS · INFERRED: 224 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `589290c8`
+- Built from commit: `bd13a57e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -22,7 +22,6 @@
 - CLAUDE.md
 - models.py
 - POST /api/agent/chat Contract
-- page.tsx
 - FastAPI
 - layout.tsx
 - Settings
@@ -62,8 +61,8 @@
 6. `Room` - 19 edges
 7. `TimetableEntry` - 19 edges
 8. `Base` - 18 edges
-9. `compilerOptions` - 16 edges
-10. `PeriodExchange` - 16 edges
+9. `getToken()` - 16 edges
+10. `compilerOptions` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `facility_node()` --indirect_call--> `Room`  [INFERRED]
@@ -83,7 +82,7 @@
 ## Hyperedges (group relationships)
 - **LangGraph Query Routing Flow** — readme_router_node_concept, readme_scheduler_agent_concept, readme_facility_agent_concept, readme_general_fallback_concept, readme_agentstate_concept [EXTRACTED 0.90]
 
-## Communities (45 total, 16 thin omitted)
+## Communities (44 total, 16 thin omitted)
 
 ### Community 0 - "compilerOptions"
 Cohesion: 0.07
@@ -109,17 +108,13 @@ Nodes (6): Essential Config, Key File Structure, Navigation, Patterns, Quick Sta
 Cohesion: 0.13
 Nodes (29): PeriodExchange, One exchanged pair (Phase 2.1): A's missed lesson on the leave date is taken, _adjacency_warnings(), apply_plan(), _build_context(), build_plan(), _ctx_effective_map(), _ctx_max_consecutive() (+21 more)
 
-### Community 7 - "page.tsx"
-Cohesion: 0.40
-Nodes (3): Facility, Message, Task
-
 ### Community 8 - "FastAPI"
-Cohesion: 0.13
-Nodes (14): FastAPI, ChatRequest, ChatResponse, BaseModel, Agent chat endpoint — unified entry into the LangGraph supervisor., run_agent_workflow(), API aggregator — one sub-router per domain (docs/02-ARCHITECTURE.md §4).  main.p, get_db() (+6 more)
+Cohesion: 0.43
+Nodes (5): ChatRequest, ChatResponse, BaseModel, Agent chat endpoint — unified entry into the LangGraph supervisor., run_agent_workflow()
 
 ### Community 16 - "security.py"
-Cohesion: 0.07
-Nodes (46): datetime, DeclarativeBase, HTTPAuthorizationCredentials, decide(), DecisionIn, list_approvals(), BaseModel, Session (+38 more)
+Cohesion: 0.05
+Nodes (55): datetime, DeclarativeBase, FastAPI, HTTPAuthorizationCredentials, decide(), DecisionIn, list_approvals(), BaseModel (+47 more)
 
 ### Community 20 - "04 — Roadmap & Status"
 Cohesion: 0.04
@@ -147,7 +142,7 @@ Nodes (41): Scheduling specialist — evolves into the Timetable + Substitution 
 
 ### Community 37 - "page.tsx"
 Cohesion: 0.06
-Nodes (50): ApprovalCard, ApprovalsPage(), DecideResult, PlanItem, DayEntry, EffectiveDay, ExchangeBoard, ExchangeRow (+42 more)
+Nodes (54): ApprovalCard, ApprovalsPage(), DecideResult, PlanItem, DayEntry, EffectiveDay, ExchangeBoard, ExchangeRow (+46 more)
 
 ### Community 38 - "load_timetable_input"
 Cohesion: 0.09
