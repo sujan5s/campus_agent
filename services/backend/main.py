@@ -41,6 +41,24 @@ def _substitution_sweep():
         print(f"[sweep] Substitution Agent triggered for unplanned approved leave #{lv.id}")
 
 
+def _booking_nag_sweep():
+    """Proactive nag (docs/09-PHASE3-BOOKING-PLAN.md §1.6): a booking whose
+    current approval stage has been pending longer than BOOKING_NAG_HOURS gets
+    one reminder per window — approvers forget, the agent doesn't."""
+    from app.db.session import SessionLocal
+    from app.tools.booking import pending_nags, send_nag
+
+    db = SessionLocal()
+    try:
+        due = pending_nags(db, hours=settings.BOOKING_NAG_HOURS)
+        for booking, approval in due:
+            if send_nag(db, booking, approval):
+                print(f"[sweep] Nagged approver of booking #{booking.id} "
+                      f"({approval.kind}, pending since {booking.created_at})")
+    finally:
+        db.close()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
@@ -49,6 +67,9 @@ async def lifespan(app: FastAPI):
     scheduler = BackgroundScheduler()
     scheduler.add_job(_substitution_sweep, "interval", minutes=2,
                       id="substitution_sweep", coalesce=True, max_instances=1)
+    scheduler.add_job(_booking_nag_sweep, "interval",
+                      minutes=settings.BOOKING_SWEEP_MINUTES,
+                      id="booking_nag_sweep", coalesce=True, max_instances=1)
     scheduler.start()
     yield
     scheduler.shutdown(wait=False)

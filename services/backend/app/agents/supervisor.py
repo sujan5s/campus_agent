@@ -21,7 +21,7 @@ class RouteDecision(BaseModel):
             "timetable: generate/regenerate/rebuild the weekly class timetable. "
             "substitution: plan/arrange substitute teachers for an approved leave (message mentions a leave id). "
             "scheduler: schedule conflicts, checks, teacher leave status questions. "
-            "facility: booking/reserving/availability of rooms, halls, labs, auditoriums, grounds, events. "
+            "facility: booking/reserving a venue, or asking whether a room, hall, lab, auditorium or ground is free — anything about events and venues. "
             "general: anything else (campus info, FAQs, greetings)."
         )
     )
@@ -68,6 +68,16 @@ def supervisor_node(state: AgentState) -> dict:
         return {
             "steps": steps + ["Supervisor: system trigger → substitution (deterministic, no LLM)."],
             "current_action": "substitution",
+            "task_spec": state.get("task_spec") or {},
+        }
+
+    # The /bookings form carries a fully structured, already-validated request —
+    # the intent is not in question, so skip the LLM here too (Phase 3, F3).
+    if (state.get("task_spec") or {}).get("booking"):
+        return {
+            "steps": steps + ["Supervisor: structured booking request → booking agent "
+                              "(deterministic, no LLM)."],
+            "current_action": "facility",
             "task_spec": state.get("task_spec") or {},
         }
 

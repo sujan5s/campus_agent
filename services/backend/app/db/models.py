@@ -186,9 +186,16 @@ class Event(Base):
     organizer_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     description: Mapped[str] = mapped_column(Text, default="")
     expected_headcount: Mapped[int] = mapped_column(Integer, default=0)
+    # fest | workshop | seminar | sports | meeting | event
+    category: Mapped[str] = mapped_column(String(30), default="event")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+    organizer: Mapped[User] = relationship()
 
 
 class Booking(Base):
+    """One venue reservation (Phase 3, F3). Conflict-checked against other
+    bookings AND the academic timetable before it is ever written."""
     __tablename__ = "bookings"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -200,7 +207,16 @@ class Booking(Base):
     status: Mapped[str] = mapped_column(String(20), default="pending")  # pending|approved|rejected|cancelled
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
 
+    requested_by: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True)
+    purpose: Mapped[str] = mapped_column(Text, default="")
+    rationale: Mapped[str] = mapped_column(Text, default="")   # why the agent picked this venue
+    # The LangGraph thread that created this row. The booking node re-executes
+    # from the top on every interrupt-resume, so creation must be idempotent.
+    request_key: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
+    last_nag_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
     room: Mapped[Room] = relationship()
+    event: Mapped["Event | None"] = relationship()
 
 
 # --- Workflow plumbing --------------------------------------------------------
@@ -211,7 +227,8 @@ class Approval(Base):
     __tablename__ = "approvals"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    kind: Mapped[str] = mapped_column(String(30))  # leave | substitution_plan | booking
+    # leave | substitution_plan | booking_faculty | booking_admin
+    kind: Mapped[str] = mapped_column(String(30))
     ref_id: Mapped[int] = mapped_column(Integer)
     approver_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="pending")

@@ -26,6 +26,13 @@ class Settings(BaseSettings):
     DATABASE_URL: str = f"sqlite:///{(BACKEND_DIR / 'campus.db').as_posix()}"
     CHECKPOINT_DB: str = str(BACKEND_DIR / "checkpoints.db")
 
+    # --- Proactive sweeps (docs/02-ARCHITECTURE.md trigger engine) ---
+    # A booking approval left pending this long gets one reminder per window.
+    # Set BOOKING_NAG_HOURS=0 in .env to demo the nag without waiting a day
+    # (a reminder still goes out at most once an hour per booking).
+    BOOKING_NAG_HOURS: int = 24
+    BOOKING_SWEEP_MINUTES: int = 30
+
     # --- Auth ---
     JWT_SECRET: str = "change-me-in-production"
     JWT_ALGORITHM: str = "HS256"

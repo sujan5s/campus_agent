@@ -56,6 +56,25 @@ def get_current_user(
     return user
 
 
+def get_optional_user(
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
+    db: Session = Depends(get_db),
+):
+    """Like get_current_user but returns None instead of 401 when there is no
+    (or a stale) token. Used by /agent/chat, which stays open to anonymous
+    visitors but needs an identity when a request writes something — e.g. a
+    venue booking needs an organiser (Phase 3)."""
+    from app.db.models import User
+
+    if credentials is None:
+        return None
+    try:
+        payload = decode_token(credentials.credentials)
+    except HTTPException:
+        return None
+    return db.get(User, int(payload["sub"]))
+
+
 def require_role(*roles: str):
     """Dependency factory: require_role('admin', 'faculty')."""
 

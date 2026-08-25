@@ -15,6 +15,7 @@ from app.agents.graph import compiled_graph
 from app.core.security import get_current_user, require_role
 from app.db.models import Approval, User
 from app.db.session import get_db
+from app.tools.booking import STAGE_LABEL, booking_summary
 from app.tools.exchange import plan_summary
 
 router = APIRouter()
@@ -22,28 +23,52 @@ router = APIRouter()
 
 class DecisionIn(BaseModel):
     action: str  # approve | reject
+    reason: str = ""  # optional note shown to the requester on a rejection
 
 
-@router.get("", dependencies=[Depends(require_role("admin"))])
-def list_approvals(status: str = "pending", db: Session = Depends(get_db)):
-    rows = (db.query(Approval).filter(Approval.status == status)
-            .order_by(Approval.id.desc()).all())
-    out = []
-    for a in rows:
-        item = {"id": a.id, "kind": a.kind, "ref_id": a.ref_id, "status": a.status,
-                "decided_at": a.decided_at.isoformat() if a.decided_at else None}
-        if a.kind == "substitution_plan":
-            item["plan"] = plan_summary(db, a.ref_id)
-        out.append(item)
-    return out
+# Booking chains have a faculty-advisor stage (Phase 3); everything else is
+# admin-only. A faculty member sees and decides only their own advisor cards.
+FACULTY_KINDS = {"booking_faculty"}
 
 
-@router.post("/{approval_id}/decide", dependencies=[Depends(require_role("admin"))])
+def _may_decide(user: User, kind: str) -> bool:
+    return user.role == "admin" or (user.role == "faculty" and kind in FACULTY_KINDS)
+
+
+def _card(db: Session, a: Approval) -> dict:
+    item = {"id": a.id, "kind": a.kind, "ref_id": a.ref_id, "status": a.status,
+            "decided_at": a.decided_at.isoformat() if a.decided_at else None}
+    if a.kind == "substitution_plan":
+        item["plan"] = plan_summary(db, a.ref_id)
+    elif a.kind in ("booking_faculty", "booking_admin"):
+        item["stage"] = STAGE_LABEL[a.kind]
+        item["booking"] = booking_summary(db, a.ref_id)
+    return item
+
+
+@router.get("", dependencies=[Depends(require_role("admin", "faculty"))])
+def list_approvals(status: str = "pending", db: Session = Depends(get_db),
+                   user: User = Depends(get_current_user)):
+    q = db.query(Approval).filter(Approval.status == status)
+    if user.role == "faculty":
+        # advisor cards addressed to this teacher only
+        q = q.filter(Approval.kind.in_(list(FACULTY_KINDS)),
+                     Approval.approver_id == user.id)
+    rows = q.order_by(Approval.id.desc()).all()
+    return [_card(db, a) for a in rows]
+
+
+@router.post("/{approval_id}/decide",
+             dependencies=[Depends(require_role("admin", "faculty"))])
 def decide(approval_id: int, payload: DecisionIn, db: Session = Depends(get_db),
            user: User = Depends(get_current_user)):
     a = db.get(Approval, approval_id)
     if a is None:
         raise HTTPException(404, "Approval not found")
+    if not _may_decide(user, a.kind):
+        raise HTTPException(403, "This approval is not yours to decide")
+    if user.role == "faculty" and a.approver_id not in (None, user.id):
+        raise HTTPException(403, "This approval is addressed to another advisor")
     if a.status != "pending":
         raise HTTPException(409, f"Already {a.status}")
     if payload.action not in ("approve", "reject"):
@@ -53,7 +78,7 @@ def decide(approval_id: int, payload: DecisionIn, db: Session = Depends(get_db),
 
     # ---- resume the paused graph exactly where interrupt() stopped it ----
     result = compiled_graph.invoke(
-        Command(resume={"action": payload.action}),
+        Command(resume={"action": payload.action, "reason": payload.reason}),
         config={"configurable": {"thread_id": a.langgraph_thread_id}},
     )
 
@@ -62,9 +87,16 @@ def decide(approval_id: int, payload: DecisionIn, db: Session = Depends(get_db),
     a.decided_at = datetime.now(timezone.utc)
     db.commit()
 
-    return {
+    # A multi-stage chain (student booking) pauses again on the next stage —
+    # surface that card so the UI can say "now with Administration".
+    out = {
         "approval_id": a.id,
         "status": a.status,
         "agent_response": result.get("final_response", ""),
         "steps": result.get("steps", []),
     }
+    intr = result.get("__interrupt__")
+    if intr:
+        nxt = intr[0].value if hasattr(intr[0], "value") else intr[0]
+        out["next_stage"] = nxt
+    return out

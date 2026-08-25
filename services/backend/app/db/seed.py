@@ -44,14 +44,19 @@ def seed() -> bool:
             db.add(t)
             teachers.append(t)
 
-        db.add(User(name="Demo Student", email="student@campus.edu", role="student",
-                    password_hash=hash_password("student123")))
-
         # --- Sections ----------------------------------------------------------
-        db.add_all([
+        sections = [
             Section(name="CSE-7A", dept="CSE", semester=7, strength=60),
             Section(name="CSE-7B", dept="CSE", semester=7, strength=58),
-        ])
+        ]
+        db.add_all(sections)
+        db.flush()
+
+        # Attached to a real section so the booking agent can derive this
+        # student's faculty advisor from the timetable (Phase 3, F3).
+        db.add(User(name="Demo Student", email="student@campus.edu", role="student",
+                    password_hash=hash_password("student123"),
+                    section_id=sections[0].id))
 
         # --- Subjects (sem 7 CSE) ----------------------------------------------
         subject_specs = [

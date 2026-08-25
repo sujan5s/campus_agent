@@ -11,7 +11,7 @@ from langgraph.graph import StateGraph, END
 from app.agents.state import AgentState
 from app.agents.supervisor import supervisor_node, route_to
 from app.agents.specialists.scheduling import scheduler_node
-from app.agents.specialists.booking import facility_node
+from app.agents.specialists.booking import booking_node
 from app.agents.specialists.general import general_fallback_node
 from app.agents.specialists.timetable import timetable_node
 from app.agents.specialists.substitution import substitution_node
@@ -39,7 +39,7 @@ workflow = StateGraph(AgentState)
 
 workflow.add_node("supervisor", supervisor_node)
 workflow.add_node("scheduler", scheduler_node)
-workflow.add_node("facility", facility_node)
+workflow.add_node("facility", booking_node)
 workflow.add_node("general_fallback", general_fallback_node)
 workflow.add_node("timetable", timetable_node)
 workflow.add_node("substitution", substitution_node)
