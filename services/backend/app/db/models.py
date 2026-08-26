@@ -1,7 +1,8 @@
 """SQLAlchemy models — mirrors the data model in docs/02-ARCHITECTURE.md §3."""
 from datetime import date, datetime, time, timezone
 
-from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Integer, String, Table, Text, Time, Column
+from sqlalchemy import (Boolean, Column, Date, DateTime, ForeignKey, Integer, String,
+                        Table, Text, Time, UniqueConstraint)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
@@ -102,12 +103,106 @@ class TimetableEntry(Base):
     timeslot_id: Mapped[int] = mapped_column(ForeignKey("timeslots.id"))
     status: Mapped[str] = mapped_column(String(20), default="active")  # active | substituted | cancelled
     version: Mapped[int] = mapped_column(Integer, default=1)
+    # Set when this row is an open-elective slot: the cell belongs to a whole
+    # semester, and subject/teacher/room point at the group's first offering
+    # (the UI expands the full basket list). NULL for ordinary lessons.
+    elective_group_id: Mapped[int | None] = mapped_column(
+        ForeignKey("elective_groups.id"), nullable=True)
 
     section: Mapped[Section] = relationship()
     subject: Mapped[Subject] = relationship()
     teacher: Mapped[Teacher] = relationship()
     room: Mapped[Room] = relationship()
     timeslot: Mapped[TimeSlot] = relationship()
+
+
+# --- Teaching assignments & electives (Phase 2.4) ----------------------------
+
+class TeachingAssignment(Base):
+    """Admin pin: *this* teacher takes *this* subject for *this* section.
+
+    One teacher legitimately teaches different subjects in different semesters —
+    an assignment is per (section, subject), so the same teacher can be pinned in
+    sem 2 and sem 4 at once. The solver still enforces clash-freedom and daily
+    load across every section, so conflicting pins surface as a precise
+    infeasibility reason rather than a silent reshuffle.
+
+    A (section, subject) with no row here is chosen by the solver as before."""
+    __tablename__ = "teaching_assignments"
+    __table_args__ = (UniqueConstraint("section_id", "subject_id",
+                                       name="uq_assignment_section_subject"),)
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    section_id: Mapped[int] = mapped_column(ForeignKey("sections.id"))
+    subject_id: Mapped[int] = mapped_column(ForeignKey("subjects.id"))
+    teacher_id: Mapped[int] = mapped_column(ForeignKey("teachers.id"))
+
+    section: Mapped["Section"] = relationship()
+    subject: Mapped["Subject"] = relationship()
+    teacher: Mapped["Teacher"] = relationship()
+
+
+class ElectiveGroup(Base):
+    """An open-elective band (sem 6/7 convention): a set of periods that every
+    section of the semester keeps free of regular classes, during which the
+    offerings below run *in parallel* — students split across baskets."""
+    __tablename__ = "elective_groups"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(60))          # "OE-1"
+    dept: Mapped[str] = mapped_column(String(50), default="CSE")
+    semester: Mapped[int] = mapped_column(Integer)
+    periods_per_week: Mapped[int] = mapped_column(Integer, default=3)
+    needs_block: Mapped[bool] = mapped_column(Boolean, default=False)  # consecutive pair
+    active: Mapped[bool] = mapped_column(Boolean, default=True)
+
+    offerings: Mapped[list["ElectiveOffering"]] = relationship(
+        back_populates="group", cascade="all, delete-orphan")
+
+
+class ElectiveOffering(Base):
+    """One basket inside a group: a subject taught by a teacher in a room, running
+    at the same time as its siblings."""
+    __tablename__ = "elective_offerings"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    group_id: Mapped[int] = mapped_column(ForeignKey("elective_groups.id"))
+    subject_id: Mapped[int] = mapped_column(ForeignKey("subjects.id"))
+    teacher_id: Mapped[int] = mapped_column(ForeignKey("teachers.id"))
+    room_id: Mapped[int] = mapped_column(ForeignKey("rooms.id"))
+    capacity: Mapped[int] = mapped_column(Integer, default=60)
+
+    group: Mapped[ElectiveGroup] = relationship(back_populates="offerings")
+    subject: Mapped["Subject"] = relationship()
+    teacher: Mapped["Teacher"] = relationship()
+    room: Mapped["Room"] = relationship()
+
+
+class Constraint(Base):
+    """One editable generation rule (Phase 2.4).
+
+    The registry — not a request body — is the source of truth for how the
+    timetable is generated. Rows are created from the UI form, from natural
+    language via the LLM (source='llm', origin_prompt keeps what was typed), or
+    seeded. `kind` must be a key in tools/constraints.py CATALOG, which also
+    validates `params_json`; the solver never sees a kind it does not know.
+
+    Scope resolution is section > semester > global."""
+    __tablename__ = "constraints"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    kind: Mapped[str] = mapped_column(String(40))
+    scope_type: Mapped[str] = mapped_column(String(10), default="global")  # global|semester|section
+    scope_value: Mapped[str] = mapped_column(String(40), default="")       # "" | "7" | "CSE-7A"
+    params_json: Mapped[str] = mapped_column(Text, default="{}")
+    priority: Mapped[str] = mapped_column(String(10), default="hard")      # hard | soft
+    weight: Mapped[int] = mapped_column(Integer, default=1)                # soft only
+    enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+    source: Mapped[str] = mapped_column(String(10), default="ui")          # seed | ui | llm
+    origin_prompt: Mapped[str] = mapped_column(Text, default="")
+    description: Mapped[str] = mapped_column(Text, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
 
 
 # --- Leave & substitution (Phase 2) -----------------------------------------

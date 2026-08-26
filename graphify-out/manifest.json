@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/app/page.tsx": {
-    "mtime": 1784007775.161167,
-    "ast_hash": "3f8773a73c7b8aec0de9b10d7c09bb41",
+    "mtime": 1784102959.952679,
+    "ast_hash": "846ab9f61e43a8b216b312d313d6135e",
     "semantic_hash": ""
   },
   "apps/web/tailwind.config.ts": {

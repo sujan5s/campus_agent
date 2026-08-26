@@ -2,7 +2,7 @@
 (docs/01-FEATURES.md F4). Until then: LLM answer if configured, canned reply if not.
 """
 from app.agents.state import AgentState
-from app.core.llm import get_llm, is_llm_configured
+from app.core.llm import get_llm, is_llm_configured, text_of
 
 _SYSTEM = (
     "You are the Campus Orchestrator assistant of a smart campus operations system "
@@ -23,7 +23,7 @@ def general_fallback_node(state: AgentState) -> dict:
         try:
             reply = get_llm(temperature=0.4).invoke([("system", _SYSTEM), ("user", query)])
             steps.append("GeneralAgent: composed answer via LLM.")
-            return {"steps": steps, "final_response": reply.content}
+            return {"steps": steps, "final_response": text_of(reply)}
         except Exception as exc:
             steps.append(f"GeneralAgent: LLM unavailable ({type(exc).__name__}), using standard reply.")
 

@@ -63,3 +63,26 @@ def get_llm(temperature: float = 0.1):
         model_provider=settings.LLM_PROVIDER,
         temperature=temperature,
     )
+
+
+def text_of(reply) -> str:
+    """Plain text from a chat reply.
+
+    Providers differ: some return `content` as a string, newer ones (Gemini,
+    Claude with extended thinking) return a list of typed content blocks. Every
+    caller that wants text — and especially anything that then parses JSON —
+    must go through here rather than str()-ing the raw content, which yields a
+    Python repr of the block list.
+    """
+    content = getattr(reply, "content", reply)
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts = []
+        for block in content:
+            if isinstance(block, str):
+                parts.append(block)
+            elif isinstance(block, dict) and block.get("type") in (None, "text"):
+                parts.append(str(block.get("text", "")))
+        return "".join(parts).strip()
+    return str(content)

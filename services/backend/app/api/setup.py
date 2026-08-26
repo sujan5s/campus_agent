@@ -11,7 +11,10 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.core.security import get_current_user, hash_password, require_role
-from app.db.models import Room, Section, Subject, Teacher, User
+from app.db.models import (
+    ElectiveGroup, ElectiveOffering, Room, Section, Subject, Teacher,
+    TeachingAssignment, User,
+)
 from app.db.session import get_db
 
 router = APIRouter()
@@ -359,3 +362,211 @@ async def import_csv(entity: str, file: UploadFile = File(...), db: Session = De
         raise HTTPException(422, "; ".join(errors[:5]))
     db.commit()
     return {"created": created, "updated": updated, "errors": errors}
+
+
+# ---------- Teaching assignments (Phase 2.4) ----------
+#
+# Who actually teaches a subject *for a given class*. A pin here is honoured
+# exactly by the solver (H4); a (section, subject) with no pin is still chosen
+# automatically. The same teacher may be pinned in several semesters at once —
+# clash-freedom and daily load are checked across all of them, so an impossible
+# combination surfaces as a precise infeasibility reason instead of a reshuffle.
+
+class AssignmentIn(BaseModel):
+    section_id: int
+    subject_id: int
+    teacher_id: int | None = None   # None clears the pin (solver chooses again)
+
+
+class AssignmentsIn(BaseModel):
+    items: list[AssignmentIn]
+
+
+def _elective_subject_ids(db: Session) -> set[int]:
+    return {o.subject_id for o in db.query(ElectiveOffering).all()}
+
+
+@router.get("/assignments")
+def list_assignments(db: Session = Depends(get_db), user=any_user):
+    """The full matrix, grouped by semester then class — the shape the UI renders.
+    Elective-band subjects are excluded: their teacher is set on the offering."""
+    pinned = {(a.section_id, a.subject_id): a.teacher_id
+              for a in db.query(TeachingAssignment).all()}
+    skip = _elective_subject_ids(db)
+    teachers = db.query(Teacher).all()
+    by_subject: dict[int, list[dict]] = {}
+    for t in teachers:
+        for subj in t.subjects:
+            by_subject.setdefault(subj.id, []).append({"id": t.id, "name": t.user.name})
+
+    out = []
+    for sec in db.query(Section).order_by(Section.semester, Section.name).all():
+        subjects = (db.query(Subject)
+                    .filter(Subject.dept == sec.dept, Subject.semester == sec.semester)
+                    .order_by(Subject.code).all())
+        rows = []
+        for subj in subjects:
+            if subj.id in skip:
+                continue
+            rows.append({
+                "subject_id": subj.id, "subject_code": subj.code,
+                "subject_name": subj.name, "needs_lab": subj.needs_lab,
+                "periods_per_week": subj.periods_per_week,
+                "teacher_id": pinned.get((sec.id, subj.id)),
+                "eligible": sorted(by_subject.get(subj.id, []), key=lambda t: t["name"]),
+            })
+        out.append({"section_id": sec.id, "section": sec.name,
+                    "semester": sec.semester, "dept": sec.dept, "subjects": rows})
+    return out
+
+
+@router.put("/assignments", dependencies=[admin_only])
+def set_assignments(payload: AssignmentsIn, db: Session = Depends(get_db)):
+    """Upsert (or clear, with teacher_id=null) a batch of pins."""
+    existing = {(a.section_id, a.subject_id): a
+                for a in db.query(TeachingAssignment).all()}
+    saved, cleared = 0, 0
+    for item in payload.items:
+        key = (item.section_id, item.subject_id)
+        if item.teacher_id is None:
+            row = existing.get(key)
+            if row:
+                db.delete(row)
+                cleared += 1
+            continue
+        if not db.get(Section, item.section_id):
+            raise HTTPException(404, f"Section {item.section_id} not found")
+        subject = db.get(Subject, item.subject_id)
+        if not subject:
+            raise HTTPException(404, f"Subject {item.subject_id} not found")
+        teacher = db.get(Teacher, item.teacher_id)
+        if not teacher:
+            raise HTTPException(404, f"Teacher {item.teacher_id} not found")
+        if subject not in teacher.subjects:
+            raise HTTPException(
+                422, f"{teacher.user.name} is not mapped to {subject.code} — add the "
+                     f"subject to that teacher first (Teachers tab).")
+        row = existing.get(key)
+        if row:
+            row.teacher_id = item.teacher_id
+        else:
+            db.add(TeachingAssignment(section_id=item.section_id,
+                                      subject_id=item.subject_id,
+                                      teacher_id=item.teacher_id))
+        saved += 1
+    db.commit()
+    return {"saved": saved, "cleared": cleared}
+
+
+# ---------- Open-elective bands (Phase 2.4) ----------
+#
+# Sem 6/7 convention: one band of periods that every section of the semester
+# keeps free, inside which the offerings run in parallel — students split across
+# baskets, each with its own subject, teacher and room.
+
+class OfferingIn(BaseModel):
+    subject_id: int
+    teacher_id: int
+    room_id: int
+    capacity: int = 60
+
+
+class ElectiveIn(BaseModel):
+    name: str
+    dept: str = "CSE"
+    semester: int
+    periods_per_week: int = 3
+    needs_block: bool = False
+    active: bool = True
+    offerings: list[OfferingIn] = []
+
+
+def _elective_out(g: ElectiveGroup) -> dict:
+    return {
+        "id": g.id, "name": g.name, "dept": g.dept, "semester": g.semester,
+        "periods_per_week": g.periods_per_week, "needs_block": g.needs_block,
+        "active": g.active,
+        "offerings": [{
+            "id": o.id, "subject_id": o.subject_id, "subject_code": o.subject.code,
+            "subject_name": o.subject.name, "teacher_id": o.teacher_id,
+            "teacher": o.teacher.user.name, "room_id": o.room_id,
+            "room": o.room.name, "capacity": o.capacity,
+        } for o in g.offerings],
+    }
+
+
+def _validate_offerings(db: Session, items: list[OfferingIn]) -> None:
+    rooms, teachers = set(), set()
+    for o in items:
+        subject = db.get(Subject, o.subject_id)
+        teacher = db.get(Teacher, o.teacher_id)
+        room = db.get(Room, o.room_id)
+        if not subject:
+            raise HTTPException(404, f"Subject {o.subject_id} not found")
+        if not teacher:
+            raise HTTPException(404, f"Teacher {o.teacher_id} not found")
+        if not room:
+            raise HTTPException(404, f"Room {o.room_id} not found")
+        if subject not in teacher.subjects:
+            raise HTTPException(
+                422, f"{teacher.user.name} is not mapped to {subject.code} — add the "
+                     f"subject to that teacher first (Teachers tab).")
+        # baskets run at the same time, so they cannot share a room or a teacher
+        if o.room_id in rooms:
+            raise HTTPException(422, f"Room {room.name} is used by two parallel options.")
+        if o.teacher_id in teachers:
+            raise HTTPException(
+                422, f"{teacher.user.name} cannot run two options at the same time.")
+        rooms.add(o.room_id)
+        teachers.add(o.teacher_id)
+
+
+@router.get("/electives")
+def list_electives(db: Session = Depends(get_db), user=any_user):
+    return [_elective_out(g) for g in
+            db.query(ElectiveGroup).order_by(ElectiveGroup.semester, ElectiveGroup.name).all()]
+
+
+@router.post("/electives", dependencies=[admin_only])
+def create_elective(payload: ElectiveIn, db: Session = Depends(get_db)):
+    if not db.query(Section).filter(Section.semester == payload.semester).first():
+        raise HTTPException(422, f"No section is in semester {payload.semester}.")
+    _validate_offerings(db, payload.offerings)
+    g = ElectiveGroup(name=payload.name, dept=payload.dept, semester=payload.semester,
+                      periods_per_week=payload.periods_per_week,
+                      needs_block=payload.needs_block, active=payload.active)
+    db.add(g)
+    db.flush()
+    for o in payload.offerings:
+        db.add(ElectiveOffering(group_id=g.id, **o.model_dump()))
+    db.commit()
+    db.refresh(g)
+    return _elective_out(g)
+
+
+@router.put("/electives/{gid}", dependencies=[admin_only])
+def update_elective(gid: int, payload: ElectiveIn, db: Session = Depends(get_db)):
+    g = db.get(ElectiveGroup, gid)
+    if not g:
+        raise HTTPException(404, "Elective band not found")
+    _validate_offerings(db, payload.offerings)
+    g.name, g.dept, g.semester = payload.name, payload.dept, payload.semester
+    g.periods_per_week = payload.periods_per_week
+    g.needs_block, g.active = payload.needs_block, payload.active
+    g.offerings.clear()          # cascade delete-orphan replaces the basket list
+    db.flush()
+    for o in payload.offerings:
+        db.add(ElectiveOffering(group_id=g.id, **o.model_dump()))
+    db.commit()
+    db.refresh(g)
+    return _elective_out(g)
+
+
+@router.delete("/electives/{gid}", dependencies=[admin_only])
+def delete_elective(gid: int, db: Session = Depends(get_db)):
+    g = db.get(ElectiveGroup, gid)
+    if not g:
+        raise HTTPException(404, "Elective band not found")
+    db.delete(g)
+    db.commit()
+    return {"deleted": gid}

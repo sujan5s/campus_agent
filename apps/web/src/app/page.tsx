@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { getToken, getUser, clearAuth, AuthUser } from "../lib/api";
+import { api, getToken, getUser, clearAuth, AuthUser } from "../lib/api";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -10,10 +10,8 @@ import {
   Building2,
   Send,
   Bot,
-  User,
   CheckCircle2,
   Clock,
-  AlertTriangle,
   Play,
   Plus,
   RefreshCw,
@@ -26,6 +24,8 @@ import {
   ClipboardCheck,
   ArrowLeftRight,
   Inbox,
+  ArrowRight,
+  Users,
 } from "lucide-react";
 
 import AppLayout from "../components/AppLayout";
@@ -60,6 +60,11 @@ export default function Dashboard() {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
+  const [stats, setStats] = useState({
+    version: null as number | null,
+    pendingApprovals: 0,
+    upcomingExchanges: 0,
+  });
 
   const [activeTab, setActiveTab] = useState<"overview" | "chat" | "scheduler" | "facilities">("overview");
   const [messages, setMessages] = useState<Message[]>([
@@ -126,6 +131,27 @@ export default function Dashboard() {
     const interval = setInterval(checkBackend, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  // Pull real overview stats once the backend is reachable and a token exists.
+  useEffect(() => {
+    if (!backendConnected) return;
+    setCurrentUser(getUser());
+    if (!getToken()) return;
+    (async () => {
+      try {
+        const st = await api<{ latest_version: number | null }>("/timetable/status");
+        setStats((s) => ({ ...s, version: st.latest_version }));
+      } catch { /* not signed in / no timetable yet */ }
+      try {
+        const ap = await api<unknown[]>("/approvals?status=pending");
+        setStats((s) => ({ ...s, pendingApprovals: ap.length }));
+      } catch { /* non-admin (403) or offline */ }
+      try {
+        const ex = await api<{ exchanges: unknown[] }>("/timetable/exchanges");
+        setStats((s) => ({ ...s, upcomingExchanges: ex.exchanges.length }));
+      } catch { /* offline */ }
+    })();
+  }, [backendConnected]);
 
   // Auto scroll chat
   useEffect(() => {
@@ -338,6 +364,17 @@ export default function Dashboard() {
                 </div>
               </div>
 
+              {!getToken() && (
+                <div className="glass-card rounded-2xl px-5 py-3 flex items-center justify-between text-xs border border-amber-500/20">
+                  <span className="text-slate-400">
+                    Sign in to see live timetable version, approval queue and exchange counts.
+                  </span>
+                  <a href="/login" className="flex items-center space-x-1.5 text-amber-300 font-semibold hover:text-amber-200">
+                    <LogIn className="h-3.5 w-3.5" /><span>Sign in</span>
+                  </a>
+                </div>
+              )}
+
               {/* Dynamic Operations Overview Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
@@ -451,6 +488,7 @@ export default function Dashboard() {
                             }`}></span>
                           <span className="text-[10px] font-bold uppercase text-[#00078b]">{task.status}</span>
                         </div>
+                        <ArrowRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-primary-400 transition-colors" />
                       </div>
                     ))}
                   </div>

@@ -2,11 +2,14 @@
 
 **START HERE:** Read `docs/README.md`, then `docs/04-ROADMAP.md` before starting work.
 
-**Status (2026-08-25):** Phases 0, 1, 2, 2.2, 2.3 complete; Phase 3 **F3 (Event Booking) complete**, F4 (RAG) not started. Smart Campus Agent System — AI-driven campus ops platform.
-- **Supervisor-router** LLM with keyword fallback; swappable providers (Gemini/Claude/OpenAI/Ollama) via `.env` only. **System-sourced triggers (leave approval, sweep) and structured booking-form requests skip the LLM** and route deterministically.
-- **SQLAlchemy models** (16 tables) + idempotent seeding; JWT auth + role-based access
-- **OR-Tools CP-SAT timetable solver** — 8 base hard constraints + optional admin constraints (H9 no same-subject back-to-back — **ON by default**, H10 teacher consecutive-teaching cap, half-days), all configurable **per class** (`section_rules`: global defaults + per-section overrides), fairness objective, clash-free verified
-- **F1 Timetable Agent** + admin `/setup` (CRUD + CSV) + `/timetable` grid UI with a **Constraints panel** (scope selector: all-classes vs per-class; half-days, anti-consecutive, teacher run cap) and a **Download PDF** button (client-side jsPDF + jspdf-autotable, per-section grid, any role); config stored per version in `timetable_configs`. Specs: `docs/07-PHASE2.2-PLAN.md`, `docs/08-PHASE2.3-PLAN.md`.
+**Status (2026-08-25):** Phases 0, 1, 2, 2.2, 2.3, 2.4 complete. Smart Campus Agent System — AI-driven campus ops platform.
+- **Supervisor-router** LLM with keyword fallback; swappable providers (Gemini/Claude/OpenAI/Ollama) via `.env` only. **System-sourced triggers (leave approval, sweep) skip the LLM** and route deterministically.
+- **SQLAlchemy models** (20 tables) + idempotent seeding; JWT auth + role-based access
+- **OR-Tools CP-SAT timetable solver** — 12 hard constraint groups + weighted soft objective (fairness, preferred periods, mid-day gaps), clash-free verified. Every rule is scoped **section > semester > global**, so one solve produces a differently-shaped week per semester
+- **Constraint registry (Phase 2.4)** — the `constraints` table is the single source of truth; `POST /api/timetable/generate` takes **no body** and compiles it. `app/tools/constraints.py` owns the `CATALOG` of 14 kinds (allowed scopes + validator against real DB entities + English renderer), CRUD, and `compile_options()`. An admin can add a rule from a form **or from a sentence** — `POST /api/constraints/interpret` gives the LLM the catalog *and the current rules with their ids*, so it can edit or delete an existing rule, and every op is validated and previewed before `/apply` commits it
+- **Teacher assignments** — `teaching_assignments` pins `(section, subject) → teacher` (hard); unpinned pairs are still solver-chosen. One teacher may be pinned across semesters; overload surfaces as a precise infeasibility reason
+- **Open electives (sem 6/7)** — `elective_groups`/`elective_offerings`: a band reserves the same periods for **every class of the semester** while its baskets run in parallel in reserved rooms
+- **F1 Timetable Agent** + admin `/setup` (CRUD + CSV) + `/timetable` grid UI (read-only "Rules in force" summary linking to `/constraints`; elective periods shown as a violet cell listing every basket) + a **Download PDF** button (client-side jsPDF + jspdf-autotable, any role). Rules live on **`/constraints`** (Rules · Teacher assignments · Open electives). Specs: `docs/07-PHASE2.2-PLAN.md`, `docs/08-PHASE2.3-PLAN.md`, `docs/09-PHASE2.4-PLAN.md`.
 - **F2 Leave & Substitution (flagship)** — proactive trigger → Substitution Agent builds a **period-exchange** plan (partner of same section swaps their lesson into the leave slot; absent teacher recovers it later in the partner's slot — subject hours preserved, original timetable untouched). The planner now **avoids hectic back-to-back scheduling**: candidates that create same-subject adjacency for students or 3+ consecutive teaching periods are penalised (with a ⚠ warning on the approval card) rather than chosen. → LangGraph `interrupt()` → HOD approval card → resume with `Command(resume=...)` → notifications to partner + returning teacher. Dated overlay via `/api/timetable/effective/{section}?date=` + `/exchanges` page (table view). Spec: `docs/06-EXCHANGE-PLAN.md`. Both paths verified live.
 - **F3 Event & Venue Booking** — `/bookings` form or free-text chat → Booking Agent checks conflicts against **other bookings AND the class timetable** (a hall holding a lecture is not free), matches capacity, and re-plans onto the **tightest-fitting** free venue when the request fails, quoting the blocking class/booking. Then a **multi-stage approval chain implemented as sequential `interrupt()`s on one durable thread**: students go faculty advisor → admin (the advisor is *derived* from the timetable, not configured), staff go straight to admin. `/bookings` also has a live pre-submit availability probe and a 4-week campus calendar. Nag sweep reminds the current stage's approver after 24 h. Spec: `docs/09-PHASE3-BOOKING-PLAN.md`.
 - **LangGraph checkpointer** (durable threads per `thread_id`); **APScheduler sweeps** (substitution safety net, booking nag)
@@ -39,17 +42,18 @@ npm run dev  # starts at http://localhost:3000
 ## Key File Structure
 
 **Backend** (`services/backend/app/`):
-- `api/` — router, agent, auth, setup, timetable, leaves (Phase 2), approvals, bookings (Phase 3), notifications
-- `agents/` — graph, supervisor, state, specialists/ (timetable, substitution, booking, general, stubs)
-- `tools/` — timetable, exchange (Phase 2.1 period-exchange, live), booking (Phase 3), substitution (Phase 2.0 legacy)
-- `solver/` — timetable_model (OR-Tools CP-SAT, 8 hard constraints)
-- `db/` — models (16 tables), seed, session (`_ensure_columns` = idempotent SQLite ADD COLUMN shim; `create_all` only creates missing *tables*)
-- `core/` — llm (swappable), config, security
+- `api/` — router, agent, auth, setup, timetable, constraints (Phase 2.4), leaves, approvals, notifications
+- `agents/` — graph, supervisor, state, specialists/ (timetable, substitution, general, stubs)
+- `tools/` — timetable, constraints (Phase 2.4 registry: CATALOG + compile_options), exchange (Phase 2.1 period-exchange, live), substitution (Phase 2.0 legacy)
+- `solver/` — timetable_model (OR-Tools CP-SAT, H1–H12 + soft objective, scope resolution)
+- `db/` — models (20 tables), seed (+ additive `seed_phase24()`), session (+ `ensure_schema()` for additive column migrations)
+- `core/` — llm (swappable, + `text_of()` for content-block replies), config, security
 
 **Frontend** (`apps/web/src/app/`):
 - `login/` — JWT auth UI
 - `setup/` — data entry (CRUD, CSV)
 - `timetable/` — grid view (MON-FRI × P1-P7)
+- `constraints/` — the rulebook: rules by scope + Ask-AI, teacher assignments, open electives (Phase 2.4)
 - `leaves/` — faculty apply + admin approve (Phase 2)
 - `approvals/` — HOD plan cards (Phase 2)
 - `exchanges/` — period-exchange board + dated day grid (Phase 2.1)
@@ -61,7 +65,7 @@ npm run dev  # starts at http://localhost:3000
 **Backend `.env`** (read from `services/backend/`; copy `.env.example`):
 ```bash
 LLM_PROVIDER=google_genai              # google_genai | anthropic | openai | ollama
-LLM_MODEL=gemini-flash-latest          # see docs/03-TECH-STACK.md for current stable models
+LLM_MODEL=gemini-3.6-flash             # NOT gemini-flash-latest — it hangs on generateContent
 GOOGLE_API_KEY=...                     # get free key at aistudio.google.com/apikey
 # OR: ANTHROPIC_API_KEY=...            # OR: OPENAI_API_KEY=...
 
@@ -76,11 +80,11 @@ BOOKING_SWEEP_MINUTES=30               # how often the nag sweep runs
 
 **Note:** If LLM key is missing/invalid, system falls back to deterministic keyword routing — demo never fails. Full semantic routing requires a valid LLM key.
 
-**Data model:** 16 tables in `app/db/models.py`. See code for schema; tools query DB, agents never do raw SQL.
+**Data model:** 20 tables in `app/db/models.py`. See code for schema; tools query DB, agents never do raw SQL.
 
 **LangGraph workflow:** Supervisor routes → specialist node (timetable|substitution|facility|general) → tool calls → END. State persisted per `thread_id` for durable resumption. `interrupt()` pauses for human approval (Phase 2). A node may interrupt **more than once** — the booking approval chain does — so the node re-executes from the top on every resume and **everything before an interrupt must be idempotent** (`PeriodExchange.plan_id`, `Booking.request_key`, `Approval` by `(kind, ref_id)`).
 
-**Frontend:** React/Next.js dashboard with tabs (overview, chat, setup, timetable, leaves, approvals, exchanges, bookings, inbox). Real-time workflow trace sidebar. Glassmorphic UI (Tailwind + custom glass-*classes).
+**Frontend:** React/Next.js dashboard with tabs (overview, chat, setup, timetable, constraints, leaves, approvals, inbox). Real-time workflow trace sidebar. Glassmorphic UI (Tailwind + custom glass-*classes).
 
 ## Testing
 
@@ -104,7 +108,12 @@ Full flow: Start backend + frontend, login at `http://localhost:3000`, navigate 
 
 **Adding an API router:** Create `app/api/domain.py`, include in `app/api/router.py`, use `Depends(get_current_user)` and `Depends(get_db)`.
 
-**Next phases:** See `docs/04-ROADMAP.md`. Remaining in Phase 3: **F4 Knowledge RAG** (`rag/ingest.py` → Chroma, `search_documents` tool, Knowledge Agent with citations, admin upload UI) + WebSocket notifications.
+**Adding a constraint kind:** register a `Kind` in `app/tools/constraints.py` `CATALOG` (scopes,
+form fields, validator, renderer), handle it in `compile_options()`, and enforce it in
+`app/solver/timetable_model.py` under its own assumption literal. The UI form and the LLM prompt are
+generated from the catalog — neither needs touching.
+
+**Next phases:** See `docs/04-ROADMAP.md`. Phase 3 is F3 Event Booking + F4 Knowledge RAG + WebSocket notifications.
 
 ## Navigation
 

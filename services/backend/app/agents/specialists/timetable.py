@@ -7,7 +7,7 @@ explanation with suggested fixes (the capability GA-based literature lacks,
 research/03).
 """
 from app.agents.state import AgentState
-from app.core.llm import get_llm, is_llm_configured
+from app.core.llm import get_llm, is_llm_configured, text_of
 from app.db.session import SessionLocal
 from app.tools.timetable import generate_timetable, options_from_config
 
@@ -57,7 +57,7 @@ def timetable_node(state: AgentState) -> dict:
         try:
             reply = get_llm(temperature=0.3).invoke(
                 [("system", _EXPLAIN_SYSTEM), ("user", "\n".join(reasons))])
-            explanation = reply.content if isinstance(reply.content, str) else str(reply.content)
+            explanation = text_of(reply)
             steps.append("TimetableAgent: composed plain-language explanation via LLM.")
         except Exception as exc:
             steps.append(f"TimetableAgent: LLM unavailable ({type(exc).__name__}), using raw reasons.")

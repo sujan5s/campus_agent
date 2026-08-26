@@ -18,7 +18,8 @@ from datetime import date as date_t, timedelta
 from sqlalchemy.orm import Session, joinedload
 
 from app.db.models import (
-    Leave, Notification, PeriodExchange, Teacher, TimeSlot, TimetableEntry,
+    ElectiveGroup, Leave, Notification, PeriodExchange, Teacher, TimeSlot,
+    TimetableEntry,
 )
 # Reuse the weekday helpers from the legacy module (unchanged logic).
 from app.tools.substitution import (
@@ -127,9 +128,26 @@ def _build_context(db: Session, ver: int) -> PlanContext:
         .filter(TimetableEntry.version == ver, TimetableEntry.status == "active")
         .order_by(TimetableEntry.id).all()
     )
+    seen_elective: set[tuple[int, int]] = set()   # (group_id, timeslot_id)
     for e in entries:
         day, period = e.timeslot.day, e.timeslot.period_no
         ctx.section_day.setdefault((e.section_id, day), {})[period] = e.subject_id
+        if e.elective_group_id:
+            # An open-elective band is not an exchangeable lesson: several
+            # teachers run baskets in parallel and the row is repeated per
+            # section. Mark every basket teacher busy exactly once, and keep the
+            # band out of the swap candidates (same treatment as labs).
+            key = (e.elective_group_id, e.timeslot_id)
+            if key not in seen_elective:
+                seen_elective.add(key)
+                group = db.get(ElectiveGroup, e.elective_group_id)
+                for off in (group.offerings if group else []):
+                    ctx.teacher_day.setdefault((off.teacher_id, day), set()).add(period)
+                    ctx.busy.add((off.teacher_id, day, period))
+                    ctx.loads[off.teacher_id] = ctx.loads.get(off.teacher_id, 0) + 1
+                    if off.teacher and off.teacher.user:
+                        ctx.teacher_name[off.teacher_id] = off.teacher.user.name
+            continue
         ctx.teacher_day.setdefault((e.teacher_id, day), set()).add(period)
         ctx.busy.add((e.teacher_id, day, period))
         ctx.loads[e.teacher_id] = ctx.loads.get(e.teacher_id, 0) + 1

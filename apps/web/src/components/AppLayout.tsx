@@ -18,6 +18,7 @@ import {
   Building2 as BuildingIcon,
   Inbox,
   Database,
+  SlidersHorizontal,
   Loader2,
 } from "lucide-react";
 import CampusLogo from "./CampusLogo";
@@ -77,6 +78,7 @@ export default function AppLayout({
 
   const isHome = pathname === "/";
   const isTimetable = pathname === "/timetable";
+  const isConstraints = pathname === "/constraints";
   const isLeaves = pathname === "/leaves";
   const isApprovals = pathname === "/approvals";
   const isExchanges = pathname === "/exchanges";
@@ -180,6 +182,18 @@ export default function AppLayout({
               >
                 <CalendarDays className="h-5 w-5" />
                 <span className="text-sm font-medium">Timetable</span>
+              </Link>
+
+              <Link
+                href="/constraints"
+                className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200 ${
+                  isConstraints
+                    ? "bg-[#fdb813] text-[#00078b] font-bold shadow-md"
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <SlidersHorizontal className="h-5 w-5" />
+                <span className="text-sm font-medium">Constraints</span>
               </Link>
 
               <Link
