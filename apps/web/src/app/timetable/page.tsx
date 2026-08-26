@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  ArrowLeft,
   CalendarDays,
   Sparkles,
   Play,
@@ -13,26 +12,26 @@ import {
   CheckCircle2,
   FlaskConical,
   SlidersHorizontal,
-  ChevronDown,
+  Layers,
   FileDown,
 } from "lucide-react";
 import { api, getToken, getUser, AuthUser } from "../../lib/api";
 import AppLayout from "../../components/AppLayout";
 
-const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI"] as const;
-
-interface ScopeRules {
-  halfDays: Record<string, boolean>;
-  halfDayLast: Record<string, number>;
-  noConsecutive: boolean | null; // null = inherit global (sections only)
+interface ElectiveOption {
+  subject_code: string;
+  subject_name: string;
+  teacher: string;
+  room: string;
 }
-
 interface Cell {
   subject_code: string;
   subject_name: string;
   teacher: string;
   room: string;
   is_lab: boolean;
+  /** Present when the period is an open-elective band: the parallel baskets. */
+  elective?: { group: string; offerings: ElectiveOption[] };
 }
 interface Grid {
   section: string;
@@ -49,43 +48,14 @@ interface GenerateResult {
   status: string;
   version?: number;
   lessons?: number;
+  elective_periods?: number;
   load_gap?: number;
   wall_time_s?: number;
   reasons?: string[];
-  config?: SolveConfig;
 }
-interface SectionRuleCfg {
-  half_days?: Record<string, number>;
-  no_same_subject_consecutive?: boolean | null;
-}
-interface SolveConfig {
-  half_days?: Record<string, number>;
-  no_same_subject_consecutive?: boolean;
-  max_consecutive_teaching?: number | null;
-  section_rules?: Record<string, SectionRuleCfg>;
-}
-
-function halfDayStr(hd?: Record<string, number>): string {
-  const e = hd && Object.entries(hd);
-  return e && e.length ? e.map(([d, p]) => `${d}≤P${p}`).join(",") : "";
-}
-
-function configSummary(c?: SolveConfig): string {
-  if (!c) return "";
-  const parts: string[] = [];
-  const hd = halfDayStr(c.half_days);
-  if (hd) parts.push("half days: " + hd);
-  if (c.no_same_subject_consecutive) parts.push("no back-to-back subjects");
-  if (c.max_consecutive_teaching) parts.push(`≤${c.max_consecutive_teaching} consecutive/teacher`);
-  for (const [name, sr] of Object.entries(c.section_rules ?? {})) {
-    const bits: string[] = [];
-    const shd = halfDayStr(sr.half_days);
-    if (shd) bits.push(shd);
-    if (sr.no_same_subject_consecutive === true) bits.push("no back-to-back");
-    if (sr.no_same_subject_consecutive === false) bits.push("back-to-back allowed");
-    if (bits.length) parts.push(`${name}: ${bits.join(" ")}`);
-  }
-  return parts.length ? parts.join(" · ") : "default rules";
+interface StatusResult {
+  latest_version: number | null;
+  active_rules: string[];
 }
 
 // deterministic high-contrast pastel per subject code
@@ -115,26 +85,9 @@ export default function TimetablePage() {
   const [downloading, setDownloading] = useState(false);
   const [flash, setFlash] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
   const [noTimetable, setNoTimetable] = useState(false);
-
-  // --- generation constraints (Phase 2.2 + per-class scoping in 2.3) ---
-  // scope "*" = global default; other keys are section names.
-  // noConsecutive: true/false, or null = inherit global (only for sections).
-  const [showOpts, setShowOpts] = useState(false);
-  const [scope, setScope] = useState<string>("*");
-  const [rulesByScope, setRulesByScope] = useState<Record<string, ScopeRules>>({
-    "*": { halfDays: {}, halfDayLast: {}, noConsecutive: true },
-  });
-  const [maxConsecutive, setMaxConsecutive] = useState<string>("");
-
-  const cur: ScopeRules = rulesByScope[scope] ?? { halfDays: {}, halfDayLast: {}, noConsecutive: scope === "*" ? true : null };
-  const patchScope = (patch: Partial<ScopeRules>) =>
-    setRulesByScope((r) => ({ ...r, [scope]: { ...cur, ...patch } }));
-  const scopeHasOverride = (s: string): boolean => {
-    const r = rulesByScope[s];
-    if (!r) return false;
-    const anyHalf = WEEKDAYS.some((d) => r.halfDays[d] && r.halfDayLast[d]);
-    return anyHalf || (s !== "*" && r.noConsecutive !== null);
-  };
+  // The rules that generation will use — owned by the Constraints page, shown
+  // here read-only so there is exactly one source of truth.
+  const [activeRules, setActiveRules] = useState<string[]>([]);
 
   const loadGrid = useCallback(async (name: string) => {
     try {
@@ -146,6 +99,15 @@ export default function TimetablePage() {
       const msg = e instanceof Error ? e.message : "";
       setNoTimetable(msg.includes("No timetable"));
       if (!msg.includes("No timetable")) setFlash({ kind: "err", text: msg });
+    }
+  }, []);
+
+  const loadRules = useCallback(async () => {
+    try {
+      const st = await api<StatusResult>("/timetable/status");
+      setActiveRules(st.active_rules ?? []);
+    } catch {
+      /* the grid is still usable without the rule summary */
     }
   }, []);
 
@@ -163,44 +125,28 @@ export default function TimetablePage() {
           setSelected(secs[0].name);
           await loadGrid(secs[0].name);
         }
+        await loadRules();
       } catch (e: unknown) {
         setFlash({ kind: "err", text: e instanceof Error ? e.message : "Load failed" });
       }
     })();
-  }, [router, loadGrid]);
+  }, [router, loadGrid, loadRules]);
 
   const generate = async () => {
     setGenerating(true);
     setFlash(null);
     try {
-      const halfDaysOf = (r: ScopeRules) =>
-        WEEKDAYS.filter((d) => r.halfDays[d] && r.halfDayLast[d])
-          .map((d) => ({ day: d, last_period: r.halfDayLast[d] }));
-      const g = rulesByScope["*"] ?? { halfDays: {}, halfDayLast: {}, noConsecutive: true };
-      const sectionRules = Object.entries(rulesByScope)
-        .filter(([s]) => s !== "*" && scopeHasOverride(s))
-        .map(([section, r]) => ({
-          section,
-          half_days: halfDaysOf(r),
-          no_same_subject_consecutive: r.noConsecutive, // null = inherit
-        }));
-      const body = {
-        half_days: halfDaysOf(g),
-        no_same_subject_consecutive: g.noConsecutive ?? true,
-        max_consecutive_teaching: maxConsecutive ? Number(maxConsecutive) : null,
-        sections: sectionRules,
-      };
-      const r = await api<GenerateResult>("/timetable/generate", {
-        method: "POST",
-        body: JSON.stringify(body),
-      });
-      const summary = configSummary(r.config);
+      // No body: the solver reads the constraint registry (see /constraints).
+      const r = await api<GenerateResult>("/timetable/generate", { method: "POST" });
       setFlash({
         kind: "ok",
-        text: `Generated v${r.version}: ${r.lessons} lessons, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).`
-          + (summary ? `\nConstraints — ${summary}.` : ""),
+        text:
+          `Generated v${r.version}: ${r.lessons} lessons` +
+          (r.elective_periods ? ` + ${r.elective_periods} open-elective period(s)` : "") +
+          `, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).`,
       });
       if (selected) await loadGrid(selected);
+      await loadRules();
     } catch (e: unknown) {
       // 422 carries the infeasibility explanation
       const msg = e instanceof Error ? e.message : "Generation failed";
@@ -219,20 +165,20 @@ export default function TimetablePage() {
       const { jsPDF } = await import("jspdf");
       const autoTable = (await import("jspdf-autotable")).default;
 
-      // best-effort: which constraints produced this version (shown under the title)
-      let constraints = "";
-      try {
-        const st = await api<{ latest_version: number | null; config?: SolveConfig }>("/timetable/status");
-        constraints = configSummary(st.config);
-      } catch { /* status is optional for the PDF */ }
-
+      const constraints = activeRules.join(" · ");
       const ps = grid.periods;
       const periodNos = Object.keys(ps).map(Number).sort((a, b) => a - b);
       const rows = periodNos.map((p) => [
         `P${p}\n${ps[String(p)]}`,
         ...grid.days.map((d) => {
           const c = grid.cells[`${d}-${p}`];
-          return c ? `${c.subject_code}${c.is_lab ? " (lab)" : ""}\n${c.teacher}\n${c.room}` : "—";
+          if (!c) return "—";
+          if (c.elective) {
+            return `${c.elective.group} (open elective)\n${c.elective.offerings
+              .map((o) => `${o.subject_code} · ${o.teacher} · ${o.room}`)
+              .join("\n")}`;
+          }
+          return `${c.subject_code}${c.is_lab ? " (lab)" : ""}\n${c.teacher}\n${c.room}`;
         }),
       ]);
 
@@ -247,9 +193,10 @@ export default function TimetablePage() {
       doc.setTextColor(100, 116, 139);
       doc.text(`Version ${grid.version}  ·  Generated ${new Date().toLocaleString()}`, margin, 62);
       let startY = 76;
-      if (constraints && constraints !== "default rules") {
-        doc.text(`Constraints: ${constraints}`, margin, 76);
-        startY = 90;
+      if (constraints) {
+        const wrapped = doc.splitTextToSize(`Constraints: ${constraints}`, 760) as string[];
+        doc.text(wrapped, margin, 76);
+        startY = 76 + wrapped.length * 11 + 4;
       }
 
       autoTable(doc, {
@@ -265,6 +212,7 @@ export default function TimetablePage() {
           if (data.section === "body" && data.column.index > 0) {
             const raw = Array.isArray(data.cell.raw) ? data.cell.raw.join("\n") : String(data.cell.raw ?? "");
             if (raw.includes("(lab)")) data.cell.styles.fillColor = [254, 243, 199];
+            if (raw.includes("(open elective)")) data.cell.styles.fillColor = [237, 233, 254];
           }
         },
         didDrawPage: () => {
@@ -326,19 +274,14 @@ export default function TimetablePage() {
                 <span>PDF</span>
               </button>
             )}
-            {user?.role === "admin" && (
-              <button
-                onClick={() => setShowOpts((v) => !v)}
-                className={`flex items-center space-x-2 bg-white border border-[#00078b]/20 rounded-xl px-4 py-2.5 text-sm font-bold transition-colors shadow-sm ${
-                  showOpts ? "text-[#00078b] border-[#00078b]" : "text-[#00078b] hover:bg-[#f6f6f6]"
-                }`}
-                title="Generation constraints"
-              >
-                <SlidersHorizontal className="h-4 w-4" />
-                <span>Constraints</span>
-                <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showOpts ? "rotate-180" : ""}`} />
-              </button>
-            )}
+            <Link
+              href="/constraints"
+              className="flex items-center space-x-2 bg-white border border-[#00078b]/20 rounded-xl px-4 py-2.5 text-sm font-bold text-[#00078b] hover:bg-[#f6f6f6] transition-colors shadow-sm"
+              title="Edit the rules generation obeys"
+            >
+              <SlidersHorizontal className="h-4 w-4" />
+              <span>Constraints</span>
+            </Link>
             {user?.role === "admin" && (
               <button
                 onClick={generate}
@@ -352,124 +295,28 @@ export default function TimetablePage() {
           </div>
         </div>
 
-        {user?.role === "admin" && showOpts && (
-          <div className="bg-white border border-[#00078b]/15 rounded-2xl p-5 mb-4 shadow-sm">
-            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-              <div className="flex items-center space-x-2">
-                <SlidersHorizontal className="h-4 w-4 text-[#00078b]" />
-                <h2 className="text-sm font-bold text-[#00078b]">Generation constraints</h2>
-                <span className="text-[11px] text-[#00078b]/60 font-medium">applied on the next Generate · all optional</span>
-              </div>
-              {/* scope selector: global default vs a specific class */}
-              <div className="flex items-center space-x-2">
-                <span className="text-[11px] text-[#00078b]/60 font-bold">Rules for</span>
-                <select
-                  value={scope}
-                  onChange={(e) => setScope(e.target.value)}
-                  className="bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] rounded-lg px-3 py-1.5 text-xs font-bold"
-                >
-                  <option value="*">All classes (default)</option>
-                  {sections.map((s) => (
-                    <option key={s.id} value={s.name}>
-                      {s.name}{scopeHasOverride(s.name) ? " ●" : ""}
-                    </option>
-                  ))}
-                </select>
+        {/* the rules in force — edited on the Constraints page */}
+        <div className="bg-white border border-[#00078b]/15 rounded-2xl px-5 py-3 mb-4 shadow-sm">
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="flex items-start space-x-2 min-w-0">
+              <SlidersHorizontal className="h-4 w-4 text-[#00078b] shrink-0 mt-0.5" />
+              <div className="min-w-0">
+                <p className="text-xs font-bold text-[#00078b]">Rules in force</p>
+                <p className="text-[11px] text-[#00078b]/70 font-medium">
+                  {activeRules.length
+                    ? activeRules.join(" · ")
+                    : "Default rules only — nothing customised yet."}
+                </p>
               </div>
             </div>
-
-            <p className="text-[11px] text-[#00078b]/70 mb-3 font-medium">
-              {scope === "*"
-                ? "Defaults for every class. Override a specific class by picking it above."
-                : `Overrides for ${scope} only — leave a control untouched to inherit the default.`}
-            </p>
-
-            {/* Half days */}
-            <div className="mb-5">
-              <p className="text-xs font-bold text-[#00078b] mb-2">Half days</p>
-              <p className="text-[11px] text-[#00078b]/70 mb-3 font-medium">Tick a day and set the last teaching period; later periods are dropped that day.</p>
-              <div className="flex flex-wrap gap-2">
-                {WEEKDAYS.map((d) => (
-                  <div
-                    key={d}
-                    className={`flex items-center space-x-2 rounded-xl border px-3 py-2 ${
-                      cur.halfDays[d] ? "border-[#00078b] bg-[#00078b]/10" : "border-[#00078b]/20 bg-[#f6f6f6]"
-                    }`}
-                  >
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={!!cur.halfDays[d]}
-                        onChange={(e) =>
-                          patchScope({
-                            halfDays: { ...cur.halfDays, [d]: e.target.checked },
-                            halfDayLast: e.target.checked && !cur.halfDayLast[d]
-                              ? { ...cur.halfDayLast, [d]: 4 } : cur.halfDayLast,
-                          })
-                        }
-                        className="accent-[#00078b]"
-                      />
-                      <span className="text-xs font-bold text-[#00078b]">{d}</span>
-                    </label>
-                    <span className="text-[10px] text-[#00078b]/60 font-semibold">ends P</span>
-                    <input
-                      type="number"
-                      min={1}
-                      disabled={!cur.halfDays[d]}
-                      value={cur.halfDayLast[d] ?? ""}
-                      onChange={(e) => patchScope({ halfDayLast: { ...cur.halfDayLast, [d]: Number(e.target.value) } })}
-                      className="w-14 bg-white border border-[#00078b]/20 rounded-lg px-2 py-1 text-xs text-[#00078b] font-bold disabled:opacity-40"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Same-subject back-to-back */}
-            <div className="flex flex-wrap items-center gap-6">
-              {scope === "*" ? (
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={cur.noConsecutive === true}
-                    onChange={(e) => patchScope({ noConsecutive: e.target.checked })}
-                    className="accent-[#00078b]"
-                  />
-                  <span className="text-xs font-bold text-[#00078b]">No same-subject back-to-back <span className="text-[#00078b]/60 font-normal">(theory only)</span></span>
-                </label>
-              ) : (
-                <label className="flex items-center space-x-2">
-                  <span className="text-xs font-bold text-[#00078b]">Same-subject back-to-back</span>
-                  <select
-                    value={cur.noConsecutive === null ? "inherit" : cur.noConsecutive ? "no" : "yes"}
-                    onChange={(e) =>
-                      patchScope({ noConsecutive: e.target.value === "inherit" ? null : e.target.value === "no" })
-                    }
-                    className="bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] rounded-lg px-2 py-1 text-xs font-bold"
-                  >
-                    <option value="inherit">Inherit default</option>
-                    <option value="no">Not allowed</option>
-                    <option value="yes">Allowed</option>
-                  </select>
-                </label>
-              )}
-
-              {scope === "*" && (
-                <label className="flex items-center space-x-2">
-                  <span className="text-xs font-bold text-[#00078b]">Max consecutive teaching periods / teacher</span>
-                  <input
-                    type="number"
-                    min={1}
-                    placeholder="off"
-                    value={maxConsecutive}
-                    onChange={(e) => setMaxConsecutive(e.target.value)}
-                    className="w-16 bg-[#f6f6f6] border border-[#00078b]/20 rounded-lg px-2 py-1 text-xs text-[#00078b] font-bold"
-                  />
-                </label>
-              )}
-            </div>
+            <Link
+              href="/constraints"
+              className="text-[11px] font-bold text-[#00078b] underline underline-offset-2 hover:opacity-80 shrink-0"
+            >
+              Edit constraints →
+            </Link>
           </div>
-        )}
+        </div>
 
         {flash && (
           <div
@@ -491,8 +338,9 @@ export default function TimetablePage() {
               <h2 className="text-sm font-bold text-[#00078b]">
                 {grid.section} <span className="text-[#00078b]/60 font-medium">· version {grid.version}</span>
               </h2>
-              <div className="flex items-center space-x-2 text-[10px] text-[#00078b]/70 font-semibold">
-                <FlaskConical className="h-3.5 w-3.5" /><span>lab block</span>
+              <div className="flex items-center space-x-3 text-[10px] text-[#00078b]/70 font-semibold">
+                <span className="flex items-center space-x-1"><FlaskConical className="h-3.5 w-3.5" /><span>lab block</span></span>
+                <span className="flex items-center space-x-1"><Layers className="h-3.5 w-3.5" /><span>open elective</span></span>
               </div>
             </div>
             <table className="w-full mt-3">
@@ -513,22 +361,46 @@ export default function TimetablePage() {
                     </td>
                     {grid.days.map((d) => {
                       const cell = grid.cells[`${d}-${p}`];
-                      return (
-                        <td key={d} className="px-2 py-2 align-top">
-                          {cell ? (
-                            <div className={`rounded-lg border px-2.5 py-2 ${colorFor(cell.subject_code)}`}>
-                              <div className="flex items-center justify-between">
-                                <span className="text-xs font-bold font-mono">{cell.subject_code}</span>
-                                {cell.is_lab && <FlaskConical className="h-3 w-3 opacity-70" />}
-                              </div>
-                              <div className="text-[10px] font-semibold opacity-90 truncate max-w-[130px]">{cell.teacher}</div>
-                              <div className="text-[10px] opacity-75">{cell.room}</div>
-                            </div>
-                          ) : (
+                      if (!cell) {
+                        return (
+                          <td key={d} className="px-2 py-2 align-top">
                             <div className="rounded-lg border border-[#00078b]/10 px-2.5 py-4 text-center text-[#00078b]/40 text-[10px] font-medium">
                               free
                             </div>
-                          )}
+                          </td>
+                        );
+                      }
+                      if (cell.elective) {
+                        // one shared band for the whole semester — list the baskets
+                        return (
+                          <td key={d} className="px-2 py-2 align-top">
+                            <div className="rounded-lg border px-2.5 py-2 bg-violet-50 border-violet-200 text-violet-900">
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold font-mono">{cell.elective.group}</span>
+                                <Layers className="h-3 w-3 opacity-70" />
+                              </div>
+                              <div className="text-[10px] font-semibold opacity-90">Open Elective</div>
+                              <div className="mt-1 space-y-0.5">
+                                {cell.elective.offerings.map((o) => (
+                                  <div key={o.subject_code} className="text-[10px] opacity-80 truncate max-w-[150px]">
+                                    {o.subject_code} · {o.teacher} · {o.room}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </td>
+                        );
+                      }
+                      return (
+                        <td key={d} className="px-2 py-2 align-top">
+                          <div className={`rounded-lg border px-2.5 py-2 ${colorFor(cell.subject_code)}`}>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-bold font-mono">{cell.subject_code}</span>
+                              {cell.is_lab && <FlaskConical className="h-3 w-3 opacity-70" />}
+                            </div>
+                            <div className="text-[10px] font-semibold opacity-90 truncate max-w-[130px]">{cell.teacher}</div>
+                            <div className="text-[10px] opacity-75">{cell.room}</div>
+                          </div>
                         </td>
                       );
                     })}

@@ -117,6 +117,61 @@ Three bug/UX fixes surfaced in real use. Full spec: `docs/08-PHASE2.3-PLAN.md`.
   lab cells tinted, title/version/constraints header + app footer. Filename
   `timetable-<section>-v<version>.pdf`. Verified headless: valid `%PDF-`, all autotable hooks run
 
+## Phase 2.4 — Constraint registry, multi-semester, teacher assignments, open electives
+
+Generation rules were a request body that could not be listed or edited afterwards, and the set of
+possible rules was whatever had been hard-coded into the panel. Full spec: `docs/09-PHASE2.4-PLAN.md`.
+
+- [x] 2026-08-25 **Constraint registry** — new `constraints` table is the single source of truth;
+  `POST /api/timetable/generate` now takes **no body** and compiles it instead. `app/tools/constraints.py`
+  holds a `CATALOG` of 14 kinds (each with allowed scopes, a validator that normalises params against
+  real DB entities, and an English renderer), CRUD helpers, and `compile_options()`. Scope resolution is
+  **section > semester > global**, which is what lets one solve produce a differently-shaped week per
+  semester. `ensure_defaults()` migrates the latest `TimetableConfig` snapshot into rows, so an existing
+  DB keeps generating what it did before. New kinds beyond Phase 2.3: `subject_daily_max`,
+  `max_periods_per_day`, `class_slot_ban`, `teacher_unavailable`, `teacher_max_daily/weekly/consecutive`,
+  `subject_slot_ban`, `elective_fixed_slots` (pin a band to given day×period slots), plus two **soft**
+  ones (`subject_preferred_periods`, `avoid_gaps`)
+- [x] 2026-08-25 **Teacher assignments (hard pin)** — `teaching_assignments` table pins
+  `(section, subject) → teacher`; the solver fixes that `y` variable (H4) and leaves unpinned pairs to
+  choose freely. One teacher may be pinned across several semesters at once — clash-freedom and daily
+  load are checked across every section, and an over-committed pin is reported by precheck rather than
+  silently reshuffled. `GET/PUT /api/setup/assignments` + matrix UI grouped by semester → class
+- [x] 2026-08-25 **Open-elective bands (sem 6/7)** — `elective_groups` + `elective_offerings`: a band
+  reserves the same periods for **every class of the semester** while its baskets run in parallel
+  (`Σ x[sec,*,slot] + g[band,slot] ≤ 1`, each basket's teacher busy, rooms reserved and removed from the
+  home-classroom pool). Stored as one tagged `timetable_entries` row per section via the new nullable
+  `elective_group_id`, so grids/exchanges/PDF keep working; `app/tools/exchange.py` treats a band as
+  occupied-but-not-exchangeable. `create_all` can't add columns, so `app/db/session.py` gained an
+  idempotent additive `ensure_schema()` (`ALTER TABLE … ADD COLUMN`)
+- [x] 2026-08-25 **Rules from a prompt, editable afterwards** — `POST /api/constraints/interpret` hands
+  the model the catalog **and the current rules with their ids**, so it can `create`, `update`, `delete`,
+  `enable` or `disable`; every op goes through the same validator as the form and comes back as a
+  **preview** the admin confirms via `/apply`. Bounded by a 30s budget on a *daemon* thread (a
+  `ThreadPoolExecutor` worker is non-daemon and would block uvicorn's reload when a provider stalls);
+  degrades to a deterministic parser with no key. `app/core/llm.py` gained `text_of(reply)` — newer
+  providers return content **blocks**, and `str()`-ing them yields a repr that is not JSON
+- [x] 2026-08-25 **`/constraints` page** — three tabs (Rules with the Ask-AI confirm-diff flow and a
+  catalog-driven Add form, Teacher assignments, Open electives). `/timetable` lost its panel and now shows
+  a read-only "Rules in force" summary linking here; elective periods render as a violet cell listing every
+  basket, in the grid and the PDF
+- [x] 2026-08-25 **Verified** — 13/13 independent checks against the stored timetable (3 sections across
+  2 semesters, 72 lessons + a 3-period band): no class or teacher double-booked, every active rule
+  honoured, the pin honoured, and OE-1 on the *same* 3 periods for both sem-7 classes. Infeasibility still
+  explains itself ("needs 31 periods/week but its 'at most 6 periods per day' rule allows at most 30").
+  The op pipeline was exercised with a stubbed content-block reply: 4 valid ops applied including an
+  in-place edit, while a hallucinated class and an invented kind were rejected and never stored.
+  `seed_phase24()` adds the sem-5 cohort and the OE-1 band to an existing DB without wiping it
+- [x] 2026-08-26 **`elective_fixed_slots` + live LLM verified** — a band's periods were solver-chosen with
+  no way to pin them ("sem 7 open elective is MON and TUE 3rd hour" was inexpressible). New kind pins
+  `g[band, slot] == 1`; surplus band periods still float, and over-pinning explains itself ("fixed to 4
+  slot(s) but runs only 3 period(s)/week"). Verified: MON-P3 + TUE-P3 honoured for both sem-7 classes with
+  the third period placed automatically. Root-caused the "language model could not be reached" failure to
+  the **model**, not the key: `gemini-flash-latest` hangs forever on `generateContent` while listing models
+  with the same key returns 200; `.env` pinned to `gemini-3.6-flash`. Live round-trip then verified over a
+  four-prompt conversation — create, contextual edit ("actually make that period 4"), delete by
+  description, and refusal of an unknown teacher. `create()` also dedupes an identical restated rule
+
 ## Phase 3 — F3 Event Booking + F4 Knowledge RAG (≈2 weeks)
 
 - [ ] Booking tools (availability vs bookings **and** timetable, capacity match, alternatives)

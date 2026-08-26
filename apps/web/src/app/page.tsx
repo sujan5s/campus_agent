@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { getToken, getUser, clearAuth, AuthUser } from "../lib/api";
+import { api, getToken, getUser, clearAuth, AuthUser } from "../lib/api";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -60,6 +60,11 @@ export default function Dashboard() {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
+  const [stats, setStats] = useState({
+    version: null as number | null,
+    pendingApprovals: 0,
+    upcomingExchanges: 0,
+  });
 
   const [activeTab, setActiveTab] = useState<"overview" | "chat" | "scheduler" | "facilities">("overview");
   const [messages, setMessages] = useState<Message[]>([
@@ -130,7 +135,7 @@ export default function Dashboard() {
   // Pull real overview stats once the backend is reachable and a token exists.
   useEffect(() => {
     if (!backendConnected) return;
-    setAuthUser(getUser());
+    setCurrentUser(getUser());
     if (!getToken()) return;
     (async () => {
       try {
@@ -318,7 +323,7 @@ export default function Dashboard() {
                   <p className="text-[11px] text-emerald-700 mt-4 font-bold">
                     1 running currently
                   </p>
-                </a>
+                </div>
 
                 <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl relative overflow-hidden shadow-sm hover:border-[#fdb813] transition-all">
                   <div className="flex justify-between items-start">
@@ -335,7 +340,7 @@ export default function Dashboard() {
                   <p className="text-[11px] text-[#00078b]/70 mt-4 font-medium">
                     Rooms allocated for today
                   </p>
-                </a>
+                </div>
 
                 <div className="bg-white border border-[#00078b]/15 p-6 rounded-2xl relative overflow-hidden shadow-sm hover:border-[#fdb813] transition-all">
                   <div className="flex justify-between items-start">
@@ -350,7 +355,7 @@ export default function Dashboard() {
                   <p className="text-[11px] text-[#00078b]/70 mt-4 font-medium">
                     OR-Tools CP-SAT Active
                   </p>
-                </a>
+                </div>
               </div>
 
               {!getToken() && (
@@ -478,7 +483,7 @@ export default function Dashboard() {
                           <span className="text-[10px] font-bold uppercase text-[#00078b]">{task.status}</span>
                         </div>
                         <ArrowRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-primary-400 transition-colors" />
-                      </a>
+                      </div>
                     ))}
                   </div>
                   <button

@@ -10,7 +10,10 @@ from datetime import time
 from sqlalchemy.orm import Session
 
 from app.core.security import hash_password
-from app.db.models import Room, Section, Subject, Teacher, TimeSlot, User
+from app.db.models import (
+    ElectiveGroup, ElectiveOffering, Room, Section, Subject, Teacher, TimeSlot,
+    User,
+)
 from app.db.session import SessionLocal
 
 
@@ -105,8 +108,102 @@ def seed() -> bool:
         db.close()
 
 
+# --- Phase 2.4 demo data ------------------------------------------------------
+#
+# Unlike seed() this runs on *every* startup and only adds what is missing, so a
+# database seeded before Phase 2.4 gains the multi-semester and open-elective
+# demo data without being wiped.
+
+SEM5_SUBJECTS = [
+    ("CS501", "Operating Systems", 4, False),
+    ("CS502", "Computer Networks", 4, False),
+    ("CS503", "Database Systems", 3, False),
+    ("CS504", "Software Engineering", 3, False),
+    ("CS505", "Networks Lab", 2, True),
+]
+
+# Open-elective baskets for semester 7 — parallel options during one shared band.
+OPEN_ELECTIVES = [
+    ("CS7OE1", "Blockchain Technology", "Seminar Hall B"),
+    ("CS7OE2", "IoT & Edge Computing", "Main Auditorium"),
+]
+
+
+def seed_phase24() -> list[str]:
+    """Add semester-5 data and a semester-7 open-elective band if absent.
+
+    Idempotent: every step checks first, so restarting the server never
+    duplicates a row. Returns a short log of what it created."""
+    db: Session = SessionLocal()
+    log: list[str] = []
+    try:
+        teachers = db.query(Teacher).order_by(Teacher.id).all()
+        if not teachers:
+            return log  # nothing seeded yet — seed() runs first
+
+        # a fourth classroom keeps the home-room pool ahead of the section count
+        if not db.query(Room).filter(Room.name == "LT-304").first():
+            db.add(Room(name="LT-304", type="classroom", capacity=70))
+            log.append("room LT-304")
+
+        # --- semester 5: a second cohort whose week can be shaped differently ---
+        sem5_subjects = []
+        for i, (code, name, ppw, lab) in enumerate(SEM5_SUBJECTS):
+            subj = db.query(Subject).filter(Subject.code == code).first()
+            if not subj:
+                subj = Subject(code=code, name=name, dept="CSE", semester=5,
+                               periods_per_week=ppw, needs_lab=lab)
+                db.add(subj)
+                db.flush()
+                log.append(f"subject {code}")
+            sem5_subjects.append(subj)
+        # spread them over the existing faculty (2 teachers can take each)
+        for i, subj in enumerate(sem5_subjects):
+            for t in (teachers[i % len(teachers)], teachers[(i + 2) % len(teachers)]):
+                if subj not in t.subjects:
+                    t.subjects.append(subj)
+
+        if not db.query(Section).filter(Section.name == "CSE-5A").first():
+            db.add(Section(name="CSE-5A", dept="CSE", semester=5, strength=62))
+            log.append("section CSE-5A")
+
+        # --- semester 7 open-elective band -------------------------------------
+        if db.query(ElectiveGroup).filter(ElectiveGroup.semester == 7).first() is None:
+            offerings = []
+            for i, (code, name, room_name) in enumerate(OPEN_ELECTIVES):
+                subj = db.query(Subject).filter(Subject.code == code).first()
+                if not subj:
+                    subj = Subject(code=code, name=name, dept="CSE", semester=7,
+                                   periods_per_week=3, needs_lab=False)
+                    db.add(subj)
+                    db.flush()
+                room = db.query(Room).filter(Room.name == room_name).first()
+                teacher = teachers[i % len(teachers)]
+                if subj not in teacher.subjects:
+                    teacher.subjects.append(subj)
+                if room:
+                    offerings.append((subj, teacher, room))
+            if offerings:
+                group = ElectiveGroup(name="OE-1", dept="CSE", semester=7,
+                                      periods_per_week=3, needs_block=False, active=True)
+                db.add(group)
+                db.flush()
+                for subj, teacher, room in offerings:
+                    db.add(ElectiveOffering(group_id=group.id, subject_id=subj.id,
+                                            teacher_id=teacher.id, room_id=room.id,
+                                            capacity=60))
+                log.append(f"open-elective band OE-1 ({len(offerings)} options)")
+
+        db.commit()
+        return log
+    finally:
+        db.close()
+
+
 if __name__ == "__main__":
     from app.db.session import init_db
 
     init_db()
     print("Seeded demo data." if seed() else "Already seeded — skipped.")
+    extra = seed_phase24()
+    print("Phase 2.4 data added: " + ", ".join(extra) if extra else "Phase 2.4 data present.")

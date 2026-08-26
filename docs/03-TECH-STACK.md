@@ -34,7 +34,7 @@ from app.core.config import settings
 def get_llm(purpose: str = "default"):
     """All agents get their LLM here. Provider/model chosen by .env only."""
     return init_chat_model(
-        model=settings.LLM_MODEL,          # e.g. "gemini-2.5-flash"
+        model=settings.LLM_MODEL,          # e.g. "gemini-3.6-flash"
         model_provider=settings.LLM_PROVIDER,  # "google_genai" | "anthropic" | "openai" | "ollama"
         temperature=0.1,
     )
@@ -43,12 +43,20 @@ def get_llm(purpose: str = "default"):
 ```env
 # .env — switching provider is ONLY this:
 LLM_PROVIDER=google_genai
-LLM_MODEL=gemini-2.5-flash
+LLM_MODEL=gemini-3.6-flash
 GOOGLE_API_KEY=...
 
 # or:  LLM_PROVIDER=anthropic  LLM_MODEL=claude-sonnet-5      ANTHROPIC_API_KEY=...
 # or:  LLM_PROVIDER=openai     LLM_MODEL=gpt-4o-mini          OPENAI_API_KEY=...
 # or:  LLM_PROVIDER=ollama     LLM_MODEL=llama3.1             (fully offline demo!)
+
+# Gemini model gotcha (found 2026-08-26): `gemini-flash-latest` is listed by
+# GET /v1beta/models but HANGS on generateContent — no error, no disconnect, just
+# never returns. `gemini-2.5-flash` is retired for new keys and 404s with
+# `gemini-3.6-flash` named as its replacement. Pin a concrete version, and when the
+# app reports the model is unreachable, test the *model* before suspecting the key:
+#   curl -H "x-goog-api-key: $GOOGLE_API_KEY" #        https://generativelanguage.googleapis.com/v1beta/models
+# returning 200 proves the key is fine.
 ```
 
 Why this matters for the report/viva: it demonstrates *architecture over API-calling* —

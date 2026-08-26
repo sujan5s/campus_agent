@@ -8,8 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.api.router import router as api_router
-from app.db.session import init_db
-from app.db.seed import seed
+from app.db.session import ensure_schema, init_db
+from app.db.seed import seed, seed_phase24
 
 
 def _substitution_sweep():
@@ -44,8 +44,14 @@ def _substitution_sweep():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    added = ensure_schema()
+    if added:
+        print(f"Schema brought forward: {', '.join(added)}.")
     if seed():
         print("Database seeded with demo data (see app/db/seed.py for demo logins).")
+    extra = seed_phase24()   # additive: multi-semester + open-elective demo data
+    if extra:
+        print("Phase 2.4 demo data added: " + ", ".join(extra) + ".")
     scheduler = BackgroundScheduler()
     scheduler.add_job(_substitution_sweep, "interval", minutes=2,
                       id="substitution_sweep", coalesce=True, max_instances=1)
