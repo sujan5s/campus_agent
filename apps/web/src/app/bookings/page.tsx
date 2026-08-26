@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Building2, CalendarDays, CheckCircle2, XCircle, Bot, RefreshCw, Users,
+  Building2, CalendarDays, CheckCircle2, Bot, RefreshCw, Users,
   AlertTriangle, Ban, Clock, Sparkles,
 } from "lucide-react";
 import { api, getToken, getUser } from "../../lib/api";

@@ -78,6 +78,35 @@
    *Say: "Nobody asked the system anything after the approval click. Detect → plan →
    human gate → act → notify. That's agentic, and no published campus system does it."*
 
+## Act 3.5 — Event booking that knows about classes (2 min)
+
+1. **Sign out → login as the student** `student@campus.edu` / `student123`.
+2. Open **Bookings** → fill the form: "Coding Club Hackathon", a **Thursday** next week,
+   **14:00–17:00**, ~120 people, venue **LT-302**.
+   *Before you submit*, point at the red strip that appeared under the form:
+   *"It already knows. LT-302 isn't free — not because someone booked it, but because
+   CS701 for CSE-7A is timetabled in that room at that hour. Every campus booking form
+   ever built checks bookings against bookings. This one checks them against the
+   academic timetable too."*
+3. Click **Send to Booking Agent**. The card comes back with **Seminar Hall B** held.
+   *Say: "It didn't just refuse — it re-planned. And note which venue it picked: the
+   150-seat hall, not the 500-seat auditorium that was equally free. Tightest fit, so a
+   120-person event doesn't swallow the auditorium."*
+4. Point at the chain chips: `Faculty advisor: pending → Administration: pending`.
+   *Say: "A student request needs their advisor first, then admin. The advisor wasn't
+   configured anywhere — the agent derived it from the timetable: the teacher who takes
+   this student's section most often. And the workflow is paused on a LangGraph
+   interrupt, exactly like the substitution flow."*
+5. **Login as that advisor** (the card names them, e.g. `kavya.hegde@campus.edu` /
+   `faculty123`) → **Approvals** → the venue card shows the conflict it avoided → **Approve**.
+   *Say: "Stage one cleared. The same durable thread now pauses on stage two."*
+6. **Login as admin** → **Approvals** → **Approve**. The booking is confirmed, the
+   student's **Inbox** has the confirmation, and **Bookings → Calendar** shows the event.
+7. Optional kicker: as faculty, request that same hall in an overlapping window — the
+   agent moves you to the auditorium and quotes the hackathon booking as the reason.
+   *Say: "Bookings defend themselves against each other while they're still pending —
+   the venue is never double-promised mid-approval."*
+
 ## Act 4 — Chat + resilience (60s)
 
 1. Dashboard → **Agent Chat**: type "Generate a fresh timetable for all sections" →

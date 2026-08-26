@@ -15,6 +15,7 @@ import {
   CalendarX,
   ClipboardCheck,
   ArrowLeftRight,
+  Building2 as BuildingIcon,
   Inbox,
   Database,
   Loader2,
@@ -79,6 +80,7 @@ export default function AppLayout({
   const isLeaves = pathname === "/leaves";
   const isApprovals = pathname === "/approvals";
   const isExchanges = pathname === "/exchanges";
+  const isBookings = pathname === "/bookings";
   const isInbox = pathname === "/inbox";
   const isSetup = pathname === "/setup";
 
@@ -214,6 +216,18 @@ export default function AppLayout({
               >
                 <ArrowLeftRight className="h-5 w-5" />
                 <span className="text-sm font-medium">Exchanges</span>
+              </Link>
+
+              <Link
+                href="/bookings"
+                className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200 ${
+                  isBookings
+                    ? "bg-[#fdb813] text-[#00078b] font-bold shadow-md"
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <BuildingIcon className="h-5 w-5" />
+                <span className="text-sm font-medium">Bookings</span>
               </Link>
 
               <Link

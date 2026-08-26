@@ -101,12 +101,12 @@ admin keeps everything.
   window, headcount, conflicts the agent avoided, and which stage the card is.
 - Sidebar gets a **Bookings** entry.
 
-## 7. Definition of done
+## 7. Definition of done — all verified live 2026-08-25
 
-- [ ] A booking on a venue that a class occupies is refused and an alternative offered
-- [ ] Student request → faculty card → admin card → confirmed, both stages on one thread
-- [ ] Faculty request → single admin card
-- [ ] Rejection at either stage discards the booking and notifies the organiser
-- [ ] Re-executing the node (resume) never duplicates the `Booking` or `Approval` rows
-- [ ] Nag sweep notifies the pending approver once per 24 h window
-- [ ] Calendar shows confirmed events; cancelled/rejected disappear
+- [x] A booking on a venue that a class occupies is refused and an alternative offered
+- [x] Student request → faculty card → admin card → confirmed, both stages on one thread
+- [x] Faculty request → single admin card
+- [x] Rejection at either stage discards the booking and notifies the organiser
+- [x] Re-executing the node (resume) never duplicates the `Booking` or `Approval` rows
+- [x] Nag sweep notifies the pending approver once per 24 h window
+- [x] Calendar shows confirmed events; cancelled/rejected disappear

@@ -151,9 +151,15 @@ export default function Dashboard() {
     // If backend is connected, perform actual request, else fallback to mock simulation
     if (backendConnected) {
       try {
+        // Send the bearer token: the Booking Agent needs to know who is asking
+        // before it can hold a venue in their name (Phase 3, F3).
+        const token = getToken();
         const response = await fetch("http://localhost:8000/api/agent/chat", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
           body: JSON.stringify({ message: userMsg }),
         });
         const data = await response.json();

@@ -119,9 +119,40 @@ Three bug/UX fixes surfaced in real use. Full spec: `docs/08-PHASE2.3-PLAN.md`.
 
 ## Phase 3 — F3 Event Booking + F4 Knowledge RAG (≈2 weeks)
 
-- [ ] Booking tools (availability vs bookings **and** timetable, capacity match, alternatives)
-- [ ] Booking Agent + approval chain + 24h-nag cron sweep
-- [ ] Campus calendar view in dashboard
+F3 (event booking) is complete; F4 (RAG) has not been started. Full F3 spec:
+`docs/09-PHASE3-BOOKING-PLAN.md`.
+
+- [x] 2026-08-25 Booking tools — `app/tools/booking.py`: availability checked against
+  bookings **and the live timetable** (a date → weekday → overlapping timeslots → entries in
+  that room), capacity fit, and alternatives ranked by **tightest fit** (a 30-person meeting
+  never takes the 500-seat auditorium). Pending bookings hold their venue, so nothing is
+  double-promised mid-approval. Also: campus calendar feed and the nag query
+- [x] 2026-08-25 Booking Agent — `app/agents/specialists/booking.py` (replaces the Phase 0
+  `facility_node` stub). Two entry paths, one node: the `/bookings` form (structured, the
+  supervisor skips the LLM) and free-text chat (LLM structured extraction with a full
+  deterministic parser fallback — dates, `2-5pm`/`from 14:00 to 17:00` windows, headcount,
+  title, venue-in-text). Requested venue unavailable → it re-plans onto the best alternative
+  and quotes the blocking class/booking as the reason
+- [x] 2026-08-25 **Approval chain as sequential `interrupt()`s on one durable thread** —
+  student requests go faculty advisor → admin, staff requests go straight to admin. The
+  advisor is *derived*, not configured: the teacher taking that student's section most often.
+  Verified on langgraph 1.2.11 that a node with two interrupts resumes each in order; the node
+  re-executes from the top, so the `Booking` row is keyed by `request_key` (thread id) and
+  `Approval` rows by `(kind, ref_id)`. `/approvals` widened so faculty see and decide only
+  their own advisor cards
+- [x] 2026-08-25 24h-nag sweep — `_booking_nag_sweep` (APScheduler, `BOOKING_SWEEP_MINUTES`)
+  reminds the *current* stage's approver once per `BOOKING_NAG_HOURS` window; `last_nag_at`
+  dedupes, with a 1-hour floor so `BOOKING_NAG_HOURS=0` (demo setting) can't spam
+- [x] 2026-08-25 API + UI — `app/api/bookings.py` (request, list, availability probe, calendar,
+  venues, cancel); `/bookings` page with a **live pre-submit availability strip** (conflicts +
+  clickable alternative chips), agent decision card with chain state and trace, request list
+  with cancel, and a 4-week **campus calendar** grid; booking cards on `/approvals`; Bookings in
+  the sidebar. Chat now sends the bearer token so the agent knows who is booking
+- [x] 2026-08-25 Verified live end-to-end: class-conflict → venue swap → advisor approve →
+  admin approve → confirmed + notified + on the calendar; reject-at-stage-1 releases the venue;
+  faculty path is single-stage; double-booking is refused; past dates refused; **2 resumes
+  produced 2 bookings and 3 approvals, no duplicates**. Nag dedupe verified against an
+  artificially aged booking. `tsc --noEmit` and `next build` clean
 - [ ] RAG: `rag/ingest.py` (PDF → chunks → Chroma), `search_documents` tool, Knowledge Agent with citations
 - [ ] Document upload UI (admin)
 
@@ -165,3 +196,14 @@ Append decisions here so future sessions don't re-litigate them:
   alias that auto-tracks the current flash model, so specific-version deprecations won't break us).
   `gemini-2.0-flash` returned 429 RESOURCE_EXHAUSTED (free-tier quota). Verified: supervisor now
   does semantic routing + entity extraction (room/date/subject) across facility/scheduler/general.
+
+- **2026-08-25 (Phase 3 — F3)** — Booking conflict detection deliberately spans two sources
+  (bookings ∪ timetable); this is the thing ordinary booking systems get wrong and we already
+  own the timetable. Approval chain implemented as **multiple `interrupt()` calls inside one
+  node on one thread** rather than separate graph invocations — verified working on langgraph
+  1.2.11, and it keeps the Phase 2 approvals machinery unchanged (two new `Approval.kind`
+  values, no new tables). The faculty advisor is derived from timetable data instead of being
+  a configured field, so it needs no extra setup UI. `events`/`bookings` already existed but
+  were unused and too thin, so columns were added in place via a small idempotent SQLite
+  `ALTER TABLE` shim in `db/session.py` (`create_all` only creates missing *tables*) — this
+  also unblocks future column additions before Alembic lands.

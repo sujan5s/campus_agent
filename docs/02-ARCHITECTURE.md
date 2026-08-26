@@ -88,7 +88,7 @@ Agents never touch the DB or external systems from prompt text. Every capability
 |---|---|
 | Timetable | `get_timetable(section, week)`, `solve_timetable(spec) → OR-Tools`, `apply_timetable_diff(diff)` |
 | People | `get_teacher_load(teacher)`, `find_free_teachers(slot, subject?)` |
-| Venues | `check_venue_availability(venue, range)`, `create_booking(...)`, `list_alternative_venues(...)` |
+| Venues | `check_availability(...)` (bookings ∪ timetable), `choose_venue(...)`, `find_alternatives(...)`, `create_request(...)`, `confirm_booking` / `reject_booking` / `cancel_booking`, `calendar(...)`, `pending_nags(...)` |
 | Knowledge | `search_documents(query, k)` → Chroma retriever |
 | Notify | `send_notification(audience, template, payload)` |
 | Analytics (stretch) | `run_readonly_sql(query)` — SELECT-only, validated, row-limited |
@@ -103,7 +103,7 @@ trace shows these) and safe (tools enforce permissions, the LLM cannot).
 | Leave approved | DB event | Substitution Agent |
 | Daily 06:00 | cron | Substitution Agent (re-check today's absences) |
 | Weekly Mon 07:00 | cron | Attendance Sentinel (stretch) |
-| Booking pending > 24h | cron sweep | Notification Agent (nag approver) |
+| Booking pending > 24h | cron sweep | Notification Agent (nags the *current* stage's approver) |
 | Complaint SLA breach | cron sweep | Complaint Agent escalation (stretch) |
 | Sensor reading anomaly | simulated feed | Energy Watchdog (stretch) |
 
@@ -127,10 +127,11 @@ timetable_entries(id, section_id, subject_id, teacher_id, room_id, timeslot_id,
 leaves(id, teacher_id, from_date, to_date, reason, status[pending|approved|rejected])
 substitutions(id, timetable_entry_id, date, original_teacher_id, substitute_teacher_id,
               status[proposed|approved|rejected], plan_id)
-events(id, title, organizer_id, description, expected_headcount)
-bookings(id, event_id, room_id, date, start, end, status[pending|approved|rejected|cancelled])
-approvals(id, kind[leave|substitution_plan|booking], ref_id, approver_id, status, decided_at,
-          langgraph_thread_id)                      -- resumes the paused graph
+events(id, title, organizer_id, description, expected_headcount, category, created_at)
+bookings(id, event_id, room_id, date, start, end, status[pending|approved|rejected|cancelled],
+         requested_by, purpose, rationale, request_key, last_nag_at, created_at)
+approvals(id, kind[leave|substitution_plan|booking_faculty|booking_admin], ref_id, approver_id,
+          status, decided_at, langgraph_thread_id)  -- resumes the paused graph
 documents(id, title, file_path, uploaded_by, indexed_at)          -- RAG corpus
 notifications(id, user_id, channel, title, body, read, created_at)
 -- stretch: attendance_records, complaints, exam_slots, sensor_readings
@@ -153,7 +154,9 @@ GET  /api/timetable/{section}        # grid data
 POST /api/timetable/generate         # kick off Timetable Agent
 POST /api/leaves        GET /api/leaves            # apply / list
 POST /api/approvals/{id}/decide      # approve/reject → resumes LangGraph thread
-POST /api/bookings      GET /api/bookings          # event bookings
+POST /api/bookings      GET /api/bookings          # event bookings (Booking Agent)
+GET  /api/bookings/availability                     # live conflict probe + alternatives
+GET  /api/bookings/calendar                         # campus calendar feed
 POST /api/documents/upload           # RAG ingestion
 GET  /api/notifications              # in-app inbox
 GET  /api/health                     # existing
