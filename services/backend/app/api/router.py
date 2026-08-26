@@ -6,7 +6,8 @@ main.py mounts this under /api. Add new domain routers here as phases land
 from fastapi import APIRouter
 
 from app.api import (
-    agent, approvals, auth, constraints, leaves, notifications, setup, timetable,
+    agent, approvals, auth, bookings, constraints, leaves, notifications, setup,
+    timetable,
 )
 
 router = APIRouter()

@@ -32,6 +32,18 @@ _ADDED_COLUMNS: dict[str, dict[str, str]] = {
     "timetable_entries": {
         "elective_group_id": "INTEGER REFERENCES elective_groups(id)",  # Phase 2.4
     },
+    # Phase 3 (F3 booking): events/bookings shipped in Phase 0 as thin stubs.
+    "events": {
+        "category": "VARCHAR(30) DEFAULT 'event'",
+        "created_at": "DATETIME",
+    },
+    "bookings": {
+        "requested_by": "INTEGER",
+        "purpose": "TEXT DEFAULT ''",
+        "rationale": "TEXT DEFAULT ''",
+        "request_key": "VARCHAR(64)",
+        "last_nag_at": "DATETIME",
+    },
 }
 
 
