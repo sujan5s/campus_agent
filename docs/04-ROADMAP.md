@@ -172,6 +172,56 @@ possible rules was whatever had been hard-coded into the panel. Full spec: `docs
   four-prompt conversation — create, contextual edit ("actually make that period 4"), delete by
   description, and refusal of an unknown teacher. `create()` also dedupes an identical restated rule
 
+## Phase 2.5 — The assistant does the data entry too
+
+Phase 2.4's assistant wrote rules but **refused** anything else: "add a teacher John who takes DBMS for
+CSE-7A" came back as "no teacher matches 'John'". That refusal was framed as safety; it was really the
+system handing the repetitive work back to the admin. Full spec: `docs/10-PHASE2.5-PLAN.md`.
+
+- [x] 2026-08-28 **23 typed operations** — `app/tools/ops.py` covers subjects, teachers, rooms, classes,
+  teacher-subject maps, pins, elective bands, rules and `generate_timetable`. Each `OpSpec` carries
+  validate (against live data) / describe (English) / apply, plus a `destructive` flag the UI colours red
+- [x] 2026-08-28 **Forward references** — `plan()` walks a batch in order carrying a `PlanCtx`; each op
+  registers what it will create via a `note` callback. Rules needed more than a name set: the rule
+  validator resolves to objects with ids, so pending entities are stubbed into its `Ctx` with **negative
+  ids that are never persisted**, and `run()` re-validates against the real DB as it applies. So
+  "add class CSE-2A … and cap semester 2 at 5 periods a day" works in one sentence
+- [x] 2026-08-28 **Implied fixups** — assigning an unqualified teacher adds the qualification rather than
+  erroring (the preview says "also qualified them for it"); new teachers' emails are derived from their
+  names; subject codes are invented to match existing conventions
+- [x] 2026-08-28 **`app/api/assistant.py`** — `/interpret` (plan, writes nothing) + `/apply` (one
+  transaction, optional regeneration) + `/context`. `POST /api/constraints/interpret|apply` kept as thin
+  delegates so there is one implementation. `/constraints` page now shows numbered, colour-coded plan
+  steps and reloads every tab after applying
+- [x] 2026-08-28 **Verified live** — "we are opening a new second-semester class CSE-2A with 70 students…"
+  produced an 11-step plan (room, 3 subjects with the lab flag inferred, class, 2 teachers, 3 pins,
+  regenerate) → v36, 87 lessons. Rules scoped to entities created in the same plan all validated.
+  Validation still rejects duplicate rooms, unknown subjects, unknown classes, invented ops and
+  semester 99. The `remove_*` ops were exercised by cleaning up every entity the tests created
+
+## Phase 2.6 — Faster prompts, and regeneration that leaves the timetable alone
+
+Two problems from real use. Full spec: `docs/10-PHASE2.5-PLAN.md` §7.
+
+- [x] 2026-08-28 **Bulk op forms** — a 5-subject/5-teacher request was 18 longhand ops and timed out at
+  45s. Measured: 7k chars in, 3,253 chars + 18 ops out, **31.1s** — the wait is *output* tokens. Added
+  `add_subjects` / `add_teachers` / `add_rooms` / `add_classes` taking `{defaults, items:[...]}`, plus
+  `assign_to` on a teacher item folding in the assignment op. `expand()` unpacks them into the same
+  individual ops *before* validation, so preview/errors/apply are unchanged. **31.1s → 15.4s**, output
+  2.3× smaller. Timeout raised to 90s as a backstop: the same request measured 10.9s–58.7s across runs,
+  so the residual variance is provider-side. `thinking_level="low"` was tried and **rejected** — measured
+  slower (58.7s vs 10.9s)
+- [x] 2026-08-28 **Minimal-change regeneration** — CP-SAT has no memory of its last answer, so adding one
+  subject returned a completely different (equally optimal) week. `PreviousSolution` now feeds the
+  published schedule back as **hints** on the placement/teacher/room/elective vars *and* as a penalty
+  (`stability_weight × lessons moved`), making stability an objective rather than a tiebreak.
+  `preserve=True` is the default; `?fresh=true` re-plans. Measured: **0.6–0.7s and 0 lessons moved**
+  when adding a subject, versus **8.1s and most of the week** re-planned cold — the warm start lets the
+  solver *prove* optimality where a cold solve exhausts its budget. `lessons_moved` is reported and shown
+  in the UI. Two bugs found in verification: hints were keyed by timeslot **id** against variables keyed
+  by slot **index** (every hint silently missed — the first measurement showed *more* churn with
+  preservation on), and a previous solution referencing a deleted subject crashed the loader
+
 ## Phase 3 — F3 Event Booking + F4 Knowledge RAG (≈2 weeks)
 
 - [ ] Booking tools (availability vs bookings **and** timetable, capacity match, alternatives)

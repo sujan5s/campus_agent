@@ -2,11 +2,12 @@
 
 **START HERE:** Read `docs/README.md`, then `docs/04-ROADMAP.md` before starting work.
 
-**Status (2026-08-25):** Phases 0, 1, 2, 2.2, 2.3, 2.4 complete. Smart Campus Agent System — AI-driven campus ops platform.
+**Status (2026-08-28):** Phases 0, 1, 2, 2.2, 2.3, 2.4, 2.5, 2.6 complete. Smart Campus Agent System — AI-driven campus ops platform.
 - **Supervisor-router** LLM with keyword fallback; swappable providers (Gemini/Claude/OpenAI/Ollama) via `.env` only. **System-sourced triggers (leave approval, sweep) skip the LLM** and route deterministically.
 - **SQLAlchemy models** (20 tables) + idempotent seeding; JWT auth + role-based access
-- **OR-Tools CP-SAT timetable solver** — 12 hard constraint groups + weighted soft objective (fairness, preferred periods, mid-day gaps), clash-free verified. Every rule is scoped **section > semester > global**, so one solve produces a differently-shaped week per semester
-- **Constraint registry (Phase 2.4)** — the `constraints` table is the single source of truth; `POST /api/timetable/generate` takes **no body** and compiles it. `app/tools/constraints.py` owns the `CATALOG` of 14 kinds (allowed scopes + validator against real DB entities + English renderer), CRUD, and `compile_options()`. An admin can add a rule from a form **or from a sentence** — `POST /api/constraints/interpret` gives the LLM the catalog *and the current rules with their ids*, so it can edit or delete an existing rule, and every op is validated and previewed before `/apply` commits it
+- **OR-Tools CP-SAT timetable solver** — 12 hard constraint groups + weighted soft objective (fairness, preferred periods, mid-day gaps), clash-free verified. **Regeneration preserves the published timetable by default** (previous placement fed in as hints + a move penalty): adding a subject moves 0 existing lessons and solves in ~0.6s, vs ~8s and a rewritten week for a cold `?fresh=true` re-plan. Every rule is scoped **section > semester > global**, so one solve produces a differently-shaped week per semester
+- **Constraint registry (Phase 2.4)** — the `constraints` table is the single source of truth; `POST /api/timetable/generate` takes **no body** and compiles it. `app/tools/constraints.py` owns the `CATALOG` of 14 kinds (allowed scopes + validator against real DB entities + English renderer), CRUD, and `compile_options()`
+- **Timetable Assistant (Phase 2.5)** — `POST /api/assistant/interpret` turns one sentence into a whole ordered plan and **creates whatever is missing**: teachers, subjects, rooms, classes, teacher-subject maps, pins, elective bands, rules, and a regeneration. 23 typed ops in `app/tools/ops.py`, each with validate/describe/apply. Forward references work (a rule may scope to a class the same plan creates — pending entities are stubbed into the validator's `Ctx` with negative ids, then re-validated for real at apply time); assigning an unqualified teacher just adds the qualification; emails are derived. Still typed, validated, previewed in English, and applied as one transaction. **Bulk forms** (`add_subjects`/`add_teachers`/… with `{defaults, items}`) keep big requests fast — output tokens are what the admin waits on. Spec: `docs/10-PHASE2.5-PLAN.md`
 - **Teacher assignments** — `teaching_assignments` pins `(section, subject) → teacher` (hard); unpinned pairs are still solver-chosen. One teacher may be pinned across semesters; overload surfaces as a precise infeasibility reason
 - **Open electives (sem 6/7)** — `elective_groups`/`elective_offerings`: a band reserves the same periods for **every class of the semester** while its baskets run in parallel in reserved rooms
 - **F1 Timetable Agent** + admin `/setup` (CRUD + CSV) + `/timetable` grid UI (read-only "Rules in force" summary linking to `/constraints`; elective periods shown as a violet cell listing every basket) + a **Download PDF** button (client-side jsPDF + jspdf-autotable, any role). Rules live on **`/constraints`** (Rules · Teacher assignments · Open electives). Specs: `docs/07-PHASE2.2-PLAN.md`, `docs/08-PHASE2.3-PLAN.md`, `docs/09-PHASE2.4-PLAN.md`.
@@ -41,9 +42,9 @@ npm run dev  # starts at http://localhost:3000
 ## Key File Structure
 
 **Backend** (`services/backend/app/`):
-- `api/` — router, agent, auth, setup, timetable, constraints (Phase 2.4), leaves, approvals, notifications
+- `api/` — router, agent, auth, setup, timetable, constraints (2.4 rulebook), assistant (2.5 NL → plan), leaves, approvals, notifications
 - `agents/` — graph, supervisor, state, specialists/ (timetable, substitution, general, stubs)
-- `tools/` — timetable, constraints (Phase 2.4 registry: CATALOG + compile_options), exchange (Phase 2.1 period-exchange, live), substitution (Phase 2.0 legacy)
+- `tools/` — timetable, constraints (2.4 registry: CATALOG + compile_options), ops (2.5 op registry: 23 typed operations, plan/run), exchange (2.1 period-exchange, live), substitution (2.0 legacy)
 - `solver/` — timetable_model (OR-Tools CP-SAT, H1–H12 + soft objective, scope resolution)
 - `db/` — models (20 tables), seed (+ additive `seed_phase24()`), session (+ `ensure_schema()` for additive column migrations)
 - `core/` — llm (swappable, + `text_of()` for content-block replies), config, security
@@ -52,7 +53,7 @@ npm run dev  # starts at http://localhost:3000
 - `login/` — JWT auth UI
 - `setup/` — data entry (CRUD, CSV)
 - `timetable/` — grid view (MON-FRI × P1-P7)
-- `constraints/` — the rulebook: rules by scope + Ask-AI, teacher assignments, open electives (Phase 2.4)
+- `constraints/` — Ask-in-English assistant + rules by scope, teacher assignments, open electives (2.4/2.5)
 - `leaves/` — faculty apply + admin approve (Phase 2)
 - `approvals/` — HOD plan cards (Phase 2)
 - `exchanges/` — period-exchange board + dated day grid (Phase 2.1)
@@ -107,6 +108,10 @@ Full flow: Start backend + frontend, login at `http://localhost:3000`, navigate 
 form fields, validator, renderer), handle it in `compile_options()`, and enforce it in
 `app/solver/timetable_model.py` under its own assumption literal. The UI form and the LLM prompt are
 generated from the catalog — neither needs touching.
+
+**Adding an assistant operation:** register an `OpSpec` in `app/tools/ops.py` `OPS` (validate against
+`PlanCtx`, describe in English, apply), and list it in `_OP_REFERENCE` in `app/api/assistant.py`. If it
+creates an entity later ops may reference, give it a `note` callback so forward references keep working.
 
 **Next phases:** See `docs/04-ROADMAP.md`. Phase 3 is F3 Event Booking + F4 Knowledge RAG + WebSocket notifications.
 
