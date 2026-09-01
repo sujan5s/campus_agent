@@ -36,13 +36,17 @@ def _slot_time(entry: TimetableEntry) -> str:
 
 
 @router.post("/generate", dependencies=[Depends(require_role("admin"))])
-def generate(db: Session = Depends(get_db)):
+def generate(fresh: bool = False, db: Session = Depends(get_db)):
     """Run the CP-SAT solver on current master data and store a new version.
 
     The rules come from the constraint registry (`/api/constraints`), not from
     this request — so whatever the admin can see and edit on the Constraints page
-    is exactly what generated the timetable."""
-    result = generate_timetable(options=current_options(db))
+    is exactly what generated the timetable.
+
+    By default the published timetable is *preserved*: only what the new data or
+    rules force actually moves, and the previous placement is fed to the solver as
+    a hint, which is also markedly faster. `?fresh=true` re-plans from scratch."""
+    result = generate_timetable(options=current_options(db), preserve=not fresh)
     if result["status"] in ("optimal", "feasible"):
         return result
     # infeasible / error \u2192 422 with the precise reasons for the UI to display

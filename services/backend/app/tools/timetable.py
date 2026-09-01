@@ -13,8 +13,9 @@ from app.db.models import (
 )
 from app.db.session import SessionLocal
 from app.solver.timetable_model import (
-    ElectiveGroupIn, ElectiveOfferingIn, RoomIn, ScopeRules, SectionIn, SectionRules,
-    SlotIn, SubjectIn, TeacherIn, TimetableInput, SolveOptions, SolveResult, solve,
+    ElectiveGroupIn, ElectiveOfferingIn, PreviousSolution, RoomIn, ScopeRules,
+    SectionIn, SectionRules, SlotIn, SubjectIn, TeacherIn, TimetableInput,
+    SolveOptions, SolveResult, solve,
 )
 
 
@@ -160,6 +161,40 @@ def _options_from_dict(db: Session, cfg: dict) -> SolveOptions:
     )
 
 
+def load_previous_solution(db: Session,
+                           version: int | None = None) -> PreviousSolution | None:
+    """The timetable currently in force, in the shape the solver can be steered by.
+
+    Returns None when there is nothing to preserve (first ever generation)."""
+    if version is None:
+        version = latest_version(db)
+    if version is None:
+        return None
+    prev = PreviousSolution()
+    home_counts: dict[int, dict[int, int]] = {}
+    for e in (db.query(TimetableEntry)
+              .filter(TimetableEntry.version == version,
+                      TimetableEntry.status == "active").all()):
+        if e.elective_group_id:
+            prev.electives.add((e.elective_group_id, e.timeslot_id))
+            continue
+        # A lesson whose subject, teacher or room has since been deleted cannot
+        # be preserved — and must not crash the loader. Skipping it is also the
+        # right answer: there is nothing left to keep.
+        if e.subject is None or e.teacher is None or e.room is None:
+            continue
+        prev.lessons.add((e.section_id, e.subject_id, e.timeslot_id))
+        prev.teachers[(e.section_id, e.subject_id)] = e.teacher_id
+        # a section's home room is whichever classroom it used most (labs aside)
+        if not e.subject.needs_lab:
+            home_counts.setdefault(e.section_id, {})
+            home_counts[e.section_id][e.room_id] = \
+                home_counts[e.section_id].get(e.room_id, 0) + 1
+    for sec_id, counts in home_counts.items():
+        prev.rooms[sec_id] = max(counts, key=counts.get)
+    return prev
+
+
 def current_options(db: Session) -> SolveOptions:
     """The rules generation should use *now*: the constraint registry, compiled.
 
@@ -171,16 +206,29 @@ def current_options(db: Session) -> SolveOptions:
 
 
 def generate_timetable(time_limit_s: float = 8.0,
-                       options: SolveOptions | None = None) -> dict:
+                       options: SolveOptions | None = None,
+                       preserve: bool = True) -> dict:
     """Run the CP-SAT solver on current master data; on success store the result
     as a new timetable version and record the rules that produced it.
 
     `options` defaults to the compiled constraint registry — callers no longer
-    need to assemble rules by hand. Returns a JSON-friendly summary either way."""
+    need to assemble rules by hand.
+
+    `preserve` (the default) keeps the published timetable and moves only what
+    the new data or rules force, which is what an admin means by "add this class"
+    — a freshly optimal but completely different week is not an improvement once
+    a timetable has been handed out. It also makes the solve faster, because the
+    previous placement is fed in as a hint. Pass False for a clean re-plan.
+
+    Returns a JSON-friendly summary either way."""
     db = SessionLocal()
     try:
         if options is None:
             options = current_options(db)
+        if preserve and options.previous is None:
+            options.previous = load_previous_solution(db)
+        if not preserve:
+            options.previous = None
         data = load_timetable_input(db, options)
         result: SolveResult = solve(data, opts=options, time_limit_s=time_limit_s)
 
@@ -214,12 +262,23 @@ def generate_timetable(time_limit_s: float = 8.0,
             cfg = _options_to_dict(db, options)
             db.add(TimetableConfig(version=version, config_json=json.dumps(cfg)))
             db.commit()
+
+            # how much of the published timetable survived — the number an admin
+            # actually cares about after asking for one small change
+            changed = None
+            if options.previous is not None:
+                now = {(l.section_id, l.subject_id, l.timeslot_id)
+                       for l in result.lessons}
+                before = options.previous.lessons
+                changed = len(before - now)
             return {
                 "status": result.status,
                 "version": version,
                 **result.stats,
                 "sections": len(data.sections),
                 "teachers": len(data.teachers),
+                "preserved": options.previous is not None,
+                "lessons_moved": changed,
                 "config": cfg,
             }
         return {"status": result.status, "reasons": result.reasons, **result.stats}

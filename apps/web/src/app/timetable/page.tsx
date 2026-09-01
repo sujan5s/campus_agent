@@ -49,6 +49,7 @@ interface GenerateResult {
   version?: number;
   lessons?: number;
   elective_periods?: number;
+  lessons_moved?: number | null;
   load_gap?: number;
   wall_time_s?: number;
   reasons?: string[];
@@ -141,9 +142,15 @@ export default function TimetablePage() {
       setFlash({
         kind: "ok",
         text:
-          `Generated v${r.version}: ${r.lessons} lessons` +
+          `v${r.version}: ${r.lessons} lessons` +
           (r.elective_periods ? ` + ${r.elective_periods} open-elective period(s)` : "") +
-          `, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).`,
+          `, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).
+` +
+          (r.lessons_moved === null || r.lessons_moved === undefined
+            ? "Planned from scratch."
+            : r.lessons_moved === 0
+            ? "Nothing already scheduled had to move."
+            : `${r.lessons_moved} existing lesson(s) moved.`),
       });
       if (selected) await loadGrid(selected);
       await loadRules();

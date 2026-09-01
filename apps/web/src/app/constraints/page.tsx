@@ -97,17 +97,16 @@ interface Registry {
   context: Ctx;
   llm: boolean;
 }
+/** One step of a plan from /assistant/interpret. An op may create master data
+ *  (teacher, subject, room, class) as well as change a scheduling rule. */
 interface OpPreview {
   op: string;
-  id?: number | null;
-  kind?: string | null;
-  scope_type: string;
-  scope_value: string;
+  label?: string;
   params: Params;
   description?: string;
-  before?: string;
   ok: boolean;
   error?: string;
+  destructive?: boolean;
 }
 interface AssignmentSubject {
   subject_id: number;
@@ -198,6 +197,22 @@ export default function ConstraintsPage() {
   const loadRegistry = useCallback(async () => {
     const data = await api<Registry>("/constraints");
     setReg(data);
+  }, []);
+
+  /** A plan can create teachers, subjects, rooms and classes as well as rules,
+   *  so after applying one every tab's data may be stale. */
+  const reloadAll = useCallback(async () => {
+    const [r, a, b, rm] = await Promise.all([
+      api<Registry>("/constraints"),
+      api<AssignmentSection[]>("/setup/assignments"),
+      api<ElectiveBand[]>("/setup/electives"),
+      api<RoomRow[]>("/setup/rooms"),
+    ]);
+    setReg(r);
+    setAssign(a);
+    setBands(b);
+    setRooms(rm);
+    setAssignDirty({});
   }, []);
 
   useEffect(() => {
@@ -346,7 +361,7 @@ export default function ConstraintsPage() {
     setFlash(null);
     try {
       const r = await api<{ ops: OpPreview[]; notes: string; llm: boolean }>(
-        "/constraints/interpret",
+        "/assistant/interpret",
         { method: "POST", body: JSON.stringify({ prompt }) }
       );
       setPreview(r.ops);
@@ -359,22 +374,29 @@ export default function ConstraintsPage() {
   };
 
   const applyAi = async () => {
-    const ops = (preview ?? []).filter((o) => o.ok);
+    const ops = (preview ?? [])
+      .filter((o) => o.ok)
+      .map((o) => ({ op: o.op, params: o.params }));
     if (!ops.length) return;
     setBusy(true);
     try {
-      const r = await api<{ applied: unknown[]; failed: { error: string }[] }>(
-        "/constraints/apply",
-        { method: "POST", body: JSON.stringify({ ops, prompt }) }
-      );
+      const r = await api<{
+        applied: string[];
+        failed: { op: string; error: string }[];
+      }>("/assistant/apply", { method: "POST", body: JSON.stringify({ ops, prompt }) });
       setPreview(null);
       setPrompt("");
-      await loadRegistry();
+      // a plan can touch master data as well as rules, so reload all three tabs
+      await reloadAll();
       setFlash({
         kind: r.failed.length ? "err" : "ok",
         text:
-          `${r.applied.length} change(s) applied.` +
-          (r.failed.length ? ` ${r.failed.map((f) => f.error).join(" ")}` : ""),
+          (r.applied.length
+            ? r.applied.map((line) => `✓ ${line}`).join("\n")
+            : "Nothing was applied.") +
+          (r.failed.length
+            ? "\n" + r.failed.map((f) => `✗ ${f.op}: ${f.error}`).join("\n")
+            : ""),
       });
     } catch (e: unknown) {
       setFlash({ kind: "err", text: e instanceof Error ? e.message : "Apply failed" });
@@ -395,13 +417,22 @@ export default function ConstraintsPage() {
         load_gap: number;
         wall_time_s: number;
         elective_periods?: number;
+        lessons_moved?: number | null;
       }>("/timetable/generate", { method: "POST" });
+      // moved == 0 is the good case and must not be swallowed by a falsy check
+      const moved =
+        r.lessons_moved === null || r.lessons_moved === undefined
+          ? "planned from scratch"
+          : r.lessons_moved === 0
+          ? "nothing already scheduled had to move"
+          : `${r.lessons_moved} existing lesson(s) moved`;
       setFlash({
         kind: "ok",
         text:
-          `Generated v${r.version} with these rules: ${r.lessons} lessons` +
+          `v${r.version}: ${r.lessons} lessons` +
           (r.elective_periods ? ` + ${r.elective_periods} elective period(s)` : "") +
-          `, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).`,
+          `, load gap ${r.load_gap}, solved in ${r.wall_time_s}s (provably clash-free).\n` +
+          `${moved}.`,
       });
     } catch (e: unknown) {
       setFlash({ kind: "err", text: e instanceof Error ? e.message : "Generation failed" });
@@ -664,9 +695,9 @@ export default function ConstraintsPage() {
               <SlidersHorizontal className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="font-bold text-xl text-[#00078b]">Timetable Constraints</h1>
+              <h1 className="font-bold text-xl text-[#00078b]">Timetable Setup &amp; Rules</h1>
               <p className="text-xs text-[#00078b]/70 font-medium">
-                Every rule below is applied on the next generation — per class, per semester, or campus-wide.
+                Ask for what you want and the assistant builds it — data and rules alike.
               </p>
             </div>
           </div>
@@ -740,7 +771,7 @@ export default function ConstraintsPage() {
               <div className={`${CARD} p-5`}>
                 <div className="flex items-center space-x-2 mb-2">
                   <Wand2 className="h-4 w-4 text-[#00078b]" />
-                  <h2 className="text-sm font-bold text-[#00078b]">Ask for a change in plain English</h2>
+                  <h2 className="text-sm font-bold text-[#00078b]">Ask in plain English</h2>
                   {!reg.llm && (
                     <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5">
                       no LLM key — simple phrasings only
@@ -748,15 +779,16 @@ export default function ConstraintsPage() {
                   )}
                 </div>
                 <p className="text-[11px] text-[#00078b]/70 mb-3 font-medium">
-                  It proposes changes to the rules below — including editing or removing an existing one —
-                  and nothing is saved until you confirm.
+                  Add teachers, subjects, rooms and classes, decide who teaches what, set up open
+                  electives, change the rules, and regenerate — in one request. Anything you mention
+                  that does not exist yet gets created. You see the whole plan before it runs.
                 </p>
                 <div className="flex items-start space-x-2">
                   <textarea
                     rows={2}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="e.g. semester 5 should have at most 5 periods a day, and make Wednesday a half day ending at P4 for CSE-7A"
+                    placeholder="e.g. add a teacher Priya Menon for a new sem-5 subject Software Testing, let her take it for CSE-5A, cap her at 4 hours a day, then regenerate"
                     className="flex-1 bg-[#f6f6f6] border border-[#00078b]/20 text-[#00078b] rounded-xl px-3 py-2 text-sm font-medium outline-none focus:border-[#00078b] resize-none"
                   />
                   <button onClick={askAi} disabled={thinking || !prompt.trim()} className={BTN_PRIMARY}>
@@ -781,38 +813,54 @@ export default function ConstraintsPage() {
                       <p className="text-xs text-[#00078b]/60 font-semibold">No changes proposed.</p>
                     )}
                     <div className="space-y-2">
-                      {preview.map((op, i) => (
-                        <div
-                          key={i}
-                          className={`rounded-xl border px-3 py-2 ${
-                            op.ok
-                              ? "bg-[#f6f6f6] border-[#00078b]/15"
-                              : "bg-amber-50 border-amber-200"
-                          }`}
-                        >
-                          <div className="flex items-center space-x-2">
-                            <span
-                              className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
-                                op.op === "delete"
-                                  ? "bg-rose-100 text-rose-700"
-                                  : op.op === "update"
-                                  ? "bg-amber-100 text-amber-800"
-                                  : "bg-emerald-100 text-emerald-700"
-                              }`}
-                            >
-                              {op.op}
+                      {preview.map((op, i) => {
+                        // create / change / remove drives the colour, so a plan
+                        // reads at a glance and destructive steps stand out
+                        const family = op.op.startsWith("remove")
+                          ? "remove"
+                          : op.op.startsWith("edit") ||
+                            op.op.startsWith("assign") ||
+                            op.op.startsWith("set_") ||
+                            op.op.startsWith("enable") ||
+                            op.op.startsWith("disable")
+                          ? "change"
+                          : op.op === "generate_timetable"
+                          ? "run"
+                          : "create";
+                        const tone = !op.ok
+                          ? "bg-amber-100 text-amber-800"
+                          : family === "remove"
+                          ? "bg-rose-100 text-rose-700"
+                          : family === "change"
+                          ? "bg-amber-100 text-amber-800"
+                          : family === "run"
+                          ? "bg-indigo-100 text-indigo-700"
+                          : "bg-emerald-100 text-emerald-700";
+                        return (
+                          <div
+                            key={i}
+                            className={`flex items-start gap-2 rounded-xl border px-3 py-2 ${
+                              !op.ok
+                                ? "bg-amber-50 border-amber-200"
+                                : op.destructive
+                                ? "bg-rose-50/60 border-rose-200"
+                                : "bg-[#f6f6f6] border-[#00078b]/15"
+                            }`}
+                          >
+                            <span className="text-[10px] font-bold text-[#00078b]/40 mt-0.5 w-4 shrink-0">
+                              {i + 1}
                             </span>
-                            <span className="text-xs font-bold text-[#00078b]">
+                            <span
+                              className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full shrink-0 ${tone}`}
+                            >
+                              {op.label ?? op.op}
+                            </span>
+                            <span className="text-xs font-bold text-[#00078b] min-w-0">
                               {op.ok ? op.description : op.error}
                             </span>
                           </div>
-                          {op.ok && op.before && op.op === "update" && (
-                            <p className="text-[11px] text-[#00078b]/60 font-medium mt-1 pl-1">
-                              was: {op.before}
-                            </p>
-                          )}
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                     {preview.some((o) => o.ok) && (
                       <div className="flex items-center space-x-2 mt-3">

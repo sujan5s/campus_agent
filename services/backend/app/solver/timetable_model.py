@@ -157,6 +157,22 @@ class PreferredPeriods:
 
 
 @dataclass
+class PreviousSolution:
+    """The timetable currently in force, used to keep a regeneration minimal.
+
+    A CP-SAT model has no notion of "the answer you gave last time": re-solving
+    after a small edit is free to return a completely different — equally optimal
+    — schedule, which is useless to a college that has already published one. So
+    the previous placement is fed back in two ways: as *hints*, which also make
+    the solve markedly faster, and as a *penalty* on every lesson that moves. The
+    solver then changes only what the new data or rules actually force."""
+    lessons: set[tuple[int, int, int]] = field(default_factory=set)   # (sec, subj, slot)
+    teachers: dict[tuple[int, int], int] = field(default_factory=dict)  # (sec, subj) -> teacher
+    rooms: dict[int, int] = field(default_factory=dict)               # section -> home room
+    electives: set[tuple[int, int]] = field(default_factory=set)      # (band, slot)
+
+
+@dataclass
 class ElectivePin:
     """Hard: this elective band must occupy exactly these (day, period) slots.
 
@@ -185,6 +201,10 @@ class SolveOptions:
     elective_pins: list[ElectivePin] = field(default_factory=list)       # H11 fixed slots
     preferred: list[PreferredPeriods] = field(default_factory=list)      # soft
     avoid_gaps_weight: int = 0                                           # soft, 0 = off
+    # Keep the timetable that is already published, moving only what the new
+    # data or rules force. None = plan from scratch.
+    previous: PreviousSolution | None = None
+    stability_weight: int = 8    # cost of moving one lesson, vs 1 per unit of load gap
     # Per-teacher overrides applied to TeacherIn by the input loader, not read by
     # the model itself: {teacher_id: {"teacher_max_daily": 4, ...}}
     teacher_caps: dict[int, dict[str, int]] = field(default_factory=dict)
@@ -875,6 +895,40 @@ def solve(data: TimetableInput, opts: SolveOptions | None = None,
                     gap_vars.append(gp)
         if gap_vars:
             obj_terms.append(opts.avoid_gaps_weight * sum(gap_vars))
+
+    # Stability: keep the published timetable unless something forces a move.
+    # The hints alone would only bias the search; the penalty is what makes
+    # "don't change what you don't have to" an actual objective.
+    if opts.previous is not None:
+        prev = opts.previous
+        # the previous solution is recorded against timeslot *ids*; the model is
+        # indexed by position in `slots`
+        slot_index = {s.id: i for i, s in enumerate(slots)}
+        moved = []
+        for sec_id, sid, ts_id in prev.lessons:
+            si = slot_index.get(ts_id)
+            var = x.get((sec_id, sid, si)) if si is not None else None
+            if var is not None:
+                m.AddHint(var, 1)
+                moved.append(1 - var)
+        for (sec_id, sid), t_id in prev.teachers.items():
+            var = y.get((sec_id, sid, t_id))
+            if var is not None:
+                m.AddHint(var, 1)
+                moved.append(1 - var)
+        for sec_id, room_id in prev.rooms.items():
+            var = c.get((sec_id, room_id))
+            if var is not None:
+                m.AddHint(var, 1)
+                moved.append(1 - var)
+        for group_id, ts_id in prev.electives:
+            si = slot_index.get(ts_id)
+            var = gv.get((group_id, si)) if si is not None else None
+            if var is not None:
+                m.AddHint(var, 1)
+                moved.append(1 - var)
+        if moved:
+            obj_terms.append(max(1, opts.stability_weight) * sum(moved))
 
     m.Minimize(sum(obj_terms))
 

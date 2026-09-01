@@ -3,12 +3,11 @@
 Reads are open to any authenticated user (everyone may see why their timetable
 looks the way it does); writes are admin-only.
 
-The interesting endpoint is `POST /interpret`: an admin types a sentence and the
-LLM turns it into *typed operations* over the registry — create, update, delete,
-enable, disable. Because the current rows are handed to the model with their ids,
-it can rewrite or remove an existing rule, not just append one. Nothing is
-committed from that call: every op goes through the same validator the UI form
-uses and comes back as a preview the admin confirms via `POST /apply`.
+This module owns the rulebook itself: the list, the catalog behind it, and the
+form-driven CRUD. Natural language moved out in Phase 2.5 — the assistant now
+creates teachers, subjects, rooms and classes as well as rules, so it lives in
+`app/api/assistant.py`. The `/interpret` and `/apply` routes here are thin
+delegates kept for older clients.
 """
 import json
 import re
@@ -369,64 +368,20 @@ def _ask_llm(db: Session, prompt: str) -> str:
 
 @router.post("/interpret", dependencies=[admin_only])
 def interpret(body: PromptIn, db: Session = Depends(get_db)):
-    """Turn a sentence into proposed registry ops. Commits nothing."""
-    prompt = body.prompt.strip()
-    if not prompt:
-        raise HTTPException(422, "Type what you want the timetable to do.")
-    reg.ensure_defaults(db)
+    """Deprecated alias for `POST /api/assistant/interpret`.
 
-    notes, used_llm = "", False
-    if is_llm_configured():
-        try:
-            data = _extract_json(_ask_llm(db, prompt))
-            ops = data.get("ops") or []
-            notes = str(data.get("notes") or "")
-            used_llm = True
-        except Exception as exc:
-            ops, notes = _fallback_ops(db, prompt)
-            detail = str(exc) or type(exc).__name__
-            notes = f"The language model could not be reached ({detail}). {notes}"
-    else:
-        ops, notes = _fallback_ops(db, prompt)
-        notes = f"No LLM key is configured. {notes}"
+    Phase 2.5 widened this from "edit a rule" to "do anything to timetable data",
+    so the implementation moved to `app/api/assistant.py`. Kept as a delegate so
+    an older client keeps working — there is only one implementation."""
+    from app.api.assistant import PromptIn as APrompt, interpret as _interpret
 
-    preview = _preview(db, ops if isinstance(ops, list) else [])
-    if not preview:
-        notes = notes or ("Nothing recognisable in that request — try naming a class, "
-                          "a day and a period, or use the Add-constraint form.")
-    return {"prompt": prompt, "ops": preview, "notes": notes, "llm": used_llm}
+    return _interpret(APrompt(prompt=body.prompt), db)
 
 
 @router.post("/apply", dependencies=[admin_only])
-def apply(body: ApplyIn, db: Session = Depends(get_db)):
-    """Commit previously previewed ops. Applied all-or-nothing per op; an op that
-    fails validation is reported and the rest still go through."""
-    ctx = reg.build_ctx(db)
-    applied, failed = [], []
-    for op in body.ops:
-        kind = (op.op or "create").lower()
-        try:
-            if kind == "create":
-                row = reg.create(db, op.kind, op.scope_type or "global",
-                                 op.scope_value or "", op.params, source="llm",
-                                 origin_prompt=body.prompt, ctx=ctx)
-                applied.append(reg.to_dict(row))
-            elif kind == "update":
-                row = reg.update(db, op.id, params=op.params,
-                                 scope_type=op.scope_type, scope_value=op.scope_value,
-                                 source="llm", origin_prompt=body.prompt, ctx=ctx)
-                applied.append(reg.to_dict(row))
-            elif kind in ("enable", "disable"):
-                row = reg.update(db, op.id, enabled=(kind == "enable"), ctx=ctx)
-                applied.append(reg.to_dict(row))
-            elif kind == "delete":
-                reg.delete(db, op.id)
-                applied.append({"id": op.id, "deleted": True})
-            else:
-                failed.append({"op": kind, "error": f"Unknown operation '{kind}'."})
-        except reg.ConstraintError as exc:
-            failed.append({"op": kind, "id": op.id, "kind": op.kind, "error": str(exc)})
-    return {
-        "applied": applied, "failed": failed,
-        "constraints": [reg.to_dict(c) for c in reg.list_constraints(db)],
-    }
+def apply(body: "ApplyIn", db: Session = Depends(get_db)):
+    """Deprecated alias for `POST /api/assistant/apply` — see `interpret` above."""
+    from app.api.assistant import ApplyIn as AApply, OpIn as AOp, apply as _apply
+
+    ops = [AOp(op=o.op or "", params=o.params or {}) for o in body.ops]
+    return _apply(AApply(ops=ops, prompt=body.prompt), db)
