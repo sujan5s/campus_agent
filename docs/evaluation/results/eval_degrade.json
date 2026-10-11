@@ -1,0 +1,29 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "degrade": {
+  "n": 100,
+  "answered": 100,
+  "exceptions": 0,
+  "routing_accuracy": 0.72,
+  "latency_ms": {
+   "n": 100,
+   "mean": 0.37,
+   "median": 0.175,
+   "p25": 0.006,
+   "p75": 0.91,
+   "p95": 0.988,
+   "min": 0.002,
+   "max": 1.339,
+   "stdev": 0.417
+  }
+ }
+}

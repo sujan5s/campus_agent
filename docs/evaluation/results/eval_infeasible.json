@@ -1,0 +1,109 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "infeasible": {
+  "rows": [
+   {
+    "case": "every teacher capped at 1 period/day",
+    "status": "infeasible",
+    "wall_s": 0.0,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "Total demand is 101 periods/week but teachers can cover at most 60 (max_hours_per_day \u00d7 days) \u2014 add teachers or raise limits."
+   },
+   {
+    "case": "no teacher qualified for a subject",
+    "status": "infeasible",
+    "wall_s": 0.0,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "No teacher can teach CS701 \u2014 map at least one teacher to it in Data Setup."
+   },
+   {
+    "case": "class reduced to 2 periods/day",
+    "status": "infeasible",
+    "wall_s": 0.0,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "Section CSE-7A needs 28 periods/week plus 3 open-elective period(s) but its rules leave only 10 slots \u2014 reduce periods_per_week, add slots, or relax its half-days/bans. OE-1 is fixed to MON-P3, THU-P3, TUE-P3, but CSE-7A does not teach then (its half-day rules) \u2014 the whole semester must be free for "
+   },
+   {
+    "case": "all lab rooms removed",
+    "status": "infeasible",
+    "wall_s": 0.0,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "Subjects ['CS703', 'CS707', 'CS505'] need a lab but no room of type 'lab' exists."
+   },
+   {
+    "case": "class strength 500 (no room fits)",
+    "status": "infeasible",
+    "wall_s": 0.068,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "No classroom has capacity >= 500 for section CSE-7A (rooms reserved for elective baskets are excluded)."
+   },
+   {
+    "case": "pinned teacher banned all week",
+    "status": "infeasible",
+    "wall_s": 0.112,
+    "source": "assumption core",
+    "groups_named": 11,
+    "specific": false,
+    "reason": "Conflicting constraint groups: teacher availability (clash-free teaching), teacher daily hour limits, lab consecutive-block scheduling, same-subject daily spread limit, home classroom allocation, no same-subject back-to-back, teacher consecutive-teaching cap, pinned teacher assignments, open-electiv"
+   },
+   {
+    "case": "class capped at 3 periods/day",
+    "status": "infeasible",
+    "wall_s": 0.0,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "Section CSE-7A needs 31 periods/week but its 'at most 3 periods per day' rule allows at most 15 \u2014 raise the cap or cut periods."
+   },
+   {
+    "case": "6 periods/week with max 1/day",
+    "status": "infeasible",
+    "wall_s": 0.184,
+    "source": "assumption core",
+    "groups_named": 11,
+    "specific": false,
+    "reason": "Conflicting constraint groups: teacher availability (clash-free teaching), teacher daily hour limits, lab consecutive-block scheduling, same-subject daily spread limit, home classroom allocation, no same-subject back-to-back, teacher consecutive-teaching cap, pinned teacher assignments, open-electiv"
+   },
+   {
+    "case": "every teacher capped at 4 periods/week",
+    "status": "infeasible",
+    "wall_s": 0.0,
+    "source": "precheck",
+    "groups_named": 0,
+    "specific": true,
+    "reason": "Total demand is 101 periods/week but teachers can cover at most 48 (max_hours_per_day \u00d7 days) \u2014 add teachers or raise limits."
+   },
+   {
+    "case": "max 1 in a row + 2 periods/day",
+    "status": "infeasible",
+    "wall_s": 0.154,
+    "source": "assumption core",
+    "groups_named": 11,
+    "specific": false,
+    "reason": "Conflicting constraint groups: teacher availability (clash-free teaching), teacher daily hour limits, lab consecutive-block scheduling, same-subject daily spread limit, home classroom allocation, no same-subject back-to-back, teacher consecutive-teaching cap, pinned teacher assignments, open-electiv"
+   }
+  ],
+  "detected": 10,
+  "specific": 7,
+  "n": 10
+ }
+}

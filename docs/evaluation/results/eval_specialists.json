@@ -1,0 +1,197 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "specialists": {
+  "facility": {
+   "n": 20,
+   "correct": 19,
+   "ms": {
+    "n": 20,
+    "mean": 0.699,
+    "median": 0.674,
+    "p25": 0.563,
+    "p75": 0.83,
+    "p95": 1.059,
+    "min": 0.39,
+    "max": 1.225,
+    "stdev": 0.219
+   },
+   "rows": [
+    {
+     "query": "Book Seminar Hall B for Friday 2-5pm",
+     "expected": "Seminar Hall B",
+     "got": "CS Lab 2",
+     "correct": false,
+     "ms": 1.225
+    },
+    {
+     "query": "Reserve the Main Auditorium on Monday",
+     "expected": "Main Auditorium",
+     "got": "Main Auditorium",
+     "correct": true,
+     "ms": 0.835
+    },
+    {
+     "query": "Is CS Lab 1 free on Thursday?",
+     "expected": "CS Lab 1",
+     "got": "CS Lab 1",
+     "correct": true,
+     "ms": 0.833
+    },
+    {
+     "query": "Book CS Lab 2 for project demos",
+     "expected": "CS Lab 2",
+     "got": "CS Lab 2",
+     "correct": true,
+     "ms": 0.735
+    },
+    {
+     "query": "What's the capacity of LT-302?",
+     "expected": "LT-302",
+     "got": "LT-302",
+     "correct": true,
+     "ms": 0.614
+    },
+    {
+     "query": "Reserve lt-301 for a guest lecture",
+     "expected": "LT-301",
+     "got": "LT-301",
+     "correct": true,
+     "ms": 0.563
+    },
+    {
+     "query": "Is LT-201 occupied on Wednesday?",
+     "expected": "LT-201",
+     "got": "LT-201",
+     "correct": true,
+     "ms": 0.916
+    },
+    {
+     "query": "book room 303 at 2pm",
+     "expected": "LT-303",
+     "got": "LT-303",
+     "correct": true,
+     "ms": 0.783
+    },
+    {
+     "query": "Book the sports ground on Saturday",
+     "expected": "Sports Ground",
+     "got": "Sports Ground",
+     "correct": true,
+     "ms": 0.591
+    },
+    {
+     "query": "Can I get the auditorium for the fest?",
+     "expected": "Main Auditorium",
+     "got": "Main Auditorium",
+     "correct": true,
+     "ms": 0.83
+    },
+    {
+     "query": "Is the seminar hall available next Tuesday?",
+     "expected": "Seminar Hall B",
+     "got": "Seminar Hall B",
+     "correct": true,
+     "ms": 1.059
+    },
+    {
+     "query": "Book a lab for the ML workshop",
+     "expected": "type:lab",
+     "got": "CS Lab 1",
+     "correct": true,
+     "ms": 0.817
+    },
+    {
+     "query": "Hold LT-304 for a makeup class",
+     "expected": "LT-304",
+     "got": "LT-304",
+     "correct": true,
+     "ms": 0.746
+    },
+    {
+     "query": "reserve the ground for sports day",
+     "expected": "Sports Ground",
+     "got": "Sports Ground",
+     "correct": true,
+     "ms": 0.59
+    },
+    {
+     "query": "I need a hall for 150 people",
+     "expected": "Seminar Hall B",
+     "got": "Seminar Hall B",
+     "correct": true,
+     "ms": 0.424
+    },
+    {
+     "query": "Book a room for the club meeting at 2pm",
+     "expected": null,
+     "got": null,
+     "correct": true,
+     "ms": 0.408
+    },
+    {
+     "query": "Reserve a venue for the alumni meet",
+     "expected": null,
+     "got": null,
+     "correct": true,
+     "ms": 0.39
+    },
+    {
+     "query": "What venues do you have?",
+     "expected": null,
+     "got": null,
+     "correct": true,
+     "ms": 0.516
+    },
+    {
+     "query": "Book LT 302 on Monday",
+     "expected": "LT-302",
+     "got": "LT-302",
+     "correct": true,
+     "ms": 0.572
+    },
+    {
+     "query": "Is cs lab 2 free at 10?",
+     "expected": "CS Lab 2",
+     "got": "CS Lab 2",
+     "correct": true,
+     "ms": 0.541
+    }
+   ]
+  },
+  "scheduler": {
+   "ms": {
+    "n": 50,
+    "mean": 1.054,
+    "median": 0.942,
+    "p25": 0.903,
+    "p75": 1.005,
+    "p95": 1.351,
+    "min": 0.879,
+    "max": 4.045,
+    "stdev": 0.459
+   }
+  },
+  "general_canned": {
+   "ms": {
+    "n": 50,
+    "mean": 0.001,
+    "median": 0.001,
+    "p25": 0.0,
+    "p75": 0.001,
+    "p95": 0.001,
+    "min": 0.0,
+    "max": 0.004,
+    "stdev": 0.001
+   }
+  }
+ }
+}

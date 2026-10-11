@@ -1,0 +1,2640 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "exchange": {
+  "leaves": 96,
+  "teachers": 12,
+  "affected": 291,
+  "exchanged": 260,
+  "lab_manual": 31,
+  "no_partner": 0,
+  "warned": 39,
+  "theory_affected": 260,
+  "invariant_violations": 0,
+  "idempotent_all": true,
+  "master_rows_before": 4454,
+  "master_rows_after": 4454,
+  "latency_ms": {
+   "n": 82,
+   "mean": 26.075,
+   "median": 25.296,
+   "p25": 24.723,
+   "p75": 27.106,
+   "p95": 29.966,
+   "min": 23.72,
+   "max": 38.039,
+   "stdev": 2.325
+  },
+  "legacy_latency_ms": {
+   "n": 82,
+   "mean": 58.781,
+   "median": 48.409,
+   "p25": 35.066,
+   "p75": 61.235,
+   "p95": 151.524,
+   "min": 21.275,
+   "max": 219.727,
+   "stdev": 40.104
+  },
+  "gap_days": {
+   "n": 260,
+   "mean": 4.112,
+   "median": 3.0,
+   "p25": 2,
+   "p75": 6,
+   "p95": 8,
+   "min": 1,
+   "max": 10,
+   "stdev": 2.551
+  },
+  "legacy_covered": 291,
+  "legacy_same_subject": 136,
+  "by_kind": {
+   "1-day": {
+    "affected": 93,
+    "exchanged": 83,
+    "lab_manual": 10,
+    "no_partner": 0,
+    "warned": 8,
+    "legacy_covered": 93,
+    "legacy_same_subject": 46,
+    "latency_ms": {
+     "n": 46,
+     "mean": 25.626,
+     "median": 24.773,
+     "p25": 24.182,
+     "p75": 26.042,
+     "p95": 29.966,
+     "min": 23.72,
+     "max": 38.039,
+     "stdev": 2.689
+    },
+    "legacy_latency_ms": {
+     "n": 46,
+     "mean": 38.954,
+     "median": 37.0,
+     "p25": 24.037,
+     "p75": 49.661,
+     "p95": 61.104,
+     "min": 21.275,
+     "max": 79.557,
+     "stdev": 15.583
+    }
+   },
+   "2-day": {
+    "affected": 43,
+    "exchanged": 39,
+    "lab_manual": 4,
+    "no_partner": 0,
+    "warned": 7,
+    "legacy_covered": 43,
+    "legacy_same_subject": 20,
+    "latency_ms": {
+     "n": 12,
+     "mean": 26.906,
+     "median": 26.325,
+     "p25": 26.029,
+     "p75": 27.595,
+     "p95": 28.886,
+     "min": 25.089,
+     "max": 30.107,
+     "stdev": 1.561
+    },
+    "legacy_latency_ms": {
+     "n": 12,
+     "mean": 60.277,
+     "median": 61.254,
+     "p25": 36.238,
+     "p75": 72.651,
+     "p95": 82.277,
+     "min": 35.155,
+     "max": 116.834,
+     "stdev": 25.486
+    }
+   },
+   "3-day": {
+    "affected": 62,
+    "exchanged": 56,
+    "lab_manual": 6,
+    "no_partner": 0,
+    "warned": 10,
+    "legacy_covered": 62,
+    "legacy_same_subject": 29,
+    "latency_ms": {
+     "n": 12,
+     "mean": 26.109,
+     "median": 25.303,
+     "p25": 24.978,
+     "p75": 27.106,
+     "p95": 28.056,
+     "min": 24.752,
+     "max": 29.975,
+     "stdev": 1.639
+    },
+    "legacy_latency_ms": {
+     "n": 12,
+     "mean": 78.967,
+     "median": 60.819,
+     "p25": 48.435,
+     "p75": 94.527,
+     "p95": 127.685,
+     "min": 35.802,
+     "max": 156.406,
+     "stdev": 38.344
+    }
+   },
+   "5-day": {
+    "affected": 93,
+    "exchanged": 82,
+    "lab_manual": 11,
+    "no_partner": 0,
+    "warned": 14,
+    "legacy_covered": 93,
+    "legacy_same_subject": 41,
+    "latency_ms": {
+     "n": 12,
+     "mean": 26.931,
+     "median": 26.404,
+     "p25": 25.556,
+     "p75": 28.269,
+     "p95": 29.185,
+     "min": 24.876,
+     "max": 29.253,
+     "stdev": 1.646
+    },
+    "legacy_latency_ms": {
+     "n": 12,
+     "mean": 113.105,
+     "median": 105.259,
+     "p25": 60.462,
+     "p75": 151.524,
+     "p95": 165.439,
+     "min": 58.367,
+     "max": 219.727,
+     "stdev": 58.477
+    }
+   }
+  },
+  "rows": [
+   {
+    "teacher_id": 1,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     1,
+     1,
+     3
+    ],
+    "latency_ms": 38.039,
+    "rebuild_ms": 0.687,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 79.557,
+    "legacy_covered": 3,
+    "legacy_same_subject": 2,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     1
+    ],
+    "latency_ms": 27.497,
+    "rebuild_ms": 0.571,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 61.104,
+    "legacy_covered": 2,
+    "legacy_same_subject": 2,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1,
+     2
+    ],
+    "latency_ms": 27.126,
+    "rebuild_ms": 0.69,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 53.106,
+    "legacy_covered": 3,
+    "legacy_same_subject": 3,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 0,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 24.407,
+    "rebuild_ms": 0.553,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 59.949,
+    "legacy_covered": 2,
+    "legacy_same_subject": 2,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4,
+     5
+    ],
+    "latency_ms": 26.177,
+    "rebuild_ms": 0.848,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 38.548,
+    "legacy_covered": 2,
+    "legacy_same_subject": 2,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     1,
+     1
+    ],
+    "latency_ms": 29.391,
+    "rebuild_ms": 0.617,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 38.103,
+    "legacy_covered": 2,
+    "legacy_same_subject": 1,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1
+    ],
+    "latency_ms": 24.656,
+    "rebuild_ms": 0.666,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 38.247,
+    "legacy_covered": 2,
+    "legacy_same_subject": 1,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.958,
+    "rebuild_ms": 19.435,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 6.116,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     4,
+     4
+    ],
+    "latency_ms": 24.81,
+    "rebuild_ms": 0.605,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 49.866,
+    "legacy_covered": 3,
+    "legacy_same_subject": 1,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 5,
+    "exchanged": 5,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4,
+     3,
+     4,
+     3,
+     5
+    ],
+    "latency_ms": 26.78,
+    "rebuild_ms": 0.675,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 76.545,
+    "legacy_covered": 5,
+    "legacy_same_subject": 0,
+    "legacy_affected": 5
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     2,
+     3
+    ],
+    "latency_ms": 28.133,
+    "rebuild_ms": 0.633,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 39.151,
+    "legacy_covered": 2,
+    "legacy_same_subject": 1,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 2,
+    "gaps_days": [
+     1,
+     2,
+     7
+    ],
+    "latency_ms": 24.913,
+    "rebuild_ms": 0.634,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 48.383,
+    "legacy_covered": 3,
+    "legacy_same_subject": 1,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1
+    ],
+    "latency_ms": 24.723,
+    "rebuild_ms": 0.687,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 37.287,
+    "legacy_covered": 2,
+    "legacy_same_subject": 1,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 0,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 29.966,
+    "rebuild_ms": 0.535,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 42.438,
+    "legacy_covered": 2,
+    "legacy_same_subject": 2,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     5,
+     3,
+     3,
+     4
+    ],
+    "latency_ms": 24.799,
+    "rebuild_ms": 0.828,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 59.232,
+    "legacy_covered": 4,
+    "legacy_same_subject": 2,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 1,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2
+    ],
+    "latency_ms": 26.599,
+    "rebuild_ms": 0.704,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 47.912,
+    "legacy_covered": 3,
+    "legacy_same_subject": 3,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     3
+    ],
+    "latency_ms": 24.393,
+    "rebuild_ms": 0.579,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 52.85,
+    "legacy_covered": 2,
+    "legacy_same_subject": 1,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 0,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 24.368,
+    "rebuild_ms": 0.786,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 48.333,
+    "legacy_covered": 2,
+    "legacy_same_subject": 2,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.384,
+    "rebuild_ms": 20.584,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 7.904,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3
+    ],
+    "latency_ms": 24.003,
+    "rebuild_ms": 0.567,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 26.363,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     3,
+     1,
+     1
+    ],
+    "latency_ms": 24.839,
+    "rebuild_ms": 0.574,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 49.661,
+    "legacy_covered": 3,
+    "legacy_same_subject": 3,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.56,
+    "rebuild_ms": 0.744,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 24.866,
+    "legacy_covered": 1,
+    "legacy_same_subject": 1,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1,
+     6
+    ],
+    "latency_ms": 24.761,
+    "rebuild_ms": 0.75,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 48.764,
+    "legacy_covered": 3,
+    "legacy_same_subject": 3,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4
+    ],
+    "latency_ms": 24.182,
+    "rebuild_ms": 0.714,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 24.768,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4,
+     3,
+     3,
+     4
+    ],
+    "latency_ms": 26.499,
+    "rebuild_ms": 0.674,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 60.496,
+    "legacy_covered": 4,
+    "legacy_same_subject": 2,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     2,
+     1
+    ],
+    "latency_ms": 25.073,
+    "rebuild_ms": 0.559,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 37.278,
+    "legacy_covered": 2,
+    "legacy_same_subject": 2,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 4,
+    "exchanged": 2,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     2
+    ],
+    "latency_ms": 25.378,
+    "rebuild_ms": 0.71,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 58.619,
+    "legacy_covered": 4,
+    "legacy_same_subject": 2,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     2,
+     1,
+     1
+    ],
+    "latency_ms": 26.042,
+    "rebuild_ms": 0.711,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 59.441,
+    "legacy_covered": 4,
+    "legacy_same_subject": 4,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.108,
+    "rebuild_ms": 0.576,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 25.394,
+    "legacy_covered": 1,
+    "legacy_same_subject": 1,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3
+    ],
+    "latency_ms": 24.837,
+    "rebuild_ms": 0.695,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 25.077,
+    "legacy_covered": 1,
+    "legacy_same_subject": 1,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 18.845,
+    "rebuild_ms": 22.876,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 4.008,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     2
+    ],
+    "latency_ms": 24.784,
+    "rebuild_ms": 0.686,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 34.309,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1
+    ],
+    "latency_ms": 25.198,
+    "rebuild_ms": 0.668,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 33.76,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.628,
+    "rebuild_ms": 19.482,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.907,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.239,
+    "rebuild_ms": 21.326,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.788,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 23.835,
+    "rebuild_ms": 0.728,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.793,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 23.819,
+    "rebuild_ms": 0.567,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 21.275,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 23.72,
+    "rebuild_ms": 0.507,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 24.037,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.366,
+    "rebuild_ms": 19.091,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.735,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3
+    ],
+    "latency_ms": 25.512,
+    "rebuild_ms": 0.534,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.287,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     2
+    ],
+    "latency_ms": 24.754,
+    "rebuild_ms": 0.561,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 35.136,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1
+    ],
+    "latency_ms": 34.059,
+    "rebuild_ms": 0.592,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 35.066,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 18.728,
+    "rebuild_ms": 18.709,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.747,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 18.835,
+    "rebuild_ms": 18.267,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.617,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 18.896,
+    "rebuild_ms": 18.736,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.728,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.096,
+    "rebuild_ms": 0.604,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 23.851,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.274,
+    "rebuild_ms": 0.666,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.629,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 20.265,
+    "rebuild_ms": 19.564,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.77,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     4
+    ],
+    "latency_ms": 23.929,
+    "rebuild_ms": 0.585,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 36.722,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.79,
+    "rebuild_ms": 19.442,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.609,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1,
+     1
+    ],
+    "latency_ms": 24.049,
+    "rebuild_ms": 0.52,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 34.246,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 18.806,
+    "rebuild_ms": 18.314,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.594,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.178,
+    "rebuild_ms": 0.753,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 23.062,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 19.075,
+    "rebuild_ms": 18.398,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.684,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4
+    ],
+    "latency_ms": 24.074,
+    "rebuild_ms": 0.656,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.073,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-16",
+    "to": "2026-11-16",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.95,
+    "rebuild_ms": 0.575,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.386,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-17",
+    "to": "2026-11-17",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     3
+    ],
+    "latency_ms": 24.312,
+    "rebuild_ms": 0.676,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 21.826,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-18",
+    "to": "2026-11-18",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2
+    ],
+    "latency_ms": 23.77,
+    "rebuild_ms": 0.656,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.814,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-19",
+    "to": "2026-11-19",
+    "kind": "1-day",
+    "affected": 1,
+    "exchanged": 1,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     1
+    ],
+    "latency_ms": 24.445,
+    "rebuild_ms": 0.649,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 22.265,
+    "legacy_covered": 1,
+    "legacy_same_subject": 0,
+    "legacy_affected": 1
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-20",
+    "to": "2026-11-20",
+    "kind": "1-day",
+    "affected": 0,
+    "exchanged": 0,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [],
+    "latency_ms": 21.021,
+    "rebuild_ms": 22.99,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 3.673,
+    "legacy_covered": 0,
+    "legacy_same_subject": 0,
+    "legacy_affected": 0
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 5,
+    "exchanged": 5,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     2,
+     3,
+     2,
+     3
+    ],
+    "latency_ms": 26.114,
+    "rebuild_ms": 0.86,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 116.834,
+    "legacy_covered": 5,
+    "legacy_same_subject": 4,
+    "legacy_affected": 5
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 8,
+    "exchanged": 8,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 2,
+    "gaps_days": [
+     3,
+     3,
+     4,
+     3,
+     3,
+     6,
+     5,
+     2
+    ],
+    "latency_ms": 27.171,
+    "rebuild_ms": 0.648,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 156.406,
+    "legacy_covered": 8,
+    "legacy_same_subject": 6,
+    "legacy_affected": 8
+   },
+   {
+    "teacher_id": 1,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 12,
+    "exchanged": 10,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 2,
+    "gaps_days": [
+     8,
+     8,
+     7,
+     7,
+     8,
+     8,
+     8,
+     7,
+     7,
+     6
+    ],
+    "latency_ms": 28.269,
+    "rebuild_ms": 0.727,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 219.727,
+    "legacy_covered": 12,
+    "legacy_same_subject": 10,
+    "legacy_affected": 12
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     2,
+     2,
+     1,
+     1
+    ],
+    "latency_ms": 25.089,
+    "rebuild_ms": 0.775,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 59.659,
+    "legacy_covered": 4,
+    "legacy_same_subject": 2,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     4,
+     3,
+     6,
+     6
+    ],
+    "latency_ms": 25.139,
+    "rebuild_ms": 0.553,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 62.666,
+    "legacy_covered": 4,
+    "legacy_same_subject": 2,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 2,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 12,
+    "exchanged": 12,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 3,
+    "gaps_days": [
+     7,
+     8,
+     7,
+     6,
+     6,
+     6,
+     6,
+     5,
+     5,
+     6,
+     3,
+     4
+    ],
+    "latency_ms": 29.253,
+    "rebuild_ms": 0.681,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 165.439,
+    "legacy_covered": 12,
+    "legacy_same_subject": 3,
+    "legacy_affected": 12
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 5,
+    "exchanged": 5,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 4,
+    "gaps_days": [
+     2,
+     3,
+     6,
+     7,
+     7
+    ],
+    "latency_ms": 25.44,
+    "rebuild_ms": 0.555,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 72.651,
+    "legacy_covered": 5,
+    "legacy_same_subject": 2,
+    "legacy_affected": 5
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 7,
+    "exchanged": 7,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 4,
+    "gaps_days": [
+     3,
+     9,
+     6,
+     7,
+     7,
+     1,
+     1
+    ],
+    "latency_ms": 25.467,
+    "rebuild_ms": 0.683,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 94.527,
+    "legacy_covered": 7,
+    "legacy_same_subject": 3,
+    "legacy_affected": 7
+   },
+   {
+    "teacher_id": 3,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 13,
+    "exchanged": 10,
+    "lab_manual": 3,
+    "no_partner": 0,
+    "warned": 5,
+    "gaps_days": [
+     9,
+     10,
+     6,
+     7,
+     7,
+     8,
+     6,
+     5,
+     3,
+     3
+    ],
+    "latency_ms": 27.679,
+    "rebuild_ms": 0.748,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 162.196,
+    "legacy_covered": 13,
+    "legacy_same_subject": 7,
+    "legacy_affected": 13
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 5,
+    "exchanged": 3,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     2,
+     3
+    ],
+    "latency_ms": 27.595,
+    "rebuild_ms": 0.79,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 81.844,
+    "legacy_covered": 5,
+    "legacy_same_subject": 4,
+    "legacy_affected": 5
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 7,
+    "exchanged": 3,
+    "lab_manual": 4,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     3,
+     6
+    ],
+    "latency_ms": 24.95,
+    "rebuild_ms": 0.57,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 116.965,
+    "legacy_covered": 7,
+    "legacy_same_subject": 5,
+    "legacy_affected": 7
+   },
+   {
+    "teacher_id": 4,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 8,
+    "exchanged": 4,
+    "lab_manual": 4,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     7,
+     8,
+     10,
+     6
+    ],
+    "latency_ms": 25.556,
+    "rebuild_ms": 0.658,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 151.524,
+    "legacy_covered": 8,
+    "legacy_same_subject": 5,
+    "legacy_affected": 8
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     3,
+     8,
+     1
+    ],
+    "latency_ms": 28.18,
+    "rebuild_ms": 0.551,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 62.848,
+    "legacy_covered": 4,
+    "legacy_same_subject": 4,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 7,
+    "exchanged": 7,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     3,
+     3,
+     8,
+     3,
+     1,
+     2,
+     5
+    ],
+    "latency_ms": 27.106,
+    "rebuild_ms": 0.636,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 93.372,
+    "legacy_covered": 7,
+    "legacy_same_subject": 5,
+    "legacy_affected": 7
+   },
+   {
+    "teacher_id": 5,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 12,
+    "exchanged": 12,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 2,
+    "gaps_days": [
+     7,
+     8,
+     7,
+     7,
+     7,
+     6,
+     8,
+     6,
+     6,
+     7,
+     4,
+     5
+    ],
+    "latency_ms": 28.966,
+    "rebuild_ms": 0.831,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 149.605,
+    "legacy_covered": 12,
+    "legacy_same_subject": 6,
+    "legacy_affected": 12
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 6,
+    "exchanged": 4,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     2,
+     3,
+     2,
+     3
+    ],
+    "latency_ms": 28.886,
+    "rebuild_ms": 0.681,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 82.277,
+    "legacy_covered": 6,
+    "legacy_same_subject": 4,
+    "legacy_affected": 6
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 10,
+    "exchanged": 8,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     3,
+     3,
+     3,
+     3,
+     1,
+     2,
+     5,
+     2
+    ],
+    "latency_ms": 28.056,
+    "rebuild_ms": 0.6,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 127.685,
+    "legacy_covered": 10,
+    "legacy_same_subject": 8,
+    "legacy_affected": 10
+   },
+   {
+    "teacher_id": 6,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 12,
+    "exchanged": 10,
+    "lab_manual": 2,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     7,
+     8,
+     8,
+     6,
+     5,
+     8,
+     8,
+     8,
+     8,
+     7
+    ],
+    "latency_ms": 29.185,
+    "rebuild_ms": 0.847,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 149.283,
+    "legacy_covered": 12,
+    "legacy_same_subject": 10,
+    "legacy_affected": 12
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     2
+    ],
+    "latency_ms": 26.296,
+    "rebuild_ms": 0.662,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 35.155,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     2,
+     1,
+     5
+    ],
+    "latency_ms": 24.978,
+    "rebuild_ms": 0.528,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 58.642,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 7,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     6,
+     6,
+     8,
+     8
+    ],
+    "latency_ms": 26.685,
+    "rebuild_ms": 0.631,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 60.511,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     2
+    ],
+    "latency_ms": 30.107,
+    "rebuild_ms": 0.611,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 35.174,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     2,
+     5
+    ],
+    "latency_ms": 24.794,
+    "rebuild_ms": 0.554,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 47.457,
+    "legacy_covered": 3,
+    "legacy_same_subject": 0,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 8,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     7,
+     7,
+     7,
+     6
+    ],
+    "latency_ms": 24.876,
+    "rebuild_ms": 0.519,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 58.926,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     2,
+     2,
+     3
+    ],
+    "latency_ms": 27.508,
+    "rebuild_ms": 0.746,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 64.107,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4,
+     3,
+     2,
+     8
+    ],
+    "latency_ms": 25.859,
+    "rebuild_ms": 0.622,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 58.972,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 9,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     9,
+     9,
+     9,
+     10
+    ],
+    "latency_ms": 25.725,
+    "rebuild_ms": 0.645,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 59.99,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     1
+    ],
+    "latency_ms": 25.277,
+    "rebuild_ms": 0.61,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 35.619,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     4,
+     6
+    ],
+    "latency_ms": 24.752,
+    "rebuild_ms": 0.594,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 35.802,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 10,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     7,
+     7,
+     6,
+     6
+    ],
+    "latency_ms": 26.124,
+    "rebuild_ms": 0.555,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 61.235,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     2,
+     3
+    ],
+    "latency_ms": 26.029,
+    "rebuild_ms": 0.62,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 40.913,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     3,
+     8,
+     1
+    ],
+    "latency_ms": 29.975,
+    "rebuild_ms": 0.536,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 46.677,
+    "legacy_covered": 3,
+    "legacy_same_subject": 0,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 11,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 0,
+    "gaps_days": [
+     8,
+     8,
+     7,
+     6
+    ],
+    "latency_ms": 25.541,
+    "rebuild_ms": 0.606,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 58.367,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-16",
+    "to": "2026-11-17",
+    "kind": "2-day",
+    "affected": 2,
+    "exchanged": 2,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     4,
+     3
+    ],
+    "latency_ms": 26.353,
+    "rebuild_ms": 0.66,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 36.238,
+    "legacy_covered": 2,
+    "legacy_same_subject": 0,
+    "legacy_affected": 2
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-16",
+    "to": "2026-11-18",
+    "kind": "3-day",
+    "affected": 3,
+    "exchanged": 3,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     4,
+     3,
+     5
+    ],
+    "latency_ms": 25.062,
+    "rebuild_ms": 0.752,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 48.435,
+    "legacy_covered": 3,
+    "legacy_same_subject": 0,
+    "legacy_affected": 3
+   },
+   {
+    "teacher_id": 12,
+    "from": "2026-11-16",
+    "to": "2026-11-20",
+    "kind": "5-day",
+    "affected": 4,
+    "exchanged": 4,
+    "lab_manual": 0,
+    "no_partner": 0,
+    "warned": 1,
+    "gaps_days": [
+     7,
+     7,
+     9,
+     8
+    ],
+    "latency_ms": 25.314,
+    "rebuild_ms": 0.634,
+    "idempotent": true,
+    "violations": {
+     "double-booked by plan": 0
+    },
+    "legacy_latency_ms": 60.462,
+    "legacy_covered": 4,
+    "legacy_same_subject": 0,
+    "legacy_affected": 4
+   }
+  ]
+ }
+}

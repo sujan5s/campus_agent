@@ -1,0 +1,539 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "solver": {
+  "instance": {
+   "sections": 4,
+   "teachers": 12,
+   "rooms": 10,
+   "slots": 35,
+   "subjects": 22,
+   "lessons_demanded": 93,
+   "elective_bands": 2,
+   "pins": 5,
+   "rules_enabled": 10
+  },
+  "modes": {
+   "cold": [
+    {
+     "run": 0,
+     "status": "feasible",
+     "wall_s": 8.09,
+     "solver_s": 8.004,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 83,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 1,
+     "status": "feasible",
+     "wall_s": 8.091,
+     "solver_s": 8.003,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 83,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 2,
+     "status": "feasible",
+     "wall_s": 8.09,
+     "solver_s": 8.002,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 83,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 3,
+     "status": "feasible",
+     "wall_s": 8.086,
+     "solver_s": 8.002,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 83,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 4,
+     "status": "feasible",
+     "wall_s": 8.089,
+     "solver_s": 8.002,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 83,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    }
+   ],
+   "warm": [
+    {
+     "run": 0,
+     "status": "optimal",
+     "wall_s": 0.884,
+     "solver_s": 0.797,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 0,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 1,
+     "status": "optimal",
+     "wall_s": 0.9,
+     "solver_s": 0.81,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 0,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 2,
+     "status": "optimal",
+     "wall_s": 0.889,
+     "solver_s": 0.798,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 0,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 3,
+     "status": "optimal",
+     "wall_s": 0.875,
+     "solver_s": 0.787,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 0,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    },
+    {
+     "run": 4,
+     "status": "optimal",
+     "wall_s": 0.883,
+     "solver_s": 0.79,
+     "objective": 11,
+     "load_gap": 11,
+     "lessons": 93,
+     "moved_vs_published": 0,
+     "verify": {
+      "checks": 23,
+      "passed": 23,
+      "violations": {
+       "H1 weekly demand": 0,
+       "H2 section clash": 0,
+       "H3 teacher clash": 0,
+       "H4 single teacher": 0,
+       "H4 qualification": 0,
+       "H4 pinned teacher": 0,
+       "H5 lab room": 0,
+       "H5 lab block": 0,
+       "H5/H6 room clash": 0,
+       "H6 one home room": 0,
+       "H6 room capacity/type": 0,
+       "H6 shared home room": 0,
+       "H7 daily load": 0,
+       "H7 weekly load": 0,
+       "H8 daily spread": 0,
+       "H9 back-to-back": 0,
+       "half-day respected": 0,
+       "per-day period cap": 0,
+       "H10 consecutive cap": 0,
+       "H11 band periods": 0,
+       "H11 pinned slot": 0,
+       "H11 elective room taken": 0,
+       "H12 availability ban": 0
+      }
+     }
+    }
+   ],
+   "cold_120s": [
+    {
+     "status": "feasible",
+     "wall_s": 120.089,
+     "objective": 11,
+     "load_gap": 11
+    }
+   ]
+  },
+  "scenarios": {
+   "add a 2-period subject to one class": {
+    "preserve": {
+     "wall_s": [
+      0.687,
+      0.674
+     ],
+     "moved": [
+      0,
+      0
+     ],
+     "status": [
+      "optimal",
+      "optimal"
+     ],
+     "published_lessons": 93,
+     "verify_passed": 23,
+     "verify_checks": 23
+    },
+    "fresh": {
+     "wall_s": [
+      8.093,
+      8.098
+     ],
+     "moved": [
+      79,
+      79
+     ],
+     "status": [
+      "feasible",
+      "feasible"
+     ],
+     "published_lessons": 93,
+     "verify_passed": 23,
+     "verify_checks": 23
+    }
+   },
+   "teacher unavailable all Wednesday": {
+    "preserve": {
+     "wall_s": [
+      0.853,
+      0.851
+     ],
+     "moved": [
+      1,
+      1
+     ],
+     "status": [
+      "optimal",
+      "optimal"
+     ],
+     "published_lessons": 93,
+     "verify_passed": 23,
+     "verify_checks": 23
+    },
+    "fresh": {
+     "wall_s": [
+      8.094,
+      8.11
+     ],
+     "moved": [
+      83,
+      83
+     ],
+     "status": [
+      "feasible",
+      "feasible"
+     ],
+     "published_lessons": 93,
+     "verify_passed": 23,
+     "verify_checks": 23
+    }
+   },
+   "one subject +1 period/week": {
+    "preserve": {
+     "wall_s": [
+      0.817,
+      0.821
+     ],
+     "moved": [
+      0,
+      0
+     ],
+     "status": [
+      "optimal",
+      "optimal"
+     ],
+     "published_lessons": 93,
+     "verify_passed": 23,
+     "verify_checks": 23
+    },
+    "fresh": {
+     "wall_s": [
+      8.088,
+      8.09
+     ],
+     "moved": [
+      80,
+      80
+     ],
+     "status": [
+      "feasible",
+      "feasible"
+     ],
+     "published_lessons": 93,
+     "verify_passed": 23,
+     "verify_checks": 23
+    }
+   }
+  }
+ }
+}

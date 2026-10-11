@@ -1,0 +1,10 @@
+Agent,Mechanism,Trigger,Measured quality,Measured latency,Human gate,Fallback / degradation
+Supervisor-router,LLM structured output + keyword fallback; system triggers bypass,reactive + system,keyword acc 72%,< 0.01 ms bypass,–,keyword router (100/100 answered)
+Timetable Agent (F1),"OR-Tools CP-SAT, 12 hard groups + soft objective",reactive (admin),0 violations / 10 solutions,0.9 s warm; 8.1 s cold,admin triggers,precheck + assumption core (7/10 specific)
+Substitution Agent (F2),period-exchange heuristic + interrupt(),proactive (leave approved),"89.3% auto-covered, 0 violations",25 ms,mandatory (26/26 resumed),manual rows for labs / no partner
+Timetable Assistant,LLM → 23 typed ops → validate → preview → apply,reactive (admin NL),compiler 20/20,5.25 ms,preview before apply,regex parser for simple requests
+Facility Agent (F3),room-registry entity matching,reactive,19/20 venues,0.67 ms,none (provisional),lists all venues
+Scheduler Agent,registry audit (stub),reactive,not evaluated (static report),0.94 ms,none,–
+General Agent (F4),"LLM persona, pre-RAG",reactive,not evaluated (no ground truth),< 0.01 ms offline,none,canned reply
+Notification dispatch,rows written on plan approval,proactive,3 per approved plan,inside resume,follows approval,in-app inbox
+Safety-sweep sentinel,"APScheduler, every 2 min",proactive (cron),recovered 3/3 missed leaves,31 ms / tick,bounded by F2 approval,idempotent re-trigger

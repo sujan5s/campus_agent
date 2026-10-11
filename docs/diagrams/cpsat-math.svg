@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 916" width="1040" height="916"
+     role="img" aria-label="How CP-SAT solves the timetable: the 0-1 integer program is presolved, then searched by a conflict-driven clause learning loop of decide, propagate, conflict and learn. Linear propagators explain their arithmetic as clauses on demand, reification turns logic into clauses, an LP relaxation supplies lower bounds and cuts, optimality is proved when the lower and upper bounds meet, and infeasibility comes back as a minimal core of named constraint groups.">
+  <defs>
+    <marker id="mi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#16252D"/>
+    </marker>
+    <marker id="ms" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#0E7C86"/>
+    </marker>
+    <marker id="mc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#A8402B"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1040" height="916" fill="#F2F5F7"/>
+
+  <text x="40" y="30" font-family="ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600" fill="#16252D">How it actually solves</text>
+  <text x="40" y="46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.06em">SEARCH IS A PROOF — CDCL RESOLUTION, LAZY CLAUSE GENERATION, AND A SIMPLEX BOUND CLOSING FROM BELOW</text>
+
+  <g transform="translate(0,52)">
+
+    <!-- ================= THE MODEL ================= -->
+    <rect x="40" y="0" width="960" height="110" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="56" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">THE MODEL — A 0-1 INTEGER PROGRAM. NP-HARD: BOUNDED-COLOUR EDGE COLOURING PLUS CONTIGUOUS PACKING.</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">
+      <text x="56" y="44">minimize   ( max L[t] − min L[t] )</text>
+      <text x="56" y="60">         + Σ wₚ · misses(p)</text>
+      <text x="56" y="76">         + W_gap · Σ gap[s,d,k]</text>
+      <text x="56" y="92">         + 8 · Hamming(new, previous)</text>
+    </g>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#55707E">
+      <text x="330" y="44">fairness — a min-max (bottleneck) objective</text>
+      <text x="330" y="60">preferred periods, per-rule weight</text>
+      <text x="330" y="76">mid-day holes, exact for any gap length</text>
+      <text x="330" y="92">stability — proximity search on last week</text>
+    </g>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">
+      <text x="720" y="44">subject to  H1 … H12</text>
+      <text x="720" y="60" fill="#55707E">93 lessons · 35 slots · 20 pairs</text>
+      <text x="720" y="76" fill="#55707E">≈ 3 950 Booleans + 15 integers</text>
+      <text x="720" y="92" fill="#0E7C86">naive space ≈ 4 × 10⁹⁶</text>
+    </g>
+
+    <line x1="520" y1="110" x2="520" y2="136" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+
+    <!-- ================= PRESOLVE ================= -->
+    <rect x="330" y="138" width="380" height="86" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="342" y="156" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">PRESOLVE — BOOLEAN ALGEBRA, ONCE, BEFORE ANY SEARCH</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="342" y="176">fix x[s,j,k] = 0 outside allowed(s) · merge at-most-one cliques</text>
+      <text x="342" y="192">affine equivalence (union-find) · probing · dominance</text>
+      <text x="342" y="208">symmetry detection: CSE-7A ≅ CSE-7B, one labelling collapses</text>
+    </g>
+
+    <line x1="520" y1="224" x2="520" y2="250" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+    <text x="528" y="242" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">reduced model</text>
+
+    <!-- ================= CDCL ENGINE ================= -->
+    <rect x="300" y="252" width="440" height="404" rx="4" fill="#E0F0F1" stroke="#0E7C86" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <text x="312" y="270" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86" letter-spacing="0.06em">CDCL — CONFLICT-DRIVEN CLAUSE LEARNING</text>
+
+    <rect x="410" y="288" width="220" height="52" rx="3" fill="#FFFFFF" stroke="#8FC4C8" stroke-width="1.1"/>
+    <text x="422" y="306" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">DECIDE</text>
+    <text x="422" y="321" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">VSIDS — branch on the most</text>
+    <text x="422" y="333" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">conflict-active variable</text>
+
+    <line x1="520" y1="340" x2="520" y2="358" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+
+    <rect x="410" y="360" width="220" height="70" rx="3" fill="#FFFFFF" stroke="#8FC4C8" stroke-width="1.1"/>
+    <text x="422" y="378" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">PROPAGATE</text>
+    <text x="422" y="393" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">two-watched-literal unit</text>
+    <text x="422" y="405" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">propagation, plus the linear</text>
+    <text x="422" y="417" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">bound propagators at left</text>
+
+    <line x1="520" y1="430" x2="520" y2="450" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+
+    <rect x="410" y="452" width="220" height="46" rx="3" fill="#FFFFFF" stroke="#8FC4C8" stroke-width="1.1"/>
+    <text x="422" y="470" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">CONFLICT?</text>
+    <text x="422" y="485" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">is some clause falsified</text>
+
+    <line x1="520" y1="498" x2="520" y2="526" stroke="#A8402B" stroke-width="1.2" marker-end="url(#mc)"/>
+    <text x="528" y="518" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#A8402B">yes</text>
+
+    <rect x="410" y="528" width="220" height="84" rx="3" fill="#FFFFFF" stroke="#8FC4C8" stroke-width="1.1"/>
+    <text x="422" y="546" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">LEARN</text>
+    <text x="422" y="561" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">resolve the implication graph</text>
+    <text x="422" y="573" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">back to the 1-UIP cut ⇒ a new</text>
+    <text x="422" y="585" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">clause implied by the model,</text>
+    <text x="422" y="597" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">then backjump, not backtrack</text>
+
+    <!-- learned clause returns to DECIDE -->
+    <path d="M410,570 H338 V314 H408" fill="none" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+    <text x="346" y="436" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">learned clause</text>
+    <text x="346" y="450" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">→ backjump</text>
+
+    <!-- no-conflict branch out to a solution, and back in with a tighter bound -->
+    <line x1="630" y1="466" x2="768" y2="466" stroke="#0E7C86" stroke-width="1.2" marker-end="url(#ms)"/>
+    <text x="699" y="459" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86" text-anchor="middle">no · all assigned</text>
+    <line x1="768" y1="486" x2="632" y2="486" stroke="#16252D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#mi)"/>
+    <text x="636" y="502" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">obj &lt; best · continue</text>
+
+    <!-- ================= LEFT: LCG ================= -->
+    <rect x="40" y="270" width="240" height="200" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="52" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">LINEAR PROPAGATORS (LCG)</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="52" y="310">H3   Σ_k busy[t,k] ≤ 1</text>
+      <text x="52" y="332">w₁ := 1</text>
+      <text x="52" y="346">  ⇒ forces w₂ := 0, w₃ := 0</text>
+      <text x="52" y="360">  ⇒ explains itself on demand:</text>
+      <text x="52" y="376" fill="#0E7C86">       (¬w₁ ∨ ¬w₂)</text>
+      <text x="52" y="400" fill="#55707E">the sum is never expanded to</text>
+      <text x="52" y="414" fill="#55707E">CNF, yet CDCL still resolves</text>
+      <text x="52" y="428" fill="#55707E">over it — Lazy Clause Generation</text>
+      <text x="52" y="448" fill="#55707E">(why 93 lessons solve in under 1 s)</text>
+    </g>
+    <line x1="280" y1="395" x2="408" y2="395" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+    <text x="344" y="387" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D" text-anchor="middle">explanation clauses</text>
+
+    <!-- ================= LEFT: reification ================= -->
+    <rect x="40" y="500" width="240" height="156" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="52" y="520" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">REIFICATION (TSEITIN)</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="52" y="540">w[s,j,t,k] = x[s,j,k] ∧ y[s,j,t]</text>
+      <text x="52" y="560" fill="#55707E">becomes three clauses:</text>
+      <text x="52" y="578">   (¬w ∨ x)</text>
+      <text x="52" y="592">   (¬w ∨ y)</text>
+      <text x="52" y="606">   (¬x ∨ ¬y ∨ w)</text>
+      <text x="52" y="630" fill="#A8402B">drop the third and H3, the</text>
+      <text x="52" y="644" fill="#A8402B">teacher clash, goes vacuous</text>
+    </g>
+
+    <!-- ================= RIGHT: LP relaxation ================= -->
+    <line x1="740" y1="300" x2="788" y2="300" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+    <text x="764" y="293" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D" text-anchor="middle">relaxed</text>
+
+    <rect x="790" y="252" width="210" height="180" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="802" y="272" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">LP RELAXATION</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="802" y="292">x ∈ {0,1} relaxed to [0,1],</text>
+      <text x="802" y="306">solved with dual simplex</text>
+      <text x="802" y="326">⇒ lower bound on the objective</text>
+      <text x="802" y="340">⇒ reduced-cost fixing</text>
+      <text x="802" y="354">⇒ cuts: Gomory · MIR ·</text>
+      <text x="802" y="368">   knapsack cover · clique</text>
+      <text x="802" y="390" fill="#55707E">clique cuts fall straight out</text>
+      <text x="802" y="404" fill="#55707E">of the ≤ 1 clash sums, which</text>
+      <text x="802" y="418" fill="#55707E">this model is full of</text>
+    </g>
+
+    <!-- ================= RIGHT: solution ================= -->
+    <rect x="770" y="444" width="230" height="58" rx="3" fill="#E0F0F1" stroke="#0E7C86" stroke-width="1.3"/>
+    <text x="782" y="462" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86" letter-spacing="0.06em">SOLUTION FOUND</text>
+    <text x="782" y="478" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">every variable assigned, no</text>
+    <text x="782" y="492" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">clause falsified ⇒ a new UB</text>
+
+    <line x1="885" y1="502" x2="885" y2="534" stroke="#0E7C86" stroke-width="1.2" marker-end="url(#ms)"/>
+    <text x="893" y="524" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86">UB</text>
+
+    <!-- ================= RIGHT: the bounds close ================= -->
+    <rect x="770" y="536" width="230" height="190" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="782" y="556" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">CLOSING THE GAP</text>
+    <text x="782" y="568" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#55707E">objective value, better downwards</text>
+
+    <line x1="800" y1="572" x2="800" y2="712" stroke="#16252D" stroke-width="1"/>
+    <line x1="790" y1="584" x2="812" y2="584" stroke="#16252D" stroke-width="1.4"/>
+    <line x1="800" y1="590" x2="800" y2="618" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+    <text x="820" y="588" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">UB — best found so far</text>
+
+    <rect x="790" y="624" width="20" height="36" fill="#0E7C86"/>
+    <text x="820" y="640" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86">LB = UB</text>
+    <text x="820" y="653" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86">⇒ status OPTIMAL</text>
+
+    <line x1="790" y1="700" x2="812" y2="700" stroke="#16252D" stroke-width="1.4"/>
+    <line x1="800" y1="694" x2="800" y2="666" stroke="#16252D" stroke-width="1.1" marker-end="url(#mi)"/>
+    <text x="820" y="704" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">LB — simplex, cuts,</text>
+    <text x="820" y="717" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">core-guided search</text>
+
+    <!-- ================= REFUTATION ================= -->
+    <line x1="520" y1="612" x2="520" y2="688" stroke="#A8402B" stroke-width="1.3" marker-end="url(#mc)"/>
+    <text x="528" y="650" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#A8402B">conflict at decision level 0</text>
+
+    <rect x="300" y="690" width="440" height="150" rx="3" fill="#F9E9E4" stroke="#A8402B" stroke-width="1.3"/>
+    <text x="312" y="710" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#A8402B" letter-spacing="0.06em">UNSAT — A RESOLUTION REFUTATION, NOT A FAILED SEARCH</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="312" y="730">the model carries assumption literals g₁ … gₙ, one per constraint</text>
+      <text x="312" y="746">group, each posted as   gᵢ → (that group's constraints).</text>
+      <text x="312" y="762">conflict analysis resolves over them, so</text>
+      <text x="312" y="778">SufficientAssumptionsForInfeasibility() hands back a minimal</text>
+      <text x="312" y="794">core C ⊆ {g₁ … gₙ} — printed straight back as English:</text>
+      <text x="312" y="814" fill="#A8402B">“Conflicting constraint groups: teacher daily hour limits, no</text>
+    </g>
+    <text x="312" y="828" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#A8402B">same-subject back-to-back.”</text>
+
+  </g>
+</svg>

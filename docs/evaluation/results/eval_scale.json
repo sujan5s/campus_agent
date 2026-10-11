@@ -1,0 +1,85 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "scale": {
+  "time_limit_s": 60.0,
+  "rows": [
+   {
+    "factor": 1,
+    "sections": 4,
+    "teachers": 12,
+    "lessons": 93,
+    "cold_status": "feasible",
+    "cold_s": 60.1,
+    "cold_objective": 11,
+    "cold_verify": "23/23",
+    "warm_status": "infeasible",
+    "warm_s": 0.0,
+    "warm_moved": null,
+    "fresh_status": "infeasible",
+    "fresh_s": 0.0,
+    "fresh_moved": null
+   },
+   {
+    "factor": 2,
+    "sections": 8,
+    "teachers": 24,
+    "lessons": 186,
+    "cold_status": "feasible",
+    "cold_s": 60.309,
+    "cold_objective": 15,
+    "cold_verify": "23/23",
+    "warm_status": "infeasible",
+    "warm_s": 0.0,
+    "warm_moved": null,
+    "fresh_status": "infeasible",
+    "fresh_s": 0.0,
+    "fresh_moved": null
+   },
+   {
+    "factor": 3,
+    "sections": 12,
+    "teachers": 36,
+    "lessons": 279,
+    "cold_status": "feasible",
+    "cold_s": 60.599,
+    "cold_objective": 828,
+    "cold_verify": "23/23",
+    "warm_status": "infeasible",
+    "warm_s": 0.0,
+    "warm_moved": null,
+    "fresh_status": "infeasible",
+    "fresh_s": 0.0,
+    "fresh_moved": null
+   },
+   {
+    "factor": 4,
+    "sections": 16,
+    "teachers": 48,
+    "lessons": 372,
+    "cold_status": "error",
+    "cold_s": 61.015,
+    "cold_objective": null,
+    "cold_verify": null
+   },
+   {
+    "factor": 5,
+    "sections": 20,
+    "teachers": 60,
+    "lessons": 465,
+    "cold_status": "error",
+    "cold_s": 61.589,
+    "cold_objective": null,
+    "cold_verify": null
+   }
+  ]
+ }
+}

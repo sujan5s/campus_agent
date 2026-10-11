@@ -1,0 +1,14 @@
+Operation,Median,P25,P75 / max
+Supervisor: system-trigger bypass,< 0.01 ms,< 0.01 ms,< 0.01 ms
+Supervisor: keyword router,< 0.01 ms,< 0.01 ms,< 0.01 ms
+General Agent: offline reply,< 0.01 ms,< 0.01 ms,< 0.01 ms
+Constraint registry: compile,0.57 ms,0.56 ms,0.59 ms
+Facility Agent: venue resolution,0.67 ms,0.56 ms,0.83 ms
+Scheduler Agent: registry audit,0.94 ms,0.90 ms,1.00 ms
+Assistant: validate plan,5.25 ms,5.08 ms,5.52 ms
+Substitution Agent: exchange plan,25 ms,25 ms,27 ms
+HITL: resume after restart,31 ms,25 ms,36 ms
+HITL: trigger → interrupt(),43 ms,40 ms,46 ms
+Legacy stand-in planner (baseline),48 ms,35 ms,61 ms
+Timetable Agent: warm solve (8 s cap),884 ms,875 ms,900 ms
+Timetable Agent: cold solve (8 s cap),8.09 s,8.09 s,8.09 s

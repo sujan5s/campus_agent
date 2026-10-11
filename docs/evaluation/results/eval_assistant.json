@@ -1,0 +1,272 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "assistant": {
+  "n": 20,
+  "correct": 20,
+  "valid_accepted": 12,
+  "valid_total": 12,
+  "invalid_rejected": 8,
+  "invalid_total": 8,
+  "plan_ms": {
+   "n": 20,
+   "mean": 5.566,
+   "median": 5.253,
+   "p25": 5.082,
+   "p75": 5.516,
+   "p95": 7.21,
+   "min": 4.853,
+   "max": 9.07,
+   "stdev": 0.993
+  },
+  "rows": [
+   {
+    "case": "add a room",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 7.21,
+    "errors": []
+   },
+   {
+    "case": "add subject",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.384,
+    "errors": []
+   },
+   {
+    "case": "forward ref: subject then teacher then pin",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 3,
+    "ms": 5.251,
+    "errors": []
+   },
+   {
+    "case": "forward ref: new class then a rule on it",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 2,
+    "ms": 5.082,
+    "errors": []
+   },
+   {
+    "case": "bulk subjects",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 2,
+    "ms": 5.49,
+    "errors": []
+   },
+   {
+    "case": "bulk teachers with assign_to",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 3,
+    "ms": 6.432,
+    "errors": []
+   },
+   {
+    "case": "alias create_teacher",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.516,
+    "errors": []
+   },
+   {
+    "case": "unqualified pin adds qualification",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.63,
+    "errors": []
+   },
+   {
+    "case": "rule via add_rule",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 4.976,
+    "errors": []
+   },
+   {
+    "case": "regenerate",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 4.853,
+    "errors": []
+   },
+   {
+    "case": "edit room",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.531,
+    "errors": []
+   },
+   {
+    "case": "fields at top level",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.287,
+    "errors": []
+   },
+   {
+    "case": "unknown op",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 4.916,
+    "errors": [
+     "'teleport_teacher' is not something I can do. Available: add_class, add_elective_band, add_elective_option, add_room, add_rule, add_subject, add_teacher, assign_teacher, disable_rule, edit_class, edit_room, edit_rule, edit_subject, edit_teacher, enable_rule, generate_timetable, remove_class, remove_elective_band, remove_room, remove_rule, remove_subject, remove_teacher, set_teacher_subjects."
+    ]
+   },
+   {
+    "case": "pin to missing class",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.086,
+    "errors": [
+     "No class named 'CSE-9Z'."
+    ]
+   },
+   {
+    "case": "bad room type",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.161,
+    "errors": [
+     "Room type must be one of classroom, lab, auditorium, seminar, ground."
+    ]
+   },
+   {
+    "case": "duplicate subject code",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.026,
+    "errors": [
+     "Subject CS701 already exists \u2014 edit it instead."
+    ]
+   },
+   {
+    "case": "edit missing room",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.255,
+    "errors": [
+     "No room named 'LT-999'."
+    ]
+   },
+   {
+    "case": "rule on missing class",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.051,
+    "errors": [
+     "No class named 'CSE-9Z' \u2014 existing: CSE-7A, CSE-7B, CSE-5A, 2A."
+    ]
+   },
+   {
+    "case": "remove missing teacher",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 5.104,
+    "errors": [
+     "No teacher named 'Dr. Ghost'."
+    ]
+   },
+   {
+    "case": "rule with bad period",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "steps": 1,
+    "ms": 9.07,
+    "errors": [
+     "P99 does not exist \u2014 the grid has P1\u2013P7."
+    ]
+   }
+  ],
+  "partial_apply": {
+   "ops": 2,
+   "applied": 1,
+   "failed": 1,
+   "rows_committed": 1
+  },
+  "payload": [
+   {
+    "entities_each": 1,
+    "bulk_chars": 237,
+    "longhand_chars": 275,
+    "ops_after_expand": 3,
+    "reduction": 1.16
+   },
+   {
+    "entities_each": 3,
+    "bulk_chars": 443,
+    "longhand_chars": 823,
+    "ops_after_expand": 9,
+    "reduction": 1.86
+   },
+   {
+    "entities_each": 5,
+    "bulk_chars": 649,
+    "longhand_chars": 1371,
+    "ops_after_expand": 15,
+    "reduction": 2.11
+   },
+   {
+    "entities_each": 10,
+    "bulk_chars": 1164,
+    "longhand_chars": 2741,
+    "ops_after_expand": 30,
+    "reduction": 2.35
+   },
+   {
+    "entities_each": 20,
+    "bulk_chars": 2214,
+    "longhand_chars": 5511,
+    "ops_after_expand": 60,
+    "reduction": 2.49
+   }
+  ]
+ }
+}

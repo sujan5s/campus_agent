@@ -1,0 +1,12 @@
+**Human-in-the-loop durability (fresh checkpointer per resume)**
+
+| Metric | Value |
+| --- | --- |
+| Approved leaves with classes | 26 |
+| Supervisor skipped the LLM (system trigger) | 26/26 |
+| Graph paused at interrupt() | 26/26 |
+| Resumed correctly after simulated restart | 26/26 |
+| No duplicate plan rows after resume | 26/26 |
+| Median trigger → pause | 43 ms |
+| Median resume → applied | 31 ms |
+| Notifications per approved plan (median) | 3 |

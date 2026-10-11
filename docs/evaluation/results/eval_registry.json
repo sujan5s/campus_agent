@@ -1,0 +1,317 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "registry": {
+  "n": 30,
+  "correct": 30,
+  "valid_accepted": 15,
+  "valid_total": 15,
+  "invalid_rejected": 15,
+  "invalid_total": 15,
+  "crashes": 0,
+  "kinds_covered": 14,
+  "catalog_size": 14,
+  "validate_ms": {
+   "n": 30,
+   "mean": 0.007,
+   "median": 0.005,
+   "p25": 0.003,
+   "p75": 0.009,
+   "p95": 0.02,
+   "min": 0.002,
+   "max": 0.021,
+   "stdev": 0.005
+  },
+  "compile_ms": {
+   "n": 50,
+   "mean": 0.632,
+   "median": 0.571,
+   "p25": 0.561,
+   "p75": 0.592,
+   "p95": 0.693,
+   "min": 0.55,
+   "max": 2.405,
+   "stdev": 0.283
+  },
+  "rows": [
+   {
+    "kind": "half_day",
+    "scope": "section",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.021
+   },
+   {
+    "kind": "half_day",
+    "scope": "semester",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.01
+   },
+   {
+    "kind": "no_same_subject_consecutive",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.004
+   },
+   {
+    "kind": "max_consecutive_teaching",
+    "scope": "semester",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.005
+   },
+   {
+    "kind": "subject_daily_max",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.003
+   },
+   {
+    "kind": "max_periods_per_day",
+    "scope": "section",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.004
+   },
+   {
+    "kind": "class_slot_ban",
+    "scope": "section",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.02
+   },
+   {
+    "kind": "teacher_unavailable",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.015
+   },
+   {
+    "kind": "teacher_max_daily",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.006
+   },
+   {
+    "kind": "teacher_max_weekly",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.005
+   },
+   {
+    "kind": "teacher_max_consecutive",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.004
+   },
+   {
+    "kind": "subject_slot_ban",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.011
+   },
+   {
+    "kind": "subject_preferred_periods",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.008
+   },
+   {
+    "kind": "elective_fixed_slots",
+    "scope": "semester",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.018
+   },
+   {
+    "kind": "avoid_gaps",
+    "scope": "global",
+    "expected": true,
+    "accepted": true,
+    "correct": true,
+    "message": "",
+    "ms": 0.003
+   },
+   {
+    "kind": "lunch_break",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "Unknown constraint type 'lunch_break'. Supported: half_day, no_same_subject_consecutive, max_consecutive_teaching, subject_daily_max, max_periods_per_day, class",
+    "ms": 0.005
+   },
+   {
+    "kind": "teacher_unavailable",
+    "scope": "section",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "'Teacher unavailable' cannot be scoped to a section \u2014 allowed: global.",
+    "ms": 0.003
+   },
+   {
+    "kind": "half_day",
+    "scope": "section",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "No class named 'CSE-9Z' \u2014 existing: CSE-7A, CSE-7B, CSE-5A, 2A.",
+    "ms": 0.004
+   },
+   {
+    "kind": "half_day",
+    "scope": "semester",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "No section is in semester 3 \u2014 existing semesters: 2, 5, 7.",
+    "ms": 0.004
+   },
+   {
+    "kind": "half_day",
+    "scope": "section",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "'FUNDAY' is not a teaching day \u2014 expected one of MON, TUE, WED, THU, FRI.",
+    "ms": 0.004
+   },
+   {
+    "kind": "half_day",
+    "scope": "section",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "P42 does not exist \u2014 the grid has P1\u2013P7.",
+    "ms": 0.006
+   },
+   {
+    "kind": "max_consecutive_teaching",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "value must be between 1 and 10, got 0.",
+    "ms": 0.003
+   },
+   {
+    "kind": "teacher_max_daily",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "No teacher matches 'Dr. Nobody'. Add them in Data Setup first.",
+    "ms": 0.007
+   },
+   {
+    "kind": "teacher_max_weekly",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "value must be between 1 and 45, got 99.",
+    "ms": 0.005
+   },
+   {
+    "kind": "subject_slot_ban",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "No subject matches 'XX999'. Add it in Data Setup first.",
+    "ms": 0.012
+   },
+   {
+    "kind": "subject_daily_max",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "value must be between 1 and 6, got 9.",
+    "ms": 0.002
+   },
+   {
+    "kind": "elective_fixed_slots",
+    "scope": "semester",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "No elective band named 'OE-9' in semester 7 \u2014 existing: OE-1.",
+    "ms": 0.009
+   },
+   {
+    "kind": "elective_fixed_slots",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "'Open elective at fixed periods' cannot be scoped to a global \u2014 allowed: semester.",
+    "ms": 0.002
+   },
+   {
+    "kind": "avoid_gaps",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "weight must be between 1 and 10, got 50.",
+    "ms": 0.002
+   },
+   {
+    "kind": "class_slot_ban",
+    "scope": "global",
+    "expected": false,
+    "accepted": false,
+    "correct": true,
+    "message": "'Class free at' cannot be scoped to a global \u2014 allowed: section, semester.",
+    "ms": 0.002
+   }
+  ]
+ }
+}

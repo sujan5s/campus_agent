@@ -1,0 +1,39 @@
+{
+ "meta": {
+  "date": "2026-10-11",
+  "python": "3.14.3",
+  "ortools": "9.15.6755",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+  "cpu_count": 16,
+  "runs": 5,
+  "llm": false
+ },
+ "sweep": {
+  "missed_leaves": 3,
+  "recovered": 3,
+  "ticks": [
+   {
+    "tick": 0,
+    "fired": 4,
+    "ms": 169.32,
+    "fired_for_weekend_leave": true
+   },
+   {
+    "tick": 1,
+    "fired": 1,
+    "ms": 32.763,
+    "fired_for_weekend_leave": true
+   },
+   {
+    "tick": 2,
+    "fired": 1,
+    "ms": 31.11,
+    "fired_for_weekend_leave": true
+   }
+  ],
+  "rows_total": 8,
+  "rows_unique_lessons": 8,
+  "pre_existing_approved_leaves": 9
+ }
+}

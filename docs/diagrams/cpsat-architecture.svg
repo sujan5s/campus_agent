@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 970" width="1000" height="970"
+     role="img" aria-label="Architecture of CP-SAT inside the Smart Campus Agent: admin input, an LLM layer that emits typed constraint rows, the constraints registry compiled into SolveOptions, a loader producing plain dataclasses, the pure CP-SAT solver, and versioned persistence, with a stability feedback loop carrying the previous timetable back into the solver.">
+  <defs>
+    <marker id="ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#16252D"/>
+    </marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#2E5C7A"/>
+    </marker>
+    <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#0E7C86"/>
+    </marker>
+    <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#A8402B"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="970" fill="#F2F5F7"/>
+
+  <text x="40" y="30" font-family="ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600" fill="#16252D" letter-spacing="0.01em">Where CP-SAT sits</text>
+  <text x="40" y="46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.06em">SMART CAMPUS AGENT · services/backend · the LLM is upstream and downstream, never in the solve</text>
+
+  <g transform="translate(0,52)">
+
+    <!-- ===== gutter layer labels ===== -->
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" text-anchor="end" letter-spacing="0.08em">
+      <text x="96" y="74">ADMIN</text>
+      <text x="96" y="162">LLM</text>
+      <text x="96" y="176">LAYER</text>
+      <text x="96" y="292">RULEBOOK</text>
+      <text x="96" y="412">LOADER</text>
+      <text x="96" y="560">SOLVER</text>
+      <text x="96" y="574">(PURE)</text>
+      <text x="96" y="848">PERSIST</text>
+    </g>
+
+    <!-- ===== BAND 1 · admin input ===== -->
+    <rect x="140" y="40" width="270" height="60" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="152" y="58" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#9A6B14" letter-spacing="0.08em">NATURAL LANGUAGE</text>
+    <text x="152" y="76" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="#16252D">“sem 7 open elective at MON P3</text>
+    <text x="152" y="91" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="#16252D">and TUE P3, Rao not on Friday”</text>
+
+    <rect x="430" y="40" width="270" height="60" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="442" y="58" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#2E5C7A" letter-spacing="0.08em">DIRECT ENTRY</text>
+    <text x="442" y="76" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="#16252D">/constraints form — one of the</text>
+    <text x="442" y="91" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11.5" fill="#16252D">14 catalogued rule kinds</text>
+
+    <line x1="275" y1="100" x2="275" y2="128" stroke="#16252D" stroke-width="1.1" marker-end="url(#ai)"/>
+    <line x1="565" y1="100" x2="565" y2="248" stroke="#2E5C7A" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#ad)"/>
+    <text x="574" y="120" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#2E5C7A">writes the same row</text>
+    <text x="574" y="132" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#2E5C7A">directly — no LLM</text>
+
+    <!-- ===== BAND 2 · LLM ===== -->
+    <rect x="140" y="130" width="560" height="76" rx="4" fill="#FAF2E0" stroke="#9A6B14" stroke-width="1.4"/>
+    <text x="152" y="147" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#9A6B14" letter-spacing="0.06em">LLM — TURNS ENGLISH INTO TYPED ROWS, AND EXPLAINS THE OUTCOME</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <rect x="152" y="158" width="170" height="34" rx="2" fill="#FFFFFF" stroke="#DCC48C"/>
+      <text x="162" y="172">/assistant/interpret</text>
+      <text x="162" y="185" fill="#55707E">supervisor → specialist</text>
+      <rect x="336" y="158" width="170" height="34" rx="2" fill="#FFFFFF" stroke="#DCC48C"/>
+      <text x="346" y="172">23 typed ops</text>
+      <text x="346" y="185" fill="#55707E">validate against Ctx</text>
+      <rect x="520" y="158" width="170" height="34" rx="2" fill="#FFFFFF" stroke="#DCC48C"/>
+      <text x="530" y="172">describe in English</text>
+      <text x="530" y="185" fill="#55707E">apply as one txn</text>
+    </g>
+
+    <!-- boundary 1 -->
+    <line x1="140" y1="228" x2="1000" y2="228" stroke="#C6D4DB" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="1000" y="221" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" text-anchor="end">the LLM's output is database rows — it never produces a schedule</text>
+    <line x1="420" y1="206" x2="420" y2="248" stroke="#16252D" stroke-width="1.1" marker-end="url(#ai)"/>
+    <text x="412" y="246" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D" text-anchor="end">constraint rows</text>
+    <text x="140" y="242" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#A8402B">admin relaxes a rule, regenerates</text>
+
+    <!-- ===== BAND 3 · rulebook ===== -->
+    <rect x="140" y="250" width="560" height="76" rx="4" fill="#E7EFF5" stroke="#2E5C7A" stroke-width="1.4"/>
+    <text x="152" y="267" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#2E5C7A" letter-spacing="0.06em">constraints TABLE — THE SINGLE SOURCE OF TRUTH</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <rect x="152" y="278" width="258" height="36" rx="2" fill="#FFFFFF" stroke="#A9C2D2"/>
+      <text x="162" y="292">CATALOG · 14 kinds</text>
+      <text x="162" y="306" fill="#55707E">scopes + validator + English renderer</text>
+      <rect x="424" y="278" width="266" height="36" rx="2" fill="#FFFFFF" stroke="#A9C2D2"/>
+      <text x="434" y="292">compile_options(db)</text>
+      <text x="434" y="306" fill="#55707E">section &gt; semester &gt; global resolution</text>
+    </g>
+    <line x1="420" y1="326" x2="420" y2="368" stroke="#16252D" stroke-width="1.1" marker-end="url(#ai)"/>
+    <text x="412" y="352" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D" text-anchor="end">SolveOptions</text>
+
+    <!-- ===== BAND 4 · loader ===== -->
+    <rect x="140" y="370" width="560" height="76" rx="4" fill="#E7EFF5" stroke="#2E5C7A" stroke-width="1.4"/>
+    <text x="152" y="387" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#2E5C7A" letter-spacing="0.06em">LOADER — DATABASE ROWS INTO PLAIN DATACLASSES</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <rect x="152" y="398" width="258" height="36" rx="2" fill="#FFFFFF" stroke="#A9C2D2"/>
+      <text x="162" y="412">load_timetable_input()</text>
+      <text x="162" y="426" fill="#55707E">→ TimetableInput · 28 pairs, 93 lessons</text>
+      <rect x="424" y="398" width="266" height="36" rx="2" fill="#FFFFFF" stroke="#A9C2D2"/>
+      <text x="434" y="412">load_previous_solution()</text>
+      <text x="434" y="426" fill="#55707E">→ PreviousSolution (the published week)</text>
+    </g>
+
+    <!-- boundary 2 -->
+    <line x1="140" y1="466" x2="1000" y2="466" stroke="#C6D4DB" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="1000" y="459" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" text-anchor="end">below the line the only imports are ortools and dataclasses — no DB, no LLM, deterministic</text>
+    <line x1="420" y1="446" x2="420" y2="488" stroke="#0E7C86" stroke-width="1.2" marker-end="url(#as)"/>
+
+    <!-- ===== BAND 5 · solver ===== -->
+    <rect x="140" y="490" width="560" height="210" rx="4" fill="#E0F0F1" stroke="#0E7C86" stroke-width="1.6"/>
+    <text x="152" y="509" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#0E7C86" letter-spacing="0.06em">solver/timetable_model.py — solve()</text>
+
+    <rect x="152" y="520" width="536" height="44" rx="2" fill="#FFFFFF" stroke="#8FC4C8"/>
+    <text x="164" y="536" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">precheck()</text>
+    <text x="164" y="552" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">pigeonhole + capacity + Hall's condition ⇒ precise prose in milliseconds</text>
+
+    <rect x="152" y="574" width="536" height="62" rx="2" fill="#FFFFFF" stroke="#8FC4C8"/>
+    <text x="164" y="590" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">build the model</text>
+    <text x="164" y="606" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">x 980 · y 53 · w 1855 · gv 70 · c 15 · lr 10 · u 350 · p 100 ≈ 3 950 Booleans</text>
+    <text x="164" y="622" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">H1–H12 hard · fairness + preferences + gaps + 8 × Hamming(prev) soft</text>
+
+    <rect x="152" y="646" width="536" height="42" rx="2" fill="#FFFFFF" stroke="#8FC4C8"/>
+    <text x="164" y="662" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#16252D">CpSolver.Solve()</text>
+    <text x="164" y="678" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E">max_time_in_seconds 20 · num_workers 8 — strategy portfolio + LNS</text>
+
+    <!-- ===== BAND 6 · the two exits ===== -->
+    <line x1="275" y1="700" x2="275" y2="722" stroke="#A8402B" stroke-width="1.2" marker-end="url(#ac)"/>
+    <line x1="565" y1="700" x2="565" y2="722" stroke="#0E7C86" stroke-width="1.2" marker-end="url(#as)"/>
+
+    <rect x="140" y="724" width="270" height="60" rx="3" fill="#F9E9E4" stroke="#A8402B" stroke-width="1.3"/>
+    <text x="152" y="742" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#A8402B" letter-spacing="0.06em">INFEASIBLE</text>
+    <text x="152" y="759" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">reasons[] ⇒ HTTP 422 ⇒ rendered</text>
+    <text x="152" y="773" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">on the Constraints page</text>
+
+    <rect x="430" y="724" width="270" height="60" rx="3" fill="#E0F0F1" stroke="#0E7C86" stroke-width="1.3"/>
+    <text x="442" y="742" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86" letter-spacing="0.06em">OPTIMAL / FEASIBLE</text>
+    <text x="442" y="759" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">Lesson[] · ElectivePlacement[]</text>
+    <text x="442" y="773" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">+ load_gap, objective, wall_time</text>
+
+    <!-- infeasible feedback loop -->
+    <path d="M140,754 H124 V288 H138" fill="none" stroke="#A8402B" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#ac)"/>
+
+    <!-- ===== BAND 7 · persistence ===== -->
+    <line x1="565" y1="784" x2="565" y2="810" stroke="#2E5C7A" stroke-width="1.2" marker-end="url(#ad)"/>
+    <rect x="430" y="812" width="270" height="60" rx="3" fill="#E7EFF5" stroke="#2E5C7A" stroke-width="1.3"/>
+    <text x="442" y="830" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#2E5C7A" letter-spacing="0.06em">VERSION N+1 — NOTHING IS OVERWRITTEN</text>
+    <text x="442" y="847" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">TimetableEntry rows (status active)</text>
+    <text x="442" y="861" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">+ TimetableConfig rule snapshot</text>
+
+    <!-- stability loop: the published version feeds the next solve -->
+    <path d="M700,842 H728 V414 H702" fill="none" stroke="#2E5C7A" stroke-width="1.3" marker-end="url(#ad)"/>
+    <text x="704" y="406" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#2E5C7A">version N</text>
+
+    <!-- ===== right rail ===== -->
+    <rect x="760" y="520" width="200" height="156" rx="3" fill="#E0F0F1" stroke="#0E7C86" stroke-width="1.3"/>
+    <text x="772" y="540" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#0E7C86" letter-spacing="0.08em">STABILITY</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="772" y="558">AddHint(var, 1)</text>
+      <text x="772" y="572" fill="#55707E">  warm start for the</text>
+      <text x="772" y="586" fill="#55707E">  LNS workers</text>
+      <text x="772" y="606">+ 8 × Hamming(new, prev)</text>
+      <text x="772" y="620" fill="#55707E">  a real objective term,</text>
+      <text x="772" y="634" fill="#55707E">  not just a search bias</text>
+      <text x="772" y="656" fill="#0E7C86">⇒ 0 lessons moved, 0.6 s</text>
+      <text x="772" y="670" fill="#0E7C86">  vs ~8 s for ?fresh=true</text>
+    </g>
+
+    <rect x="760" y="790" width="200" height="100" rx="3" fill="#FFFFFF" stroke="#C6D4DB" stroke-width="1.1"/>
+    <text x="772" y="810" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#55707E" letter-spacing="0.08em">OVERLAY, NOT A REWRITE</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#16252D">
+      <text x="772" y="828">confirmed period</text>
+      <text x="772" y="842">exchanges are applied</text>
+      <text x="772" y="856">per date at read time —</text>
+      <text x="772" y="870">the solved week itself</text>
+      <text x="772" y="884">is never mutated</text>
+    </g>
+
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+**Timetable Agent on the campus instance (CP-SAT, 8 workers)**
+
+| Property | Value |
+| --- | --- |
+| Sections / teachers / rooms | 4 / 12 / 10 |
+| Timeslots (MON–FRI × 7) | 35 |
+| Weekly lessons demanded | 93 |
+| Open-elective bands / pinned assignments | 2 / 5 |
+| Enabled scheduling rules | 10 |
+| Cold solve, 8 s cap (median of runs) | 8.09 s, status feasible |
+| Warm (preserve) solve, 8 s cap | 0.88 s, status optimal |
+| Cold solve, 120 s cap | 120.09 s, feasible, objective 11 |
+| Objective cold / warm (median) | 11 / 11 |
+| Lessons moved vs published (cold / warm) | 83 / 0 of 93 |
+| Independent hard-constraint checks | 23 checks × 10 solutions, 0 violations |
